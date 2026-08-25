@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoScribe AI | De Audio a Noticia en Segundos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SDK Oficial de Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: '#6366f1' } } }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; scroll-behavior: smooth; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        .glass-card { background: linear-gradient(180deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.9) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.4); }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-500 selection:text-white">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-40 glass border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
+                🎙️ EchoScribe
+            </div>
+            <div class="hidden md:flex gap-8 items-center font-semibold text-sm text-slate-300">
+                <a href="#precios" class="hover:text-white transition">Precios</a>
+                <a href="#sobre-mi" class="hover:text-white transition">Acerca de Mí</a>
+                <button onclick="openAuthModal('login')" class="hover:text-brand transition">Iniciar Sesión</button>
+                <button onclick="openAuthModal('register')" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-5 rounded-xl border border-slate-700 transition shadow-lg">Regístrate</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 px-6 text-center max-w-5xl mx-auto relative">
+        <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-[600px] h-[400px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight relative z-10">
+            Convierte horas de vídeo en <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">titulares perfectos con IA</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto relative z-10">
+            Descarga, transcribe y extrae contexto periodístico de YouTube, Twitch o X en minutos. Olvídate de picar texto a mano.
+        </p>
+        <div class="flex justify-center gap-4 relative z-10">
+            <a href="#precios" class="btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center gap-2 text-lg">
+                ✨ Empezar 7 Días Gratis
+            </a>
+        </div>
+    </section>
+
+    <!-- Sección Acerca de Mí -->
+    <section id="sobre-mi" class="py-20 relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="glass-card p-10 rounded-3xl flex flex-col md:flex-row gap-8 items-center border border-slate-700 shadow-2xl">
+                <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-brand to-purple-600 flex-shrink-0 flex items-center justify-center text-5xl shadow-xl">
+                    👨‍💻
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-2 text-white">Iván García Miranda</h2>
+                    <p class="text-brand font-semibold mb-4 tracking-wide uppercase text-sm">Desarrollador y Creador de EchoScribe</p>
+                    <p class="text-slate-300 leading-relaxed mb-6">
+                        Soy estudiante de 19 años en la Universidad Politécnica de Valencia (UPV), cursando el tercer año del Grado en Tecnologías Digitales y Multimedia. Mi objetivo académico y profesional está orientado hacia la especialización en Inteligencia Artificial mediante un máster. Mi visión con EchoScribe y futuros proyectos es desarrollar aplicaciones innovadoras que aporten valor real y solucionen problemas cotidianos mediante la tecnología.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://linkedin.com/in/iván-garcía-miranda-785a8735b/" target="_blank" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl text-sm font-bold text-white transition flex items-center gap-2">
+                            🔗 LinkedIn
+                        </a>
+                        <a href="https://github.com/ivangarmir18" target="_blank" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl text-sm font-bold text-white transition flex items-center gap-2">
+                            💻 GitHub
+                        </a>
+                        <a href="mailto:ivangarmir018@gmail.com" class="px-5 py-2.5 bg-brand hover:bg-indigo-500 rounded-xl text-sm font-bold text-white transition flex items-center gap-2 shadow-lg">
+                            ✉️ Contacto
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Precios -->
+    <section id="precios" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Planes y Límites Diarios</h2>
+                <p class="text-slate-400">Escala según tus necesidades. El plan Pro incluye 7 días de prueba gratis.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- PLAN GRATUITO -->
+                <div class="glass-card p-8 rounded-3xl flex flex-col">
+                    <h3 class="text-2xl font-bold mb-2 text-slate-300">Gratuito</h3>
+                    <div class="text-4xl font-extrabold mb-6">0 €<span class="text-lg font-normal text-slate-500">/mes</span></div>
+                    <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium flex-1">
+                        <li class="flex gap-2"><span>✨</span> <span><strong>2 Transcripciones IA</strong> (max. 30 min/cada una). <span class="text-slate-500 text-xs block">Si dura más, se corta a los 30m.</span></span></li>
+                        <li class="flex gap-2"><span>⚡</span> <span><strong>4 Transcripciones Estándar</strong> (max. 1h/cada una).</span></li>
+                        <li class="flex gap-2"><span>📥</span> <span><strong>5 Descargas</strong> MP3/MP4 (Máx. calidad).</span></li>
+                        <li class="flex gap-2 opacity-60"><span>⚠️</span> <span>Incluye marca de agua en los TXT generados.</span></li>
+                    </ul>
+                    <button onclick="openAuthModal('register')" class="w-full py-4 rounded-xl font-bold bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">Crear cuenta gratis</button>
+                </div>
+
+                <!-- PLAN PRO -->
+                <div class="glass-card p-8 rounded-3xl border-2 border-indigo-500 relative transform lg:-translate-y-4 shadow-2xl shadow-indigo-500/20 flex flex-col">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">7 DÍAS GRATIS</div>
+                    <h3 class="text-2xl font-bold mb-2 text-indigo-400">Pro</h3>
+                    <div class="text-4xl font-extrabold mb-6">7,99 €<span class="text-lg font-normal text-slate-400">/mes</span></div>
+                    <ul class="space-y-4 mb-8 text-sm text-slate-200 font-medium flex-1">
+                        <li class="flex gap-2"><span>✨</span> <span><strong>4 Transcripciones IA</strong> (max. 1h) <br><span class="text-indigo-300">+ 1 Transcripción IA Larga (1h a 3h).</span></span></li>
+                        <li class="flex gap-2"><span>⚡</span> <span><strong>8 Transcripciones Estándar</strong> (max. 3h/cada una).</span></li>
+                        <li class="flex gap-2"><span>📥</span> <span><strong>10 Descargas</strong> MP3/MP4 (Máx. calidad).</span></li>
+                        <li class="flex gap-2"><span>💧</span> <span><strong>Sin marcas de agua.</strong> Textos 100% limpios.</span></li>
+                    </ul>
+                    <button onclick="checkout('PRO')" class="w-full py-4 rounded-xl font-bold btn-gradient text-white shadow-lg">Probar 7 Días Gratis</button>
+                </div>
+
+                <!-- PLAN ULTRA -->
+                <div class="glass-card p-8 rounded-3xl flex flex-col">
+                    <h3 class="text-2xl font-bold mb-2 text-yellow-500">Ultra</h3>
+                    <div class="text-4xl font-extrabold mb-6">19,99 €<span class="text-lg font-normal text-slate-500">/mes</span></div>
+                    <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium flex-1">
+                        <li class="flex gap-2"><span>🔥</span> <span><strong>10 Transcripciones IA</strong> (max. 3h) <br><span class="text-yellow-500/80">+ 1 Transcripción Extra-larga (3h a 12h).</span></span></li>
+                        <li class="flex gap-2"><span>⚡</span> <span><strong>16 Transcripciones Estándar</strong> (max. 12h/cada una).</span></li>
+                        <li class="flex gap-2"><span>📥</span> <span><strong>20 Descargas</strong> MP3/MP4 (Máx. calidad).</span></li>
+                        <li class="flex gap-2"><span>🚀</span> <span>Prioridad máxima de procesamiento.</span></li>
+                    </ul>
+                    <button onclick="checkout('ULTRA')" class="w-full py-4 rounded-xl font-bold bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">Suscribirse a Ultra</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-900/50 py-10 text-center relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-xl font-extrabold text-white mb-2">EchoScribe</h3>
+            <p class="text-slate-500 text-sm mb-6">© 2026 Desarrollado por Iván García Miranda. Todos los derechos reservados.</p>
+            <div class="flex justify-center gap-6 text-sm font-semibold text-slate-400">
+                <button onclick="document.getElementById('privacy-modal').classList.remove('hidden')" class="hover:text-white transition">Política de Privacidad</button>
+                <a href="mailto:ivangarmir018@gmail.com" class="hover:text-white transition">Soporte Técnico</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DE POLÍTICA DE PRIVACIDAD -->
+    <div id="privacy-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center py-10">
+        <div class="glass-card p-8 rounded-3xl w-[800px] max-h-[80vh] overflow-y-auto shadow-2xl relative">
+            <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold transition">✕</button>
+            <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-4">Política de Privacidad</h2>
+            <div class="text-slate-300 text-sm space-y-4 leading-relaxed">
+                <p><strong>1. Recopilación de Datos:</strong> Al registrarte en EchoScribe, recopilamos tu correo electrónico y nombre de usuario exclusivamente para gestionar tu cuenta, autenticación y acceso a los planes contratados.</p>
+                <p><strong>2. Procesamiento de Pagos:</strong> Toda la información financiera y de tarjetas de crédito es procesada de forma segura mediante <strong>Stripe</strong>. EchoScribe no almacena ni tiene acceso a tus datos bancarios en ningún momento.</p>
+                <p><strong>3. Archivos y Transcripciones:</strong> Los enlaces de audio y vídeo procesados en EchoScribe se utilizan temporalmente para generar la transcripción mediante IA. No almacenamos tus archivos multimedia ni compartimos las transcripciones generadas con terceros.</p>
+                <p><strong>4. Uso de la Inteligencia Artificial:</strong> Utilizamos la API de Google Gemini para procesar los textos y generar contextos y titulares. Los datos se envían de forma anónima y cifrada siguiendo las políticas de privacidad de Google Cloud.</p>
+                <p><strong>5. Contacto:</strong> Para solicitudes de eliminación de datos o consultas sobre tu privacidad, puedes contactar con nosotros en <em>ivangarmir018@gmail.com</em>.</p>
+            </div>
+            <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="mt-8 w-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-3 rounded-xl transition">Entendido</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE AUTENTICACIÓN -->
+    <div id="auth-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center opacity-0 transition-opacity duration-300 overflow-y-auto py-10">
+        <div class="glass-card p-8 rounded-3xl w-[400px] shadow-2xl relative transform scale-95 transition-transform duration-300 my-auto" id="auth-modal-content">
+            <button onclick="closeAuthModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">✕</button>
+            
+            <div class="text-center mb-6">
+                <h2 id="auth-title" class="text-2xl font-bold text-white mb-2">Crear Cuenta</h2>
+                <p id="auth-subtitle" class="text-sm text-slate-400 mb-6">Regístrate para descargar y usar la app.</p>
+                
+                <button onclick="iniciarConGoogle()" class="w-full bg-white hover:bg-slate-100 text-slate-900 font-bold py-3 rounded-xl flex justify-center items-center gap-3 transition shadow-md">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    Continuar con Google
+                </button>
+                
+                <div class="flex items-center my-6">
+                    <hr class="flex-1 border-slate-700">
+                    <span class="px-3 text-xs text-slate-500 uppercase tracking-widest font-semibold">O con tu email</span>
+                    <hr class="flex-1 border-slate-700">
+                </div>
+            </div>
+            
+            <form id="auth-form" onsubmit="event.preventDefault(); procesarAuth();" class="space-y-4">
+                <div id="field-username">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Nombre de Usuario</label>
+                    <input type="text" id="auth-user" placeholder="Ej. periodista22" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Correo Electrónico</label>
+                    <input type="email" id="auth-email" required placeholder="tu@correo.com" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Contraseña</label>
+                    <input type="password" id="auth-pwd" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition">
+                </div>
+
+                <div id="field-repeat-pwd">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Repetir Contraseña</label>
+                    <input type="password" id="auth-pwd-2" placeholder="Debe coincidir" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition">
+                </div>
+                
+                <button type="submit" id="auth-submit-btn" class="w-full btn-gradient text-white font-bold py-3.5 rounded-xl shadow-lg mt-2">Registrarse</button>
+            </form>
+            
+            <div class="mt-6 text-center text-sm text-slate-400 border-t border-slate-700/50 pt-6">
+                <span id="auth-switch-text">¿Ya tienes una cuenta?</span> 
+                <button onclick="toggleAuthMode()" id="auth-switch-btn" class="text-brand font-bold hover:underline">Inicia Sesión</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-slate-800 border border-slate-700 text-white px-6 py-3 rounded-2xl shadow-2xl font-medium transition-all duration-300 translate-y-20 opacity-0 z-50 flex items-center gap-3">
+        <span id="toast-icon">✅</span>
+        <span id="toast-msg">Mensaje de prueba</span>
+    </div>
+
+    <script>
+        // =========================================================
+        // 1. CONFIGURACIÓN DE SUPABASE Y STRIPE
+        // =========================================================
+        const SUPABASE_URL = 'https://ggmaiqxbidcxhbungnpx.supabase.co'; 
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnbWFpcXhiaWRjeGhidW5nbnB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2NjI4OTUsImV4cCI6MjEwMzIzODg5NX0.dFblpUUXInw4JLbsQQVa5NcxFWoCz3Ydff2c87_gRew'; 
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        const STRIPE_LINK_PRO = 'https://buy.stripe.com/8x23cw1JZddAghT4sggjC00';
+        const STRIPE_LINK_ULTRA = 'https://buy.stripe.com/14AcN64Wba1od5HcYMgjC01';
+
+        // =========================================================
+        // 2. LÓGICA DE LA INTERFAZ
+        // =========================================================
+        let currentMode = 'register'; 
+        const modal = document.getElementById('auth-modal');
+        const modalContent = document.getElementById('auth-modal-content');
+
+        function openAuthModal(mode) {
+            currentMode = mode;
+            updateAuthUI();
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeAuthModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        function toggleAuthMode() {
+            currentMode = currentMode === 'register' ? 'login' : 'register';
+            updateAuthUI();
+        }
+
+        function updateAuthUI() {
+            const fieldUser = document.getElementById('field-username');
+            const fieldPwd2 = document.getElementById('field-repeat-pwd');
+            
+            if(currentMode === 'register') {
+                document.getElementById('auth-title').innerText = "Crear Cuenta";
+                document.getElementById('auth-subtitle').innerText = "Regístrate para descargar y usar la app.";
+                document.getElementById('auth-submit-btn').innerText = "Registrarse";
+                document.getElementById('auth-switch-text').innerText = "¿Ya tienes una cuenta?";
+                document.getElementById('auth-switch-btn').innerText = "Inicia Sesión";
+                
+                fieldUser.style.display = "block";
+                fieldPwd2.style.display = "block";
+                document.getElementById('auth-user').setAttribute('required', 'true');
+                document.getElementById('auth-pwd-2').setAttribute('required', 'true');
+            } else {
+                document.getElementById('auth-title').innerText = "Iniciar Sesión";
+                document.getElementById('auth-subtitle').innerText = "Bienvenido de nuevo a EchoScribe.";
+                document.getElementById('auth-submit-btn').innerText = "Entrar";
+                document.getElementById('auth-switch-text').innerText = "¿No tienes cuenta?";
+                document.getElementById('auth-switch-btn').innerText = "Regístrate gratis";
+                
+                fieldUser.style.display = "none";
+                fieldPwd2.style.display = "none";
+                document.getElementById('auth-user').removeAttribute('required');
+                document.getElementById('auth-pwd-2').removeAttribute('required');
+            }
+        }
+
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            document.getElementById('toast-icon').innerText = isError ? "❌" : "✅";
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => { toast.classList.add('translate-y-20', 'opacity-0'); }, 4000);
+        }
+
+        // =========================================================
+        // 3. LÓGICA DE AUTENTICACIÓN
+        // =========================================================
+        async function procesarAuth() {
+            const email = document.getElementById('auth-email').value;
+            const pwd = document.getElementById('auth-pwd').value;
+            const btn = document.getElementById('auth-submit-btn');
+
+            btn.disabled = true;
+
+            if(currentMode === 'register') {
+                const user = document.getElementById('auth-user').value;
+                const pwd2 = document.getElementById('auth-pwd-2').value;
+                
+                if(pwd !== pwd2) {
+                    showToast("Las contraseñas no coinciden.", true);
+                    btn.disabled = false;
+                    return;
+                }
+                
+                btn.innerText = "Registrando...";
+                
+                const { data, error } = await sb.auth.signUp({
+                    email: email, 
+                    password: pwd, 
+                    options: { 
+                        data: { username: user },
+                        emailRedirectTo: 'https://echoscribe-chi.vercel.app' 
+                    }
+                });
+
+                if (error) {
+                    showToast(error.message, true);
+                } else {
+                    showToast("¡Cuenta creada! Revisa tu email para verificarla.");
+                    closeAuthModal();
+                    document.getElementById('auth-form').reset();
+                }
+
+            } else {
+                btn.innerText = "Entrando...";
+                
+                const { data, error } = await sb.auth.signInWithPassword({
+                    email: email, 
+                    password: pwd
+                });
+
+                if (error) {
+                    showToast(error.message, true);
+                } else {
+                    showToast("Sesión iniciada. ¡Bienvenido!");
+                    closeAuthModal();
+                    document.getElementById('auth-form').reset();
+                }
+            }
+            
+            btn.disabled = false;
+            updateAuthUI();
+        }
+
+        async function iniciarConGoogle() {
+            const { error } = await sb.auth.signInWithOAuth({ 
+                provider: 'google',
+                options: { redirectTo: 'https://echoscribe-chi.vercel.app' }
+            });
+            if(error) showToast(error.message, true);
+        }
+
+        async function checkout(plan) {
+            const { data: { session } } = await sb.auth.getSession();
+            
+            if(!session) {
+                showToast("Debes iniciar sesión o registrarte antes de suscribirte.", true);
+                openAuthModal('register');
+                return;
+            }
+
+            if(plan === 'PRO') window.open(STRIPE_LINK_PRO, '_blank');
+            else if (plan === 'ULTRA') window.open(STRIPE_LINK_ULTRA, '_blank');
+        }
+    </script>
+</body>
+</html>
