@@ -29,16 +29,30 @@
             <a href="index.html" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
                 🎙️ EchoScribe
             </a>
-            <div class="hidden md:flex gap-8 items-center font-semibold text-sm text-slate-300">
-                <a href="#precios" class="hover:text-white transition">Precios</a>
-                <a href="sobre-mi.html" class="hover:text-white transition">Sobre Mí</a>
-                <button onclick="openAuthModal('login')" class="hover:text-brand transition">Iniciar Sesión</button>
-                <button onclick="openAuthModal('register')" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-5 rounded-xl border border-slate-700 transition shadow-lg">Regístrate</button>
+            
+            <div class="flex gap-6 items-center font-semibold text-sm">
+                <a href="#precios" class="text-slate-300 hover:text-white transition hidden md:block">Precios</a>
+                <a href="sobre-mi.html" class="text-slate-300 hover:text-white transition hidden md:block">Sobre Mí</a>
+                
+                <!-- Botones si NO hay sesión -->
+                <div id="nav-guest" class="flex gap-4 items-center">
+                    <button onclick="openAuthModal('login')" class="text-slate-300 hover:text-brand transition">Iniciar Sesión</button>
+                    <button onclick="openAuthModal('register')" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-5 rounded-xl border border-slate-700 transition shadow-lg">Regístrate</button>
+                </div>
+
+                <!-- Botones si HAY sesión -->
+                <div id="nav-user" class="hidden flex gap-4 items-center">
+                    <button onclick="openProfileModal()" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition flex items-center gap-2 shadow-lg">
+                        <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
+                        <span id="nav-user-label">Mi Cuenta</span>
+                    </button>
+                    <button onclick="cerrarSesion()" class="text-slate-400 hover:text-red-400 text-xs font-bold transition">Salir</button>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section con Dos Botones -->
+    <!-- Hero Section -->
     <section class="pt-40 pb-20 px-6 text-center max-w-5xl mx-auto relative">
         <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-[600px] h-[400px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none"></div>
         <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight relative z-10">
@@ -48,18 +62,17 @@
             Descarga, transcribe y extrae contexto periodístico de YouTube, Twitch o X en minutos. Olvídate de picar texto a mano.
         </p>
         
-        <!-- Botones de Acción -->
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10">
             <a href="#precios" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-lg">
-                ✨ Empezar 7 Días de Prueba Gratis
+                ✨ Empezar 7 Días Gratis
             </a>
             <a href="/EchoScribe_Beta.zip" download="EchoScribe_Beta.zip" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-500 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-lg shadow-lg">
-                💻 Descargar Aplicación de Escritorio
+                💻 Descargar Aplicación de Escritorio (.exe)
             </a>
         </div>
     </section>
 
-    <!-- Sección de Precios y Límites (Inmediatamente después del Hero) -->
+    <!-- Sección de Precios -->
     <section id="precios" class="py-24 relative z-10 border-t border-slate-800/60">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
@@ -68,7 +81,7 @@
             </div>
 
             <div class="grid lg:grid-cols-3 gap-8">
-                <!-- PLAN GRATUITO -->
+                <!-- GRATUITO -->
                 <div class="glass-card p-8 rounded-3xl flex flex-col">
                     <h3 class="text-2xl font-bold mb-2 text-slate-300">Gratuito</h3>
                     <div class="text-4xl font-extrabold mb-6">0 €<span class="text-lg font-normal text-slate-500">/mes</span></div>
@@ -76,32 +89,32 @@
                         <li class="flex gap-2"><span>✨</span> <span><strong>2 Transcripciones IA</strong> (max. 30 min/cada una). <span class="text-slate-500 text-xs block">Si dura más, se corta a los 30m.</span></span></li>
                         <li class="flex gap-2"><span>⚡</span> <span><strong>4 Transcripciones Estándar</strong> (max. 1h/cada una).</span></li>
                         <li class="flex gap-2"><span>📥</span> <span><strong>5 Descargas</strong> MP3/MP4 (Máx. calidad).</span></li>
-                        <li class="flex gap-2 opacity-60"><span>⚠️</span> <span>Incluye marca de agua en los TXT generados.</span></li>
+                        <li class="flex gap-2 opacity-60"><span>⚠️</span> <span>Incluye marca de agua en los TXT.</span></li>
                     </ul>
                     <button onclick="openAuthModal('register')" class="w-full py-4 rounded-xl font-bold bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">Crear cuenta gratis</button>
                 </div>
 
-                <!-- PLAN PRO -->
+                <!-- PRO -->
                 <div class="glass-card p-8 rounded-3xl border-2 border-indigo-500 relative transform lg:-translate-y-4 shadow-2xl shadow-indigo-500/20 flex flex-col">
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">7 DÍAS GRATIS</div>
                     <h3 class="text-2xl font-bold mb-2 text-indigo-400">Pro</h3>
                     <div class="text-4xl font-extrabold mb-6">7,99 €<span class="text-lg font-normal text-slate-400">/mes</span></div>
                     <ul class="space-y-4 mb-8 text-sm text-slate-200 font-medium flex-1">
                         <li class="flex gap-2"><span>✨</span> <span><strong>4 Transcripciones IA</strong> (max. 1h) <br><span class="text-indigo-300">+ 1 Transcripción IA Larga (1h a 3h).</span></span></li>
-                        <li class="flex gap-2"><span>⚡</span> <span><strong>8 Transcripciones Estándar</strong> (max. 3h/cada una).</span></li>
+                        <li class="flex gap-2"><span>⚡</span> <span><strong>8 Transcripciones Estándar</strong> (max. 3h).</span></li>
                         <li class="flex gap-2"><span>📥</span> <span><strong>10 Descargas</strong> MP3/MP4 (Máx. calidad).</span></li>
-                        <li class="flex gap-2"><span>💧</span> <span><strong>Sin marcas de agua.</strong> Textos 100% limpios.</span></li>
+                        <li class="flex gap-2"><span>💧</span> <span><strong>Sin marcas de agua.</strong></span></li>
                     </ul>
                     <button onclick="checkout('PRO')" class="w-full py-4 rounded-xl font-bold btn-gradient text-white shadow-lg">Probar 7 Días Gratis</button>
                 </div>
 
-                <!-- PLAN ULTRA -->
+                <!-- ULTRA -->
                 <div class="glass-card p-8 rounded-3xl flex flex-col">
                     <h3 class="text-2xl font-bold mb-2 text-yellow-500">Ultra</h3>
                     <div class="text-4xl font-extrabold mb-6">19,99 €<span class="text-lg font-normal text-slate-500">/mes</span></div>
                     <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium flex-1">
                         <li class="flex gap-2"><span>🔥</span> <span><strong>10 Transcripciones IA</strong> (max. 3h) <br><span class="text-yellow-500/80">+ 1 Transcripción Extra-larga (3h a 12h).</span></span></li>
-                        <li class="flex gap-2"><span>⚡</span> <span><strong>16 Transcripciones Estándar</strong> (max. 12h/cada una).</span></li>
+                        <li class="flex gap-2"><span>⚡</span> <span><strong>16 Transcripciones Estándar</strong> (max. 12h).</span></li>
                         <li class="flex gap-2"><span>📥</span> <span><strong>20 Descargas</strong> MP3/MP4 (Máx. calidad).</span></li>
                         <li class="flex gap-2"><span>🚀</span> <span>Prioridad máxima de procesamiento.</span></li>
                     </ul>
@@ -124,30 +137,55 @@
         </div>
     </footer>
 
-    <!-- MODAL DE POLÍTICA DE PRIVACIDAD -->
-    <div id="privacy-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center py-10">
-        <div class="glass-card p-8 rounded-3xl w-[800px] max-h-[80vh] overflow-y-auto shadow-2xl relative">
-            <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold transition">✕</button>
-            <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-4">Política de Privacidad</h2>
-            <div class="text-slate-300 text-sm space-y-4 leading-relaxed">
-                <p><strong>1. Recopilación de Datos:</strong> Al registrarte en EchoScribe, recopilamos tu correo electrónico y nombre de usuario exclusivamente para gestionar tu cuenta, autenticación y acceso a los planes contratados.</p>
-                <p><strong>2. Procesamiento de Pagos:</strong> Toda la información financiera y de tarjetas de crédito es procesada de forma segura mediante <strong>Stripe</strong>. EchoScribe no almacena ni tiene acceso a tus datos bancarios en ningún momento.</p>
-                <p><strong>3. Archivos y Transcripciones:</strong> Los enlaces de audio y vídeo procesados en EchoScribe se utilizan temporalmente para generar la transcripción mediante IA. No almacenamos tus archivos multimedia ni compartimos las transcripciones generadas con terceros.</p>
-                <p><strong>4. Uso de la Inteligencia Artificial:</strong> Utilizamos la API de Google Gemini para procesar los textos y generar contextos y titulares. Los datos se envían de forma anónima y cifrada siguiendo las políticas de privacidad de Google Cloud.</p>
-                <p><strong>5. Contacto:</strong> Para solicitudes de eliminación de datos o consultas sobre tu privacidad, puedes contactar con nosotros en <em>ivangarmir018@gmail.com</em>.</p>
+    <!-- MODAL: MI PERFIL / AJUSTES DE USUARIO -->
+    <div id="profile-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card p-8 rounded-3xl w-full max-w-lg shadow-2xl relative">
+            <button onclick="closeProfileModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold transition">✕</button>
+            <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-3 flex items-center gap-2">
+                👤 Panel de Usuario
+            </h2>
+
+            <div class="space-y-6">
+                <!-- Datos de cuenta -->
+                <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-700/80">
+                    <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">Correo Electrónico</p>
+                    <p id="profile-email" class="text-white font-semibold font-mono text-sm">cargando...</p>
+                    <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mt-3 mb-1">Nombre de Usuario</p>
+                    <p id="profile-username" class="text-indigo-400 font-bold text-base">cargando...</p>
+                </div>
+
+                <!-- Plan actual y upgrade -->
+                <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-700/80">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs text-slate-400 uppercase tracking-wider font-bold">Plan Activo</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 rounded-full text-xs font-bold">Activo</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="window.open(STRIPE_LINK_PRO, '_blank')" class="flex-1 py-2 rounded-xl text-xs font-bold btn-gradient text-white">Adquirir / Cambiar Pro</button>
+                        <button onclick="window.open(STRIPE_LINK_ULTRA, '_blank')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-yellow-600/30 text-yellow-300 border border-yellow-500/40 hover:bg-yellow-600/40">Adquirir Ultra</button>
+                    </div>
+                </div>
+
+                <!-- Cambiar Contraseña -->
+                <div class="border-t border-slate-700/60 pt-4">
+                    <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-2">Cambiar Contraseña</p>
+                    <div class="flex gap-2">
+                        <input type="password" id="profile-new-pwd" placeholder="Nueva contraseña (min. 6)" class="flex-1 bg-slate-900/50 px-4 py-2.5 rounded-xl border border-slate-700 text-sm text-white focus:border-brand outline-none">
+                        <button onclick="actualizarContrasena()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl border border-slate-600 transition">Guardar</button>
+                    </div>
+                </div>
             </div>
-            <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="mt-8 w-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-3 rounded-xl transition">Entendido</button>
         </div>
     </div>
 
-    <!-- MODAL DE AUTENTICACIÓN -->
-    <div id="auth-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center opacity-0 transition-opacity duration-300 overflow-y-auto py-10">
-        <div class="glass-card p-8 rounded-3xl w-[400px] shadow-2xl relative transform scale-95 transition-transform duration-300 my-auto" id="auth-modal-content">
+    <!-- MODAL: AUTENTICACIÓN -->
+    <div id="auth-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card p-8 rounded-3xl w-[400px] shadow-2xl relative" id="auth-modal-content">
             <button onclick="closeAuthModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">✕</button>
             
             <div class="text-center mb-6">
                 <h2 id="auth-title" class="text-2xl font-bold text-white mb-2">Crear Cuenta</h2>
-                <p id="auth-subtitle" class="text-sm text-slate-400 mb-6">Regístrate para gestionar tu plan y usar la app.</p>
+                <p id="auth-subtitle" class="text-sm text-slate-400 mb-6">Regístrate para usar EchoScribe.</p>
                 
                 <button onclick="iniciarConGoogle()" class="w-full bg-white hover:bg-slate-100 text-slate-900 font-bold py-3 rounded-xl flex justify-center items-center gap-3 transition shadow-md">
                     <svg class="w-5 h-5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
@@ -156,7 +194,7 @@
                 
                 <div class="flex items-center my-6">
                     <hr class="flex-1 border-slate-700">
-                    <span class="px-3 text-xs text-slate-500 uppercase tracking-widest font-semibold">O con tu email</span>
+                    <span class="px-3 text-xs text-slate-500 uppercase tracking-widest font-semibold">O con email</span>
                     <hr class="flex-1 border-slate-700">
                 </div>
             </div>
@@ -164,23 +202,27 @@
             <form id="auth-form" onsubmit="event.preventDefault(); procesarAuth();" class="space-y-4">
                 <div id="field-username">
                     <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Nombre de Usuario</label>
-                    <input type="text" id="auth-user" placeholder="Ej. periodista22" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition">
+                    <input type="text" id="auth-user" placeholder="Ej. usuario18" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition text-sm">
                 </div>
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Correo Electrónico</label>
-                    <input type="email" id="auth-email" required placeholder="tu@correo.com" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition">
+                    <input type="email" id="auth-email" required placeholder="tu@correo.com" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition text-sm">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Contraseña</label>
-                    <input type="password" id="auth-pwd" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition">
+                    <input type="password" id="auth-pwd" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition text-sm">
                 </div>
 
                 <div id="field-repeat-pwd">
                     <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Repetir Contraseña</label>
-                    <input type="password" id="auth-pwd-2" placeholder="Debe coincidir" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition">
+                    <input type="password" id="auth-pwd-2" placeholder="Debe coincidir" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition text-sm">
                 </div>
                 
+                <div id="field-forgot" class="hidden text-right">
+                    <button type="button" onclick="recuperarContrasena()" class="text-xs text-brand hover:underline font-semibold">¿Olvidaste tu contraseña?</button>
+                </div>
+
                 <button type="submit" id="auth-submit-btn" class="w-full btn-gradient text-white font-bold py-3.5 rounded-xl shadow-lg mt-2">Registrarse</button>
             </form>
             
@@ -188,6 +230,20 @@
                 <span id="auth-switch-text">¿Ya tienes una cuenta?</span> 
                 <button onclick="toggleAuthMode()" id="auth-switch-btn" class="text-brand font-bold hover:underline">Inicia Sesión</button>
             </div>
+        </div>
+    </div>
+
+    <!-- MODAL: PRIVACIDAD -->
+    <div id="privacy-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center py-10 px-4">
+        <div class="glass-card p-8 rounded-3xl w-[800px] max-h-[80vh] overflow-y-auto shadow-2xl relative">
+            <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold transition">✕</button>
+            <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-4">Política de Privacidad</h2>
+            <div class="text-slate-300 text-sm space-y-4 leading-relaxed">
+                <p><strong>1. Recopilación de Datos:</strong> Al registrarte en EchoScribe, recopilamos tu correo electrónico y nombre de usuario exclusivamente para gestionar tu cuenta y acceso.</p>
+                <p><strong>2. Procesamiento de Pagos:</strong> Los pagos son procesados de forma segura mediante Stripe. EchoScribe no almacena datos de tarjetas.</p>
+                <p><strong>3. Archivos y Transcripciones:</strong> Los contenidos multimedia procesados no se almacenan ni se transfieren a terceros.</p>
+            </div>
+            <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="mt-8 w-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-3 rounded-xl transition">Entendido</button>
         </div>
     </div>
 
@@ -205,24 +261,50 @@
         const STRIPE_LINK_PRO = 'https://buy.stripe.com/8x23cw1JZddAghT4sggjC00';
         const STRIPE_LINK_ULTRA = 'https://buy.stripe.com/14AcN64Wba1od5HcYMgjC01';
 
-        let currentMode = 'register'; 
-        const modal = document.getElementById('auth-modal');
-        const modalContent = document.getElementById('auth-modal-content');
+        let currentUser = null;
+        let currentMode = 'register';
+
+        // Escucha cambios de sesión en tiempo real
+        sb.auth.onAuthStateChange((event, session) => {
+            currentUser = session?.user || null;
+            actualizarEstadoNavbar();
+        });
+
+        function actualizarEstadoNavbar() {
+            const navGuest = document.getElementById('nav-guest');
+            const navUser = document.getElementById('nav-user');
+            const userLabel = document.getElementById('nav-user-label');
+
+            if (currentUser) {
+                navGuest.classList.add('hidden');
+                navUser.classList.remove('hidden');
+                const username = currentUser.user_metadata?.username || currentUser.email.split('@')[0];
+                userLabel.innerText = username;
+            } else {
+                navGuest.classList.remove('hidden');
+                navUser.classList.add('hidden');
+            }
+        }
 
         function openAuthModal(mode) {
             currentMode = mode;
             updateAuthUI();
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-95');
-            }, 10);
+            document.getElementById('auth-modal').classList.remove('hidden');
         }
 
         function closeAuthModal() {
-            modal.classList.add('opacity-0');
-            modalContent.classList.add('scale-95');
-            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+            document.getElementById('auth-modal').classList.add('hidden');
+        }
+
+        function openProfileModal() {
+            if (!currentUser) return;
+            document.getElementById('profile-email').innerText = currentUser.email;
+            document.getElementById('profile-username').innerText = currentUser.user_metadata?.username || 'Usuario';
+            document.getElementById('profile-modal').classList.remove('hidden');
+        }
+
+        function closeProfileModal() {
+            document.getElementById('profile-modal').classList.add('hidden');
         }
 
         function toggleAuthMode() {
@@ -233,27 +315,30 @@
         function updateAuthUI() {
             const fieldUser = document.getElementById('field-username');
             const fieldPwd2 = document.getElementById('field-repeat-pwd');
+            const fieldForgot = document.getElementById('field-forgot');
             
-            if(currentMode === 'register') {
+            if (currentMode === 'register') {
                 document.getElementById('auth-title').innerText = "Crear Cuenta";
-                document.getElementById('auth-subtitle').innerText = "Regístrate para gestionar tu plan y usar la app.";
+                document.getElementById('auth-subtitle').innerText = "Regístrate para usar EchoScribe.";
                 document.getElementById('auth-submit-btn').innerText = "Registrarse";
                 document.getElementById('auth-switch-text').innerText = "¿Ya tienes una cuenta?";
                 document.getElementById('auth-switch-btn').innerText = "Inicia Sesión";
                 
                 fieldUser.style.display = "block";
                 fieldPwd2.style.display = "block";
+                fieldForgot.classList.add('hidden');
                 document.getElementById('auth-user').setAttribute('required', 'true');
                 document.getElementById('auth-pwd-2').setAttribute('required', 'true');
             } else {
                 document.getElementById('auth-title').innerText = "Iniciar Sesión";
-                document.getElementById('auth-subtitle').innerText = "Bienvenido de nuevo a EchoScribe.";
+                document.getElementById('auth-subtitle').innerText = "Accede a tu cuenta de EchoScribe.";
                 document.getElementById('auth-submit-btn').innerText = "Entrar";
                 document.getElementById('auth-switch-text').innerText = "¿No tienes cuenta?";
                 document.getElementById('auth-switch-btn').innerText = "Regístrate gratis";
                 
                 fieldUser.style.display = "none";
                 fieldPwd2.style.display = "none";
+                fieldForgot.classList.remove('hidden');
                 document.getElementById('auth-user').removeAttribute('required');
                 document.getElementById('auth-pwd-2').removeAttribute('required');
             }
@@ -274,52 +359,43 @@
 
             btn.disabled = true;
 
-            if(currentMode === 'register') {
+            if (currentMode === 'register') {
                 const user = document.getElementById('auth-user').value;
                 const pwd2 = document.getElementById('auth-pwd-2').value;
                 
-                if(pwd !== pwd2) {
+                if (pwd !== pwd2) {
                     showToast("Las contraseñas no coinciden.", true);
                     btn.disabled = false;
                     return;
                 }
                 
                 btn.innerText = "Registrando...";
-                
-                const { data, error } = await sb.auth.signUp({
+                const { error } = await sb.auth.signUp({
                     email: email, 
                     password: pwd, 
                     options: { 
                         data: { username: user },
-                        emailRedirectTo: 'https://echoscribe-chi.vercel.app' 
+                        emailRedirectTo: window.location.origin
                     }
                 });
 
-                if (error) {
-                    showToast(error.message, true);
-                } else {
+                if (error) showToast(error.message, true);
+                else {
                     showToast("¡Cuenta creada! Revisa tu email para verificarla.");
                     closeAuthModal();
-                    document.getElementById('auth-form').reset();
                 }
-
             } else {
                 btn.innerText = "Entrando...";
-                
-                const { data, error } = await sb.auth.signInWithPassword({
-                    email: email, 
-                    password: pwd
-                });
+                const { data, error } = await sb.auth.signInWithPassword({ email: email, password: pwd });
 
-                if (error) {
-                    showToast(error.message, true);
-                } else {
+                if (error) showToast(error.message, true);
+                else {
                     showToast("Sesión iniciada. ¡Bienvenido!");
+                    currentUser = data.user;
+                    actualizarEstadoNavbar();
                     closeAuthModal();
-                    document.getElementById('auth-form').reset();
                 }
             }
-            
             btn.disabled = false;
             updateAuthUI();
         }
@@ -327,21 +403,52 @@
         async function iniciarConGoogle() {
             const { error } = await sb.auth.signInWithOAuth({ 
                 provider: 'google',
-                options: { redirectTo: 'https://echoscribe-chi.vercel.app' }
+                options: { redirectTo: window.location.origin }
             });
-            if(error) showToast(error.message, true);
+            if (error) showToast(error.message, true);
         }
 
-        async function checkout(plan) {
-            const { data: { session } } = await sb.auth.getSession();
-            
-            if(!session) {
+        async function recuperarContrasena() {
+            const email = document.getElementById('auth-email').value;
+            if (!email) {
+                showToast("Escribe tu correo primero en la casilla.", true);
+                return;
+            }
+            const { error } = await sb.auth.resetPasswordForEmail(email, {
+                redirectTo: window.location.origin
+            });
+            if (error) showToast(error.message, true);
+            else showToast("Enlace de restablecimiento enviado a tu correo.");
+        }
+
+        async function actualizarContrasena() {
+            const newPwd = document.getElementById('profile-new-pwd').value;
+            if (newPwd.length < 6) {
+                showToast("La contraseña debe tener al menos 6 caracteres.", true);
+                return;
+            }
+            const { error } = await sb.auth.updateUser({ password: newPwd });
+            if (error) showToast(error.message, true);
+            else {
+                showToast("Contraseña actualizada correctamente.");
+                document.getElementById('profile-new-pwd').value = "";
+            }
+        }
+
+        async function cerrarSesion() {
+            await sb.auth.signOut();
+            currentUser = null;
+            actualizarEstadoNavbar();
+            showToast("Has cerrado sesión.");
+        }
+
+        function checkout(plan) {
+            if (!currentUser) {
                 showToast("Debes iniciar sesión o registrarte antes de suscribirte.", true);
                 openAuthModal('register');
                 return;
             }
-
-            if(plan === 'PRO') window.open(STRIPE_LINK_PRO, '_blank');
+            if (plan === 'PRO') window.open(STRIPE_LINK_PRO, '_blank');
             else if (plan === 'ULTRA') window.open(STRIPE_LINK_ULTRA, '_blank');
         }
     </script>
