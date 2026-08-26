@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcribir y Traducir Vídeos de YouTube al Español | EchoScribe</title>
+    <meta name="description" content="Pega un enlace de YouTube en inglés o francés y obtén automáticamente los titulares, el resumen y la transcripción perfectamente traducida a tu idioma.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: '#6366f1' } } } }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <nav class="fixed w-full z-40 glass border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight">🎙️ EchoScribe</a>
+            <div class="hidden md:flex gap-6 items-center font-semibold text-sm">
+                <a href="/guias" class="text-brand transition">← Volver a Guías</a>
+                <a href="/" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition">Descargar App</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 pt-40 pb-20 px-6 max-w-4xl mx-auto w-full">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Transcribe vídeos extranjeros y obtén el resumen en tu idioma</h1>
+        <p class="text-xl text-slate-400 mb-12">A veces necesitas sacar información clave de un documental o conferencia en inglés. Con EchoScribe, pasas la URL del vídeo y la IA se encarga de entenderlo y devolvértelo estructurado en español.</p>
+
+        <section class="my-12">
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- ANTES -->
+                <div class="bg-red-950/20 border border-red-900/50 p-6 rounded-2xl">
+                    <span class="text-red-500 font-bold mb-4 block">❌ Traductores y Subtítulos</span>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li>Subtítulos automáticos de YouTube llenos de errores.</li>
+                        <li>Tienes que ver el vídeo de 1 hora entero prestando atención.</li>
+                        <li>Copiar el texto y pasarlo por el Traductor de Google arruina el sentido.</li>
+                    </ul>
+                </div>
+                <!-- DESPUÉS -->
+                <div class="bg-green-950/20 border border-green-900/50 p-6 rounded-2xl relative">
+                    <div class="absolute top-0 right-0 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">EchoScribe IA</div>
+                    <span class="text-green-500 font-bold mb-4 block">✅ Extracción Multilingüe</span>
+                    <ul class="space-y-3 text-sm text-slate-300 mt-4">
+                        <li>Eliges "Español" en la interfaz.</li>
+                        <li>La IA escucha el audio original (ej. en Inglés).</li>
+                        <li>Te devuelve el texto, los titulares y un resumen nativo en perfecto español.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="prose prose-invert max-w-none text-slate-300 space-y-6">
+            <h2 class="text-2xl font-bold text-white mt-10">Rompe la barrera del idioma</h2>
+            <p>La combinación del motor Whisper local (que entiende decenas de idiomas a la perfección) con el procesador de lenguaje de Gemini, te permite realizar trabajos de investigación internacional o documentarte sobre temas tecnológicos o científicos de manera instantánea, sin importar que la fuente de YouTube esté en otro idioma.</p>
+
+            <div class="bg-slate-900 p-8 rounded-2xl border border-slate-700 mt-10 text-center">
+                <h3 class="text-xl font-bold text-white mb-4">Tu asistente multilingüe en el PC</h3>
+                <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/v1.0/EchoScribe_Setup.exe" class="inline-block bg-brand hover:bg-indigo-500 text-white font-bold py-4 px-8 rounded-xl transition shadow-lg">Descargar Instalador (.exe)</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-900/50 py-8 text-center">
+        <p class="text-slate-500 text-sm">© 2026 EchoScribe AI.</p>
+    </footer>
+</body>
+</html>

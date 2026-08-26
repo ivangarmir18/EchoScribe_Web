@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcribir Partidos de Fútbol y Crónicas sin inventar nombres | EchoScribe</title>
+    <meta name="description" content="Descubre cómo EchoScribe corrige automáticamente los nombres de los jugadores de fútbol en tus transcripciones deportivas cruzando la fonética con las plantillas reales.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: '#6366f1' } } } }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <nav class="fixed w-full z-40 glass border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight">🎙️ EchoScribe</a>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
+                <a href="/guias" class="text-brand transition">← Volver a Guías</a>
+                <a href="/" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition shadow-lg">Descargar App</a>
+            </div>
+        </div>
+    </nav>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('hidden'); navLinks.classList.toggle('flex');
+        });
+    </script>
+
+    <main class="flex-1 pt-40 pb-20 px-6 max-w-5xl mx-auto w-full">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">El fin de corregir apellidos de futbolistas a mano</h1>
+        <p class="text-xl text-slate-400 mb-12">Las IAs genéricas escriben lo que "oyen". Si el narrador habla rápido, "Dimitrievski" se convierte en "Dimitres". Mira cómo la IA Periodística de EchoScribe soluciona este dolor de cabeza en las crónicas de fútbol.</p>
+
+        <!-- CASO REAL DE ÉXITO -->
+        <section class="my-12">
+            <h3 class="text-2xl font-bold text-white mb-6 text-center">Caso Real: Narración de un Betis - Valencia</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- ANTES (YouTube/Whisper) -->
+                <div class="bg-red-950/20 border border-red-900/50 p-6 rounded-2xl">
+                    <span class="text-red-500 font-bold mb-4 block">❌ Transcripción Automática Genérica</span>
+                    <p class="text-slate-300 text-sm leading-relaxed font-mono">
+                        "Recordamos la alineación del Valencia con <span class="bg-red-500/20 text-red-300 px-1 rounded">Dimitres</span> en la portería. <span class="bg-red-500/20 text-red-300 px-1 rounded">Mafeo Tarreirpo</span> por delante Bernal acompañado de Deosa... Rodrigo <span class="bg-red-500/20 text-red-300 px-1 rounded">Danuma</span> que puede chutar busca un ángulo, no lo encuentra. <span class="bg-red-500/20 text-red-300 px-1 rounded">Dan Yuma</span> que gambetea dentro del área... se encuentra Valles, la segunda acción para <span class="bg-red-500/20 text-red-300 px-1 rounded">Sato, Sato, Sato</span>, Valles."
+                    </p>
+                </div>
+                <!-- DESPUÉS (EchoScribe) -->
+                <div class="bg-green-950/20 border border-green-900/50 p-6 rounded-2xl relative shadow-lg shadow-green-900/20">
+                    <div class="absolute top-0 right-0 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">EchoScribe Periodista</div>
+                    <span class="text-green-500 font-bold mb-4 block">✅ Contexto Validado (Plantillas Reales)</span>
+                    <p class="text-slate-300 text-sm leading-relaxed font-mono mt-4">
+                        "Recordamos la alineación del Valencia con <span class="bg-green-500/20 text-green-300 px-1 rounded font-bold">Stole Dimitrievski</span> en la portería, <span class="bg-green-500/20 text-green-300 px-1 rounded font-bold">Pablo Maffeo, César Tárrega</span> en defensa... Arnaut <span class="bg-green-500/20 text-green-300 px-1 rounded font-bold">Danjuma</span>, que puede chutar, busca un ángulo, no lo encuentra. <span class="bg-green-500/20 text-green-300 px-1 rounded font-bold">Danjuma</span> que gambetea dentro del área... se encuentra Álvaro Valles. La segunda acción para <span class="bg-green-500/20 text-green-300 px-1 rounded font-bold">Sadiq. Sadiq, Sadiq</span>. ¡Valles!"
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="prose prose-invert max-w-none text-slate-300 space-y-6">
+            <h2 class="text-2xl font-bold text-white mt-10">¿Cómo consigue la IA corregir "Sato" por "Sadiq"?</h2>
+            <p>Los motores de reconocimiento de voz tradicionales intentan adivinar las palabras basándose en el diccionario. Si un narrador grita el nombre del delantero "Sadiq" con ruido de fondo, la máquina escribe "Sato" porque fonéticamente se parece.</p>
+            <p><strong>EchoScribe funciona diferente:</strong></p>
+            <ul class="list-disc pl-6 space-y-2">
+                <li>Detecta automáticamente que el contexto del vídeo es un partido entre el Real Betis y el Valencia.</li>
+                <li>Consulta en tiempo real (mediante Google Search) las alineaciones y plantillas oficiales de esos equipos.</li>
+                <li>Cruza las palabras "raras" o mal pronunciadas (como "Mafeo Tarreirpo") con la base de datos de jugadores, deduciendo instantáneamente que el narrador dijo "Pablo Maffeo y César Tárrega".</li>
+            </ul>
+
+            <div class="bg-slate-900 p-8 rounded-2xl border border-slate-700 mt-10 text-center">
+                <h3 class="text-xl font-bold text-white mb-4">La herramienta imprescindible en redacciones deportivas</h3>
+                <p class="text-slate-400 mb-6">Pega el enlace de YouTube del resumen del partido y obtén la crónica perfecta en segundos.</p>
+                <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/v1.0/EchoScribe_Setup.exe" class="inline-block bg-brand hover:bg-indigo-500 text-white font-bold py-4 px-8 rounded-xl transition shadow-lg">Descargar EchoScribe (.exe)</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-900/50 py-8 text-center">
+        <p class="text-slate-500 text-sm">© 2026 EchoScribe AI. Desarrollado por Iván García Miranda.</p>
+    </footer>
+</body>
+</html>

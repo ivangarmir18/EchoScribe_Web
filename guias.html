@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guías y Casos de Uso | EchoScribe AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: '#6366f1' } } } }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-40 glass border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight">🎙️ EchoScribe</a>
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
+                <a href="/" class="text-slate-300 hover:text-white transition">Inicio</a>
+                <a href="/#precios" class="text-slate-300 hover:text-white transition">Precios</a>
+                <a href="/guias" class="text-brand transition">Guías de Uso</a>
+                <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
+                <a href="/" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition shadow-lg">← Volver a la Web</a>
+            </div>
+        </div>
+    </nav>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const n = document.getElementById('nav-links'); n.classList.toggle('hidden'); n.classList.toggle('flex');
+        });
+    </script>
+
+    <!-- Hub de Artículos -->
+    <main class="flex-1 pt-40 pb-20 px-6 max-w-6xl mx-auto w-full">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Guías y Casos de Uso</h1>
+            <p class="text-slate-400 text-lg">Descubre cómo EchoScribe resuelve problemas reales de transcripción periodística.</p>
+        </div>
+
+        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Casos de Uso Profesionales</h2>
+        <div class="grid md:grid-cols-2 gap-6 mb-16">
+            <a href="/guias/transcribir-ruedas-prensa" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Transcribir Ruedas de Prensa Deportivas</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Cómo usar la IA contextual para que nombres de jugadores y entrenadores se escriban perfectos a la primera.</p>
+            </a>
+            <a href="/guias/ecoscribe-vs-whisper" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">EchoScribe vs Whisper Genérico</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Por qué el modelo base de Whisper no es suficiente para periodistas y cómo el análisis contextual cambia el juego.</p>
+            </a>
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-900/50 py-8 text-center">
+        <p class="text-slate-500 text-sm">© 2026 EchoScribe AI. Desarrollado por Iván García Miranda.</p>
+    </footer>
+</body>
+</html>
