@@ -36,19 +36,19 @@
             </button>
             
             <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
-                <a href="/" class="text-slate-300 hover:text-white transition">Inicio</a>
-                <a href="/#precios" class="text-slate-300 hover:text-white transition">Precios</a>
-                <a href="/#garantia" class="text-slate-300 hover:text-white transition">Garantía y Cancelación</a>
-                <a href="/guias" class="text-slate-300 hover:text-white transition">Guía de Uso</a>
-                <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
+                <a href="#" class="text-slate-300 hover:text-white transition">Inicio</a>
+                <a href="#precios" class="text-slate-300 hover:text-white transition">Precios</a>
+                <a href="#garantia" class="text-slate-300 hover:text-white transition">Garantía y Cancelación</a>
                 
                 <hr class="w-full border-slate-700 md:hidden">
 
+                <!-- Sin sesión -->
                 <div id="nav-guest" class="flex flex-col md:flex-row gap-4 items-center w-full md:w-auto">
                     <button onclick="openAuthModal('login')" class="text-slate-300 hover:text-brand transition">Iniciar Sesión</button>
                     <button onclick="openAuthModal('register')" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-5 rounded-xl border border-slate-700 transition shadow-lg w-full md:w-auto">Regístrate</button>
                 </div>
 
+                <!-- Con sesión -->
                 <div id="nav-user" class="hidden flex flex-col md:flex-row gap-4 items-center w-full md:w-auto">
                     <button onclick="openProfileModal()" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition flex items-center justify-center gap-2 shadow-lg w-full md:w-auto">
                         <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
@@ -91,16 +91,23 @@
                 💻 Descargar App Oficial (.exe)
             </a>
         </div>
+
+        <div class="glass max-w-3xl mx-auto rounded-2xl p-5 border border-indigo-500/30 text-left flex items-start gap-4 relative z-10 text-xs text-slate-300">
+            <span class="text-2xl">☁️</span>
+            <div>
+                <strong class="text-white block mb-1 text-sm">Tecnología Cloud Ultra-Veloz (Groq Cloud):</strong>
+                Los planes <strong>Pro y Ultra</strong> envían tus ficheros a superordenadores en la nube optimizados con Inteligencia Artificial. Obtén transcripciones completas de horas de audio en <strong>menos de 15 segundos</strong>, liberando por completo los recursos de tu ordenador.
+            </div>
+        </div>
     </section>
 
-    <!-- Sección de Precios (Con selector Mensual / Anual) -->
+    <!-- Sección de Precios (Mensual / Anual) -->
     <section id="precios" class="py-24 relative z-10 border-t border-slate-800/60">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Planes flexibles adaptados a tu ritmo</h2>
                 <p class="text-slate-400 max-w-2xl mx-auto mb-8">Elige pago mensual o ahorra un 37% con la modalidad anual.</p>
                 
-                <!-- Toggle de Facturación -->
                 <div class="inline-flex items-center bg-slate-900 p-1.5 rounded-2xl border border-slate-800 shadow-inner">
                     <button id="btn-mensual" onclick="setBilling('mensual')" class="px-6 py-2.5 rounded-xl text-sm font-bold transition bg-indigo-600 text-white shadow-md">Facturación Mensual</button>
                     <button id="btn-anual" onclick="setBilling('anual')" class="px-6 py-2.5 rounded-xl text-sm font-bold transition text-slate-400 hover:text-white">Facturación Anual <span class="text-xs text-amber-400 font-extrabold ml-1">(-37%)</span></button>
@@ -135,7 +142,6 @@
                         <h3 class="text-2xl font-bold mb-2 text-indigo-400">Pro</h3>
                         <p class="text-xs text-indigo-200/70 mb-6">Velocidad cloud para redactores, podcasters y editores.</p>
                         
-                        <!-- Precio Dinámico -->
                         <div class="text-4xl font-extrabold mb-6 text-white">
                             <span id="price-pro">7,99 €</span><span class="text-lg font-normal text-slate-400" id="period-pro">/mes</span>
                         </div>
@@ -158,7 +164,6 @@
                         <h3 class="text-2xl font-bold mb-2 text-amber-400">Ultra</h3>
                         <p class="text-xs text-slate-400 mb-6">Potencia ilimitada para agencias y redacciones exigentes.</p>
                         
-                        <!-- Precio Dinámico -->
                         <div class="text-4xl font-extrabold mb-6 text-white">
                             <span id="price-ultra">19,99 €</span><span class="text-lg font-normal text-slate-500" id="period-ultra">/mes</span>
                         </div>
@@ -182,7 +187,6 @@
     <script>
         let currentBilling = 'mensual';
 
-        // Enlaces de Stripe (Remplaza con tus links reales de Stripe tanto mensuales como anuales)
         const STRIPE_LINKS = {
             pro_mensual: 'https://buy.stripe.com/8x23cw1JZddAghT4sggjC00',
             pro_anual: 'https://buy.stripe.com/7sY00k0FV8Xkc1D5wkgjC02',
@@ -202,19 +206,15 @@
             if (mode === 'anual') {
                 btnAnual.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition bg-indigo-600 text-white shadow-md";
                 btnMensual.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition text-slate-400 hover:text-white";
-                
                 pricePro.innerText = "59,99 €";
-                periodPro.innerText = "/año \n (equivalente a 5€/mes)";
-                
+                periodPro.innerText = "/año";
                 priceUltra.innerText = "149,99 €";
-                periodUltra.innerText = "/año \n (equivalente a 12,50€/mes)";
+                periodUltra.innerText = "/año";
             } else {
                 btnMensual.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition bg-indigo-600 text-white shadow-md";
                 btnAnual.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition text-slate-400 hover:text-white";
-                
                 pricePro.innerText = "7,99 €";
                 periodPro.innerText = "/mes";
-                
                 priceUltra.innerText = "19,99 €";
                 periodUltra.innerText = "/mes";
             }
@@ -246,21 +246,21 @@
         <div class="max-w-4xl mx-auto px-6 text-center">
             <h2 class="text-2xl md:text-3xl font-bold mb-4">Garantía, Ciclo Mensual/Anual y Política de Cancelación</h2>
             <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                Transparencia absoluta en tu suscripción. Conoce cómo funciona la renovación y las reglas de cancelación:
+                Transparencia absoluta en tu suscripción. Conoce cómo funciona la renovación de fecha a fecha y las reglas de cancelación:
             </p>
             <div class="grid md:grid-cols-2 gap-6 text-left">
                 <div class="glass p-6 rounded-2xl border border-slate-800">
                     <div class="text-2xl mb-2">📅</div>
                     <h3 class="text-white font-bold mb-2">¿Cómo funciona la renovación?</h3>
                     <p class="text-xs text-slate-400 leading-relaxed">
-                        El ciclo de facturación se rige por fecha exacta natural (si te suscribes un 12 de junio, se renueva el 12 de julio en mensual, o el 12 de junio del año siguiente en anual). <strong>Stripe te enviará un correo automático de aviso el día antes</strong> de cualquier cargo.
+                        El ciclo dura un mes entero natural (si te suscribes el 12, se renueva el 12). <strong>Stripe te enviará un correo automático de aviso el día antes</strong> de cualquier cargo recurrente.
                     </p>
                 </div>
                 <div class="glass p-6 rounded-2xl border border-slate-800">
                     <div class="text-2xl mb-2">⚠️</div>
                     <h3 class="text-white font-bold mb-2">¿Cuándo debo cancelar para evitar cargos?</h3>
                     <p class="text-xs text-slate-400 leading-relaxed">
-                        Recomendamos cancelar o gestionar tu suscripción <strong>al menos 1 semana antes de la fecha de renovación</strong> para evitar incidencias con el procesador de pagos. 
+                        Recomendamos cancelar o gestionar tu suscripción <strong>al menos 1 semana antes de la fecha de renovación</strong> para evitar incidencias con el banco. 
                         <br><br>
                         <em>Pruebas de 7 días:</em> Si cancelas durante la prueba gratuita, el plan se desactiva de inmediato; en las suscripciones de pago, conservarás tus ventajas intactas hasta el último día exacto abonado.
                     </p>
@@ -307,23 +307,124 @@
                         <span id="profile-renewal-date" class="text-indigo-300 font-mono font-bold">Calculando...</span>
                     </div>
 
+                    <div id="profile-action-buttons" class="flex gap-2"></div>
+
                     <div class="pt-2 border-t border-slate-800">
                         <button onclick="abrirPortalStripe()" class="w-full py-2.5 rounded-xl text-xs font-bold bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 transition flex items-center justify-center gap-2">
                             <span>⚙️</span> <span>Gestionar tarjeta o cancelar suscripción</span>
                         </button>
-                        <p class="text-[10px] text-slate-400 text-center mt-1.5">Recomendamos cancelar 1 semana antes de la renovación para evitar cobros del banco.</p>
+                        <p class="text-[10px] text-slate-400 text-center mt-1.5">Recomendamos cancelar 1 semana antes de la renovación para evitar cobros.</p>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-700/60 pt-4">
+                    <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-2">Cambiar Contraseña</p>
+                    <div class="flex gap-2">
+                        <input type="password" id="profile-new-pwd" placeholder="Nueva contraseña (min. 6)" class="flex-1 bg-slate-900/50 px-4 py-2.5 rounded-xl border border-slate-700 text-sm text-white focus:border-brand outline-none">
+                        <button onclick="actualizarContrasena()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl border border-slate-600 transition">Guardar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        const STRIPE_PORTAL_URL = 'https://billing.stripe.com/p/login/test_portal_real'; // Pega aquí tu link de Stripe Portal de Clientes
+    <!-- MODAL: AUTENTICACIÓN -->
+    <div id="auth-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card p-8 rounded-3xl w-[400px] shadow-2xl relative" id="auth-modal-content">
+            <button onclick="closeAuthModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">✕</button>
+            
+            <div class="text-center mb-6">
+                <h2 id="auth-title" class="text-2xl font-bold text-white mb-2">Crear Cuenta</h2>
+                <p id="auth-subtitle" class="text-sm text-slate-400 mb-6">Regístrate para usar EchoScribe.</p>
+                
+                <button onclick="iniciarConGoogle()" class="w-full bg-white hover:bg-slate-100 text-slate-900 font-bold py-3 rounded-xl flex justify-center items-center gap-3 transition shadow-md">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    Continuar con Google
+                </button>
+                
+                <div class="flex items-center my-6">
+                    <hr class="flex-1 border-slate-700">
+                    <span class="px-3 text-xs text-slate-500 uppercase tracking-widest font-semibold">O con email</span>
+                    <hr class="flex-1 border-slate-700">
+                </div>
+            </div>
+            
+            <form id="auth-form" onsubmit="event.preventDefault(); procesarAuth();" class="space-y-4">
+                <div id="field-username">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Nombre de Usuario</label>
+                    <input type="text" id="auth-user" placeholder="Ej. usuario18" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition text-sm">
+                </div>
 
-        function abrirPortalStripe() {
-            window.open(STRIPE_PORTAL_URL, '_blank');
-            showToast("Redirigiendo al portal seguro de Stripe...");
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Correo Electrónico</label>
+                    <input type="email" id="auth-email" required placeholder="tu@correo.com" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Contraseña</label>
+                    <input type="password" id="auth-pwd" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition text-sm">
+                </div>
+
+                <div id="field-repeat-pwd">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Repetir Contraseña</label>
+                    <input type="password" id="auth-pwd-2" placeholder="Debe coincidir" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition text-sm">
+                </div>
+                
+                <button type="submit" id="auth-submit-btn" class="w-full btn-gradient text-white font-bold py-3.5 rounded-xl shadow-lg mt-2">Registrarse</button>
+            </form>
+            
+            <div class="mt-6 text-center text-sm text-slate-400 border-t border-slate-700/50 pt-6">
+                <span id="auth-switch-text">¿Ya tienes una cuenta?</span> 
+                <button onclick="toggleAuthMode()" id="auth-switch-btn" class="text-brand font-bold hover:underline">Inicia Sesión</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-slate-800 border border-slate-700 text-white px-6 py-3 rounded-2xl shadow-2xl font-medium transition-all duration-300 translate-y-20 opacity-0 z-50 flex items-center gap-3">
+        <span id="toast-icon">✅</span>
+        <span id="toast-msg">Mensaje</span>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://ggmaiqxbidcxhbungnpx.supabase.co'; 
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnbWFpcXhiaWRjeGhidW5nbnB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2NjI4OTUsImV4cCI6MjEwMzIzODg5NX0.dFblpUUXInw4JLbsQQVa5NcxFWoCz3Ydff2c87_gRew'; 
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // ENLACE REAL AL PORTAL DE CLIENTE DE STRIPE (Cópialo de Stripe > Billing > Portal de clientes)
+        const STRIPE_PORTAL_URL = 'https://billing.stripe.com/p/login/tu_enlace_real_de_stripe';
+
+        let currentUser = null;
+        let currentMode = 'register';
+
+        sb.auth.onAuthStateChange((event, session) => {
+            currentUser = session?.user || null;
+            actualizarEstadoNavbar();
+        });
+
+        function actualizarEstadoNavbar() {
+            const navGuest = document.getElementById('nav-guest');
+            const navUser = document.getElementById('nav-user');
+            const userLabel = document.getElementById('nav-user-label');
+
+            if (currentUser) {
+                navGuest.classList.add('hidden');
+                navUser.classList.remove('hidden');
+                const username = currentUser.user_metadata?.username || currentUser.email.split('@')[0];
+                userLabel.innerText = username;
+            } else {
+                navGuest.classList.remove('hidden');
+                navUser.classList.add('hidden');
+            }
+        }
+
+        function openAuthModal(mode) {
+            currentMode = mode;
+            updateAuthUI();
+            document.getElementById('auth-modal').classList.remove('hidden');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.add('hidden');
         }
 
         function openProfileModal() {
@@ -332,9 +433,25 @@
             document.getElementById('profile-username').innerText = currentUser.user_metadata?.username || 'Usuario';
             
             const plan = (currentUser.user_metadata?.plan || 'Gratis').toUpperCase();
-            document.getElementById('profile-current-plan-label').innerText = `PLAN ${plan}`;
+            const planLabel = document.getElementById('profile-current-plan-label');
+            const actionContainer = document.getElementById('profile-action-buttons');
+            
+            planLabel.innerText = `PLAN ${plan}`;
+            
+            if (plan === 'ULTRA') {
+                planLabel.className = "text-amber-400 font-extrabold text-base uppercase";
+                actionContainer.innerHTML = `<span class="text-xs text-slate-400 italic py-1">¡Disfrutas del máximo rendimiento disponible!</span>`;
+            } else if (plan === 'PRO') {
+                planLabel.className = "text-indigo-400 font-extrabold text-base uppercase";
+                actionContainer.innerHTML = `
+                    <button onclick="window.open(STRIPE_LINKS.ultra_mensual, '_blank')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 transition flex items-center justify-center gap-1.5">
+                        <span>🚀</span> <span>Actualizar a Ultra (Solo +12€, misma fecha)</span>
+                    </button>
+                `;
+            } else {
+                actionContainer.innerHTML = ``;
+            }
 
-            // Cálculo de fecha exacta de renovación basada en el alta del usuario
             const fechaCreacion = new Date(currentUser.created_at || Date.now());
             const proximaRenovacion = new Date(fechaCreacion);
             proximaRenovacion.setMonth(proximaRenovacion.getMonth() + 1);
@@ -345,6 +462,107 @@
 
         function closeProfileModal() {
             document.getElementById('profile-modal').classList.add('hidden');
+        }
+
+        function abrirPortalStripe() {
+            window.open(STRIPE_PORTAL_URL, '_blank');
+            showToast("Redirigiendo al portal seguro de Stripe...");
+        }
+
+        function toggleAuthMode() {
+            currentMode = currentMode === 'register' ? 'login' : 'register';
+            updateAuthUI();
+        }
+
+        function updateAuthUI() {
+            const fieldUser = document.getElementById('field-username');
+            const fieldPwd2 = document.getElementById('field-repeat-pwd');
+            
+            if (currentMode === 'register') {
+                document.getElementById('auth-title').innerText = "Crear Cuenta";
+                document.getElementById('auth-subtitle').innerText = "Regístrate para usar EchoScribe.";
+                document.getElementById('auth-submit-btn').innerText = "Registrarse";
+                document.getElementById('auth-switch-text').innerText = "¿Ya tienes una cuenta?";
+                document.getElementById('auth-switch-btn').innerText = "Inicia Sesión";
+                fieldUser.style.display = "block";
+                fieldPwd2.style.display = "block";
+            } else {
+                document.getElementById('auth-title').innerText = "Iniciar Sesión";
+                document.getElementById('auth-subtitle').innerText = "Accede a tu cuenta de EchoScribe.";
+                document.getElementById('auth-submit-btn').innerText = "Entrar";
+                document.getElementById('auth-switch-text').innerText = "¿No tienes cuenta?";
+                document.getElementById('auth-switch-btn').innerText = "Regístrate gratis";
+                fieldUser.style.display = "none";
+                fieldPwd2.style.display = "none";
+            }
+        }
+
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            document.getElementById('toast-icon').innerText = isError ? "❌" : "✅";
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => { toast.classList.add('translate-y-20', 'opacity-0'); }, 4000);
+        }
+
+        async function procesarAuth() {
+            const email = document.getElementById('auth-email').value;
+            const pwd = document.getElementById('auth-pwd').value;
+            const btn = document.getElementById('auth-submit-btn');
+
+            btn.disabled = true;
+
+            if (currentMode === 'register') {
+                const user = document.getElementById('auth-user').value;
+                const pwd2 = document.getElementById('auth-pwd-2').value;
+                
+                if (pwd !== pwd2) {
+                    showToast("Las contraseñas no coinciden.", true);
+                    btn.disabled = false;
+                    return;
+                }
+                
+                btn.innerText = "Registrando...";
+                const { error } = await sb.auth.signUp({
+                    email: email, 
+                    password: pwd, 
+                    options: { data: { username: user }, emailRedirectTo: window.location.origin }
+                });
+
+                if (error) showToast(error.message, true);
+                else {
+                    showToast("¡Cuenta creada! Revisa tu email para verificarla.");
+                    closeAuthModal();
+                }
+            } else {
+                btn.innerText = "Entrando...";
+                const { data, error } = await sb.auth.signInWithPassword({ email: email, password: pwd });
+
+                if (error) showToast(error.message, true);
+                else {
+                    showToast("Sesión iniciada. ¡Bienvenido!");
+                    currentUser = data.user;
+                    actualizarEstadoNavbar();
+                    closeAuthModal();
+                }
+            }
+            btn.disabled = false;
+            updateAuthUI();
+        }
+
+        async function iniciarConGoogle() {
+            const { error } = await sb.auth.signInWithOAuth({ 
+                provider: 'google',
+                options: { redirectTo: window.location.origin }
+            });
+            if (error) showToast(error.message, true);
+        }
+
+        async function cerrarSesion() {
+            await sb.auth.signOut();
+            currentUser = null;
+            actualizarEstadoNavbar();
+            showToast("Has cerrado sesión.");
         }
     </script>
 </body>
