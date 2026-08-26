@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EchoScribe AI | De Audio a Noticia en Segundos</title>
+    <title>EchoScribe AI | De Audio a Noticia y Subtítulos en Segundos</title>
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
@@ -23,7 +24,6 @@
 </head>
 <body class="antialiased selection:bg-purple-500 selection:text-white">
 
-    <!-- Navegación -->
     <!-- Navegación Unificada -->
     <nav class="fixed w-full z-40 glass border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
@@ -32,28 +32,27 @@
                 🎙️ EchoScribe
             </a>
             
-            <!-- Botón Menú Móvil (Hamburguesa) -->
+            <!-- Botón Menú Móvil -->
             <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
             
-            <!-- Enlaces del Menú (Desktop y Móvil) -->
+            <!-- Enlaces del Menú -->
             <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
                 <a href="/" class="text-slate-300 hover:text-white transition">Inicio</a>
                 <a href="/#precios" class="text-slate-300 hover:text-white transition">Precios</a>
                 <a href="/guias" class="text-slate-300 hover:text-white transition">Guía de Uso</a>
                 <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
                 
-                <!-- Separador en móvil -->
                 <hr class="w-full border-slate-700 md:hidden">
 
-                <!-- Botones si NO hay sesión -->
+                <!-- Sin sesión -->
                 <div id="nav-guest" class="flex flex-col md:flex-row gap-4 items-center w-full md:w-auto">
                     <button onclick="openAuthModal('login')" class="text-slate-300 hover:text-brand transition">Iniciar Sesión</button>
                     <button onclick="openAuthModal('register')" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-5 rounded-xl border border-slate-700 transition shadow-lg w-full md:w-auto">Regístrate</button>
                 </div>
 
-                <!-- Botones si HAY sesión -->
+                <!-- Con sesión -->
                 <div id="nav-user" class="hidden flex flex-col md:flex-row gap-4 items-center w-full md:w-auto">
                     <button onclick="openProfileModal()" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition flex items-center justify-center gap-2 shadow-lg w-full md:w-auto">
                         <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
@@ -65,7 +64,6 @@
         </div>
     </nav>
 
-    <!-- Pequeño Script para hacer funcionar el menú móvil -->
     <script>
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const navLinks = document.getElementById('nav-links');
@@ -75,22 +73,36 @@
     </script>
 
     <!-- Hero Section -->
-    <section class="pt-40 pb-20 px-6 text-center max-w-5xl mx-auto relative">
+    <section class="pt-40 pb-16 px-6 text-center max-w-5xl mx-auto relative">
         <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-[600px] h-[400px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none"></div>
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight relative z-10">
-            Convierte horas de vídeo en <br class="hidden md:block"><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">titulares perfectos con IA</span>
+        
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-bold mb-6 tracking-wide relative z-10">
+            <span>🚀</span> Diseñado para Periodistas, Creadores y Editores de Vídeo
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight relative z-10 tracking-tight">
+            Convierte horas de vídeo en <br class="hidden md:block"><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500">noticias y subtítulos .SRT</span>
         </h1>
-        <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto relative z-10">
-            Descarga, transcribe y extrae contexto periodístico de YouTube, Twitch o X en minutos. Olvídate de picar texto a mano.
+        <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto relative z-10 leading-relaxed">
+            Transcribe ruedas de prensa, streams y entrevistas de YouTube, Twitch o X. Extrae titulares periodísticos contrastados y subtítulos listos para Premiere, DaVinci o CapCut.
         </p>
         
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10">
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10 mb-10">
             <a href="#precios" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-lg">
-                ✨ Empezar 7 Días Gratis
+                ✨ Probar 7 Días Gratis
             </a>
             <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/v1.0/EchoScribe_Setup.exe" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-500 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-lg shadow-lg">
-    💻 Descargar Instalador Oficial (.exe)
-</a>
+                💻 Descargar App Oficial (.exe)
+            </a>
+        </div>
+
+        <!-- Banner Informativo: Optimización Primer Uso -->
+        <div class="glass max-w-2xl mx-auto rounded-2xl p-4 border border-indigo-500/30 text-left flex items-start gap-3.5 relative z-10 text-xs text-slate-300">
+            <span class="text-xl">💡</span>
+            <div>
+                <strong class="text-white block mb-0.5">Nota de rendimiento en el primer uso:</strong>
+                La primera vez que proceses un audio o descargues en un formato específico, la aplicación configurará automáticamente los modelos neuronales y dependencias en segundo plano. A partir del segundo vídeo, ¡todo el procesamiento volará en segundos!
+            </div>
         </div>
     </section>
 
@@ -98,49 +110,68 @@
     <section id="precios" class="py-24 relative z-10 border-t border-slate-800/60">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Planes y Límites Diarios</h2>
-                <p class="text-slate-400">Escala según tus necesidades. El plan Pro incluye 7 días de prueba gratis.</p>
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Planes diseñados para tu ritmo de trabajo</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Potencia tu flujo de trabajo sin límites manuales. El plan Pro incluye 7 días de prueba completa sin compromiso.</p>
             </div>
 
-            <div class="grid lg:grid-cols-3 gap-8">
+            <div class="grid lg:grid-cols-3 gap-8 items-stretch">
                 <!-- GRATUITO -->
-                <div class="glass-card p-8 rounded-3xl flex flex-col">
-                    <h3 class="text-2xl font-bold mb-2 text-slate-300">Gratuito</h3>
-                    <div class="text-4xl font-extrabold mb-6">0 €<span class="text-lg font-normal text-slate-500">/mes</span></div>
-                    <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium flex-1">
-                        <li class="flex gap-2"><span>✨</span> <span><strong>2 Transcripciones IA</strong> (max. 30 min/cada una). <span class="text-slate-500 text-xs block">Si dura más, se corta a los 30m.</span></span></li>
-                        <li class="flex gap-2"><span>⚡</span> <span><strong>4 Transcripciones Estándar</strong> (max. 1h/cada una).</span></li>
-                        <li class="flex gap-2"><span>📥</span> <span><strong>5 Descargas</strong> MP3/MP4 (Máx. calidad).</span></li>
-                        <li class="flex gap-2 opacity-60"><span>⚠️</span> <span>Incluye marca de agua en los TXT.</span></li>
-                    </ul>
+                <div class="glass-card p-8 rounded-3xl flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2 text-slate-300">Gratuito</h3>
+                        <p class="text-xs text-slate-400 mb-6">Para pruebas esporádicas y audios cortos.</p>
+                        <div class="text-4xl font-extrabold mb-6">0 €<span class="text-lg font-normal text-slate-500">/mes</span></div>
+                        
+                        <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium">
+                            <li class="flex gap-2"><span>✨</span> <span><strong>2 Transcripciones IA/día</strong> (máx. 30 min/audio).</span></li>
+                            <li class="flex gap-2"><span>⚡</span> <span><strong>4 Transcripciones Estándar/día</strong> (Motor Whisper Base).</span></li>
+                            <li class="flex gap-2"><span>📥</span> <span><strong>5 Descargas/día</strong> (MP3 128 kbps / Vídeo 720p).</span></li>
+                            <li class="flex gap-2"><span>📄</span> <span>Exportación a <strong>Texto Plano (.TXT)</strong>.</span></li>
+                            <li class="flex gap-2 opacity-60"><span>⚠️</span> <span>Incluye marca de agua en los textos exportados.</span></li>
+                        </ul>
+                    </div>
                     <button onclick="openAuthModal('register')" class="w-full py-4 rounded-xl font-bold bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">Crear cuenta gratis</button>
                 </div>
 
                 <!-- PRO -->
-                <div class="glass-card p-8 rounded-3xl border-2 border-indigo-500 relative transform lg:-translate-y-4 shadow-2xl shadow-indigo-500/20 flex flex-col">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">7 DÍAS GRATIS</div>
-                    <h3 class="text-2xl font-bold mb-2 text-indigo-400">Pro</h3>
-                    <div class="text-4xl font-extrabold mb-6">7,99 €<span class="text-lg font-normal text-slate-400">/mes</span></div>
-                    <ul class="space-y-4 mb-8 text-sm text-slate-200 font-medium flex-1">
-                        <li class="flex gap-2"><span>✨</span> <span><strong>4 Transcripciones IA</strong> (max. 1h) <br><span class="text-indigo-300">+ 1 Transcripción IA Larga (1h a 3h).</span></span></li>
-                        <li class="flex gap-2"><span>⚡</span> <span><strong>8 Transcripciones Estándar</strong> (max. 3h).</span></li>
-                        <li class="flex gap-2"><span>📥</span> <span><strong>10 Descargas</strong> MP3/MP4 (Máx. calidad).</span></li>
-                        <li class="flex gap-2"><span>💧</span> <span><strong>Sin marcas de agua.</strong></span></li>
-                    </ul>
-                    <button onclick="checkout('PRO')" class="w-full py-4 rounded-xl font-bold btn-gradient text-white shadow-lg">Probar 7 Días Gratis</button>
+                <div class="glass-card p-8 rounded-3xl border-2 border-indigo-500 relative transform lg:-translate-y-4 shadow-2xl shadow-indigo-500/20 flex flex-col justify-between">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-500 text-white text-xs font-black px-4 py-1.5 rounded-full shadow-lg tracking-wider">
+                        🎁 7 DÍAS GRATIS
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2 text-indigo-400">Pro</h3>
+                        <p class="text-xs text-indigo-200/70 mb-6">El favorito de redactores, podcasters y editores de vídeo.</p>
+                        <div class="text-4xl font-extrabold mb-6 text-white">7,99 €<span class="text-lg font-normal text-slate-400">/mes</span></div>
+                        
+                        <ul class="space-y-4 mb-8 text-sm text-slate-200 font-medium">
+                            <li class="flex gap-2"><span>✨</span> <span><strong>5 Transcripciones IA/día</strong> (hasta 3h por audio).</span></li>
+                            <li class="flex gap-2"><span>⚡</span> <span><strong>8 Transcripciones Rápidas/día</strong> (Motor <strong>Whisper Small</strong> de alta fidelidad).</span></li>
+                            <li class="flex gap-2"><span>🎬</span> <span><strong>Exportación .SRT sincronizada:</strong> Subtítulos directos para Premiere, DaVinci y CapCut.</span></li>
+                            <li class="flex gap-2"><span>📥</span> <span><strong>10 Descargas/día:</strong> Audio de estudio a <strong>320 kbps</strong> y vídeo en <strong>1080p HD</strong>.</span></li>
+                            <li class="flex gap-2"><span>💧</span> <span><strong>Sin marcas de agua</strong> y con copia limpia desbloqueada.</span></li>
+                        </ul>
+                    </div>
+                    <button onclick="checkout('PRO')" class="w-full py-4 rounded-xl font-bold btn-gradient text-white shadow-lg">Comenzar 7 Días Gratis</button>
                 </div>
 
                 <!-- ULTRA -->
-                <div class="glass-card p-8 rounded-3xl flex flex-col">
-                    <h3 class="text-2xl font-bold mb-2 text-yellow-500">Ultra</h3>
-                    <div class="text-4xl font-extrabold mb-6">19,99 €<span class="text-lg font-normal text-slate-500">/mes</span></div>
-                    <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium flex-1">
-                        <li class="flex gap-2"><span>🔥</span> <span><strong>10 Transcripciones IA</strong> (max. 3h) <br><span class="text-yellow-500/80">+ 1 Transcripción Extra-larga (3h a 12h).</span></span></li>
-                        <li class="flex gap-2"><span>⚡</span> <span><strong>16 Transcripciones Estándar</strong> (max. 12h).</span></li>
-                        <li class="flex gap-2"><span>📥</span> <span><strong>20 Descargas</strong> MP3/MP4 (Máx. calidad).</span></li>
-                        <li class="flex gap-2"><span>🚀</span> <span>Prioridad máxima de procesamiento.</span></li>
-                    </ul>
-                    <button onclick="checkout('ULTRA')" class="w-full py-4 rounded-xl font-bold bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">Suscribirse a Ultra</button>
+                <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border border-amber-500/30">
+                    <div>
+                        <div class="inline-block px-2.5 py-0.5 rounded bg-amber-500/10 text-amber-400 text-[10px] font-black uppercase tracking-wider mb-2 border border-amber-500/20">Máximo Rendimiento</div>
+                        <h3 class="text-2xl font-bold mb-2 text-amber-400">Ultra</h3>
+                        <p class="text-xs text-slate-400 mb-6">Para agencias, redacciones y coberturas exhaustivas.</p>
+                        <div class="text-4xl font-extrabold mb-6">19,99 €<span class="text-lg font-normal text-slate-500">/mes</span></div>
+                        
+                        <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium">
+                            <li class="flex gap-2"><span>🔥</span> <span><strong>11 Transcripciones IA/día</strong> (audios de hasta 12 horas).</span></li>
+                            <li class="flex gap-2"><span>🚀</span> <span><strong>16 Transcripciones Rápidas/día</strong> (Motor <strong>Whisper Turbo</strong>: velocidad x8 con precisión Large-v3).</span></li>
+                            <li class="flex gap-2"><span>📝</span> <span><strong>Glosario y Contexto Prioritario:</strong> Inyecta alineaciones y tecnicismos para un 100% de precisión.</span></li>
+                            <li class="flex gap-2"><span>🎬</span> <span><strong>Exportación completa (.SRT y .TXT)</strong> sin restricciones.</span></li>
+                            <li class="flex gap-2"><span>📥</span> <span><strong>20 Descargas/día:</strong> Máxima calidad original disponible (4K / 320 kbps).</span></li>
+                            <li class="flex gap-2"><span>⚡</span> <span>Prioridad de procesamiento en servidores dedicados.</span></li>
+                        </ul>
+                    </div>
+                    <button onclick="checkout('ULTRA')" class="w-full py-4 rounded-xl font-bold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 transition">Suscribirse a Ultra</button>
                 </div>
             </div>
         </div>
@@ -184,7 +215,7 @@
                     </div>
                     <div class="flex gap-2">
                         <button onclick="window.open(STRIPE_LINK_PRO, '_blank')" class="flex-1 py-2 rounded-xl text-xs font-bold btn-gradient text-white">Adquirir / Cambiar Pro</button>
-                        <button onclick="window.open(STRIPE_LINK_ULTRA, '_blank')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-yellow-600/30 text-yellow-300 border border-yellow-500/40 hover:bg-yellow-600/40">Adquirir Ultra</button>
+                        <button onclick="window.open(STRIPE_LINK_ULTRA, '_blank')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30">Adquirir Ultra</button>
                     </div>
                 </div>
 
@@ -286,7 +317,6 @@
         let currentUser = null;
         let currentMode = 'register';
 
-        // Escucha cambios de sesión en tiempo real
         sb.auth.onAuthStateChange((event, session) => {
             currentUser = session?.user || null;
             actualizarEstadoNavbar();
