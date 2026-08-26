@@ -27,32 +27,28 @@
     <!-- Navegación Unificada -->
     <nav class="fixed w-full z-40 glass border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
-            <!-- Logo / Inicio -->
             <a href="/" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
                 🎙️ EchoScribe
             </a>
             
-            <!-- Botón Menú Móvil -->
             <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
             
-            <!-- Enlaces del Menú -->
             <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
                 <a href="/" class="text-slate-300 hover:text-white transition">Inicio</a>
                 <a href="/#precios" class="text-slate-300 hover:text-white transition">Precios</a>
+                <a href="/#garantia" class="text-slate-300 hover:text-white transition">Garantía y Cancelación</a>
                 <a href="/guias" class="text-slate-300 hover:text-white transition">Guía de Uso</a>
                 <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
                 
                 <hr class="w-full border-slate-700 md:hidden">
 
-                <!-- Sin sesión -->
                 <div id="nav-guest" class="flex flex-col md:flex-row gap-4 items-center w-full md:w-auto">
                     <button onclick="openAuthModal('login')" class="text-slate-300 hover:text-brand transition">Iniciar Sesión</button>
                     <button onclick="openAuthModal('register')" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-5 rounded-xl border border-slate-700 transition shadow-lg w-full md:w-auto">Regístrate</button>
                 </div>
 
-                <!-- Con sesión -->
                 <div id="nav-user" class="hidden flex flex-col md:flex-row gap-4 items-center w-full md:w-auto">
                     <button onclick="openProfileModal()" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition flex items-center justify-center gap-2 shadow-lg w-full md:w-auto">
                         <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
@@ -77,14 +73,14 @@
         <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-[600px] h-[400px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none"></div>
         
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-bold mb-6 tracking-wide relative z-10">
-            <span>🚀</span> Diseñado para Periodistas, Creadores y Editores de Vídeo
+            <span>⚡</span> Potenciado por Groq Cloud LPU™ Architecture
         </div>
 
         <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight relative z-10 tracking-tight">
             Convierte horas de vídeo en <br class="hidden md:block"><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500">noticias y subtítulos .SRT</span>
         </h1>
         <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto relative z-10 leading-relaxed">
-            Transcribe ruedas de prensa, streams y entrevistas de YouTube, Twitch o X. Extrae titulares periodísticos contrastados y subtítulos listos para Premiere, DaVinci o CapCut.
+            Transcribe ruedas de prensa, streams y entrevistas en segundos gracias a la supercomputación en la nube. Cero espera, máxima precisión periodística.
         </p>
         
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10 mb-10">
@@ -96,22 +92,21 @@
             </a>
         </div>
 
-        <!-- Banner Informativo: Optimización Primer Uso -->
-        <div class="glass max-w-2xl mx-auto rounded-2xl p-4 border border-indigo-500/30 text-left flex items-start gap-3.5 relative z-10 text-xs text-slate-300">
-            <span class="text-xl">💡</span>
+        <div class="glass max-w-3xl mx-auto rounded-2xl p-5 border border-indigo-500/30 text-left flex items-start gap-4 relative z-10 text-xs text-slate-300">
+            <span class="text-2xl">☁️</span>
             <div>
-                <strong class="text-white block mb-0.5">Nota de rendimiento en el primer uso:</strong>
-                La primera vez que proceses un audio o descargues en un formato específico, la aplicación configurará automáticamente los modelos neuronales y dependencias en segundo plano. A partir del segundo vídeo, ¡todo el procesamiento volará en segundos!
+                <strong class="text-white block mb-1 text-sm">Tecnología Cloud Ultra-Veloz (Groq Cloud):</strong>
+                Los planes <strong>Pro y Ultra</strong> envían tus ficheros a superordenadores en la nube optimizados con Inteligencia Artificial. Obtén transcripciones completas de horas de audio en <strong>menos de 15 segundos</strong>, liberando por completo los recursos de tu ordenador.
             </div>
         </div>
     </section>
 
-    <!-- Sección de Precios -->
+    <!-- Sección de Precios (Mensual) -->
     <section id="precios" class="py-24 relative z-10 border-t border-slate-800/60">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Planes diseñados para tu ritmo de trabajo</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">Potencia tu flujo de trabajo sin límites manuales. El plan Pro incluye 7 días de prueba completa sin compromiso.</p>
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Planes mensuales diseñados para tu ritmo</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Cuota flexible mensual adaptada a tu volumen de trabajo. Sin ataduras: cancela cuando quieras con un solo clic.</p>
             </div>
 
             <div class="grid lg:grid-cols-3 gap-8 items-stretch">
@@ -119,13 +114,13 @@
                 <div class="glass-card p-8 rounded-3xl flex flex-col justify-between">
                     <div>
                         <h3 class="text-2xl font-bold mb-2 text-slate-300">Gratuito</h3>
-                        <p class="text-xs text-slate-400 mb-6">Para pruebas esporádicas y audios cortos.</p>
+                        <p class="text-xs text-slate-400 mb-6">Para pruebas esporádicas y creadores independientes.</p>
                         <div class="text-4xl font-extrabold mb-6">0 €<span class="text-lg font-normal text-slate-500">/mes</span></div>
                         
                         <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium">
-                            <li class="flex gap-2"><span>✨</span> <span><strong>2 Transcripciones IA/día en LOCAL</strong> (máx. 30 min/audio).</span></li>
-                            <li class="flex gap-2"><span>⚡</span> <span><strong>4 Transcripciones Estándar/día</strong> (Motor Whisper Base).</span></li>
-                            <li class="flex gap-2"><span>📥</span> <span><strong>5 Descargas/día</strong> (MP3 128 kbps / Vídeo 720p).</span></li>
+                            <li class="flex gap-2"><span>✨</span> <span><strong>30 Transcripciones IA/mes</strong> en LOCAL (máx. 30 min/audio).</span></li>
+                            <li class="flex gap-2"><span>⚡</span> <span><strong>60 Transcripciones Estándar/mes</strong> (Motor Whisper Base).</span></li>
+                            <li class="flex gap-2"><span>📥</span> <span><strong>100 Descargas/mes</strong> (MP3 128 kbps / Vídeo 720p).</span></li>
                             <li class="flex gap-2"><span>📄</span> <span>Exportación a <strong>Texto Plano (.TXT)</strong>.</span></li>
                             <li class="flex gap-2 opacity-60"><span>⚠️</span> <span>Incluye marca de agua en los textos exportados.</span></li>
                         </ul>
@@ -140,14 +135,14 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold mb-2 text-indigo-400">Pro</h3>
-                        <p class="text-xs text-indigo-200/70 mb-6">El favorito de redactores, podcasters y editores de vídeo.</p>
+                        <p class="text-xs text-indigo-200/70 mb-6">Velocidad cloud para redactores, podcasters y editores.</p>
                         <div class="text-4xl font-extrabold mb-6 text-white">7,99 €<span class="text-lg font-normal text-slate-400">/mes</span></div>
                         
                         <ul class="space-y-4 mb-8 text-sm text-slate-200 font-medium">
-                            <li class="flex gap-2"><span>✨</span> <span><strong>5 Transcripciones IA/día en la NUBE</strong> (hasta 3h por audio).</span></li>
-                            <li class="flex gap-2"><span>⚡</span> <span><strong>8 Transcripciones Rápidas/día</strong> (Motor <strong>Whisper Small</strong> de alta fidelidad).</span></li>
+                            <li class="flex gap-2"><span>☁️</span> <span><strong>100 Transcripciones IA/mes en la NUBE</strong> (<span class="text-indigo-300 font-bold">Groq Cloud</span>, hasta 3h por audio).</span></li>
+                            <li class="flex gap-2"><span>⚡</span> <span><strong>150 Transcripciones Rápidas/mes</strong> (Procesamiento relámpago).</span></li>
                             <li class="flex gap-2"><span>🎬</span> <span><strong>Exportación .SRT sincronizada:</strong> Subtítulos directos para Premiere, DaVinci y CapCut.</span></li>
-                            <li class="flex gap-2"><span>📥</span> <span><strong>10 Descargas/día:</strong> Audio de estudio a <strong>320 kbps</strong> y vídeo en <strong>1080p HD</strong>.</span></li>
+                            <li class="flex gap-2"><span>📥</span> <span><strong>200 Descargas/mes:</strong> Audio de estudio a <strong>320 kbps</strong> y vídeo en <strong>1080p HD</strong>.</span></li>
                             <li class="flex gap-2"><span>💧</span> <span><strong>Sin marcas de agua</strong> y con copia limpia desbloqueada.</span></li>
                         </ul>
                     </div>
@@ -157,21 +152,47 @@
                 <!-- ULTRA -->
                 <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border border-amber-500/30">
                     <div>
-                        <div class="inline-block px-2.5 py-0.5 rounded bg-amber-500/10 text-amber-400 text-[10px] font-black uppercase tracking-wider mb-2 border border-amber-500/20">Máximo Rendimiento</div>
+                        <div class="inline-block px-2.5 py-0.5 rounded bg-amber-500/10 text-amber-400 text-[10px] font-black uppercase tracking-wider mb-2 border border-amber-500/20">Máximo Rendimiento Cloud</div>
                         <h3 class="text-2xl font-bold mb-2 text-amber-400">Ultra</h3>
-                        <p class="text-xs text-slate-400 mb-6">Para agencias, redacciones y coberturas exhaustivas.</p>
+                        <p class="text-xs text-slate-400 mb-6">Potencia ilimitada para agencias y redacciones exigentes.</p>
                         <div class="text-4xl font-extrabold mb-6">19,99 €<span class="text-lg font-normal text-slate-500">/mes</span></div>
                         
                         <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium">
-                            <li class="flex gap-2"><span>🔥</span> <span><strong>11 Transcripciones IA/día en la NUBE</strong> (audios de hasta 12 horas).</span></li>
-                            <li class="flex gap-2"><span>🚀</span> <span><strong>16 Transcripciones Rápidas/día</strong> (Motor <strong>Whisper Turbo</strong>: velocidad turbo con precisión Large-v3).</span></li>
+                            <li class="flex gap-2"><span>🚀</span> <span><strong>250 Transcripciones IA/mes en la NUBE</strong> (<span class="text-amber-400 font-bold">Groq Cloud Ultra</span>, hasta 12h de vídeo).</span></li>
+                            <li class="flex gap-2"><span>⚡</span> <span><strong>500 Transcripciones Rápidas/mes</strong> (Velocidad extrema instantánea).</span></li>
                             <li class="flex gap-2"><span>📝</span> <span><strong>Glosario y Contexto Prioritario:</strong> Inyecta alineaciones y tecnicismos para un 99.9% de precisión.</span></li>
                             <li class="flex gap-2"><span>🎬</span> <span><strong>Exportación completa (.SRT y .TXT)</strong> sin restricciones.</span></li>
-                            <li class="flex gap-2"><span>📥</span> <span><strong>20 Descargas/día:</strong> Máxima calidad original disponible (4K / 320 kbps).</span></li>
-                            <li class="flex gap-2"><span>⚡</span> <span>Prioridad de procesamiento.</span></li>
+                            <li class="flex gap-2"><span>♾️</span> <span><strong>Descargas ilimitadas/mes:</strong> Máxima calidad original disponible (4K / 320 kbps).</span></li>
+                            <li class="flex gap-2"><span>👑</span> <span>Prioridad absoluta de procesamiento en servidores dedicados de alta velocidad.</span></li>
                         </ul>
                     </div>
                     <button onclick="checkout('ULTRA')" class="w-full py-4 rounded-xl font-bold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 transition">Suscribirse a Ultra</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE GARANTÍA Y POLÍTICA DE CANCELACIÓN -->
+    <section id="garantia" class="py-16 bg-slate-900/40 border-t border-slate-800/60 relative z-10">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Garantía de Acceso Instantáneo y Cancelación sin Complicaciones</h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                Queremos que tengas total tranquilidad al suscribirte. Explora cómo protegemos tu compra y gestionas tu suscripción:
+            </p>
+            <div class="grid md:grid-cols-2 gap-6 text-left">
+                <div class="glass p-6 rounded-2xl border border-slate-800">
+                    <div class="text-2xl mb-2">🔒</div>
+                    <h3 class="text-white font-bold mb-2">¿Cómo aseguro mis ventajas al pagar?</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Tras completar el pago seguro en Stripe, tu cuenta se actualiza en segundos. Al iniciar sesión en la aplicación con tu correo, tu plan Pro o Ultra y todas tus ventajas se activan automáticamente.
+                    </p>
+                </div>
+                <div class="glass p-6 rounded-2xl border border-slate-800">
+                    <div class="text-2xl mb-2">🛡️</div>
+                    <h3 class="text-white font-bold mb-2">¿Cómo cancelo mi suscripción?</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Puedes cancelar cuando quieras de forma autónoma desde el enlace de tu perfil o el correo de Stripe. Tu baja se programará al final del mes en curso, por lo que <strong>mantendrás todas tus ventajas intactas hasta el último día que pagaste</strong>, sin renovaciones sorpresa.
+                    </p>
                 </div>
             </div>
         </div>
@@ -184,13 +205,13 @@
             <p class="text-slate-500 text-sm mb-6">© 2026 Desarrollado por Iván García Miranda. Todos los derechos reservados.</p>
             <div class="flex justify-center gap-6 text-sm font-semibold text-slate-400">
                 <a href="/sobre-mi.html" class="hover:text-white transition">Sobre Mí</a>
-                <button onclick="document.getElementById('privacy-modal').classList.remove('hidden')" class="hover:text-white transition">Política de Privacidad</button>
+                <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="hover:text-white transition">Política de Privacidad</button>
                 <a href="mailto:ivangarmir018@gmail.com" class="hover:text-white transition">Soporte Técnico</a>
             </div>
         </div>
     </footer>
 
-    <!-- MODAL: MI PERFIL / AJUSTES DE USUARIO -->
+    <!-- MODAL: MI PERFIL / AJUSTES DE USUARIO DINÁMICO -->
     <div id="profile-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card p-8 rounded-3xl w-full max-w-lg shadow-2xl relative">
             <button onclick="closeProfileModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold transition">✕</button>
@@ -207,15 +228,33 @@
                     <p id="profile-username" class="text-indigo-400 font-bold text-base">cargando...</p>
                 </div>
 
-                <!-- Plan actual y upgrade -->
-                <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-700/80">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-xs text-slate-400 uppercase tracking-wider font-bold">Plan Activo</span>
-                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 rounded-full text-xs font-bold">Activo</span>
+                <!-- Plan actual y estado dinámico -->
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-slate-700/80 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-0.5">Suscripción Activa</p>
+                            <!-- Aquí se muestra dinámicamente tu Plan Ultra (por ejemplo) -->
+                            <p id="profile-current-plan-label" class="text-amber-400 font-extrabold text-base uppercase">PLAN ULTRA</p>
+                        </div>
+                        <span class="px-3 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-full text-xs font-bold">● Activo</span>
                     </div>
-                    <div class="flex gap-2">
-                        <button onclick="window.open(STRIPE_LINK_PRO, '_blank')" class="flex-1 py-2 rounded-xl text-xs font-bold btn-gradient text-white">Adquirir / Cambiar Pro</button>
-                        <button onclick="window.open(STRIPE_LINK_ULTRA, '_blank')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30">Adquirir Ultra</button>
+
+                    <div class="bg-slate-950/50 p-3.5 rounded-xl border border-slate-800 flex justify-between items-center text-xs">
+                        <span class="text-slate-400">Próxima renovación / Fin de ciclo:</span>
+                        <span id="profile-renewal-date" class="text-indigo-300 font-mono font-bold">Calculando...</span>
+                    </div>
+
+                    <div class="flex gap-2 pt-1">
+                        <button onclick="window.open(STRIPE_LINK_PRO, '_blank')" class="flex-1 py-2 rounded-xl text-xs font-bold btn-gradient text-white transition">Cambiar a Pro</button>
+                        <button onclick="window.open(STRIPE_LINK_ULTRA, '_blank')" class="flex-1 py-2 rounded-xl text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 transition">Cambiar a Ultra</button>
+                    </div>
+
+                    <!-- BOTÓN DE GESTIÓN Y CANCELACIÓN EN STRIPE -->
+                    <div class="pt-2 border-t border-slate-800">
+                        <button onclick="abrirPortalStripe()" class="w-full py-2.5 rounded-xl text-xs font-bold bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 transition flex items-center justify-center gap-2">
+                            <span>⚙️</span> <span>Gestionar tarjeta o cancelar suscripción</span>
+                        </button>
+                        <p class="text-[10px] text-slate-500 text-center mt-1.5">Las cancelaciones se programan automáticamente al terminar el mes facturado.</p>
                     </div>
                 </div>
 
@@ -313,6 +352,7 @@
 
         const STRIPE_LINK_PRO = 'https://buy.stripe.com/8x23cw1JZddAghT4sggjC00';
         const STRIPE_LINK_ULTRA = 'https://buy.stripe.com/14AcN64Wba1od5HcYMgjC01';
+        const STRIPE_PORTAL_URL = 'https://billing.stripe.com/p/login/test_portal_enlace'; // Reemplaza con tu enlace del portal de cliente de Stripe
 
         let currentUser = null;
         let currentMode = 'register';
@@ -352,11 +392,35 @@
             if (!currentUser) return;
             document.getElementById('profile-email').innerText = currentUser.email;
             document.getElementById('profile-username').innerText = currentUser.user_metadata?.username || 'Usuario';
+            
+            // Detectar el plan real configurado en Supabase (ej: Ultra del creador)
+            const plan = (currentUser.user_metadata?.plan || 'Gratis').toUpperCase();
+            const planLabel = document.getElementById('profile-current-plan-label');
+            planLabel.innerText = `PLAN ${plan}`;
+            
+            if (plan === 'ULTRA') {
+                planLabel.className = "text-amber-400 font-extrabold text-base uppercase";
+            } else if (plan === 'PRO') {
+                planLabel.className = "text-indigo-400 font-extrabold text-base uppercase";
+            } else {
+                planLabel.className = "text-slate-300 font-extrabold text-base uppercase";
+            }
+
+            // Calcular dinámicamente el final del mes actual
+            const ahora = new Date();
+            const ultimoDiaMes = new Date(ahora.getFullYear(), ahora.getMonth() + 1, 0);
+            document.getElementById('profile-renewal-date').innerText = ultimoDiaMes.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+
             document.getElementById('profile-modal').classList.remove('hidden');
         }
 
         function closeProfileModal() {
             document.getElementById('profile-modal').classList.add('hidden');
+        }
+
+        function abrirPortalStripe() {
+            window.open(STRIPE_PORTAL_URL, '_blank');
+            showToast("Redirigiendo al portal seguro de gestión de Stripe...");
         }
 
         function toggleAuthMode() {
