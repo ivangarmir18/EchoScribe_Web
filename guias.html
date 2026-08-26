@@ -35,21 +35,77 @@
     </script>
 
     <!-- Hub de Artículos -->
-    <main class="flex-1 pt-40 pb-20 px-6 max-w-6xl mx-auto w-full">
+    <main class="flex-1 pt-40 pb-20 px-6 max-w-7xl mx-auto w-full">
         <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Guías y Casos de Uso</h1>
-            <p class="text-slate-400 text-lg">Descubre cómo EchoScribe resuelve problemas reales de transcripción periodística.</p>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6">Guías y Casos de Uso</h1>
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto">Descubre cómo EchoScribe resuelve problemas reales de transcripción, redacción y productividad.</p>
         </div>
 
-        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Casos de Uso Profesionales</h2>
-        <div class="grid md:grid-cols-2 gap-6 mb-16">
-            <a href="/guias/transcribir-ruedas-prensa" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg">
-                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Transcribir Ruedas de Prensa Deportivas</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">Cómo usar la IA contextual para que nombres de jugadores y entrenadores se escriban perfectos a la primera.</p>
+        <!-- SECCIÓN 1: Deportes y Periodismo -->
+        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Deportes y Periodismo</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <a href="/guias/transcribir-partidos-futbol" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Transcribir Partidos y Crónicas</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Evita que la IA invente nombres de jugadores cruzando la fonética con plantillas reales en tiempo real.</p>
             </a>
-            <a href="/guias/ecoscribe-vs-whisper" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg">
-                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">EchoScribe vs Whisper Genérico</h3>
-                <p class="text-sm text-slate-400 leading-relaxed">Por qué el modelo base de Whisper no es suficiente para periodistas y cómo el análisis contextual cambia el juego.</p>
+            <a href="/guias/transcribir-ruedas-prensa" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Ruedas de Prensa Deportivas</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Consigue la jerga perfecta y los nombres exactos en tus entrevistas deportivas sin corregir a mano.</p>
+            </a>
+            <a href="/guias/transcribir-entrevistas-periodismo" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Entrevistas Confidenciales</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Transcribe audios sensibles directamente en tu propio PC garantizando la privacidad de tus fuentes.</p>
+            </a>
+        </div>
+
+        <!-- SECCIÓN 2: Creadores de Contenido -->
+        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Creadores de Contenido y YouTube</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6 mb-16">
+            <a href="/guias/transcribir-directos-twitch" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Transcribir VODs de Twitch</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Extrae resúmenes y titulares de streams largos al instante, entendiendo a la perfección la jerga gaming.</p>
+            </a>
+            <a href="/guias/capitulos-youtube-automaticos" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Títulos y Resúmenes para YouTube</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Automatiza la creación de descripciones SEO y opciones de títulos de alto impacto para tus vídeos.</p>
+            </a>
+            <a href="/guias/convertir-podcast-en-blog" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">De Podcast a Artículo de Blog</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Transforma tus episodios de audio o vídeo en artículos estructurados ("Show Notes") listos para publicar.</p>
+            </a>
+            <a href="/guias/transcribir-traducir-videos-idiomas" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Traducir Vídeos Extranjeros</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Transcribe vídeos de YouTube en otros idiomas y obtén el análisis devuelto en perfecto español.</p>
+            </a>
+        </div>
+
+        <!-- SECCIÓN 3: Universidad y Empresa -->
+        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Universidad y Empresa</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <a href="/guias/transcribir-clases-universidad" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Transcribir Clases de Universidad</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Convierte audios largos de profesores en apuntes limpios, ignorando las divagaciones irrelevantes.</p>
+            </a>
+            <a href="/guias/transcribir-entrevistas-tfg" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Entrevistas para TFG y Tesis</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Limpia muletillas y extrae las conclusiones clave para tu investigación cualitativa en minutos.</p>
+            </a>
+            <a href="/guias/resumir-reuniones-empresa-actas" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Resumir Reuniones y Actas</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Obtén actas ejecutivas y conclusiones claras a partir de las grabaciones de tus llamadas en Zoom o Teams.</p>
+            </a>
+        </div>
+
+        <!-- SECCIÓN 4: Comparativas -->
+        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Comparativas de Software</h2>
+        <div class="grid md:grid-cols-2 gap-6 mb-16">
+            <a href="/guias/ecoscribe-vs-whisper" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">EchoScribe vs Whisper Local</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Por qué el modelo de transcripción base no es suficiente y cómo la IA Periodística marca la diferencia total.</p>
+            </a>
+            <a href="/guias/alternativa-turboscribe-local" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Alternativa a TurboScribe</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Conoce las ventajas de procesar audios de forma nativa sin tener que subir gigas de archivos a un servidor web.</p>
             </a>
         </div>
     </main>
