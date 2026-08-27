@@ -1,4 +1,9 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/precios", "destination": "/index.html" },
+    { "source": "/guias", "destination": "/guias.html" },
+    { "source": "/sobre-mi", "destination": "/sobre-mi.html" }
+  ]
 }
