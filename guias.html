@@ -4,27 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guías y Casos de Uso | EchoScribe AI</title>
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: '#6366f1' } } } }</script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        .glass-card { background: linear-gradient(180deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.95) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
-    <!-- Navegación -->
+    <!-- NAVEGACIÓN -->
     <nav class="fixed w-full z-40 glass border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
-            <a href="/" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight">🎙️ EchoScribe</a>
-            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+            <a href="/" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
+                🎙️ EchoScribe
+            </a>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
             <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
                 <a href="/" class="text-slate-300 hover:text-white transition">Inicio</a>
                 <a href="/#precios" class="text-slate-300 hover:text-white transition">Precios</a>
-                <a href="/guias" class="text-brand transition">Guías de Uso</a>
+                <a href="/guias" class="text-brand transition font-bold">Guías de Uso</a>
                 <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
-                <a href="/" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition shadow-lg">← Volver a la Web</a>
+                <a href="/#garantia" class="text-slate-300 hover:text-white transition">Garantía</a>
+                
+                <hr class="w-full border-slate-700 md:hidden">
+                <a href="/" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition shadow-lg text-xs">← Volver a la Web</a>
             </div>
         </div>
     </nav>
@@ -34,82 +46,83 @@
         });
     </script>
 
-    <!-- Hub de Artículos -->
+    <!-- CONTENIDO DEL HUB -->
     <main class="flex-1 pt-40 pb-20 px-6 max-w-7xl mx-auto w-full">
         <div class="text-center mb-16">
             <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6">Guías y Casos de Uso</h1>
-            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto">Descubre cómo EchoScribe resuelve problemas reales de transcripción, redacción y productividad.</p>
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto">Descubre cómo EchoScribe resuelve problemas reales de transcripción periodística, redacción y edición de vídeo.</p>
         </div>
 
         <!-- SECCIÓN 1: Deportes y Periodismo -->
-        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Deportes y Periodismo</h2>
+        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2 flex items-center gap-2">⚽ Deportes y Periodismo</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             <a href="/guias/transcribir-partidos-futbol" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
                 <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Transcribir Partidos y Crónicas</h3>
-                <p class="text-sm text-slate-400 leading-relaxed flex-1">Evita que la IA invente nombres de jugadores cruzando la fonética con plantillas reales en tiempo real.</p>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Evita que la IA invente nombres de jugadores contrastando la fonética con plantillas reales en tiempo real.</p>
             </a>
             <a href="/guias/transcribir-ruedas-prensa" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
                 <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Ruedas de Prensa Deportivas</h3>
-                <p class="text-sm text-slate-400 leading-relaxed flex-1">Consigue la jerga perfecta y los nombres exactos en tus entrevistas deportivas sin corregir a mano.</p>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Consigue la jerga perfecta y los nombres exactos en tus entrevistas deportivas sin tener que corregir a mano.</p>
             </a>
             <a href="/guias/transcribir-entrevistas-periodismo" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
                 <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Entrevistas Confidenciales</h3>
-                <p class="text-sm text-slate-400 leading-relaxed flex-1">Transcribe audios sensibles directamente en tu propio PC garantizando la privacidad de tus fuentes.</p>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Transcribe audios sensibles directamente en tu propio ordenador garantizando la privacidad absoluta de tus fuentes.</p>
             </a>
         </div>
 
         <!-- SECCIÓN 2: Creadores de Contenido -->
-        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Creadores de Contenido y YouTube</h2>
+        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2 flex items-center gap-2">🎬 Creadores de Contenido y YouTube</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6 mb-16">
             <a href="/guias/transcribir-directos-twitch" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
                 <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Transcribir VODs de Twitch</h3>
-                <p class="text-sm text-slate-400 leading-relaxed flex-1">Extrae resúmenes y titulares de streams largos al instante, entendiendo a la perfección la jerga gaming.</p>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Extrae resúmenes y titulares de streams largos al instante, interpretando a la perfección la jerga gaming y de directos.</p>
             </a>
             <a href="/guias/capitulos-youtube-automaticos" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
                 <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Títulos y Resúmenes para YouTube</h3>
-                <p class="text-sm text-slate-400 leading-relaxed flex-1">Automatiza la creación de descripciones SEO y opciones de títulos de alto impacto para tus vídeos.</p>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Automatiza la creación de descripciones SEO, marcas de tiempo y opciones de titulares de alto impacto para tus vídeos.</p>
             </a>
             <a href="/guias/convertir-podcast-en-blog" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
                 <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">De Podcast a Artículo de Blog</h3>
-                <p class="text-sm text-slate-400 leading-relaxed flex-1">Transforma tus episodios de audio o vídeo en artículos estructurados ("Show Notes") listos para publicar.</p>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Transforma tus episodios de audio o vídeo en artículos estructurados con notas del programa listas para publicar.</p>
             </a>
             <a href="/guias/transcribir-traducir-videos-idiomas" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
                 <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Traducir Vídeos Extranjeros</h3>
-                <p class="text-sm text-slate-400 leading-relaxed flex-1">Transcribe vídeos de YouTube en otros idiomas y obtén el análisis devuelto en perfecto español.</p>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Transcribe vídeos en otros idiomas y obtén el análisis devuelto en perfecto español periodístico.</p>
             </a>
         </div>
 
         <!-- SECCIÓN 3: Universidad y Empresa -->
-        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Universidad y Empresa</h2>
+        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2 flex items-center gap-2">🎓 Universidad y Empresa</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             <a href="/guias/transcribir-clases-universidad" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
-                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Transcribir Clases de Universidad</h3>
-                <p class="text-sm text-slate-400 leading-relaxed flex-1">Convierte audios largos de profesores en apuntes limpios, ignorando las divagaciones irrelevantes.</p>
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Transcribir Clases Universitarias</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Convierte grabaciones extensas de profesores en apuntes limpios y estructurados en minutos.</p>
             </a>
             <a href="/guias/transcribir-entrevistas-tfg" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
                 <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Entrevistas para TFG y Tesis</h3>
-                <p class="text-sm text-slate-400 leading-relaxed flex-1">Limpia muletillas y extrae las conclusiones clave para tu investigación cualitativa en minutos.</p>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Limpia muletillas y extrae las conclusiones clave para tu investigación cualitativa.</p>
             </a>
             <a href="/guias/resumir-reuniones-empresa-actas" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
                 <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Resumir Reuniones y Actas</h3>
-                <p class="text-sm text-slate-400 leading-relaxed flex-1">Obtén actas ejecutivas y conclusiones claras a partir de las grabaciones de tus llamadas en Zoom o Teams.</p>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Obtén actas ejecutivas y puntos de acción claros a partir de grabaciones de llamadas en Zoom o Teams.</p>
             </a>
         </div>
 
         <!-- SECCIÓN 4: Comparativas -->
-        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Comparativas de Software</h2>
+        <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-2 flex items-center gap-2">⚖️ Comparativas</h2>
         <div class="grid md:grid-cols-2 gap-6 mb-16">
             <a href="/guias/ecoscribe-vs-whisper" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
-                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">EchoScribe vs Whisper Local</h3>
-                <p class="text-sm text-slate-400 leading-relaxed flex-1">Por qué el modelo de transcripción base no es suficiente y cómo la IA Periodística marca la diferencia total.</p>
+                <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">EchoScribe vs Whisper Tradicional</h3>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Por qué un motor fonético aislado comete fallos con nombres propios y cómo la IA Periodística lo soluciona.</p>
             </a>
             <a href="/guias/alternativa-turboscribe-local" class="bg-slate-900/50 hover:bg-slate-800 border border-slate-700 p-8 rounded-2xl transition group shadow-lg flex flex-col">
                 <h3 class="text-xl font-bold text-brand group-hover:text-indigo-400 mb-3">Alternativa a TurboScribe</h3>
-                <p class="text-sm text-slate-400 leading-relaxed flex-1">Conoce las ventajas de procesar audios de forma nativa sin tener que subir gigas de archivos a un servidor web.</p>
+                <p class="text-sm text-slate-400 leading-relaxed flex-1">Conoce las ventajas de contar con una app de escritorio nativa combinada con servidores GPU ultrarrápidos.</p>
             </a>
         </div>
     </main>
 
+    <!-- FOOTER -->
     <footer class="border-t border-slate-800 bg-slate-900/50 py-8 text-center">
         <p class="text-slate-500 text-sm">© 2026 EchoScribe AI. Desarrollado por Iván García Miranda.</p>
     </footer>

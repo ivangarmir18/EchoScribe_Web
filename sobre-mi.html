@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Mí | Iván García Miranda - EchoScribe AI</title>
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -12,59 +14,39 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
-        .glass-card { background: linear-gradient(180deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.9) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .glass-card { background: linear-gradient(180deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.95) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
         .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: opacity 0.2s; }
         .btn-gradient:hover { opacity: 0.9; }
     </style>
 </head>
 <body class="antialiased selection:bg-purple-500 selection:text-white flex flex-col min-h-screen">
 
-    <!-- Navegación -->
-    <!-- Navegación Unificada -->
+    <!-- NAVEGACIÓN -->
     <nav class="fixed w-full z-40 glass border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
-            <!-- Logo / Inicio -->
             <a href="/" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
                 🎙️ EchoScribe
             </a>
             
-            <!-- Botón Menú Móvil (Hamburguesa) -->
             <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
             
-            <!-- Enlaces del Menú (Desktop y Móvil) -->
             <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
                 <a href="/" class="text-slate-300 hover:text-white transition">Inicio</a>
                 <a href="/#precios" class="text-slate-300 hover:text-white transition">Precios</a>
-                <a href="/guias" class="text-slate-300 hover:text-white transition">Guía de Uso</a>
-                <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
+                <a href="/guias" class="text-slate-300 hover:text-white transition">Guías de Uso</a>
+                <a href="/sobre-mi" class="text-brand transition font-bold">Sobre Mí</a>
+                <a href="/#garantia" class="text-slate-300 hover:text-white transition">Garantía</a>
                 
-                <!-- Separador en móvil -->
                 <hr class="w-full border-slate-700 md:hidden">
-
-                <!-- Botones si NO hay sesión -->
-                <div id="nav-guest" class="flex flex-col md:flex-row gap-4 items-center w-full md:w-auto">
-                    <button onclick="openAuthModal('login')" class="text-slate-300 hover:text-brand transition">Iniciar Sesión</button>
-                    <button onclick="openAuthModal('register')" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-5 rounded-xl border border-slate-700 transition shadow-lg w-full md:w-auto">Regístrate</button>
-                </div>
-
-                <!-- Botones si HAY sesión -->
-                <div id="nav-user" class="hidden flex flex-col md:flex-row gap-4 items-center w-full md:w-auto">
-                    <button onclick="openProfileModal()" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition flex items-center justify-center gap-2 shadow-lg w-full md:w-auto">
-                        <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
-                        <span id="nav-user-label">Mi Cuenta</span>
-                    </button>
-                    <button onclick="cerrarSesion()" class="text-slate-400 hover:text-red-400 text-xs font-bold transition">Salir</button>
-                </div>
+                <a href="/" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition shadow-lg text-xs">← Volver a la Web</a>
             </div>
         </div>
     </nav>
-
-    <!-- Pequeño Script para hacer funcionar el menú móvil -->
     <script>
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const navLinks = document.getElementById('nav-links');
@@ -72,7 +54,8 @@
             navLinks.classList.toggle('flex');
         });
     </script>
-    <!-- Contenido Principal -->
+
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="flex-1 pt-40 pb-20 px-6 max-w-4xl mx-auto w-full">
         <div class="glass-card p-10 md:p-14 rounded-3xl border border-slate-700 shadow-2xl relative">
             <div class="flex flex-col md:flex-row gap-8 items-center md:items-start mb-8">
@@ -81,21 +64,21 @@
                 </div>
                 <div class="text-center md:text-left">
                     <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-2">Iván García Miranda</h1>
-                    <p class="text-brand font-semibold tracking-wide uppercase text-sm mb-4">Desarrollador y Creador de EchoScribe</p>
-                    <p class="text-slate-400 text-sm font-medium">Estudiante de Tecnología Digital y Multimedia · UPV</p>
+                    <p class="text-brand font-semibold tracking-wide uppercase text-sm mb-2">Desarrollador y Creador de EchoScribe AI</p>
+                    <p class="text-slate-400 text-sm font-medium">Estudiante de Tecnología Digital y Multimedia · Universidad Politécnica de Valencia (UPV)</p>
                 </div>
             </div>
 
             <div class="text-slate-300 text-base leading-relaxed space-y-4 mb-10">
                 <p>
-                    Tengo 19 años y actualmente curso el tercer año del Grado en Tecnología Digital y Multimedia en la <strong>Universidad Politécnica de Valencia (UPV)</strong>. Mi foco formativo y profesional se dirige hacia la especialización en Inteligencia Artificial mediante estudios de máster.
+                    Tengo 19 años y actualmente curso el tercer año del Grado en Tecnología Digital y Multimedia en la <strong>Universidad Politécnica de Valencia (UPV)</strong>. Mi foco formativo y profesional está centrado en la especialización en Inteligencia Artificial y arquitecturas de alto rendimiento.
                 </p>
                 <p>
-                    El propósito detrás de <strong>EchoScribe</strong> y mis desarrollos de software es crear herramientas prácticas, directas e intuitivas que solucionen problemas reales de productividad, automatizando tareas pesadas como la transcripción periodística y la extracción de datos multimedia.
+                    El propósito detrás de <strong>EchoScribe</strong> es crear una herramienta de escritorio directa, rápida y sin suscripciones infladas, que solucione problemas reales de productividad automatizando tareas pesadas como la transcripción de ruedas de prensa, la corrección editorial de noticias y la generación de subtítulos .SRT.
                 </p>
             </div>
 
-            <h3 class="text-lg font-bold text-white mb-4 uppercase tracking-wider text-xs text-slate-400">Contacto & Redes</h3>
+            <h3 class="text-lg font-bold text-white mb-4 uppercase tracking-wider text-xs text-slate-400">Contacto & Redes Oficiales</h3>
             <div class="grid sm:grid-cols-3 gap-4">
                 <a href="https://linkedin.com/in/iván-garcía-miranda-785a8735b/" target="_blank" class="p-4 bg-slate-800/80 hover:bg-slate-700 border border-slate-700 rounded-2xl text-center font-bold text-white transition flex flex-col items-center gap-2">
                     <span class="text-2xl">🔗</span>
@@ -113,10 +96,9 @@
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="border-t border-slate-800 bg-slate-900/50 py-8 text-center">
         <p class="text-slate-500 text-sm">© 2026 EchoScribe AI. Desarrollado por Iván García Miranda.</p>
     </footer>
-
 </body>
 </html>

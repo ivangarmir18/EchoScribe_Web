@@ -14,17 +14,17 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; scroll-behavior: smooth; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
-        .glass-card { background: linear-gradient(180deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.9) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .glass-card { background: linear-gradient(180deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.95) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
         .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.2s, box-shadow 0.2s; }
         .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.4); }
     </style>
 </head>
 <body class="antialiased selection:bg-purple-500 selection:text-white">
 
-    <!-- Navegación Unificada -->
+    <!-- NAVEGACIÓN -->
     <nav class="fixed w-full z-40 glass border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
             <a href="/" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
@@ -36,19 +36,19 @@
             </button>
             
             <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
-                <a href="#" class="text-slate-300 hover:text-white transition">Inicio</a>
-                <a href="#precios" class="text-slate-300 hover:text-white transition">Precios</a>
-                <a href="#garantia" class="text-slate-300 hover:text-white transition">Garantía y Cancelación</a>
+                <a href="/" class="text-brand transition font-bold">Inicio</a>
+                <a href="/#precios" class="text-slate-300 hover:text-white transition">Precios</a>
+                <a href="/guias" class="text-slate-300 hover:text-white transition">Guías de Uso</a>
+                <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
+                <a href="/#garantia" class="text-slate-300 hover:text-white transition">Garantía</a>
                 
                 <hr class="w-full border-slate-700 md:hidden">
 
-                <!-- Sin sesión -->
                 <div id="nav-guest" class="flex flex-col md:flex-row gap-4 items-center w-full md:w-auto">
                     <button onclick="openAuthModal('login')" class="text-slate-300 hover:text-brand transition">Iniciar Sesión</button>
                     <button onclick="openAuthModal('register')" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-5 rounded-xl border border-slate-700 transition shadow-lg w-full md:w-auto">Regístrate</button>
                 </div>
 
-                <!-- Con sesión -->
                 <div id="nav-user" class="hidden flex flex-col md:flex-row gap-4 items-center w-full md:w-auto">
                     <button onclick="openProfileModal()" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition flex items-center justify-center gap-2 shadow-lg w-full md:w-auto">
                         <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
@@ -60,57 +60,62 @@
         </div>
     </nav>
 
-    <script>
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            const navLinks = document.getElementById('nav-links');
-            navLinks.classList.toggle('hidden');
-            navLinks.classList.toggle('flex');
-        });
-    </script>
-
-    <!-- Hero Section -->
+    <!-- HERO -->
     <section class="pt-40 pb-16 px-6 text-center max-w-5xl mx-auto relative">
         <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-[600px] h-[400px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none"></div>
         
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-bold mb-6 tracking-wide relative z-10">
-            <span>⚡</span> Potenciado por Groq Cloud LPU™ Architecture
+            <span>⚡</span> Servidores Cloud GPU de Alta Velocidad
         </div>
 
         <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight relative z-10 tracking-tight">
-            Convierte horas de vídeo en <br class="hidden md:block"><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500">noticias y subtítulos .SRT</span>
+            Convierte horas de vídeo en <br class="hidden md:block">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500">
+                noticias, titulares y subtítulos .SRT
+            </span>
         </h1>
         <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto relative z-10 leading-relaxed">
-            Transcribe ruedas de prensa, streams y entrevistas en segundos gracias a la supercomputación en la nube. Cero espera, máxima precisión periodística.
+            Transcribe ruedas de prensa, streams de Twitch y entrevistas de YouTube en segundos con servidores GPU dedicados. Contrasta entidades con IA periodística y exporta subtítulos listos para Premiere, DaVinci o CapCut.
         </p>
         
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10 mb-10">
             <a href="#precios" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-lg">
                 ✨ Probar 7 Días Gratis
             </a>
-            <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/V1.1/EchoScribe_Setup.exe" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-500 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-lg shadow-lg">
+            <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/v1.0/EchoScribe_Setup.exe" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-500 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-lg shadow-lg">
                 💻 Descargar App Oficial (.exe)
             </a>
         </div>
 
-        <div class="glass max-w-3xl mx-auto rounded-2xl p-5 border border-indigo-500/30 text-left flex items-start gap-4 relative z-10 text-xs text-slate-300">
-            <span class="text-2xl">☁️</span>
-            <div>
-                <strong class="text-white block mb-1 text-sm">Tecnología Cloud Ultra-Veloz (Groq Cloud):</strong>
-                Los planes <strong>Pro y Ultra</strong> envían tus ficheros a superordenadores en la nube optimizados con Inteligencia Artificial. Obtén transcripciones completas de horas de audio en <strong>menos de 15 segundos</strong>, liberando por completo los recursos de tu ordenador.
+        <div class="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto text-left relative z-10">
+            <div class="glass p-5 rounded-2xl border border-slate-800">
+                <div class="text-2xl mb-2">⚡</div>
+                <strong class="text-white block text-sm mb-1">Inferencia en GPU Cloud</strong>
+                <p class="text-xs text-slate-400">Procesa 30 minutos de rueda de prensa en apenas 10-15 segundos sin consumir recursos de tu ordenador.</p>
+            </div>
+            <div class="glass p-5 rounded-2xl border border-slate-800">
+                <div class="text-2xl mb-2">🎯</div>
+                <strong class="text-white block text-sm mb-1">Rigor Periodístico IA</strong>
+                <p class="text-xs text-slate-400">Contrasta nombres propios, plantillas deportivas y tecnicismos en tiempo real para evitar confusiones.</p>
+            </div>
+            <div class="glass p-5 rounded-2xl border border-slate-800">
+                <div class="text-2xl mb-2">🎬</div>
+                <strong class="text-white block text-sm mb-1">Subtítulos .SRT Sincronizados</strong>
+                <p class="text-xs text-slate-400">Pistas temporales al milisegundo listas para importar directamente en tu editor de vídeo.</p>
             </div>
         </div>
     </section>
 
-    <!-- Sección de Precios (Mensual / Anual) -->
+    <!-- PRECIOS -->
     <section id="precios" class="py-24 relative z-10 border-t border-slate-800/60">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Planes flexibles adaptados a tu ritmo</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto mb-8">Elige pago mensual o ahorra un 37% con la modalidad anual.</p>
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Planes diseñados para tu ritmo de trabajo</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto mb-8 text-sm">Empieza gratis o desbloquea potencia Cloud con el plan Pro (incluye 7 días de prueba completa).</p>
                 
                 <div class="inline-flex items-center bg-slate-900 p-1.5 rounded-2xl border border-slate-800 shadow-inner">
-                    <button id="btn-mensual" onclick="setBilling('mensual')" class="px-6 py-2.5 rounded-xl text-sm font-bold transition bg-indigo-600 text-white shadow-md">Facturación Mensual</button>
-                    <button id="btn-anual" onclick="setBilling('anual')" class="px-6 py-2.5 rounded-xl text-sm font-bold transition text-slate-400 hover:text-white">Facturación Anual <span class="text-xs text-amber-400 font-extrabold ml-1">(-37%)</span></button>
+                    <button id="btn-mensual" onclick="setBilling('mensual')" class="px-6 py-2.5 rounded-xl text-sm font-bold transition bg-indigo-600 text-white shadow-md">Mensual</button>
+                    <button id="btn-anual" onclick="setBilling('anual')" class="px-6 py-2.5 rounded-xl text-sm font-bold transition text-slate-400 hover:text-white">Anual <span class="text-xs text-amber-400 font-extrabold ml-1">-37%</span></button>
                 </div>
             </div>
 
@@ -119,15 +124,14 @@
                 <div class="glass-card p-8 rounded-3xl flex flex-col justify-between">
                     <div>
                         <h3 class="text-2xl font-bold mb-2 text-slate-300">Gratuito</h3>
-                        <p class="text-xs text-slate-400 mb-6">Para pruebas esporádicas y creadores independientes.</p>
-                        <div class="text-4xl font-extrabold mb-6">0 €<span class="text-lg font-normal text-slate-500">/mes</span></div>
-                        
+                        <p class="text-xs text-slate-400 mb-6">Para pruebas esporádicas y audios breves.</p>
+                        <div class="text-4xl font-extrabold mb-6">0 € <span class="text-lg font-normal text-slate-500">/mes</span></div>
                         <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium">
-                            <li class="flex gap-2"><span>✨</span> <span><strong>30 Transcripciones IA/mes</strong> en LOCAL (máx. 30 min/audio).</span></li>
-                            <li class="flex gap-2"><span>⚡</span> <span><strong>60 Transcripciones Estándar/mes</strong> (Motor Whisper Base).</span></li>
-                            <li class="flex gap-2"><span>📥</span> <span><strong>100 Descargas/mes</strong> (MP3 128 kbps / Vídeo 720p).</span></li>
-                            <li class="flex gap-2"><span>📄</span> <span>Exportación a <strong>Texto Plano (.TXT)</strong>.</span></li>
-                            <li class="flex gap-2 opacity-60"><span>⚠️</span> <span>Incluye marca de agua en los textos exportados.</span></li>
+                            <li class="flex gap-2"><span>✨</span><span><strong>30 análisis con IA al mes</strong> en local (máx. 30 min por audio).</span></li>
+                            <li class="flex gap-2"><span>⚡</span><span><strong>60 transcripciones estándar al mes</strong> (Whisper Base CPU).</span></li>
+                            <li class="flex gap-2"><span>📥</span><span><strong>100 descargas al mes</strong> (MP3 128 kbps / Vídeo 720p).</span></li>
+                            <li class="flex gap-2"><span>📄</span><span>Exportación en texto plano <strong>.TXT</strong>.</span></li>
+                            <li class="flex gap-2 opacity-70"><span>💧</span><span>Textos exportados con marca de agua.</span></li>
                         </ul>
                     </div>
                     <button onclick="openAuthModal('register')" class="w-full py-4 rounded-xl font-bold bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">Crear cuenta gratis</button>
@@ -135,26 +139,22 @@
 
                 <!-- PRO -->
                 <div class="glass-card p-8 rounded-3xl border-2 border-indigo-500 relative transform lg:-translate-y-4 shadow-2xl shadow-indigo-500/20 flex flex-col justify-between">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-500 text-white text-xs font-black px-4 py-1.5 rounded-full shadow-lg tracking-wider">
-                        🎁 7 DÍAS GRATIS
-                    </div>
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-500 text-white text-xs font-black px-4 py-1.5 rounded-full shadow-lg tracking-wider">🎁 7 DÍAS GRATIS</div>
                     <div>
                         <h3 class="text-2xl font-bold mb-2 text-indigo-400">Pro</h3>
-                        <p class="text-xs text-indigo-200/70 mb-6">Velocidad cloud para redactores, podcasters y editores.</p>
-                        
+                        <p class="text-xs text-indigo-200/70 mb-6">El preferido de redactores, podcasters y editores de vídeo.</p>
                         <div class="text-4xl font-extrabold mb-6 text-white">
-                            <span id="price-pro">7,99 €</span><span class="text-lg font-normal text-slate-400" id="period-pro">/mes</span>
+                            <span id="price-pro">7,99 €</span> <span id="period-pro" class="text-lg font-normal text-slate-400">/mes</span>
                         </div>
-                        
                         <ul class="space-y-4 mb-8 text-sm text-slate-200 font-medium">
-                            <li class="flex gap-2"><span>☁️</span> <span><strong>100 Transcripciones IA/mes en la NUBE</strong> (<span class="text-indigo-300 font-bold">Groq Cloud</span>, hasta 3h por audio).</span></li>
-                            <li class="flex gap-2"><span>⚡</span> <span><strong>150 Transcripciones Rápidas/mes</strong> (Procesamiento relámpago).</span></li>
-                            <li class="flex gap-2"><span>🎬</span> <span><strong>Exportación .SRT sincronizada:</strong> Subtítulos directos para Premiere, DaVinci y CapCut.</span></li>
-                            <li class="flex gap-2"><span>📥</span> <span><strong>200 Descargas/mes:</strong> Audio de estudio a <strong>320 kbps</strong> y vídeo en <strong>1080p HD</strong>.</span></li>
-                            <li class="flex gap-2"><span>💧</span> <span><strong>Sin marcas de agua</strong> y con copia limpia desbloqueada.</span></li>
+                            <li class="flex gap-2"><span>☁️</span><span><strong>100 análisis con IA al mes</strong> en GPU Cloud (hasta 3 horas por audio).</span></li>
+                            <li class="flex gap-2"><span>⚡</span><span><strong>150 transcripciones rápidas</strong> en servidores cloud dedicados.</span></li>
+                            <li class="flex gap-2"><span>🎬</span><span><strong>Subtítulos .SRT sincronizados</strong> para Premiere, DaVinci y CapCut.</span></li>
+                            <li class="flex gap-2"><span>📥</span><span><strong>200 descargas al mes</strong>: Audio a 320 kbps y vídeo en 1080p HD.</span></li>
+                            <li class="flex gap-2"><span>💧</span><span><strong>Sin marcas de agua</strong> y con copia limpia desbloqueada.</span></li>
                         </ul>
                     </div>
-                    <button onclick="checkoutPro()" id="btn-pro" class="w-full py-4 rounded-xl font-bold btn-gradient text-white shadow-lg">Comenzar 7 Días Gratis</button>
+                    <button onclick="checkoutPro()" id="btn-pro" class="w-full py-4 rounded-xl font-bold btn-gradient text-white shadow-lg">Comenzar 7 días gratis</button>
                 </div>
 
                 <!-- ULTRA -->
@@ -162,19 +162,17 @@
                     <div>
                         <div class="inline-block px-2.5 py-0.5 rounded bg-amber-500/10 text-amber-400 text-[10px] font-black uppercase tracking-wider mb-2 border border-amber-500/20">Máximo Rendimiento Cloud</div>
                         <h3 class="text-2xl font-bold mb-2 text-amber-400">Ultra</h3>
-                        <p class="text-xs text-slate-400 mb-6">Potencia ilimitada para agencias y redacciones exigentes.</p>
-                        
+                        <p class="text-xs text-slate-400 mb-6">Potencia ilimitada para agencias, redacciones y directos extensos.</p>
                         <div class="text-4xl font-extrabold mb-6 text-white">
-                            <span id="price-ultra">19,99 €</span><span class="text-lg font-normal text-slate-500" id="period-ultra">/mes</span>
+                            <span id="price-ultra">19,99 €</span> <span id="period-ultra" class="text-lg font-normal text-slate-500">/mes</span>
                         </div>
-                        
                         <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium">
-                            <li class="flex gap-2"><span>🚀</span> <span><strong>250 Transcripciones IA/mes en la NUBE</strong> (<span class="text-amber-400 font-bold">Groq Cloud Ultra</span>, hasta 12h de vídeo).</span></li>
-                            <li class="flex gap-2"><span>⚡</span> <span><strong>500 Transcripciones Rápidas/mes</strong> (Velocidad extrema instantánea).</span></li>
-                            <li class="flex gap-2"><span>📝</span> <span><strong>Glosario y Contexto Prioritario:</strong> Inyecta alineaciones y tecnicismos para un 99.9% de precisión.</span></li>
-                            <li class="flex gap-2"><span>🎬</span> <span><strong>Exportación completa (.SRT y .TXT)</strong> sin restricciones.</span></li>
-                            <li class="flex gap-2"><span>♾️</span> <span><strong>Descargas ilimitadas/mes:</strong> Máxima calidad original disponible (4K / 320 kbps).</span></li>
-                            <li class="flex gap-2"><span>👑</span> <span>Prioridad absoluta de procesamiento en servidores dedicados de alta velocidad.</span></li>
+                            <li class="flex gap-2"><span>🚀</span><span><strong>250 análisis con IA al mes</strong> en GPU Cloud (hasta 12 horas por audio).</span></li>
+                            <li class="flex gap-2"><span>⚡</span><span><strong>500 transcripciones rápidas</strong> con selector de motor (Estándar o Turbo).</span></li>
+                            <li class="flex gap-2"><span>📝</span><span><strong>Glosario y Contexto Prioritario</strong>: Máxima precisión en nombres propios.</span></li>
+                            <li class="flex gap-2"><span>🎬</span><span><strong>Exportación completa (.SRT y .TXT)</strong> sin restricciones.</span></li>
+                            <li class="flex gap-2"><span>📥</span><span><strong>Descargas ilimitadas</strong> en calidad original disponible (4K / 320 kbps).</span></li>
+                            <li class="flex gap-2"><span>👑</span><span><strong>Prioridad absoluta</strong> en servidores dedicados.</span></li>
                         </ul>
                     </div>
                     <button onclick="checkoutUltra()" id="btn-ultra" class="w-full py-4 rounded-xl font-bold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 transition">Suscribirse a Ultra</button>
@@ -183,108 +181,46 @@
         </div>
     </section>
 
-    <!-- Script del Toggle Mensual / Anual -->
-    <script>
-        let currentBilling = 'mensual';
-
-        const STRIPE_LINKS = {
-            pro_mensual: 'https://buy.stripe.com/8x23cw1JZddAghT4sggjC00',
-            pro_anual: 'https://buy.stripe.com/7sY00k0FV8Xkc1D5wkgjC02',
-            ultra_mensual: 'https://buy.stripe.com/14AcN64Wba1od5HcYMgjC01',
-            ultra_anual: 'https://buy.stripe.com/00w5kEcoDc9waXz0c0gjC03'
-        };
-
-        function setBilling(mode) {
-            currentBilling = mode;
-            const btnMensual = document.getElementById('btn-mensual');
-            const btnAnual = document.getElementById('btn-anual');
-            const pricePro = document.getElementById('price-pro');
-            const periodPro = document.getElementById('period-pro');
-            const priceUltra = document.getElementById('price-ultra');
-            const periodUltra = document.getElementById('period-ultra');
-
-            if (mode === 'anual') {
-                btnAnual.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition bg-indigo-600 text-white shadow-md";
-                btnMensual.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition text-slate-400 hover:text-white";
-                pricePro.innerText = "59,99 €";
-                periodPro.innerText = "/año";
-                priceUltra.innerText = "149,99 €";
-                periodUltra.innerText = "/año";
-            } else {
-                btnMensual.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition bg-indigo-600 text-white shadow-md";
-                btnAnual.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition text-slate-400 hover:text-white";
-                pricePro.innerText = "7,99 €";
-                periodPro.innerText = "/mes";
-                priceUltra.innerText = "19,99 €";
-                periodUltra.innerText = "/mes";
-            }
-        }
-
-        function checkoutPro() {
-            if (!currentUser) {
-                showToast("Debes iniciar sesión o registrarte antes de suscribirte.", true);
-                openAuthModal('register');
-                return;
-            }
-            const link = currentBilling === 'anual' ? STRIPE_LINKS.pro_anual : STRIPE_LINKS.pro_mensual;
-            window.open(link, '_blank');
-        }
-
-        function checkoutUltra() {
-            if (!currentUser) {
-                showToast("Debes iniciar sesión o registrarte antes de suscribirte.", true);
-                openAuthModal('register');
-                return;
-            }
-            const link = currentBilling === 'anual' ? STRIPE_LINKS.ultra_anual : STRIPE_LINKS.ultra_mensual;
-            window.open(link, '_blank');
-        }
-    </script>
-
-    <!-- SECCIÓN DE GARANTÍA Y POLÍTICA DE CANCELACIÓN -->
+    <!-- GARANTÍA -->
     <section id="garantia" class="py-16 bg-slate-900/40 border-t border-slate-800/60 relative z-10">
         <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-2xl md:text-3xl font-bold mb-4">Garantía, Ciclo Mensual/Anual y Política de Cancelación</h2>
-            <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                Transparencia absoluta en tu suscripción. Conoce cómo funciona la renovación de fecha a fecha y las reglas de cancelación:
-            </p>
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Transparencia absoluta en tu suscripción</h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-8">Sin permanencias ni sorpresas. Todo bajo el control de tu portal de cliente seguro.</p>
             <div class="grid md:grid-cols-2 gap-6 text-left">
                 <div class="glass p-6 rounded-2xl border border-slate-800">
                     <div class="text-2xl mb-2">📅</div>
-                    <h3 class="text-white font-bold mb-2">¿Cómo funciona la renovación?</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        El ciclo dura un mes entero natural (si te suscribes el 12, se renueva el 12). <strong>Stripe te enviará un correo automático de aviso el día antes</strong> de cualquier cargo recurrente.
-                    </p>
+                    <h3 class="text-white font-bold mb-2">Ciclos Claros de Renovación</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Tu suscripción renueva automáticamente cada mes o año siguiendo la fecha exacta de contratación.</p>
                 </div>
                 <div class="glass p-6 rounded-2xl border border-slate-800">
-                    <div class="text-2xl mb-2">⚠️</div>
-                    <h3 class="text-white font-bold mb-2">¿Cuándo debo cancelar para evitar cargos?</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Recomendamos cancelar o gestionar tu suscripción <strong>al menos 1 semana antes de la fecha de renovación</strong> para evitar incidencias con el banco. 
-                        <br><br>
-                        <em>Pruebas de 7 días:</em> Si cancelas durante la prueba gratuita, el plan se desactiva de inmediato; en las suscripciones de pago, conservarás tus ventajas intactas hasta el último día exacto abonado.
-                    </p>
+                    <div class="text-2xl mb-2">🛑</div>
+                    <h3 class="text-white font-bold mb-2">Cancela en 1 Clic con Stripe</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Puedes pausar o cancelar en cualquier instante. Mantendrás todas las ventajas hasta el último día del periodo contratado.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="border-t border-slate-800 bg-slate-900/50 py-10 text-center relative z-10">
         <div class="max-w-7xl mx-auto px-6">
             <h3 class="text-xl font-extrabold text-white mb-2">EchoScribe</h3>
-            <p class="text-slate-500 text-sm mb-6">© 2026 Desarrollado por Iván García Miranda. Todos los derechos reservados.</p>
+            <p class="text-slate-500 text-sm mb-6">Transcripción de audio a texto, subtítulos .SRT y análisis periodístico con IA.</p>
+            <div class="flex justify-center gap-6 text-sm font-semibold text-slate-400 mb-6">
+                <a href="/guias" class="hover:text-white transition">Guías de Uso</a>
+                <a href="/sobre-mi" class="hover:text-white transition">Sobre Mí</a>
+                <button onclick="document.getElementById('privacy-modal').classList.remove('hidden')" class="hover:text-white transition">Política de Privacidad</button>
+                <a href="mailto:ivangarmir018@gmail.com" class="hover:text-white transition">Soporte Técnico</a>
+            </div>
+            <p class="text-slate-600 text-xs">© 2026 Desarrollado por Iván García Miranda. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- MODAL: MI PERFIL / AJUSTES DE USUARIO -->
+    <!-- MODAL PERFIL -->
     <div id="profile-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card p-8 rounded-3xl w-full max-w-lg shadow-2xl relative">
             <button onclick="closeProfileModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold transition">✕</button>
-            <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-3 flex items-center gap-2">
-                👤 Panel de Usuario
-            </h2>
-
+            <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-3 flex items-center gap-2">👤 Panel de Usuario</h2>
             <div class="space-y-6">
                 <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-700/80">
                     <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">Correo Electrónico</p>
@@ -292,35 +228,30 @@
                     <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mt-3 mb-1">Nombre de Usuario</p>
                     <p id="profile-username" class="text-indigo-400 font-bold text-base">cargando...</p>
                 </div>
-
                 <div class="bg-slate-900/60 p-5 rounded-2xl border border-slate-700/80 space-y-4">
                     <div class="flex justify-between items-center">
                         <div>
-                            <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-0.5">Suscripción Activa</p>
-                            <p id="profile-current-plan-label" class="text-amber-400 font-extrabold text-base uppercase">PLAN ULTRA</p>
+                            <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-0.5">Plan Actual</p>
+                            <p id="profile-current-plan-label" class="text-amber-400 font-extrabold text-base uppercase">PLAN CARGANDO</p>
                         </div>
                         <span class="px-3 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-full text-xs font-bold">● Activo</span>
                     </div>
-
                     <div class="bg-slate-950/50 p-3.5 rounded-xl border border-slate-800 flex justify-between items-center text-xs">
-                        <span class="text-slate-400">Próxima renovación de ciclo:</span>
+                        <span class="text-slate-400">Próxima renovación:</span>
                         <span id="profile-renewal-date" class="text-indigo-300 font-mono font-bold">Calculando...</span>
                     </div>
-
                     <div id="profile-action-buttons" class="flex gap-2"></div>
-
                     <div class="pt-2 border-t border-slate-800">
                         <button onclick="abrirPortalStripe()" class="w-full py-2.5 rounded-xl text-xs font-bold bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 transition flex items-center justify-center gap-2">
-                            <span>⚙️</span> <span>Gestionar tarjeta o cancelar suscripción</span>
+                            <span>⚙️</span><span>Gestionar suscripción o cancelar</span>
                         </button>
-                        <p class="text-[10px] text-slate-400 text-center mt-1.5">Recomendamos cancelar 1 semana antes de la renovación para evitar cobros.</p>
+                        <p class="text-[10px] text-slate-400 text-center mt-1.5">La gestión se realiza en el portal cifrado de Stripe.</p>
                     </div>
                 </div>
-
                 <div class="border-t border-slate-700/60 pt-4">
                     <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-2">Cambiar Contraseña</p>
                     <div class="flex gap-2">
-                        <input type="password" id="profile-new-pwd" placeholder="Nueva contraseña (min. 6)" class="flex-1 bg-slate-900/50 px-4 py-2.5 rounded-xl border border-slate-700 text-sm text-white focus:border-brand outline-none">
+                        <input type="password" id="profile-new-pwd" placeholder="Nueva contraseña (mín. 6)" class="flex-1 bg-slate-900/50 px-4 py-2.5 rounded-xl border border-slate-700 text-sm text-white focus:border-brand outline-none">
                         <button onclick="actualizarContrasena()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl border border-slate-600 transition">Guardar</button>
                     </div>
                 </div>
@@ -328,20 +259,17 @@
         </div>
     </div>
 
-    <!-- MODAL: AUTENTICACIÓN -->
+    <!-- MODAL AUTENTICACIÓN -->
     <div id="auth-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card p-8 rounded-3xl w-[400px] shadow-2xl relative" id="auth-modal-content">
             <button onclick="closeAuthModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">✕</button>
-            
             <div class="text-center mb-6">
                 <h2 id="auth-title" class="text-2xl font-bold text-white mb-2">Crear Cuenta</h2>
                 <p id="auth-subtitle" class="text-sm text-slate-400 mb-6">Regístrate para usar EchoScribe.</p>
-                
                 <button onclick="iniciarConGoogle()" class="w-full bg-white hover:bg-slate-100 text-slate-900 font-bold py-3 rounded-xl flex justify-center items-center gap-3 transition shadow-md">
-                    <svg class="w-5 h-5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    <svg class="w-5 h-5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s-.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                     Continuar con Google
                 </button>
-                
                 <div class="flex items-center my-6">
                     <hr class="flex-1 border-slate-700">
                     <span class="px-3 text-xs text-slate-500 uppercase tracking-widest font-semibold">O con email</span>
@@ -354,7 +282,6 @@
                     <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Nombre de Usuario</label>
                     <input type="text" id="auth-user" placeholder="Ej. usuario18" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition text-sm">
                 </div>
-
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Correo Electrónico</label>
                     <input type="email" id="auth-email" required placeholder="tu@correo.com" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition text-sm">
@@ -363,38 +290,67 @@
                     <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Contraseña</label>
                     <input type="password" id="auth-pwd" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition text-sm">
                 </div>
-
                 <div id="field-repeat-pwd">
                     <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Repetir Contraseña</label>
                     <input type="password" id="auth-pwd-2" placeholder="Debe coincidir" class="w-full bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white transition text-sm">
                 </div>
-                
+                <div id="field-forgot" class="hidden text-right">
+                    <button type="button" onclick="recuperarContrasena()" class="text-xs text-brand hover:underline font-semibold">¿Olvidaste tu contraseña?</button>
+                </div>
                 <button type="submit" id="auth-submit-btn" class="w-full btn-gradient text-white font-bold py-3.5 rounded-xl shadow-lg mt-2">Registrarse</button>
             </form>
             
             <div class="mt-6 text-center text-sm text-slate-400 border-t border-slate-700/50 pt-6">
                 <span id="auth-switch-text">¿Ya tienes una cuenta?</span> 
-                <button onclick="toggleAuthMode()" id="auth-switch-btn" class="text-brand font-bold hover:underline">Inicia Sesión</button>
+                <button onclick="toggleAuthMode()" id="auth-switch-btn" class="text-brand font-bold hover:underline ml-1">Inicia Sesión</button>
             </div>
         </div>
     </div>
 
-    <!-- Toast Notification -->
+    <!-- MODAL PRIVACIDAD -->
+    <div id="privacy-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center py-10 px-4">
+        <div class="glass-card p-8 rounded-3xl w-[800px] max-h-[80vh] overflow-y-auto shadow-2xl relative">
+            <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold transition">✕</button>
+            <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-4">Política de Privacidad</h2>
+            <div class="text-slate-300 text-sm space-y-4 leading-relaxed font-normal">
+                <p><strong>1. Recopilación de Datos:</strong> Al registrarte en EchoScribe, recopilamos tu correo electrónico y nombre de usuario exclusivamente para gestionar tu cuenta y cuotas de acceso.</p>
+                <p><strong>2. Procesamiento de Pagos:</strong> Los pagos son procesados de forma segura mediante Stripe. EchoScribe no almacena números de tarjeta ni datos bancarios sensibles en sus servidores.</p>
+                <p><strong>3. Archivos y Transcripciones:</strong> Los contenidos multimedia procesados no se almacenan permanentemente ni se transfieren a terceros. Tras la inferencia, los archivos temporales se purgan automáticamente.</p>
+            </div>
+            <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="mt-8 w-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-3 rounded-xl transition">Entendido</button>
+        </div>
+    </div>
+
+    <!-- TOAST -->
     <div id="toast" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-slate-800 border border-slate-700 text-white px-6 py-3 rounded-2xl shadow-2xl font-medium transition-all duration-300 translate-y-20 opacity-0 z-50 flex items-center gap-3">
         <span id="toast-icon">✅</span>
         <span id="toast-msg">Mensaje</span>
     </div>
 
+    <!-- JAVASCRIPT -->
     <script>
         const SUPABASE_URL = 'https://ggmaiqxbidcxhbungnpx.supabase.co'; 
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnbWFpcXhiaWRjeGhidW5nbnB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2NjI4OTUsImV4cCI6MjEwMzIzODg5NX0.dFblpUUXInw4JLbsQQVa5NcxFWoCz3Ydff2c87_gRew'; 
         const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        // ENLACE REAL AL PORTAL DE CLIENTE DE STRIPE (Cópialo de Stripe > Billing > Portal de clientes)
         const STRIPE_PORTAL_URL = 'https://billing.stripe.com/p/login/tu_enlace_real_de_stripe';
 
         let currentUser = null;
         let currentMode = 'register';
+        let currentBilling = 'mensual';
+
+        const STRIPE_LINKS = {
+            pro_mensual: 'https://buy.stripe.com/8x23cw1JZddAghT4sggjC00',
+            pro_anual: 'https://buy.stripe.com/7sY00k0FV8Xkc1D5wkgjC02',
+            ultra_mensual: 'https://buy.stripe.com/14AcN64Wba1od5HcYMgjC01',
+            ultra_anual: 'https://buy.stripe.com/00w5kEcoDc9waXz0c0gjC03'
+        };
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('hidden');
+            navLinks.classList.toggle('flex');
+        });
 
         sb.auth.onAuthStateChange((event, session) => {
             currentUser = session?.user || null;
@@ -431,32 +387,32 @@
             if (!currentUser) return;
             document.getElementById('profile-email').innerText = currentUser.email;
             document.getElementById('profile-username').innerText = currentUser.user_metadata?.username || 'Usuario';
-            
             const plan = (currentUser.user_metadata?.plan || 'Gratis').toUpperCase();
             const planLabel = document.getElementById('profile-current-plan-label');
             const actionContainer = document.getElementById('profile-action-buttons');
-            
+
             planLabel.innerText = `PLAN ${plan}`;
-            
             if (plan === 'ULTRA') {
                 planLabel.className = "text-amber-400 font-extrabold text-base uppercase";
-                actionContainer.innerHTML = `<span class="text-xs text-slate-400 italic py-1">¡Disfrutas del máximo rendimiento disponible!</span>`;
+                actionContainer.innerHTML = `<span class="text-xs text-slate-400 italic py-1">Disfrutando de la máxima capacidad y prioridad Cloud.</span>`;
             } else if (plan === 'PRO') {
                 planLabel.className = "text-indigo-400 font-extrabold text-base uppercase";
                 actionContainer.innerHTML = `
                     <button onclick="window.open(STRIPE_LINKS.ultra_mensual, '_blank')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 transition flex items-center justify-center gap-1.5">
-                        <span>🚀</span> <span>Actualizar a Ultra (Solo +12€, misma fecha)</span>
-                    </button>
-                `;
+                        <span>🚀</span><span>Pasar a Ultra</span>
+                    </button>`;
             } else {
-                actionContainer.innerHTML = ``;
+                actionContainer.innerHTML = '';
             }
 
             const fechaCreacion = new Date(currentUser.created_at || Date.now());
             const proximaRenovacion = new Date(fechaCreacion);
             proximaRenovacion.setMonth(proximaRenovacion.getMonth() + 1);
-            
-            document.getElementById('profile-renewal-date').innerText = proximaRenovacion.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            document.getElementById('profile-renewal-date').innerText = proximaRenovacion.toLocaleDateString('es-ES', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
+
             document.getElementById('profile-modal').classList.remove('hidden');
         }
 
@@ -466,7 +422,7 @@
 
         function abrirPortalStripe() {
             window.open(STRIPE_PORTAL_URL, '_blank');
-            showToast("Redirigiendo al portal seguro de Stripe...");
+            showToast("Abriendo la gestión segura de tu suscripción...");
         }
 
         function toggleAuthMode() {
@@ -477,6 +433,7 @@
         function updateAuthUI() {
             const fieldUser = document.getElementById('field-username');
             const fieldPwd2 = document.getElementById('field-repeat-pwd');
+            const fieldForgot = document.getElementById('field-forgot');
             
             if (currentMode === 'register') {
                 document.getElementById('auth-title').innerText = "Crear Cuenta";
@@ -484,16 +441,24 @@
                 document.getElementById('auth-submit-btn').innerText = "Registrarse";
                 document.getElementById('auth-switch-text').innerText = "¿Ya tienes una cuenta?";
                 document.getElementById('auth-switch-btn').innerText = "Inicia Sesión";
+                
                 fieldUser.style.display = "block";
                 fieldPwd2.style.display = "block";
+                fieldForgot.classList.add('hidden');
+                document.getElementById('auth-user').setAttribute('required', 'true');
+                document.getElementById('auth-pwd-2').setAttribute('required', 'true');
             } else {
                 document.getElementById('auth-title').innerText = "Iniciar Sesión";
                 document.getElementById('auth-subtitle').innerText = "Accede a tu cuenta de EchoScribe.";
                 document.getElementById('auth-submit-btn').innerText = "Entrar";
                 document.getElementById('auth-switch-text').innerText = "¿No tienes cuenta?";
                 document.getElementById('auth-switch-btn').innerText = "Regístrate gratis";
+                
                 fieldUser.style.display = "none";
                 fieldPwd2.style.display = "none";
+                fieldForgot.classList.remove('hidden');
+                document.getElementById('auth-user').removeAttribute('required');
+                document.getElementById('auth-pwd-2').removeAttribute('required');
             }
         }
 
@@ -526,7 +491,10 @@
                 const { error } = await sb.auth.signUp({
                     email: email, 
                     password: pwd, 
-                    options: { data: { username: user }, emailRedirectTo: window.location.origin }
+                    options: { 
+                        data: { username: user },
+                        emailRedirectTo: window.location.origin
+                    }
                 });
 
                 if (error) showToast(error.message, true);
@@ -558,11 +526,80 @@
             if (error) showToast(error.message, true);
         }
 
+        async function recuperarContrasena() {
+            const email = document.getElementById('auth-email').value;
+            if (!email) {
+                showToast("Escribe tu correo primero en la casilla.", true);
+                return;
+            }
+            const { error } = await sb.auth.resetPasswordForEmail(email, {
+                redirectTo: window.location.origin
+            });
+            if (error) showToast(error.message, true);
+            else showToast("Enlace de restablecimiento enviado a tu correo.");
+        }
+
+        async function actualizarContrasena() {
+            const newPwd = document.getElementById('profile-new-pwd').value;
+            if (newPwd.length < 6) {
+                showToast("La contraseña debe tener al menos 6 caracteres.", true);
+                return;
+            }
+            const { error } = await sb.auth.updateUser({ password: newPwd });
+            if (error) showToast(error.message, true);
+            else {
+                showToast("Contraseña actualizada correctamente.");
+                document.getElementById('profile-new-pwd').value = "";
+            }
+        }
+
         async function cerrarSesion() {
             await sb.auth.signOut();
             currentUser = null;
             actualizarEstadoNavbar();
             showToast("Has cerrado sesión.");
+        }
+
+        function setBilling(mode) {
+            currentBilling = mode;
+            const btnMensual = document.getElementById('btn-mensual');
+            const btnAnual = document.getElementById('btn-anual');
+            const pricePro = document.getElementById('price-pro');
+            const periodPro = document.getElementById('period-pro');
+            const priceUltra = document.getElementById('price-ultra');
+            const periodUltra = document.getElementById('period-ultra');
+
+            if (mode === 'anual') {
+                btnAnual.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition bg-indigo-600 text-white shadow-md";
+                btnMensual.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition text-slate-400 hover:text-white";
+                pricePro.innerText = "59,99 €"; periodPro.innerText = "/año";
+                priceUltra.innerText = "149,99 €"; periodUltra.innerText = "/año";
+            } else {
+                btnMensual.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition bg-indigo-600 text-white shadow-md";
+                btnAnual.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition text-slate-400 hover:text-white";
+                pricePro.innerText = "7,99 €"; periodPro.innerText = "/mes";
+                priceUltra.innerText = "19,99 €"; periodUltra.innerText = "/mes";
+            }
+        }
+
+        function checkoutPro() {
+            if (!currentUser) {
+                showToast("Crea una cuenta o inicia sesión antes de suscribirte.", true);
+                openAuthModal('register');
+                return;
+            }
+            const link = currentBilling === 'anual' ? STRIPE_LINKS.pro_anual : STRIPE_LINKS.pro_mensual;
+            window.open(link, '_blank');
+        }
+
+        function checkoutUltra() {
+            if (!currentUser) {
+                showToast("Crea una cuenta o inicia sesión antes de suscribirte.", true);
+                openAuthModal('register');
+                return;
+            }
+            const link = currentBilling === 'anual' ? STRIPE_LINKS.ultra_anual : STRIPE_LINKS.ultra_mensual;
+            window.open(link, '_blank');
         }
     </script>
 </body>
