@@ -9,7 +9,8 @@
     { "source": "/guia-instalacion", "destination": "/guia-instalacion.html" },
     { "source": "/transcribir-youtube", "destination": "/transcribir-youtube.html" },
     { "source": "/transcriptor-audio-a-texto", "destination": "/transcriptor-audio-a-texto.html" },
-    { "source": "/generador-subtitulos-srt", "destination": "/generador-subtitulos-srt.html" },
+    { "source": "/terminos-y-condiciones", "destination": "/terminos-y-condiciones.html" },
+    { "source": "/politica-privacidad", "destination": "/politica-privacidad.html" },
     { "source": "/transcribir-entrevistas-reuniones", "destination": "/transcribir-entrevistas-reuniones.html" },
     { "source": "/guias/:slug", "destination": "/guias/:slug.html" }
   ]
