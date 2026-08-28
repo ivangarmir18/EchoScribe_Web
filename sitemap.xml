@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Páginas Core -->
+  <url><loc>https://www.echoscribe.es/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guia-instalacion</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/sobre-mi</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+  
+  <!-- Herramientas / Landings de Captación -->
+  <url><loc>https://www.echoscribe.es/transcribir-youtube</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/generador-subtitulos-srt</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/transcriptor-audio-a-texto</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/transcribir-entrevistas-reuniones</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+
+  <!-- Hub de Guías y Casos de Uso -->
+  <url><loc>https://www.echoscribe.es/guias/alternativa-turboscribe-local</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias/ecoscribe-vs-whisper</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias/transcribir-partidos-futbol</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias/transcribir-ruedas-prensa</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias/transcribir-directos-twitch</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias/capitulos-youtube-automaticos</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias/convertir-podcast-en-blog</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias/transcribir-traducir-videos-idiomas</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias/transcribir-clases-universidad</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias/transcribir-entrevistas-tfg</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias/resumir-reuniones-empresa-actas</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias/transcribir-entrevistas-periodismo</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+</urlset>

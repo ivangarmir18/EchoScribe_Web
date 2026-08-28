@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcribir Vídeos de YouTube a Texto y Subtítulos .SRT Gratis | EchoScribe</title>
+    <meta name="description" content="Convierte cualquier enlace de YouTube en texto limpio, titulares y subtítulos .SRT sincronizados en segundos con IA en GPU Cloud. Sin esperas y con rigor periodístico.">
+    <meta name="keywords" content="transcribir youtube a texto, pasar video youtube a texto, extraer subtitulos youtube srt, transcriptor youtube ia, youtube transcript spanish">
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: '#6366f1' } } }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; scroll-behavior: smooth; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        .glass-card { background: linear-gradient(180deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.95) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.4); }
+    </style>
+    <!-- Schema JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "EchoScribe - Transcriptor de YouTube",
+      "operatingSystem": "Windows, Web",
+      "applicationCategory": "MultimediaApplication",
+      "description": "Transcribe enlaces de YouTube a texto con nombres propios y subtítulos .SRT sincronizados con Whisper GPU.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+</head>
+<body class="antialiased selection:bg-purple-500 selection:text-white">
+
+        <!-- NAVEGACIÓN -->
+    <nav class="fixed w-full z-40 glass border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
+                🎙️ EchoScribe
+            </a>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
+                <a href="/" class="text-slate-300 hover:text-white transition">Inicio</a>
+                <a href="/#precios" class="text-slate-300 hover:text-white transition">Precios</a>
+                <a href="/guias" class="text-slate-300 hover:text-white transition">Guías y Herramientas</a>
+                <a href="/guia-instalacion" class="text-slate-300 hover:text-white transition">Instalación Windows</a>
+                <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
+                <a href="/#demo-interactiva" class="btn-gradient text-white px-4 py-2 rounded-xl shadow-lg text-xs">Probar Online</a>
+            </div>
+        </div>
+    </nav>
+    <script>
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+            document.getElementById('nav-links')?.classList.toggle('hidden');
+        });
+    </script>
+
+
+    <!-- HERO -->
+    <header class="pt-40 pb-16 px-6 text-center max-w-5xl mx-auto relative">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold mb-6 tracking-wide">
+            <span>🔴</span> Transcripción de YouTube en Servidores GPU L4
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            Transcribe cualquier vídeo de <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-pink-400 to-purple-400">YouTube a Texto y Subtítulos .SRT</span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-400 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Pega el enlace de un vídeo de YouTube y obtén en menos de 20 segundos la transcripción completa, resumen por puntos clave, titulares periodísticos y subtítulos .SRT listos para editar en Premiere o CapCut.
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
+            <a href="/#precios" id="download-btn" class="btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-base w-full sm:w-auto">
+                🚀 Descargar EchoScribe Gratis
+            </a>
+<div id="download-tooltip" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded-md opacity-0 transition-opacity duration-300 z-50">Descarga iniciada. Si Windows muestra la pantalla azul de SmartScreen, pulsa "Más información" → "Ejecutar de todas formas" (ver guía rápida).</div>
+<script>
+  document.getElementById('download-btn').addEventListener('click', function(e) {
+    const tooltip = document.getElementById('download-tooltip');
+    tooltip.classList.remove('opacity-0');
+    tooltip.classList.add('opacity-100');
+    setTimeout(() => {
+      tooltip.classList.remove('opacity-100');
+      tooltip.classList.add('opacity-0');
+    }, 2000);
+  });
+</script>
+            <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/v1.0/EchoScribe_Setup.exe" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-base w-full sm:w-auto shadow-lg">
+                💻 Descargar App Oficial (.exe)
+            </a>
+        </div>
+
+        <!-- DEMO INTERACTIVA -->
+        <div class="glass-card p-6 md:p-8 rounded-3xl text-left border border-slate-700/80 shadow-2xl max-w-4xl mx-auto">
+            <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+                <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    Demostración de Resultado Real de YouTube
+                </span>
+                <span class="text-xs text-slate-500 font-mono">Vídeo: 45 min procesado en 24s</span>
+            </div>
+            
+            <div class="flex gap-2 overflow-x-auto pb-2 mb-4 text-xs font-bold">
+                <button onclick="mostrarPestanaDemo('titulares')" id="tab-btn-titulares" class="px-4 py-2 rounded-xl bg-indigo-600 text-white transition">📰 Titulares</button>
+                <button onclick="mostrarPestanaDemo('resumen')" id="tab-btn-resumen" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">📝 Resumen</button>
+                <button onclick="mostrarPestanaDemo('texto')" id="tab-btn-texto" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">📄 Texto Corregido</button>
+                <button onclick="mostrarPestanaDemo('srt')" id="tab-btn-srt" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">⏱️ Subtítulos .SRT</button>
+            </div>
+
+            <div id="demo-content-titulares" class="text-sm text-slate-300 leading-relaxed font-mono bg-slate-950/60 p-4 rounded-2xl border border-slate-800">
+1. Repaso exhaustivo del mercado de fichajes de jugadores libres en LaLiga.<br>
+2. Análisis de opciones tácticas para Deportivo Alavés con Abdoulaye Doucouré.<br>
+3. Debate sobre alternativas para el Athletic Club y la filosofía de cantera con Iker Guarrotxena.
+            </div>
+            <div id="demo-content-resumen" class="hidden text-sm text-slate-300 leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-slate-800">
+                Los analistas deportivos evalúan la situación de los principales futbolistas que finalizan contrato en el mercado internacional, debatiendo el encaje salarial y posicional de nombres como Dusan Vlahovic, Diogo Leite, Rafinha y Dani Ceballos en los 20 clubes de Primera División.
+            </div>
+            <div id="demo-content-texto" class="hidden text-sm text-slate-300 leading-relaxed font-mono bg-slate-950/60 p-4 rounded-2xl border border-slate-800 max-h-48 overflow-y-auto">
+                "Uno de los últimos en moverse es Dusan Vlahovic. Estaba pidiendo una prima alta para firmar por cualquier equipo y ha terminado recalando en el Besiktas. Nosotros vamos a colocar a un jugador libre en cada equipo de la liga... A mí me ha tocado el Athletic Club y vamos a ver cómo resolvemos con Iker Guarrotxena..."
+            </div>
+            <div id="demo-content-srt" class="hidden text-xs text-indigo-300 font-mono bg-slate-950/60 p-4 rounded-2xl border border-slate-800 max-h-48 overflow-y-auto">
+1<br>00:00:01,200 --> 00:00:04,500<br>Hay muchos futbolistas de nivel que están sin contrato.<br><br>
+2<br>00:00:04,600 --> 00:00:08,100<br>Uno de los últimos en moverse es Dusan Vlahovic al Besiktas.<br><br>
+3<br>00:00:08,200 --> 00:00:12,000<br>Ubicamos a un jugador libre sin contrato en cada equipo de LaLiga.
+            </div>
+        </div>
+    </header>
+
+    <!-- CARACTERÍSTICAS -->
+    <section class="py-16 px-6 max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12 text-white">¿Por qué EchoScribe es el mejor transcriptor de YouTube?</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass p-6 rounded-2xl border border-slate-800">
+                <div class="text-3xl mb-3">⚡</div>
+                <h3 class="text-lg font-bold text-white mb-2">Velocidad Extrema (140x)</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Vídeos de 1 hora se descargan, procesan en GPU L4 y se entregan formateados en solo 25-30 segundos.</p>
+            </div>
+            <div class="glass p-6 rounded-2xl border border-slate-800">
+                <div class="text-3xl mb-3">🎯</div>
+                <h3 class="text-lg font-bold text-white mb-2">Nombres Propios Exactos</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">La IA contrasta el título y el contexto del vídeo para escribir a la perfección futbolistas, marcas, jerga y extranjerismos.</p>
+            </div>
+            <div class="glass p-6 rounded-2xl border border-slate-800">
+                <div class="text-3xl mb-3">🎬</div>
+                <h3 class="text-lg font-bold text-white mb-2">Subtítulos .SRT Listos</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Descarga el archivo .SRT con códigos de tiempo milimétricos y arrástralo directamente a Adobe Premiere Pro o CapCut.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PASOS -->
+    <section class="py-16 bg-slate-900/40 border-t border-slate-800 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 text-white">Cómo transcribir un vídeo de YouTube en 3 pasos</h2>
+            <div class="space-y-6">
+                <div class="glass p-6 rounded-2xl border border-slate-800 flex gap-4 items-start">
+                    <span class="w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-sm shrink-0">1</span>
+                    <div>
+                        <h3 class="text-base font-bold text-white mb-1">Pega el enlace del vídeo</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">Copia la URL de YouTube (vídeo público, directo grabado o podcast) y pégala en la casilla de EchoScribe.</p>
+                    </div>
+                </div>
+                <div class="glass p-6 rounded-2xl border border-slate-800 flex gap-4 items-start">
+                    <span class="w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-sm shrink-0">2</span>
+                    <div>
+                        <h3 class="text-base font-bold text-white mb-1">Inferencia en Servidores Cloud</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">El motor Whisper Cloud L4 procesa el audio con filtros de voz Silero VAD para eliminar ruidos y silencios.</p>
+                    </div>
+                </div>
+                <div class="glass p-6 rounded-2xl border border-slate-800 flex gap-4 items-start">
+                    <span class="w-8 h-8 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-sm shrink-0">3</span>
+                    <div>
+                        <h3 class="text-base font-bold text-white mb-1">Copia o Exporta en .TXT y .SRT</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">Recibe los titulares, resumen estructurado y subtítulos sincronizados con un solo clic.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 px-6 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-10 text-white">Preguntas Frecuentes</h2>
+        <div class="space-y-4">
+            <div class="glass p-5 rounded-2xl border border-slate-800">
+                <h3 class="font-bold text-white text-sm mb-1">¿Puedo transcribir vídeos de YouTube largos?</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Sí. El plan Pro admite hasta 2 horas por vídeo y el plan Ultra permite procesar directos de hasta 12 horas ininterrumpidas.</p>
+            </div>
+            <div class="glass p-5 rounded-2xl border border-slate-800">
+                <h3 class="font-bold text-white text-sm mb-1">¿Genera subtítulos para editar en Premiere o CapCut?</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Sí, genera archivos .SRT estándar con los códigos de tiempo perfectamente sincronizados con la voz del vídeo.</p>
+            </div>
+            <div class="glass p-5 rounded-2xl border border-slate-800">
+                <h3 class="font-bold text-white text-sm mb-1">¿Tiene prueba gratuita?</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Sí, dispones de 5 transcripciones rápidas en GPU Cloud al mes con el Plan Gratuito sin introducir tarjeta.</p>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-slate-900/60 py-12 px-6 text-xs text-slate-400 mt-auto">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-left">
+            <div>
+                <div class="text-xl font-bold text-white mb-3 flex items-center gap-2">🎙️ EchoScribe</div>
+                <p class="text-slate-400 leading-relaxed mb-4">El transcriptor de audio y vídeo con Whisper en GPU Cloud y corrección de nombres propios con Gemini.</p>
+                <p class="text-slate-500">© 2026 EchoScribe AI. Desarrollado por Iván García Miranda.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Herramientas</h4>
+                <ul class="space-y-2">
+                    <li><a href="/transcribir-youtube" class="hover:text-white transition">Transcribir YouTube a Texto</a></li>
+                    <li><a href="/generador-subtitulos-srt" class="hover:text-white transition">Generador de Subtítulos .SRT</a></li>
+                    <li><a href="/transcriptor-audio-a-texto" class="hover:text-white transition">Transcriptor de Audio a Texto</a></li>
+                    <li><a href="/transcribir-entrevistas-reuniones" class="hover:text-white transition">Transcribir Entrevistas y Reuniones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Recursos & Ayuda</h4>
+                <ul class="space-y-2">
+                    <li><a href="/guia-instalacion" class="hover:text-white transition">Guía de Instalación Windows</a></li>
+                    <li><a href="/guias" class="hover:text-white transition">Hub de Guías de Uso</a></li>
+                    <li><a href="/recuperar-password" class="hover:text-white transition">Recuperar Contraseña</a></li>
+                    <li><a href="/#precios" class="hover:text-white transition">Planes y Precios</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Legal & Autor</h4>
+                <ul class="space-y-2">
+                    <li><a href="/sobre-mi" class="hover:text-white transition">Sobre Iván García Miranda</a></li>
+                    <li><a href="/#faq" class="hover:text-white transition">Preguntas Frecuentes</a></li>
+                    <li><a href="/#demo-interactiva" class="hover:text-white transition">Simulador de Prueba Gratis</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        function mostrarPestanaDemo(tab) {
+            ['titulares', 'resumen', 'texto', 'srt'].forEach(t => {
+                document.getElementById('demo-content-' + t).classList.add('hidden');
+                document.getElementById('tab-btn-' + t).className = "px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition";
+            });
+            document.getElementById('demo-content-' + tab).classList.remove('hidden');
+            document.getElementById('tab-btn-' + tab).className = "px-4 py-2 rounded-xl bg-indigo-600 text-white transition";
+        }
+    </script>
+</body>
+</html>

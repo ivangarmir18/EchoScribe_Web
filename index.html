@@ -40,9 +40,9 @@
             <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
                 <a href="/" class="text-brand transition font-bold">Inicio</a>
                 <a href="/#precios" class="text-slate-300 hover:text-white transition">Precios</a>
-                <a href="/guias" class="text-slate-300 hover:text-white transition">Guías de Uso</a>
+                <a href="/guias" class="text-slate-300 hover:text-white transition">Guías y Herramientas</a>
+                <a href="/guia-instalacion" class="text-slate-300 hover:text-white transition">Instalación Windows</a>
                 <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
-                <a href="/#garantia" class="text-slate-300 hover:text-white transition">Garantía</a>
                 
                 <hr class="w-full border-slate-700 md:hidden">
 
@@ -82,7 +82,7 @@
         
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10 mb-10">
             <a href="#precios" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-lg">
-                ✨ Probar 7 Días Gratis
+                ✨ Ver Planes y Precios
             </a>
             <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/v1.0/EchoScribe_Setup.exe" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-500 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-lg shadow-lg">
                 💻 Descargar App Oficial (.exe)
@@ -106,6 +106,54 @@
                 <p class="text-xs text-slate-400">Pistas temporales al milisegundo listas para importar directamente en tu editor de vídeo.</p>
             </div>
         </div>
+
+        <!-- DEMO EN VIVO SIN REGISTRO -->
+        <div class="mt-14 glass-card p-6 md:p-8 rounded-3xl text-left border border-slate-700/80 shadow-2xl relative z-10 max-w-4xl mx-auto">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 border-b border-slate-800 pb-3">
+                <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
+                    Demostración Interactiva en Vivo (Sin Registro)
+                </span>
+                <span class="text-xs text-slate-500 font-mono">Simulador de Transcripción Cloud L4 + IA</span>
+            </div>
+
+            <p class="text-xs text-slate-400 mb-4">Selecciona un ejemplo real para ver cómo la IA extrae titulares, corrige nombres propios complejos y sincroniza subtítulos .SRT:</p>
+
+            <div class="grid grid-cols-3 gap-2 mb-4">
+                <button onclick="cambiarEjemploDemo('futbol')" id="btn-ej-futbol" class="p-2.5 rounded-xl text-xs font-bold bg-indigo-600 text-white transition text-center shadow-md">⚽ Rueda de Prensa Fútbol</button>
+                <button onclick="cambiarEjemploDemo('stream')" id="btn-ej-stream" class="p-2.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-400 hover:text-white transition text-center">🎮 Directo de Twitch</button>
+                <button onclick="cambiarEjemploDemo('tech')" id="btn-ej-tech" class="p-2.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-400 hover:text-white transition text-center">💻 Entrevista Tech / IA</button>
+            </div>
+
+            <div class="flex gap-2 overflow-x-auto pb-2 mb-3 text-xs font-bold">
+                <button onclick="mostrarPestanaDemo('titulares')" id="tab-btn-titulares" class="px-4 py-2 rounded-xl bg-indigo-600 text-white transition">📰 Titulares</button>
+                <button onclick="mostrarPestanaDemo('resumen')" id="tab-btn-resumen" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">📝 Resumen Fáctico</button>
+                <button onclick="mostrarPestanaDemo('texto')" id="tab-btn-texto" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">📄 Transcripción Corregida</button>
+                <button onclick="mostrarPestanaDemo('srt')" id="tab-btn-srt" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">⏱️ Subtítulos .SRT</button>
+            </div>
+
+            <div id="demo-content-titulares" class="text-xs md:text-sm text-slate-200 leading-relaxed font-mono bg-slate-950/70 p-4 rounded-2xl border border-slate-800">
+1. El técnico confirma la disponibilidad de Dusan Vlahovic para el duelo europeo tras superar sus molestias.<br>
+2. Valoración táctica sobre el despliegue físico de Abdoulaye Doucouré en el mediocampo.<br>
+3. Respuestas clave sobre las renovaciones de Dani Ceballos y Sofyan Amrabat antes del cierre de mercado.
+            </div>
+            <div id="demo-content-resumen" class="hidden text-xs md:text-sm text-slate-200 leading-relaxed bg-slate-950/70 p-4 rounded-2xl border border-slate-800">
+                Durante la comparecencia previa al encuentro, el cuerpo técnico analizó el estado físico del equipo, la adaptación de los nuevos fichajes y las alternativas en la alineación titular frente a la acumulación de partidos del calendario.
+            </div>
+            <div id="demo-content-texto" class="hidden text-xs md:text-sm text-slate-300 leading-relaxed font-mono bg-slate-950/70 p-4 rounded-2xl border border-slate-800 max-h-44 overflow-y-auto">
+                "Estamos muy satisfechos con la recuperación de Dusan Vlahovic. Ha entrenado con normalidad junto al resto del grupo. En cuanto a Abdoulaye Doucouré, nos aporta un equilibrio defensivo indispensable frente a rivales que transicionan rápido. Mañana decidiremos si Dani Ceballos entra de inicio."
+            </div>
+            <div id="demo-content-srt" class="hidden text-xs text-indigo-300 font-mono bg-slate-950/70 p-4 rounded-2xl border border-slate-800 max-h-44 overflow-y-auto">
+1<br>00:00:01,200 --> 00:00:04,500<br>Estamos muy satisfechos con la recuperación de Dusan Vlahovic.<br><br>
+2<br>00:00:04,600 --> 00:00:08,200<br>Ha completado la sesión al mismo ritmo que sus compañeros.<br><br>
+3<br>00:00:08,300 --> 00:00:12,100<br>Abdoulaye Doucouré y Dani Ceballos están listos para la convocatoria.
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center gap-3">
+                <span class="text-xs text-slate-400">¿Quieres transcribir tus propios audios y vídeos completos?</span>
+                <a href="#precios" class="btn-gradient text-white text-xs font-bold py-2.5 px-5 rounded-xl shadow-md transition">Ver Planes y Precios</a>
+            </div>
+        </div>
     </section>
 
     <!-- PRECIOS -->
@@ -113,7 +161,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-14">
                 <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Planes diseñados para tu ritmo de trabajo</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto mb-8 text-sm">Empieza gratis o desbloquea potencia Cloud con el plan Pro (incluye 7 días de prueba completa).</p>
+                <p class="text-slate-400 max-w-2xl mx-auto mb-8 text-sm">Empieza gratis con 5 transcripciones Cloud al mes o suscríbete a Pro para potencia sin esperas.</p>
                 
                 <div class="inline-flex items-center bg-slate-900 p-1.5 rounded-2xl border border-slate-800 shadow-inner">
                     <button id="btn-mensual" onclick="setBilling('mensual')" class="px-6 py-2.5 rounded-xl text-sm font-bold transition bg-indigo-600 text-white shadow-md">Mensual</button>
@@ -122,7 +170,7 @@
             </div>
 
             <div class="grid lg:grid-cols-3 gap-8 items-stretch">
-                <!-- GRATUITO -->
+                                <!-- GRATUITO -->
                 <div class="glass-card p-8 rounded-3xl flex flex-col justify-between">
                     <div>
                         <h3 class="text-2xl font-bold mb-2 text-slate-300">Gratuito</h3>
@@ -160,7 +208,7 @@
 
                 <!-- PRO -->
                 <div class="glass-card p-8 rounded-3xl border-2 border-indigo-500 relative transform lg:-translate-y-4 shadow-2xl shadow-indigo-500/20 flex flex-col justify-between">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-500 text-white text-xs font-black px-4 py-1.5 rounded-full shadow-lg tracking-wider">🎁 7 DÍAS GRATIS</div>
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-500 text-white text-xs font-black px-4 py-1.5 rounded-full shadow-lg tracking-wider">⭐ MÁS POPULAR</div>
                     <div>
                         <h3 class="text-2xl font-bold mb-2 text-indigo-400">Pro</h3>
                         <p class="text-xs text-indigo-200/70 mb-6">El preferido de redactores, podcasters y editores de vídeo.</p>
@@ -190,7 +238,7 @@
                             </li>
                         </ul>
                     </div>
-                    <button onclick="checkoutPro()" id="btn-pro" class="w-full py-4 rounded-xl font-bold btn-gradient text-white shadow-lg">Comenzar 7 días gratis</button>
+                    <button onclick="checkoutPro()" id="btn-pro" class="w-full py-4 rounded-xl font-bold btn-gradient text-white shadow-lg">Suscribirse a Pro</button>
                 </div>
 
                 <!-- ULTRA -->
@@ -205,11 +253,11 @@
                         <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium">
                             <li class="flex gap-2">
                                 <span>🚀</span>
-                                <span><strong>250 análisis con IA al mes</strong> en GPU Cloud (hasta 12 h por archivo / o <strong>1.000 horas/mes</strong>).</span>
+                                <span><strong>250 análisis con IA al mes</strong> en GPU Cloud (hasta 12 h por archivo / o <strong>750 horas/mes</strong>).</span>
                             </li>
                             <li class="flex gap-2">
                                 <span>⚡</span>
-                                <span><strong>500 transcripciones rápidas</strong> con selector de motor (Estándar o Turbo).</span>
+                                <span><strong>500 transcripciones rápidas</strong> en GPU Cloud L4 (Whisper Turbo 62x).</span>
                             </li>
                             <li class="flex gap-2">
                                 <span>📝</span>
@@ -256,17 +304,40 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="border-t border-slate-800 bg-slate-900/50 py-10 text-center relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <h3 class="text-xl font-extrabold text-white mb-2">EchoScribe</h3>
-            <p class="text-slate-500 text-sm mb-6">Transcripción de audio a texto, subtítulos .SRT y análisis periodístico con IA.</p>
-            <div class="flex justify-center gap-6 text-sm font-semibold text-slate-400 mb-6">
-                <a href="/guias" class="hover:text-white transition">Guías de Uso</a>
-                <a href="/sobre-mi" class="hover:text-white transition">Sobre Mí</a>
-                <button onclick="document.getElementById('privacy-modal').classList.remove('hidden')" class="hover:text-white transition">Política de Privacidad</button>
-                <a href="mailto:ivangarmir018@gmail.com" class="hover:text-white transition">Soporte Técnico</a>
+        <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-slate-900/60 py-12 px-6 text-xs text-slate-400 mt-auto">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-left">
+            <div>
+                <div class="text-xl font-bold text-white mb-3 flex items-center gap-2">🎙️ EchoScribe</div>
+                <p class="text-slate-400 leading-relaxed mb-4">El transcriptor de audio y vídeo con Whisper en GPU Cloud y corrección de nombres propios con Gemini.</p>
+                <p class="text-slate-500">© 2026 EchoScribe AI. Desarrollado por Iván García Miranda.</p>
             </div>
-            <p class="text-slate-600 text-xs">© 2026 Desarrollado por Iván García Miranda. Todos los derechos reservados.</p>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Herramientas</h4>
+                <ul class="space-y-2">
+                    <li><a href="/transcribir-youtube" class="hover:text-white transition">Transcribir YouTube a Texto</a></li>
+                    <li><a href="/generador-subtitulos-srt" class="hover:text-white transition">Generador de Subtítulos .SRT</a></li>
+                    <li><a href="/transcriptor-audio-a-texto" class="hover:text-white transition">Transcriptor de Audio a Texto</a></li>
+                    <li><a href="/transcribir-entrevistas-reuniones" class="hover:text-white transition">Transcribir Entrevistas y Reuniones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Recursos & Ayuda</h4>
+                <ul class="space-y-2">
+                    <li><a href="/guia-instalacion" class="hover:text-white transition">Guía de Instalación Windows</a></li>
+                    <li><a href="/guias" class="hover:text-white transition">Hub de Guías de Uso</a></li>
+                    <li><a href="/recuperar-password" class="hover:text-white transition">Recuperar Contraseña</a></li>
+                    <li><a href="/#precios" class="hover:text-white transition">Planes y Precios</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Legal & Autor</h4>
+                <ul class="space-y-2">
+                    <li><a href="/sobre-mi" class="hover:text-white transition">Sobre Iván García Miranda</a></li>
+                    <li><a href="/#faq" class="hover:text-white transition">Preguntas Frecuentes</a></li>
+                    <li><a href="/#demo-interactiva" class="hover:text-white transition">Simulador de Prueba Gratis</a></li>
+                </ul>
+            </div>
         </div>
     </footer>
 
@@ -583,14 +654,14 @@
         async function recuperarContrasena() {
             const email = document.getElementById('auth-email').value;
             if (!email) {
-                showToast("Escribe tu correo primero en la casilla.", true);
+                showToast("Escribe tu correo primero en la casilla para enviarte el enlace.", true);
                 return;
             }
             const { error } = await sb.auth.resetPasswordForEmail(email, {
-                redirectTo: window.location.origin
+                redirectTo: window.location.origin + '/recuperar-password'
             });
             if (error) showToast(error.message, true);
-            else showToast("Enlace de restablecimiento enviado a tu correo.");
+            else showToast("¡Enlace enviado! Revisa tu correo para cambiar tu contraseña.");
         }
 
         async function actualizarContrasena() {
@@ -644,6 +715,67 @@
             }
             const link = currentBilling === 'anual' ? STRIPE_LINKS.pro_anual : STRIPE_LINKS.pro_mensual;
             window.open(link, '_blank');
+        }
+
+        
+        const DEMO_DATA = {
+            futbol: {
+                titulares: "1. El técnico confirma la disponibilidad de Dusan Vlahovic para el duelo europeo tras superar sus molestias.<br>2. Valoración táctica sobre el despliegue físico de Abdoulaye Doucouré en el mediocampo.<br>3. Respuestas clave sobre las renovaciones de Dani Ceballos y Sofyan Amrabat antes del cierre de mercado.",
+                resumen: "Durante la comparecencia previa al encuentro, el cuerpo técnico analizó el estado físico del equipo, la adaptación de los nuevos fichajes y las alternativas en la alineación titular frente a la acumulación de partidos del calendario.",
+                texto: '"Estamos muy satisfechos con la recuperación de Dusan Vlahovic. Ha entrenado con normalidad junto al resto del grupo. En cuanto a Abdoulaye Doucouré, nos aporta un equilibrio defensivo indispensable frente a rivales que transicionan rápido. Mañana decidiremos si Dani Ceballos entra de inicio."',
+                srt: "1<br>00:00:01,200 --> 00:00:04,500<br>Estamos muy satisfechos con la recuperación de Dusan Vlahovic.<br><br>2<br>00:00:04,600 --> 00:00:08,200<br>Ha completado la sesión al mismo ritmo que sus compañeros.<br><br>3<br>00:00:08,300 --> 00:00:12,100<br>Abdoulaye Doucouré y Dani Ceballos están listos para la convocatoria."
+            },
+            stream: {
+                titulares: "1. Reacción en directo al nuevo meta de League of Legends y cambios de balance.<br>2. Análisis de jugadas destacadas en Twitch Rivals con Ibai y creadores invitados.<br>3. Anuncio del calendario de directos especiales y eventos de la comunidad.",
+                resumen: "El creador analiza las notas del último parche de balance, debate con el chat sobre las mejores composiciones y comparte sus impresiones tras disputar las partidas clasificatorias de la jornada.",
+                texto: '"Gente, el cambio a los objetos de crítico cambia por completo la fase de líneas. Si juegas tirador ahora dependes muchísimo del soporte en los primeros tres niveles. En el torneo de ayer vimos a Ibai y a los chicos probando esta misma estrategia con muy buen resultado."',
+                srt: "1<br>00:00:00,800 --> 00:00:03,900<br>El cambio a los objetos de crítico cambia por completo el juego.<br><br>2<br>00:00:04,000 --> 00:00:07,800<br>En el torneo de ayer vimos a Ibai y a los chicos probando esta estrategia.<br><br>3<br>00:00:07,900 --> 00:00:11,500<br>Vamos a repasar los mejores momentos de la final en directo."
+            },
+            tech: {
+                titulares: "1. Avances en modelos de lenguaje multimodal y aceleración por GPU dedicadas.<br>2. Comparativa de costes de inferencia y latencia en arquitecturas Cloud.<br>3. Estrategias para despliegues de inteligencia artificial en producción.",
+                resumen: "Entrevista en profundidad sobre la evolución de la infraestructura de cómputo en la nube, optimización de pipelines de transcripción Whisper y reducción de costes mediante microservicios escalables.",
+                texto: '"El gran desafío no es solo la precisión del modelo, sino reducir el tiempo de respuesta por debajo de los 30 segundos en audios de larga duración. La combinación de Whisper en GPU L4 con modelos Flash permite una fidelidad fonética excepcional a una fracción del coste tradicional."',
+                srt: "1<br>00:00:01,000 --> 00:00:04,200<br>El gran desafío es reducir el tiempo de respuesta por debajo de 30 segundos.<br><br>2<br>00:00:04,300 --> 00:00:08,000<br>La combinación de Whisper en GPU L4 con modelos Flash optimiza la velocidad.<br><br>3<br>00:00:08,100 --> 00:00:12,400<br>Se obtiene fidelidad fonética profesional a una fracción del coste habitual."
+            }
+        };
+
+        let currentEjemplo = 'futbol';
+        let currentTab = 'titulares';
+
+        function cambiarEjemploDemo(tipo) {
+            currentEjemplo = tipo;
+            ['futbol', 'stream', 'tech'].forEach(e => {
+                const btn = document.getElementById('btn-ej-' + e);
+                if (btn) {
+                    btn.className = e === tipo 
+                        ? "p-2.5 rounded-xl text-xs font-bold bg-indigo-600 text-white transition text-center shadow-md"
+                        : "p-2.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-400 hover:text-white transition text-center";
+                }
+            });
+            actualizarContenidoDemo();
+        }
+
+        function mostrarPestanaDemo(tab) {
+            currentTab = tab;
+            ['titulares', 'resumen', 'texto', 'srt'].forEach(t => {
+                const content = document.getElementById('demo-content-' + t);
+                const btn = document.getElementById('tab-btn-' + t);
+                if (content) content.classList.add('hidden');
+                if (btn) btn.className = "px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition";
+            });
+            const activeContent = document.getElementById('demo-content-' + tab);
+            const activeBtn = document.getElementById('tab-btn-' + tab);
+            if (activeContent) activeContent.classList.remove('hidden');
+            if (activeBtn) activeBtn.className = "px-4 py-2 rounded-xl bg-indigo-600 text-white transition";
+        }
+
+        function actualizarContenidoDemo() {
+            const data = DEMO_DATA[currentEjemplo];
+            if (!data) return;
+            document.getElementById('demo-content-titulares').innerHTML = data.titulares;
+            document.getElementById('demo-content-resumen').innerHTML = data.resumen;
+            document.getElementById('demo-content-texto').innerHTML = data.texto;
+            document.getElementById('demo-content-srt').innerHTML = data.srt;
         }
 
         function checkoutUltra() {

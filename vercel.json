@@ -4,6 +4,13 @@
   "rewrites": [
     { "source": "/precios", "destination": "/index.html" },
     { "source": "/guias", "destination": "/guias.html" },
-    { "source": "/sobre-mi", "destination": "/sobre-mi.html" }
+    { "source": "/sobre-mi", "destination": "/sobre-mi.html" },
+    { "source": "/recuperar-password", "destination": "/recuperar-password.html" },
+    { "source": "/guia-instalacion", "destination": "/guia-instalacion.html" },
+    { "source": "/transcribir-youtube", "destination": "/transcribir-youtube.html" },
+    { "source": "/transcriptor-audio-a-texto", "destination": "/transcriptor-audio-a-texto.html" },
+    { "source": "/generador-subtitulos-srt", "destination": "/generador-subtitulos-srt.html" },
+    { "source": "/transcribir-entrevistas-reuniones", "destination": "/transcribir-entrevistas-reuniones.html" },
+    { "source": "/guias/:slug", "destination": "/guias/:slug.html" }
   ]
 }

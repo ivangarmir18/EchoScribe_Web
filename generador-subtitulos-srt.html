@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Mí | Iván García Miranda - EchoScribe AI</title>
+    <title>Generador Automático de Subtítulos .SRT para Premiere, CapCut y DaVinci | EchoScribe</title>
+    <meta name="description" content="Genera subtítulos .SRT sincronizados automáticamente con Whisper y corrección de nombres propios con IA. Listo para Adobe Premiere, CapCut, DaVinci y Final Cut.">
+    <meta name="keywords" content="generador subtitulos srt, crear archivo srt automatico, subtitulos para premiere pro, subtitular videos capcut, convertir audio a subtitulos srt">
     <link rel="icon" type="image/x-icon" href="/icono.ico">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -14,18 +15,16 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; scroll-behavior: smooth; }
         .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
         .glass-card { background: linear-gradient(180deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.95) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
-        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: opacity 0.2s; }
-        .btn-gradient:hover { opacity: 0.9; }
+        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.4); }
     </style>
 </head>
-<body class="antialiased selection:bg-purple-500 selection:text-white flex flex-col min-h-screen">
+<body class="antialiased selection:bg-purple-500 selection:text-white">
 
-    <!-- NAVEGACIÓN -->
-        <!-- NAVEGACIÓN -->
         <!-- NAVEGACIÓN -->
     <nav class="fixed w-full z-40 glass border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
@@ -53,49 +52,55 @@
         });
     </script>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-1 pt-40 pb-20 px-6 max-w-4xl mx-auto w-full">
-        <div class="glass-card p-10 md:p-14 rounded-3xl border border-slate-700 shadow-2xl relative">
-            <div class="flex flex-col md:flex-row gap-8 items-center md:items-start mb-8">
-                <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-brand to-purple-600 flex-shrink-0 flex items-center justify-center text-5xl shadow-xl">
-                    👨‍💻
-                </div>
-                <div class="text-center md:text-left">
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-2">Iván García Miranda</h1>
-                    <p class="text-brand font-semibold tracking-wide uppercase text-sm mb-2">Desarrollador y Creador de EchoScribe AI</p>
-                    <p class="text-slate-400 text-sm font-medium">Estudiante de Tecnología Digital y Multimedia · Universidad Politécnica de Valencia (UPV)</p>
-                </div>
-            </div>
 
-            <div class="text-slate-300 text-base leading-relaxed space-y-4 mb-10">
-                <p>
-                    Tengo 19 años y actualmente curso el tercer año del Grado en Tecnología Digital y Multimedia en la <strong>Universidad Politécnica de Valencia (UPV)</strong>. Mi foco formativo y profesional está centrado en la especialización en Inteligencia Artificial y arquitecturas de alto rendimiento.
-                </p>
-                <p>
-                    El propósito detrás de <strong>EchoScribe</strong> es crear una herramienta de escritorio directa, rápida y sin suscripciones infladas, que solucione problemas reales de productividad automatizando tareas pesadas como la transcripción de ruedas de prensa, la corrección editorial de noticias y la generación de subtítulos .SRT.
-                </p>
-            </div>
+    <header class="pt-40 pb-16 px-6 text-center max-w-5xl mx-auto relative">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-bold mb-6 tracking-wide">
+            <span>🎬</span> Subtitulado Profesional Sincronizado
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            Generador Automático de <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">Subtítulos .SRT para Editores</span>
+        </h1>
+        <p class="text-base md:text-lg text-slate-400 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Ahorra horas de subtitulado manual. Exporta archivos .SRT con sincronización milimétrica y nombres propios contrastados para tus Reels, TikToks, YouTube Shorts y vídeos largos.
+        </p>
 
-            <h3 class="text-lg font-bold text-white mb-4 uppercase tracking-wider text-xs text-slate-400">Contacto & Redes Oficiales</h3>
-            <div class="grid sm:grid-cols-3 gap-4">
-                <a href="https://linkedin.com/in/iván-garcía-miranda-785a8735b/" target="_blank" class="p-4 bg-slate-800/80 hover:bg-slate-700 border border-slate-700 rounded-2xl text-center font-bold text-white transition flex flex-col items-center gap-2">
-                    <span class="text-2xl">🔗</span>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/ivangarmir18" target="_blank" class="p-4 bg-slate-800/80 hover:bg-slate-700 border border-slate-700 rounded-2xl text-center font-bold text-white transition flex flex-col items-center gap-2">
-                    <span class="text-2xl">💻</span>
-                    <span>GitHub</span>
-                </a>
-                <a href="mailto:ivangarmir018@gmail.com" class="p-4 bg-brand hover:bg-indigo-500 rounded-2xl text-center font-bold text-white transition flex flex-col items-center gap-2 shadow-lg">
-                    <span class="text-2xl">✉️</span>
-                    <span>Email Directo</span>
-                </a>
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
+            <a href="/#precios" class="btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-base w-full sm:w-auto">
+                🚀 Descargar EchoScribe Gratis
+            </a>
+            <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/v1.0/EchoScribe_Setup.exe" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-base w-full sm:w-auto shadow-lg">
+                💻 Descargar App Oficial (.exe)
+            </a>
+        </div>
+    </header>
+
+    <section class="py-16 px-6 max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12 text-white">Compatible con tus Editores Favoritos</h2>
+        <div class="grid md:grid-cols-4 gap-4 text-center">
+            <div class="glass p-5 rounded-2xl border border-slate-800">
+                <div class="text-3xl mb-2">🎞️</div>
+                <strong class="text-white block text-sm">Adobe Premiere Pro</strong>
+                <p class="text-xs text-slate-400 mt-1">Importación nativa .SRT</p>
+            </div>
+            <div class="glass p-5 rounded-2xl border border-slate-800">
+                <div class="text-3xl mb-2">✂️</div>
+                <strong class="text-white block text-sm">CapCut Desktop</strong>
+                <p class="text-xs text-slate-400 mt-1">Subtítulos automáticos</p>
+            </div>
+            <div class="glass p-5 rounded-2xl border border-slate-800">
+                <div class="text-3xl mb-2">🎨</div>
+                <strong class="text-white block text-sm">DaVinci Resolve</strong>
+                <p class="text-xs text-slate-400 mt-1">Pistas de subtítulo</p>
+            </div>
+            <div class="glass p-5 rounded-2xl border border-slate-800">
+                <div class="text-3xl mb-2">🍏</div>
+                <strong class="text-white block text-sm">Final Cut Pro</strong>
+                <p class="text-xs text-slate-400 mt-1">Soporte de subtítulos</p>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- FOOTER -->
-        <!-- FOOTER -->
+
         <!-- FOOTER -->
     <footer class="border-t border-slate-800 bg-slate-900/60 py-12 px-6 text-xs text-slate-400 mt-auto">
         <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-left">
@@ -132,5 +137,6 @@
             </div>
         </div>
     </footer>
+
 </body>
 </html>
