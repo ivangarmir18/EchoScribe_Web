@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcribir Entrevistas, Reuniones y Ruedas de Prensa con IA Periodística | EchoScribe</title>
+    <meta name="description" content="Herramienta diseñada para periodistas y redactores. Extrae declaraciones textuales, titulares fácticos y resúmenes estructurados sin opiniones ni inventos.">
+    <meta name="keywords" content="transcribir entrevistas periodismo, transcribir ruedas de prensa, resumir reuniones ia, transcriptor periodistico, audio a texto para periodistas">
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: '#6366f1' } } }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; scroll-behavior: smooth; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        .glass-card { background: linear-gradient(180deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.95) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.4); }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-500 selection:text-white">
+
+        <!-- NAVEGACIÓN -->
+    <nav class="fixed w-full z-40 glass border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
+                🎙️ EchoScribe
+            </a>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
+                <a href="/" class="text-slate-300 hover:text-white transition">Inicio</a>
+                <a href="/#precios" class="text-slate-300 hover:text-white transition">Precios</a>
+                <a href="/guias" class="text-slate-300 hover:text-white transition">Guías y Herramientas</a>
+                <a href="/guia-instalacion" class="text-slate-300 hover:text-white transition">Instalación Windows</a>
+                <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
+                <a href="/#demo-interactiva" class="btn-gradient text-white px-4 py-2 rounded-xl shadow-lg text-xs">Probar Online</a>
+            </div>
+        </div>
+    </nav>
+    <script>
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+            document.getElementById('nav-links')?.classList.toggle('hidden');
+        });
+    </script>
+
+
+    <header class="pt-40 pb-16 px-6 text-center max-w-5xl mx-auto relative">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-6 tracking-wide">
+            <span>📰</span> Especial Periodistas, Medios y Creadores
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            Transcribe <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-indigo-400">Entrevistas y Ruedas de Prensa</span> con IA
+        </h1>
+        <p class="text-base md:text-lg text-slate-400 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Publica noticias antes que nadie. Obtén las declaraciones literales entrecomilladas, titulares estructurados y resumen fáctico con 100% de neutralidad periodística.
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
+            <a href="/#precios" class="btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-base w-full sm:w-auto">
+                🚀 Descargar EchoScribe Gratis
+            </a>
+            <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-base w-full sm:w-auto shadow-lg">
+                💻 Descargar App Oficial (.exe)
+            </a>
+        </div>
+    </header>
+
+
+        <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-slate-900/60 py-12 px-6 text-xs text-slate-400 mt-auto">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-left">
+            <div>
+                <div class="text-xl font-bold text-white mb-3 flex items-center gap-2">🎙️ EchoScribe</div>
+                <p class="text-slate-400 leading-relaxed mb-4">El transcriptor de audio y vídeo con Whisper en GPU Cloud y corrección de nombres propios con Gemini.</p>
+                <p class="text-slate-500">© 2026 EchoScribe AI. Desarrollado por Iván García Miranda.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Herramientas</h4>
+                <ul class="space-y-2">
+                    <li><a href="/transcribir-youtube" class="hover:text-white transition">Transcribir YouTube a Texto</a></li>
+                    <li><a href="/generador-subtitulos-srt" class="hover:text-white transition">Generador de Subtítulos .SRT</a></li>
+                    <li><a href="/transcriptor-audio-a-texto" class="hover:text-white transition">Transcriptor de Audio a Texto</a></li>
+                    <li><a href="/transcribir-entrevistas-reuniones" class="hover:text-white transition">Transcribir Entrevistas y Reuniones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Recursos & Ayuda</h4>
+                <ul class="space-y-2">
+                    <li><a href="/guia-instalacion" class="hover:text-white transition">Guía de Instalación Windows</a></li>
+                    <li><a href="/guias" class="hover:text-white transition">Hub de Guías de Uso</a></li>
+                    <li><a href="/recuperar-password" class="hover:text-white transition">Recuperar Contraseña</a></li>
+                    <li><a href="/#precios" class="hover:text-white transition">Planes y Precios</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Legal & Autor</h4>
+                <ul class="space-y-2">
+                    <li><a href="/sobre-mi" class="hover:text-white transition">Sobre Iván García Miranda</a></li>
+                    <li><a href="/#faq" class="hover:text-white transition">Preguntas Frecuentes</a></li>
+                    <li><a href="/#demo-interactiva" class="hover:text-white transition">Simulador de Prueba Gratis</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

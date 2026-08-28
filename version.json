@@ -1,8 +1,6 @@
 {
-  "version": "1.2",
-  "min_version": "1.2",
-  "is_mandatory": true,
+  "version": "1.1",
   "release_date": "2026-08-28",
-  "download_url": "https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe",
-  "notes": "EchoScribe v1.2: Aceleración instantánea del compilador de subtítulos, modo Prompt exclusivo para resumen, blindaje de GPU y corrección de scroll."
+  "download_url": "https://github.com/ivangarmir18/EchoScribe/releases/latest/download/EchoScribe_Setup.exe",
+  "notes": "EchoScribe v1.1: Búsqueda activa en Google Search, mayor velocidad en GPU Cloud y corrección de entidades avanzada."
 }
