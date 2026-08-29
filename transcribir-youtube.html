@@ -53,24 +53,24 @@
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
             
-            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-start md:items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-3.5 md:space-y-0 p-5 md:p-0 rounded-2xl md:rounded-none bg-slate-900/98 md:bg-transparent border border-slate-800 md:border-0 shadow-2xl md:shadow-none">
-                <a href="/" class="text-slate-300 hover:text-white transition py-1 md:py-0 w-full md:w-auto">Inicio</a>
-                <a href="/#precios" class="text-slate-300 hover:text-white transition py-1 md:py-0 w-full md:w-auto">Precios</a>
-                <a href="/guias" class="text-slate-300 hover:text-white transition py-1 md:py-0 w-full md:w-auto">Guías y Herramientas</a>
-                <a href="/guia-instalacion" class="text-slate-300 hover:text-white transition py-1 md:py-0 w-full md:w-auto">Instalación Windows</a>
-                <a href="/sobre-mi" class="text-slate-300 hover:text-white transition py-1 md:py-0 w-full md:w-auto">Sobre Mí</a>
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-stretch md:items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 p-4 sm:p-5 md:p-0 rounded-2xl md:rounded-none bg-slate-900/98 md:bg-transparent border border-slate-800 md:border-0 shadow-2xl md:shadow-none">
+                <a href="/" class="block w-full md:w-auto py-3 px-4 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Inicio</a>
+                <a href="/#precios" class="block w-full md:w-auto py-3 px-4 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Precios</a>
+                <a href="/guias" class="block w-full md:w-auto py-3 px-4 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Guías y Herramientas</a>
+                <a href="/guia-instalacion" class="block w-full md:w-auto py-3 px-4 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Instalación Windows</a>
+                <a href="/sobre-mi" class="block w-full md:w-auto py-3 px-4 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Sobre Mí</a>
                 
-                <hr class="w-full border-slate-800 md:hidden my-1">
+                <hr class="w-full border-slate-800 md:hidden my-2">
 
-                <div id="nav-guest" class="flex flex-col md:flex-row gap-3 items-stretch md:items-center w-full md:w-auto">
-                    <a href="/#precios" class="text-slate-300 hover:text-white py-2 text-left md:text-center font-bold text-xs">Iniciar Sesión</a>
+                <div id="nav-guest" class="flex flex-col md:flex-row gap-2.5 md:gap-3 items-stretch md:items-center w-full md:w-auto pt-1 md:pt-0">
+                    <a href="/#precios" class="w-full md:w-auto py-3 px-4 rounded-xl text-center font-bold text-sm text-slate-200 hover:text-white bg-slate-800/80 md:bg-transparent border border-slate-700/70 md:border-0 hover:bg-slate-700 transition">Iniciar Sesión</a>
                 </div>
-                <div id="nav-user" class="hidden flex flex-col md:flex-row gap-3 items-stretch md:items-center w-full md:w-auto">
-                    <a href="/ajustes" class="bg-slate-800 hover:bg-slate-700 text-white py-2.5 px-4 rounded-xl border border-slate-700 transition flex items-center justify-center gap-2 text-xs font-bold shadow-md w-full md:w-auto">
+                <div id="nav-user" class="hidden flex flex-col md:flex-row gap-2.5 md:gap-3 items-stretch md:items-center w-full md:w-auto pt-1 md:pt-0">
+                    <a href="/ajustes" class="w-full md:w-auto bg-slate-800 hover:bg-slate-700 text-white py-3 px-4 rounded-xl border border-slate-700 transition flex items-center justify-center gap-2 text-sm md:text-xs font-bold shadow-md">
                         <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
                         <span id="nav-user-label">Mi Cuenta</span>
                     </a>
-                    <button onclick="cerrarSesionWeb()" class="bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 py-2 px-3.5 rounded-xl text-xs font-bold transition w-full md:w-auto text-center">Cerrar Sesión</button>
+                    <button onclick="cerrarSesionWeb()" class="w-full md:w-auto bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 py-3 md:py-2 px-4 md:px-3.5 rounded-xl text-sm md:text-xs font-bold transition text-center">Cerrar Sesión</button>
                 </div>
             </div>
         </div>
