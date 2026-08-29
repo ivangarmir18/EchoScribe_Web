@@ -33,6 +33,10 @@
         window.location.href = '/';
     };
 
+    window.openAuthModal = function(mode) {
+        window.location.href = '/?auth=' + (mode || 'login');
+    };
+
     sb.auth.onAuthStateChange((_, session) => {
         actualizarNavbarGlobal(session?.user);
     });

@@ -896,6 +896,18 @@
             const link = currentBilling === 'anual' ? STRIPE_LINKS.ultra_anual : STRIPE_LINKS.ultra_mensual;
             window.open(link, '_blank');
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const authParam = params.get('auth') || params.get('action') || params.get('modal');
+            const hash = window.location.hash.toLowerCase();
+            
+            if (authParam === 'login' || hash === '#login') {
+                openAuthModal('login');
+            } else if (authParam === 'register' || authParam === 'registro' || hash === '#register' || hash === '#registro') {
+                openAuthModal('register');
+            }
+        });
     </script>
 </body>
 </html>
