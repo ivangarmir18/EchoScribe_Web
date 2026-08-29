@@ -470,13 +470,15 @@
     <!-- JAVASCRIPT -->
     <script>
         const SUPABASE_URL = 'https://ggmaiqxbidcxhbungnpx.supabase.co'; 
-        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnbWFpcXhiaWRjeGhidW5nbnB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2NjI4OTUsImV4cCI6MjEwMzIzODg5NX0.dFblpUUXInw4JLbsQQVa5NcxFWoCz3Ydff2c87_gRew';
+        const sb = window.sb || supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
             auth: {
                 persistSession: true,
                 autoRefreshToken: true,
                 detectSessionInUrl: true
             }
         });
+        window.sb = sb;
 
         const STRIPE_PORTAL_URL = 'https://billing.stripe.com/p/login/8x23cw1JZddAghT4sggjC00';
 
@@ -559,6 +561,13 @@
         document.addEventListener('DOMContentLoaded', async () => {
             await procesarAutoLoginDesdeApp();
             await refrescarUsuarioWeb();
+
+            // Detectar si el usuario vino buscando login o registro desde otra subpágina
+            const urlParams = new URLSearchParams(window.location.search);
+            const authParam = urlParams.get('auth');
+            if (authParam === 'login' || authParam === 'register') {
+                openAuthModal(authParam);
+            }
         });
 
         function actualizarEstadoNavbar() {
