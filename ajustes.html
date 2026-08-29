@@ -428,23 +428,49 @@
         }
 
         async function guardarNombreUsuario() {
-            const username = document.getElementById('input-username').value.trim();
+            const username = document.getElementById('input-username').value.trim().toLowerCase().replace(/[^a-z0-9_.-]/g, '');
             const btn = document.getElementById('btn-save-profile');
-            if (!username) return showToast('Introduce un nombre válido.', true);
+            if (!username || username.length < 3) return showToast('El nombre debe tener al menos 3 caracteres válidos.', true);
 
-            btn.innerText = 'Guardando...';
+            btn.innerText = 'Verificando...';
             btn.disabled = true;
 
             try {
+                // 1. Comprobar si el nombre ya está en uso por otro usuario
+                try {
+                    const { data: existente } = await sb
+                        .from('profiles')
+                        .select('id')
+                        .ilike('username', username)
+                        .neq('id', currentUser.id)
+                        .maybeSingle();
+
+                    if (existente) {
+                        showToast(`❌ El nombre "${username}" ya está en uso. Elige otro.`, true);
+                        btn.innerText = 'Guardar Cambios';
+                        btn.disabled = false;
+                        return;
+                    }
+                } catch(errCheck) {
+                    // Si la tabla profiles aún no está creada, continúa guardando en user_metadata
+                }
+
+                // 2. Guardar en Supabase Auth
                 const { data, error } = await sb.auth.updateUser({
                     data: { username: username }
                 });
                 if (error) throw error;
+
+                // 3. Guardar en tabla profiles si existe
+                try {
+                    await sb.from('profiles').upsert({ id: currentUser.id, username: username, updated_at: new Date().toISOString() });
+                } catch(e) {}
+
                 currentUser = data.user;
                 renderizarPerfil();
-                showToast('Nombre de usuario actualizado.');
+                showToast(`✅ Nombre de usuario actualizado a @${username}`);
             } catch (e) {
-                showToast('Error al actualizar nombre.', true);
+                showToast('Error al actualizar nombre: ' + (e.message || 'Inténtalo de nuevo.'), true);
             } finally {
                 btn.innerText = 'Guardar Cambios';
                 btn.disabled = false;
@@ -465,3 +491,4 @@
     </script>
 </body>
 </html>
+
