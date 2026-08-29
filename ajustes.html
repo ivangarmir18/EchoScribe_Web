@@ -135,12 +135,16 @@
 
                     <form onsubmit="event.preventDefault(); cambiarContrasena();" class="space-y-4">
                         <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Contraseña Actual</label>
+                            <input type="password" id="input-current-pwd" required minlength="6" placeholder="Tu contraseña actual" class="w-full bg-slate-900/60 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white text-xs transition">
+                        </div>
+                        <div>
                             <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Nueva Contraseña</label>
                             <input type="password" id="input-new-pwd" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full bg-slate-900/60 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white text-xs transition">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Confirmar Nueva Contraseña</label>
-                            <input type="password" id="input-new-pwd-confirm" required minlength="6" placeholder="Repite la contraseña" class="w-full bg-slate-900/60 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white text-xs transition">
+                            <input type="password" id="input-new-pwd-confirm" required minlength="6" placeholder="Repite la nueva contraseña" class="w-full bg-slate-900/60 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white text-xs transition">
                         </div>
                         <div class="flex flex-col sm:flex-row gap-3 pt-1">
                             <button type="submit" id="btn-change-pwd" class="btn-gradient text-white font-bold py-3 px-6 rounded-xl text-xs shadow-md transition flex items-center justify-center gap-2">
@@ -241,7 +245,11 @@
         }
 
         function abrirPortalStripe() {
-            window.open(STRIPE_PORTAL_URL, '_blank');
+            let url = STRIPE_PORTAL_URL;
+            if (currentUser?.email) {
+                url += `?prefilled_email=${encodeURIComponent(currentUser.email)}`;
+            }
+            window.open(url, '_blank');
         }
 
         async function procesarTokensUrl() {
@@ -389,20 +397,39 @@
         }
 
         async function cambiarContrasena() {
+            const pwdActual = document.getElementById('input-current-pwd').value;
             const p1 = document.getElementById('input-new-pwd').value;
             const p2 = document.getElementById('input-new-pwd-confirm').value;
             const btn = document.getElementById('btn-change-pwd');
 
-            if (!p1 || p1.length < 6) return showToast('La contraseña debe tener mínimo 6 caracteres.', true);
-            if (p1 !== p2) return showToast('Las contraseñas no coinciden.', true);
+            if (!pwdActual) return showToast('Introduce tu contraseña actual para confirmar tu identidad.', true);
+            if (!p1 || p1.length < 6) return showToast('La nueva contraseña debe tener mínimo 6 caracteres.', true);
+            if (p1 !== p2) return showToast('Las nuevas contraseñas no coinciden.', true);
+            if (pwdActual === p1) return showToast('La nueva contraseña debe ser distinta a la actual.', true);
 
-            btn.innerText = 'Guardando...';
+            btn.innerText = 'Verificando...';
             btn.disabled = true;
 
             try {
+                // 1. Verificar contraseña actual intentando re-login silencioso
+                const { error: errVerif } = await sb.auth.signInWithPassword({
+                    email: currentUser.email,
+                    password: pwdActual
+                });
+
+                if (errVerif) {
+                    showToast('❌ La contraseña actual no es correcta.', true);
+                    btn.innerText = '💾 Guardar Contraseña';
+                    btn.disabled = false;
+                    return;
+                }
+
+                // 2. Aplicar nueva contraseña
                 const { error } = await sb.auth.updateUser({ password: p1 });
                 if (error) throw error;
-                showToast('¡Contraseña actualizada correctamente!');
+
+                showToast('✅ ¡Contraseña actualizada con éxito!');
+                document.getElementById('input-current-pwd').value = '';
                 document.getElementById('input-new-pwd').value = '';
                 document.getElementById('input-new-pwd-confirm').value = '';
             } catch (e) {

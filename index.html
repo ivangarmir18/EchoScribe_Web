@@ -614,7 +614,11 @@
         }
 
         function abrirPortalStripe() {
-            window.open(STRIPE_PORTAL_URL, '_blank');
+            let url = STRIPE_PORTAL_URL;
+            if (currentUser?.email) {
+                url += `?prefilled_email=${encodeURIComponent(currentUser.email)}`;
+            }
+            window.open(url, '_blank');
             showToast("Abriendo la gestión segura de tu suscripción...");
         }
 
