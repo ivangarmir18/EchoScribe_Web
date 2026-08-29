@@ -211,6 +211,22 @@
 
     </main>
 
+    <!-- MODAL CONFIRMACIÓN CONTRASEÑA -->
+    <div id="pwd-success-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card p-8 rounded-3xl w-full max-w-md shadow-2xl border border-indigo-500/40 text-center relative">
+            <div class="w-16 h-16 bg-green-500/10 text-green-400 border border-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl shadow-inner">
+                🎉
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2" id="pwd-modal-title">¡Contraseña Guardada con Éxito!</h3>
+            <p class="text-xs text-slate-300 mb-6 leading-relaxed" id="pwd-modal-desc">
+                Tu cuenta ya tiene acceso seguro con contraseña. A partir de ahora puedes iniciar sesión tanto con <strong>Google</strong> como introduciendo tu <strong>correo y contraseña</strong> en la app y en la web.
+            </p>
+            <button onclick="cerrarModalPwdSuccess()" class="w-full btn-gradient text-white font-bold py-3.5 rounded-xl text-xs shadow-lg transition">
+                Entendido
+            </button>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer class="border-t border-slate-800 bg-slate-900/60 py-10 px-6 text-xs text-slate-400 mt-auto">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -339,9 +355,10 @@
             document.getElementById('input-username').value = username;
             document.getElementById('input-email-readonly').value = currentUser.email;
 
-            // Adaptar interfaz si el usuario se registró con Google
-            const isGoogleUser = currentUser.app_metadata?.provider === 'google' || 
-                (currentUser.identities && currentUser.identities.some(i => i.provider === 'google'));
+            // Adaptar interfaz si el usuario se registró con Google y aún no tiene contraseña
+            const yaTienePassword = currentUser.user_metadata?.has_password === true;
+            const isGoogleUser = (currentUser.app_metadata?.provider === 'google' || 
+                (currentUser.identities && currentUser.identities.some(i => i.provider === 'google'))) && !yaTienePassword;
             
             const fieldCurrent = document.getElementById('field-current-pwd');
             const googleNotice = document.getElementById('google-auth-notice');
@@ -350,11 +367,11 @@
             if (isGoogleUser) {
                 if (googleNotice) googleNotice.classList.remove('hidden');
                 if (fieldCurrent) fieldCurrent.classList.add('hidden');
-                if (labelNew) labelNew.innerText = "Asignar / Cambiar Contraseña";
+                if (labelNew) labelNew.innerText = "Asignar Contraseña";
             } else {
                 if (googleNotice) googleNotice.classList.add('hidden');
                 if (fieldCurrent) fieldCurrent.classList.remove('hidden');
-                if (labelNew) labelNew.innerText = "Nueva Contraseña";
+                if (labelNew) labelNew.innerText = yaTienePassword ? "Nueva Contraseña" : "Nueva Contraseña";
             }
 
             // Caja de Info de Plan
@@ -456,8 +473,9 @@
             if (!p1 || p1.length < 6) return showToast('La nueva contraseña debe tener mínimo 6 caracteres.', true);
             if (p1 !== p2) return showToast('Las nuevas contraseñas no coinciden.', true);
 
-            const isGoogleUser = currentUser.app_metadata?.provider === 'google' || 
-                (currentUser.identities && currentUser.identities.some(i => i.provider === 'google'));
+            const yaTienePassword = currentUser.user_metadata?.has_password === true;
+            const isGoogleUser = (currentUser.app_metadata?.provider === 'google' || 
+                (currentUser.identities && currentUser.identities.some(i => i.provider === 'google'))) && !yaTienePassword;
 
             if (!isGoogleUser) {
                 if (!pwdActual) return showToast('Introduce tu contraseña actual para confirmar tu identidad.', true);
@@ -491,14 +509,26 @@
             }
 
             try {
-                // Aplicar nueva contraseña en Supabase Auth
-                const { error } = await sb.auth.updateUser({ password: p1 });
+                // Aplicar nueva contraseña en Supabase Auth y marcar has_password = true
+                const { data, error } = await sb.auth.updateUser({ 
+                    password: p1,
+                    data: { has_password: true }
+                });
                 if (error) throw error;
 
-                showToast('✅ ¡Contraseña establecida con éxito! Ya puedes entrar con Google o con correo y contraseña.');
+                if (data?.user) {
+                    currentUser = data.user;
+                } else if (currentUser?.user_metadata) {
+                    currentUser.user_metadata.has_password = true;
+                }
+                
+                renderizarPerfil();
+
                 document.getElementById('input-current-pwd').value = '';
                 document.getElementById('input-new-pwd').value = '';
                 document.getElementById('input-new-pwd-confirm').value = '';
+
+                abrirModalPwdSuccess(isGoogleUser);
             } catch (e) {
                 console.error("Error asignando contraseña:", e);
                 showToast(e.message || 'Error al actualizar contraseña.', true);
@@ -506,6 +536,22 @@
                 btn.innerText = '💾 Guardar Contraseña';
                 btn.disabled = false;
             }
+        }
+
+        function abrirModalPwdSuccess(esNuevoGoogle = false) {
+            const modal = document.getElementById('pwd-success-modal');
+            const desc = document.getElementById('pwd-modal-desc');
+            if (desc) {
+                desc.innerHTML = esNuevoGoogle 
+                    ? `¡Contraseña configurada con éxito! A partir de ahora tu cuenta tiene <strong>acceso dual</strong>: puedes iniciar sesión tanto con <strong>Google</strong> como introduciendo tu <strong>correo y tu nueva contraseña</strong> en la app y en la web.`
+                    : `Tu contraseña ha sido actualizada correctamente en el sistema de seguridad.`;
+            }
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function cerrarModalPwdSuccess() {
+            const modal = document.getElementById('pwd-success-modal');
+            if (modal) modal.classList.add('hidden');
         }
 
         async function enviarCorreoRecuperacion() {
