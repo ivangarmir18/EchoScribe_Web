@@ -494,8 +494,23 @@
             navLinks.classList.toggle('flex');
         });
 
-        sb.auth.onAuthStateChange((event, session) => {
+        async function refrescarUsuarioWeb() {
+            try {
+                const { data } = await sb.auth.getUser();
+                if (data?.user) {
+                    currentUser = data.user;
+                    actualizarEstadoNavbar();
+                }
+            } catch(e) {}
+        }
+
+        window.addEventListener('focus', refrescarUsuarioWeb);
+
+        sb.auth.onAuthStateChange(async (event, session) => {
             currentUser = session?.user || null;
+            if (currentUser) {
+                await refrescarUsuarioWeb();
+            }
             actualizarEstadoNavbar();
         });
 
@@ -525,8 +540,9 @@
             document.getElementById('auth-modal').classList.add('hidden');
         }
 
-        function openProfileModal() {
+        async function openProfileModal() {
             if (!currentUser) return;
+            await refrescarUsuarioWeb();
             document.getElementById('profile-email').innerText = currentUser.email;
             document.getElementById('profile-username').innerText = currentUser.user_metadata?.username || 'Usuario';
             const plan = (currentUser.user_metadata?.plan || 'Gratis').toUpperCase();
