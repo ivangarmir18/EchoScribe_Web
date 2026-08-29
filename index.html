@@ -613,13 +613,39 @@
             document.getElementById('profile-modal').classList.add('hidden');
         }
 
-        function abrirPortalStripe() {
+        async function abrirPortalStripe() {
+            if (!currentUser || !currentUser.email) {
+                window.open(STRIPE_PORTAL_URL, '_blank');
+                return;
+            }
+
+            showToast("Generando acceso directo a Stripe...");
+
+            try {
+                const fnNames = ['portal-stripe', 'stripe-portal', 'crear-portal-session', 'stripe_portal'];
+                for (const fnName of fnNames) {
+                    try {
+                        const { data, error } = await sb.functions.invoke(fnName, {
+                            body: { 
+                                email: currentUser.email,
+                                return_url: window.location.origin + '/ajustes'
+                            }
+                        });
+                        if (data && data.url) {
+                            window.location.href = data.url;
+                            return;
+                        }
+                    } catch(errLoop) {}
+                }
+            } catch (err) {
+                console.warn("Edge Function fallback:", err);
+            }
+
             let url = STRIPE_PORTAL_URL;
             if (currentUser?.email) {
                 url += `?prefilled_email=${encodeURIComponent(currentUser.email)}`;
             }
             window.open(url, '_blank');
-            showToast("Abriendo la gestión segura de tu suscripción...");
         }
 
         function toggleAuthMode() {
