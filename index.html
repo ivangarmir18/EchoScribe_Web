@@ -15,17 +15,82 @@
             theme: { extend: { colors: { brand: '#6366f1' } } }
         }
     </script>
-    <style>
+        <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
-        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; scroll-behavior: smooth; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
-        .glass-card { background: linear-gradient(180deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.95) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
-        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.2s, box-shadow 0.2s; }
-        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.4); }
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f8fafc; scroll-behavior: smooth; }
+        .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
+        .glass-card { background: linear-gradient(180deg, rgba(30,41,59,0.7) 0%, rgba(15,23,42,0.85) 100%); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.08); }
+        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+        .btn-gradient:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 28px -5px rgba(168, 85, 247, 0.45); }
+
+        /* KEYFRAME ANIMATIONS */
+        @keyframes floatSlow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(35px, -35px) scale(1.12); }
+        }
+        @keyframes floatReverse {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-35px, 40px) scale(1.08); }
+        }
+        @keyframes shimmerGlow {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes pulseBorder {
+            0%, 100% { border-color: rgba(99, 102, 241, 0.25); box-shadow: 0 0 15px rgba(99, 102, 241, 0.1); }
+            50% { border-color: rgba(168, 85, 247, 0.5); box-shadow: 0 0 25px rgba(168, 85, 247, 0.25); }
+        }
+
+        .animate-float-slow { animation: floatSlow 14s ease-in-out infinite; }
+        .animate-float-rev { animation: floatReverse 18s ease-in-out infinite; }
+        .pulse-glow-border { animation: pulseBorder 5s ease-in-out infinite; }
+
+        /* SCROLL REVEAL (AOS EFFECT) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* CARD HOVER */
+        .card-interactive {
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+        }
+        .card-interactive:hover {
+            transform: translateY(-6px) scale(1.015);
+            box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.35);
+            border-color: rgba(129, 140, 248, 0.5);
+        }
+
+        /* SHIMMER BADGE */
+        .badge-shimmer {
+            background: linear-gradient(90deg, rgba(99,102,241,0.15) 0%, rgba(168,85,247,0.35) 50%, rgba(99,102,241,0.15) 100%);
+            background-size: 200% 100%;
+            animation: shimmerGlow 4s infinite linear;
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-purple-500 selection:text-white">
+<body class="antialiased selection:bg-purple-500 selection:text-white relative bg-[#0b0f19]">
+
+    <!-- SCROLL PROGRESS BAR -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 z-50 transition-all duration-75 pointer-events-none" style="width: 0%;"></div>
+
+    <!-- AMBIENT FLOATING LIGHTS (SCROLL BACKGROUND) -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[10%] left-[15%] w-[500px] h-[500px] bg-indigo-600/15 rounded-full blur-[140px] animate-float-slow"></div>
+        <div class="absolute top-[45%] right-[10%] w-[550px] h-[550px] bg-purple-600/15 rounded-full blur-[160px] animate-float-rev"></div>
+        <div class="absolute top-[80%] left-[20%] w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] animate-float-slow"></div>
+    </div>
 
     <!-- NAVEGACIÓN -->
     <!-- NAVEGACIÓN -->
@@ -93,23 +158,23 @@
             </a>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto text-left relative z-10">
-            <div class="glass p-5 rounded-2xl border border-slate-800">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto text-left relative z-10 reveal">
+            <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive">
                 <div class="text-2xl mb-2">⚡</div>
                 <strong class="text-white block text-sm mb-1">Inferencia en GPU Cloud</strong>
                 <p class="text-xs text-slate-400">Procesa 30 minutos de rueda de prensa en apenas 10-15 segundos sin consumir recursos de tu ordenador.</p>
             </div>
-            <div class="glass p-5 rounded-2xl border border-slate-800">
+            <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive">
                 <div class="text-2xl mb-2">✂️</div>
                 <strong class="text-white block text-sm mb-1">Recorte y Trimming</strong>
                 <p class="text-xs text-slate-400">Define marcas de inicio y fin para descargar o transcribir solo el fragmento exacto que necesitas.</p>
             </div>
-            <div class="glass p-5 rounded-2xl border border-slate-800">
+            <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive">
                 <div class="text-2xl mb-2">🎯</div>
                 <strong class="text-white block text-sm mb-1">Rigor Periodístico IA</strong>
                 <p class="text-xs text-slate-400">Contrasta nombres propios, plantillas deportivas y tecnicismos en tiempo real para evitar confusiones.</p>
             </div>
-            <div class="glass p-5 rounded-2xl border border-slate-800">
+            <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive">
                 <div class="text-2xl mb-2">🎬</div>
                 <strong class="text-white block text-sm mb-1">Subtítulos .SRT Sincronizados</strong>
                 <p class="text-xs text-slate-400">Pistas temporales al milisegundo listas para importar directamente en tu editor de vídeo.</p>
@@ -117,7 +182,7 @@
         </div>
 
         <!-- DEMO EN VIVO SIN REGISTRO -->
-        <div class="mt-14 glass-card p-6 md:p-8 rounded-3xl text-left border border-slate-700/80 shadow-2xl relative z-10 max-w-4xl mx-auto">
+        <div class="mt-14 glass-card p-6 md:p-8 rounded-3xl text-left border border-slate-700/80 shadow-2xl relative z-10 max-w-4xl mx-auto reveal pulse-glow-border">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 border-b border-slate-800 pb-3">
                 <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
@@ -166,7 +231,7 @@
     </section>
 
     <!-- SECCIÓN PLANES TEASER -->
-    <section id="planes" class="py-20 relative z-10 border-t border-slate-800/60">
+    <section id="planes" class="py-20 relative z-10 border-t border-slate-800/60 reveal">
         <div class="max-w-5xl mx-auto px-6">
             <div class="glass-card rounded-3xl p-8 sm:p-12 border border-indigo-500/30 text-center relative overflow-hidden shadow-2xl">
                 <div class="absolute -top-24 -right-24 w-72 h-72 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none"></div>
@@ -186,7 +251,7 @@
 
                 <!-- Grid de resumen de los 3 planes -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-left mb-10">
-                    <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                    <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl card-interactive">
                         <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Gratuito</div>
                         <div class="text-2xl font-black text-white mb-3">0 € <span class="text-xs font-normal text-slate-400">/mes</span></div>
                         <ul class="text-xs text-slate-300 space-y-2">
@@ -196,7 +261,7 @@
                         </ul>
                     </div>
 
-                    <div class="bg-indigo-950/40 border border-indigo-500/40 p-5 rounded-2xl relative shadow-lg">
+                    <div class="bg-indigo-950/40 border border-indigo-500/40 p-5 rounded-2xl relative shadow-lg card-interactive">
                         <div class="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-1 flex items-center justify-between">
                             <span>Pro</span>
                             <span class="bg-indigo-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full">POPULAR</span>
@@ -209,7 +274,7 @@
                         </ul>
                     </div>
 
-                    <div class="bg-amber-950/30 border border-amber-500/40 p-5 rounded-2xl">
+                    <div class="bg-amber-950/30 border border-amber-500/40 p-5 rounded-2xl card-interactive">
                         <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1 flex items-center justify-between">
                             <span>Ultra</span>
                             <span class="bg-amber-500/20 text-amber-300 text-[9px] font-black px-2 py-0.5 rounded-full border border-amber-500/30">MÁXIMO</span>
@@ -233,7 +298,7 @@
     </section>
 
     <!-- GARANTÍA -->
-    <section id="garantia" class="py-16 bg-slate-900/40 border-t border-slate-800/60 relative z-10">
+    <section id="garantia" class="py-16 bg-slate-900/40 border-t border-slate-800/60 relative z-10 reveal">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <h2 class="text-2xl md:text-3xl font-bold mb-4">Transparencia absoluta en tu suscripción</h2>
             <p class="text-slate-400 text-sm leading-relaxed mb-8">Sin permanencias ni sorpresas. Todo bajo el control de tu portal de cliente seguro.</p>
@@ -890,6 +955,34 @@
             } else if (authParam === 'register' || authParam === 'registro' || hash === '#register' || hash === '#registro') {
                 openAuthModal('register');
             }
+        });
+    </script>
+    <!-- INTERACTIVE SCROLL ANIMATION OBSERVER -->
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const progressBar = document.getElementById('scroll-progress');
+            if (progressBar) progressBar.style.width = scrolled + '%';
+        }, { passive: true });
+
+        // Scroll Reveal with Intersection Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            reveals.forEach(el => revealObserver.observe(el));
         });
     </script>
 </body>

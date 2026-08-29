@@ -25,19 +25,63 @@
             }
         }
     </script>
-    <style>
+        <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
-        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f8fafc; }
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f8fafc; scroll-behavior: smooth; }
         .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.07); }
-        .glass-card { background: linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.08); }
-        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.2s, box-shadow 0.2s; }
-        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.4); }
-        .btn-ultra { background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%); transition: transform 0.2s, box-shadow 0.2s; }
-        .btn-ultra:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.4); }
+        .glass-card { background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.85) 100%); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.08); }
+        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+        .btn-gradient:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 28px -5px rgba(168, 85, 247, 0.45); }
+        .btn-ultra { background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%); transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+        .btn-ultra:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 28px -5px rgba(245, 158, 11, 0.45); }
+
+        /* KEYFRAME ANIMATIONS */
+        @keyframes floatSlow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(35px, -35px) scale(1.12); }
+        }
+        @keyframes floatReverse {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-35px, 40px) scale(1.08); }
+        }
+        .animate-float-slow { animation: floatSlow 14s ease-in-out infinite; }
+        .animate-float-rev { animation: floatReverse 18s ease-in-out infinite; }
+
+        /* SCROLL REVEAL (AOS EFFECT) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* CARD HOVER */
+        .card-interactive {
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+        }
+        .card-interactive:hover {
+            transform: translateY(-6px) scale(1.015);
+            box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.35);
+            border-color: rgba(129, 140, 248, 0.5);
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-purple-500 selection:text-white flex flex-col min-h-screen">
+<body class="antialiased selection:bg-purple-500 selection:text-white flex flex-col min-h-screen relative bg-[#0b0f19]">
+
+    <!-- SCROLL PROGRESS BAR -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 z-50 transition-all duration-75 pointer-events-none" style="width: 0%;"></div>
+
+    <!-- AMBIENT FLOATING LIGHTS (SCROLL BACKGROUND) -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[15%] left-[10%] w-[500px] h-[500px] bg-indigo-600/15 rounded-full blur-[140px] animate-float-slow"></div>
+        <div class="absolute top-[50%] right-[10%] w-[550px] h-[550px] bg-purple-600/15 rounded-full blur-[160px] animate-float-rev"></div>
+        <div class="absolute top-[80%] left-[25%] w-[450px] h-[450px] bg-amber-600/10 rounded-full blur-[130px] animate-float-slow"></div>
+    </div>
 
     <!-- NAVEGACIÓN -->
     <!-- NAVEGACIÓN -->
@@ -105,7 +149,7 @@
         </div>
 
         <!-- TARJETAS DE PLANES (3 COLUMNAS) -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-20 reveal">
             
             <!-- GRATUITO -->
             <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border border-slate-800">
@@ -255,7 +299,7 @@
         </div>
 
         <!-- TABLA COMPARATIVA COMPLETA -->
-        <div class="mb-20">
+        <div class="mb-20 reveal">
             <h2 class="text-2xl sm:text-3xl font-black text-white text-center mb-8">Comparativa Detallada de Características</h2>
             
             <div class="glass-card rounded-3xl overflow-x-auto border border-slate-800 shadow-xl">
@@ -323,7 +367,7 @@
         </div>
 
         <!-- TRANSPARENCIA & GARANTÍA -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20 reveal">
             <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800">
                 <div class="text-3xl mb-3">📅</div>
                 <h3 class="text-lg font-bold text-white mb-2">Ciclos Claros de Renovación</h3>
@@ -410,6 +454,34 @@
             }
             window.location.href = link;
         }
+    </script>
+    <!-- INTERACTIVE SCROLL ANIMATION OBSERVER -->
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const progressBar = document.getElementById('scroll-progress');
+            if (progressBar) progressBar.style.width = scrolled + '%';
+        }, { passive: true });
+
+        // Scroll Reveal with Intersection Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            reveals.forEach(el => revealObserver.observe(el));
+        });
     </script>
 </body>
 </html>
