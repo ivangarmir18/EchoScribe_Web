@@ -474,7 +474,7 @@
             if (!currentUser || !currentUser.email) return;
             try {
                 const { error } = await sb.auth.resetPasswordForEmail(currentUser.email, {
-                    redirectTo: 'https://echoscribe.vercel.app/recuperar-password'
+                    redirectTo: window.location.origin + '/recuperar-password'
                 });
                 if (error) throw error;
                 showToast('Correo de restablecimiento enviado. Revisa tu bandeja de entrada.');
