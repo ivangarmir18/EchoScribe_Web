@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajustes y Perfil | EchoScribe</title>
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#6366f1',
+                            hover: '#4f46e5',
+                            light: '#818cf8',
+                            dark: '#4338ca'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f8fafc; }
+        .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.07); }
+        .glass-card { background: linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.08); }
+        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.4); }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-500 selection:text-white flex flex-col min-h-screen">
+
+    <!-- NAVEGACIÓN -->
+    <nav class="fixed w-full z-40 glass border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
+                🎙️ EchoScribe
+            </a>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
+                <a href="/" class="text-slate-300 hover:text-white transition">Inicio</a>
+                <a href="/#precios" class="text-slate-300 hover:text-white transition">Precios</a>
+                <a href="/guias" class="text-slate-300 hover:text-white transition">Guías y Herramientas</a>
+                <a href="/guia-instalacion" class="text-slate-300 hover:text-white transition">Instalación Windows</a>
+                <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
+                <button onclick="cerrarSesionWeb()" class="bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 px-3.5 py-1.5 rounded-xl text-xs font-bold transition">
+                    Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- TOAST NOTIFICACIÓN -->
+    <div id="toast" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-slate-800 border border-slate-700 text-white px-6 py-3 rounded-2xl shadow-2xl transition-all duration-300 z-50 opacity-0 pointer-events-none flex items-center gap-2 text-sm font-semibold">
+        <span id="toast-icon">✅</span>
+        <span id="toast-msg">Mensaje</span>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-1 max-w-5xl w-full mx-auto px-6 pt-28 pb-16">
+        
+        <!-- CABECERA DEL PERFIL -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-60 h-60 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="flex items-center gap-4 sm:gap-5 z-10">
+                <div id="user-avatar" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-500 flex items-center justify-center text-2xl sm:text-3xl font-extrabold text-white shadow-xl">
+                    U
+                </div>
+                <div>
+                    <div class="flex items-center gap-2.5 flex-wrap mb-1">
+                        <h1 id="user-display-name" class="text-xl sm:text-2xl font-black text-white">Cargando...</h1>
+                        <span id="user-plan-badge" class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-slate-800 text-slate-300 border border-slate-700">
+                            GRATIS
+                        </span>
+                    </div>
+                    <p id="user-email-label" class="text-xs sm:text-sm text-slate-400 font-medium">usuario@ejemplo.com</p>
+                    <p class="text-[11px] text-slate-500 font-mono mt-1">ID: <span id="user-id-short">-</span></p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2.5 w-full md:w-auto z-10">
+                <button onclick="abrirPortalStripe()" class="flex-1 md:flex-initial btn-gradient text-white text-xs font-bold py-3 px-5 rounded-2xl shadow-lg transition flex items-center justify-center gap-2">
+                    <span>💳</span> <span>Portal de Facturación Stripe</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- GRID DE MÓDULOS -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- COLUMNA IZQUIERDA (2/3) -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- TARJETA: PLAN Y SUSCRIPCIÓN -->
+                <div class="glass-card rounded-3xl p-6 sm:p-7 border border-slate-800">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center gap-2.5">
+                            <span class="text-xl">⚡</span>
+                            <h2 class="text-lg font-bold text-white">Tu Suscripción</h2>
+                        </div>
+                        <button onclick="refrescarDatosUsuario(true)" class="text-xs text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-1 transition">
+                            <span>🔄</span> Sincronizar
+                        </button>
+                    </div>
+
+                    <div id="plan-info-box" class="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 mb-5">
+                        <!-- Se llena dinámicamente por JS -->
+                    </div>
+
+                    <!-- ACCIÓN DE UPGRADE SEGÚN PLAN -->
+                    <div id="plan-upgrade-section" class="space-y-3">
+                        <!-- Botones de compra o cambio prorrateado en Stripe -->
+                    </div>
+                </div>
+
+                <!-- TARJETA: SEGURIDAD Y CONTRASEÑA -->
+                <div class="glass-card rounded-3xl p-6 sm:p-7 border border-slate-800">
+                    <div class="flex items-center gap-2.5 mb-4">
+                        <span class="text-xl">🔒</span>
+                        <h2 class="text-lg font-bold text-white">Seguridad y Contraseña</h2>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-5 leading-relaxed">
+                        Puedes cambiar tu contraseña directamente aquí o solicitar un enlace mágico de restablecimiento a tu correo.
+                    </p>
+
+                    <form onsubmit="event.preventDefault(); cambiarContrasena();" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Nueva Contraseña</label>
+                            <input type="password" id="input-new-pwd" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full bg-slate-900/60 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white text-xs transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Confirmar Nueva Contraseña</label>
+                            <input type="password" id="input-new-pwd-confirm" required minlength="6" placeholder="Repite la contraseña" class="w-full bg-slate-900/60 px-4 py-3 rounded-xl border border-slate-700 focus:border-brand outline-none text-white text-xs transition">
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 pt-1">
+                            <button type="submit" id="btn-change-pwd" class="btn-gradient text-white font-bold py-3 px-6 rounded-xl text-xs shadow-md transition flex items-center justify-center gap-2">
+                                <span>💾</span> Guardar Contraseña
+                            </button>
+                            <button type="button" onclick="enviarCorreoRecuperacion()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-3 px-4 rounded-xl text-xs border border-slate-700 transition flex items-center justify-center gap-2">
+                                <span>📧</span> Enviar enlace de restablecimiento al correo
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA (1/3) -->
+            <div class="space-y-8">
+                
+                <!-- TARJETA: PERFIL Y ALIAS -->
+                <div class="glass-card rounded-3xl p-6 sm:p-7 border border-slate-800">
+                    <div class="flex items-center gap-2.5 mb-4">
+                        <span class="text-xl">👤</span>
+                        <h2 class="text-base font-bold text-white">Datos de Cuenta</h2>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); guardarNombreUsuario();" class="space-y-4">
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Nombre de Usuario / Alias</label>
+                            <input type="text" id="input-username" placeholder="Tu nombre o alias" class="w-full bg-slate-900/60 px-3.5 py-2.5 rounded-xl border border-slate-700 focus:border-brand outline-none text-white text-xs transition">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Correo Electrónico</label>
+                            <input type="email" id="input-email-readonly" readonly class="w-full bg-slate-900/30 px-3.5 py-2.5 rounded-xl border border-slate-800 text-slate-400 text-xs cursor-not-allowed">
+                        </div>
+                        <button type="submit" id="btn-save-profile" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-sm">
+                            Guardar Cambios
+                        </button>
+                    </form>
+                </div>
+
+                <!-- TARJETA: DESCARGA DE LA APLICACIÓN -->
+                <div class="glass-card rounded-3xl p-6 sm:p-7 border border-indigo-500/30 bg-gradient-to-b from-indigo-950/20 to-slate-900/80">
+                    <div class="flex items-center gap-2.5 mb-3">
+                        <span class="text-2xl">💻</span>
+                        <div>
+                            <h3 class="text-sm font-bold text-white">EchoScribe Desktop</h3>
+                            <span class="text-[10px] text-indigo-400 font-bold">Windows 10 / 11 (64-bit)</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                        Transcribe con GPU Cloud en 20s, subtítulos automáticos .SRT y corrección contextual con Gemini.
+                    </p>
+                    <a href="https://github.com/ivangarmir18/EchoScribe/releases/latest/download/EchoScribe_Setup.exe" class="w-full btn-gradient text-white font-bold py-3 rounded-xl text-xs shadow-lg transition flex items-center justify-center gap-2 text-center">
+                        <span>⬇️</span> Descargar Instalador
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-slate-900/60 py-10 px-6 text-xs text-slate-400 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>© 2026 EchoScribe AI. Todos los derechos reservados.</p>
+            <div class="flex gap-4">
+                <a href="/terminos-y-condiciones" class="hover:text-white transition">Términos</a>
+                <a href="/politica-privacidad" class="hover:text-white transition">Privacidad</a>
+                <a href="/guia-instalacion" class="hover:text-white transition">Ayuda de Instalación</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT & SUPABASE LOGIC -->
+    <script>
+        const SUPABASE_URL = 'https://ggmaiqxbidcxhbungnpx.supabase.co'; 
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnbWFpcXhiaWRjeGhidW5nbnB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2NjI4OTUsImV4cCI6MjEwMzIzODg5NX0.dFblpUUXInw4JLbsQQVa5NcxFWoCz3Ydff2c87_gRew'; 
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        const STRIPE_PORTAL_URL = 'https://billing.stripe.com/p/login/8x23cw1JZddAghT4sggjC00';
+
+        const STRIPE_LINKS = {
+            pro_mensual: 'https://buy.stripe.com/8x23cw1JZddAghT4sggjC00',
+            pro_anual: 'https://buy.stripe.com/7sY00k0FV8Xkc1D5wkgjC02',
+            ultra_mensual: 'https://buy.stripe.com/14AcN64Wba1od5HcYMgjC01',
+            ultra_anual: 'https://buy.stripe.com/00w5kEcoDc9waXz0c0gjC03'
+        };
+
+        let currentUser = null;
+
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            document.getElementById('toast-icon').innerText = isError ? '❌' : '✅';
+            toast.className = `fixed top-20 left-1/2 transform -translate-x-1/2 ${isError ? 'bg-rose-900 border-rose-700' : 'bg-slate-800 border-slate-700'} text-white px-6 py-3 rounded-2xl shadow-2xl transition-all duration-300 z-50 opacity-100 flex items-center gap-2 text-sm font-semibold`;
+            setTimeout(() => { toast.classList.add('opacity-0', 'pointer-events-none'); }, 4000);
+        }
+
+        function abrirPortalStripe() {
+            window.open(STRIPE_PORTAL_URL, '_blank');
+        }
+
+        async function procesarTokensUrl() {
+            const hash = window.location.hash;
+            if (hash && hash.includes('access_token')) {
+                const params = new URLSearchParams(hash.substring(1));
+                const accessToken = params.get('access_token');
+                const refreshToken = params.get('refresh_token');
+                if (accessToken && refreshToken) {
+                    await sb.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+            }
+        }
+
+        async function refrescarDatosUsuario(mostrarMensaje = false) {
+            try {
+                const { data: { user }, error } = await sb.auth.getUser();
+                if (error || !user) {
+                    window.location.href = '/';
+                    return;
+                }
+                currentUser = user;
+                renderizarPerfil();
+                if (mostrarMensaje) showToast('Datos y suscripción sincronizados con éxito.');
+            } catch(e) {
+                console.error("Error sincronizando usuario:", e);
+            }
+        }
+
+        function renderizarPerfil() {
+            if (!currentUser) return;
+            const meta = currentUser.user_metadata || {};
+            const username = meta.username || currentUser.email.split('@')[0];
+            const plan = (meta.plan || 'Gratis').toUpperCase();
+
+            // Cabecera
+            document.getElementById('user-display-name').innerText = username;
+            document.getElementById('user-email-label').innerText = currentUser.email;
+            document.getElementById('user-id-short').innerText = currentUser.id.substring(0, 8) + '...';
+            document.getElementById('user-avatar').innerText = username.charAt(0).toUpperCase();
+
+            const badge = document.getElementById('user-plan-badge');
+            badge.innerText = `PLAN ${plan}`;
+            if (plan === 'ULTRA') {
+                badge.className = "px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm";
+            } else if (plan === 'PRO') {
+                badge.className = "px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-sm";
+            } else {
+                badge.className = "px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-slate-800 text-slate-300 border border-slate-700";
+            }
+
+            // Formulario Perfil
+            document.getElementById('input-username').value = username;
+            document.getElementById('input-email-readonly').value = currentUser.email;
+
+            // Caja de Info de Plan
+            renderizarSeccionPlan(plan);
+        }
+
+        function renderizarSeccionPlan(plan) {
+            const infoBox = document.getElementById('plan-info-box');
+            const upgradeSec = document.getElementById('plan-upgrade-section');
+
+            if (plan === 'ULTRA') {
+                infoBox.innerHTML = `
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <span class="text-amber-400 font-extrabold text-sm uppercase flex items-center gap-1.5">
+                                <span>👑</span> Plan Ultra Activo
+                            </span>
+                            <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                                Tienes acceso prioritario a la GPU Cloud de alta velocidad, 250 análisis con corrección de nombres propios y descargas ilimitadas.
+                            </p>
+                        </div>
+                    </div>
+                `;
+                upgradeSec.innerHTML = `
+                    <button onclick="abrirPortalStripe()" class="w-full py-3 rounded-xl text-xs font-bold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 transition flex items-center justify-center gap-2 shadow-sm">
+                        <span>⚙️</span> Gestionar Facturas o Cancelar en Stripe
+                    </button>
+                `;
+            } else if (plan === 'PRO') {
+                infoBox.innerHTML = `
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <span class="text-purple-400 font-extrabold text-sm uppercase flex items-center gap-1.5">
+                                <span>✨</span> Plan Pro Activo
+                            </span>
+                            <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                                Disfrutas de 100 transcripciones con GPU Cloud, 150 básicas y soporte prioritario.
+                            </p>
+                        </div>
+                    </div>
+                `;
+                upgradeSec.innerHTML = `
+                    <div class="bg-indigo-500/10 border border-indigo-500/30 rounded-2xl p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                                <span>👑</span> ¿Quieres pasar al Plan Ultra?
+                            </span>
+                            <span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-extrabold">Prorrateo Automático</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400 mb-3 leading-relaxed">
+                            Stripe descontará automáticamente los días no disfrutados de tu plan Pro actual y solo te cobrará la diferencia en tu próxima factura.
+                        </p>
+                        <button onclick="abrirPortalStripe()" class="w-full btn-gradient text-white font-bold py-2.5 rounded-xl text-xs shadow-md transition flex items-center justify-center gap-2">
+                            <span>⚡</span> Mejorar a Ultra en el Portal de Stripe
+                        </button>
+                    </div>
+                    <button onclick="abrirPortalStripe()" class="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center justify-center gap-2">
+                        <span>⚙️</span> Ver Facturas o Gestionar Suscripción
+                    </button>
+                `;
+            } else {
+                infoBox.innerHTML = `
+                    <div>
+                        <span class="text-slate-300 font-extrabold text-sm uppercase">Plan Gratis</span>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                            5 transcripciones rápidas en GPU Cloud, Whisper ilimitado en tu PC local y 30 análisis de IA al mes.
+                        </p>
+                    </div>
+                `;
+                upgradeSec.innerHTML = `
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <a href="${STRIPE_LINKS.pro_mensual}" target="_blank" class="p-4 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 rounded-2xl transition block text-left">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-white text-xs">Plan Pro</span>
+                                <span class="text-purple-400 font-extrabold text-xs">9,99 €/mes</span>
+                            </div>
+                            <p class="text-[11px] text-slate-400 mb-2">100 procesos Cloud y 3h por audio.</p>
+                            <span class="text-xs font-bold text-indigo-400 hover:underline">Suscribirse ➔</span>
+                        </a>
+                        <a href="${STRIPE_LINKS.ultra_mensual}" target="_blank" class="p-4 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-2xl transition block text-left">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-white text-xs">Plan Ultra</span>
+                                <span class="text-amber-400 font-extrabold text-xs">21,99 €/mes</span>
+                            </div>
+                            <p class="text-[11px] text-slate-400 mb-2">250 procesos Cloud y 12h por audio.</p>
+                            <span class="text-xs font-bold text-amber-400 hover:underline">Suscribirse ➔</span>
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        async function cambiarContrasena() {
+            const p1 = document.getElementById('input-new-pwd').value;
+            const p2 = document.getElementById('input-new-pwd-confirm').value;
+            const btn = document.getElementById('btn-change-pwd');
+
+            if (!p1 || p1.length < 6) return showToast('La contraseña debe tener mínimo 6 caracteres.', true);
+            if (p1 !== p2) return showToast('Las contraseñas no coinciden.', true);
+
+            btn.innerText = 'Guardando...';
+            btn.disabled = true;
+
+            try {
+                const { error } = await sb.auth.updateUser({ password: p1 });
+                if (error) throw error;
+                showToast('¡Contraseña actualizada correctamente!');
+                document.getElementById('input-new-pwd').value = '';
+                document.getElementById('input-new-pwd-confirm').value = '';
+            } catch (e) {
+                console.error("Error cambiando contraseña:", e);
+                showToast(e.message || 'Error al actualizar contraseña.', true);
+            } finally {
+                btn.innerText = '💾 Guardar Contraseña';
+                btn.disabled = false;
+            }
+        }
+
+        async function enviarCorreoRecuperacion() {
+            if (!currentUser || !currentUser.email) return;
+            try {
+                const { error } = await sb.auth.resetPasswordForEmail(currentUser.email, {
+                    redirectTo: 'https://echoscribe.vercel.app/recuperar-password'
+                });
+                if (error) throw error;
+                showToast('Correo de restablecimiento enviado. Revisa tu bandeja de entrada.');
+            } catch (e) {
+                showToast('Error enviando correo: ' + (e.message || 'Inténtalo de nuevo.'), true);
+            }
+        }
+
+        async function guardarNombreUsuario() {
+            const username = document.getElementById('input-username').value.trim();
+            const btn = document.getElementById('btn-save-profile');
+            if (!username) return showToast('Introduce un nombre válido.', true);
+
+            btn.innerText = 'Guardando...';
+            btn.disabled = true;
+
+            try {
+                const { data, error } = await sb.auth.updateUser({
+                    data: { username: username }
+                });
+                if (error) throw error;
+                currentUser = data.user;
+                renderizarPerfil();
+                showToast('Nombre de usuario actualizado.');
+            } catch (e) {
+                showToast('Error al actualizar nombre.', true);
+            } finally {
+                btn.innerText = 'Guardar Cambios';
+                btn.disabled = false;
+            }
+        }
+
+        async function cerrarSesionWeb() {
+            await sb.auth.signOut();
+            window.location.href = '/';
+        }
+
+        window.onload = async function() {
+            await procesarTokensUrl();
+            await refrescarDatosUsuario();
+        };
+
+        window.addEventListener('focus', () => refrescarDatosUsuario(false));
+    </script>
+</body>
+</html>

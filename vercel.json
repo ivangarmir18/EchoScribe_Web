@@ -3,6 +3,7 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/precios", "destination": "/index.html" },
+    { "source": "/ajustes", "destination": "/ajustes.html" },
     { "source": "/guias", "destination": "/guias.html" },
     { "source": "/sobre-mi", "destination": "/sobre-mi.html" },
     { "source": "/recuperar-password", "destination": "/recuperar-password.html" },
