@@ -145,9 +145,12 @@
                         </li>
                     </ul>
                 </div>
-                <button onclick="openAuthModal('register')" class="w-full py-4 rounded-2xl font-bold bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white transition">
-                    Crear cuenta gratis
-                </button>
+                <div class="mt-auto pt-4 flex flex-col items-center gap-2.5">
+                    <span class="text-xs font-bold text-transparent py-1.5 select-none pointer-events-none">Espacio</span>
+                    <button onclick="openAuthModal('register')" class="w-full py-4 rounded-2xl font-bold bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white transition">
+                        Crear cuenta gratis
+                    </button>
+                </div>
             </div>
 
             <!-- PRO (DESTACADO) -->
@@ -190,13 +193,13 @@
                     </ul>
                 </div>
 
-                <div class="space-y-3">
+                <div class="mt-auto pt-4 flex flex-col items-center gap-2.5">
+                    <a href="/pro" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-300 hover:text-white bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-500/30 px-3.5 py-1.5 rounded-full transition shadow-sm">
+                        <span>🔍</span> <span>Ver más detalles</span> <span>→</span>
+                    </a>
                     <button onclick="checkoutProPlanes()" id="btn-pro" class="w-full py-4 rounded-2xl font-bold btn-gradient text-white shadow-lg flex items-center justify-center gap-2">
                         <span>⚡</span> <span>Suscribirse a Pro</span>
                     </button>
-                    <a href="/pro" class="block w-full py-2.5 rounded-xl font-semibold text-xs text-center text-indigo-300 hover:text-white bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 transition">
-                        Ver página dedicada del Plan Pro →
-                    </a>
                 </div>
             </div>
 
@@ -240,13 +243,13 @@
                     </ul>
                 </div>
 
-                <div class="space-y-3">
+                <div class="mt-auto pt-4 flex flex-col items-center gap-2.5">
+                    <a href="/ultra" class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-300 hover:text-white bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 px-3.5 py-1.5 rounded-full transition shadow-sm">
+                        <span>👑</span> <span>Ver más detalles</span> <span>→</span>
+                    </a>
                     <button onclick="checkoutUltraPlanes()" id="btn-ultra" class="w-full py-4 rounded-2xl font-bold btn-ultra text-white shadow-lg flex items-center justify-center gap-2">
                         <span>👑</span> <span>Suscribirse a Ultra</span>
                     </button>
-                    <a href="/ultra" class="block w-full py-2.5 rounded-xl font-semibold text-xs text-center text-amber-300 hover:text-white bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 transition">
-                        Ver página dedicada del Plan Ultra →
-                    </a>
                 </div>
             </div>
         </div>
