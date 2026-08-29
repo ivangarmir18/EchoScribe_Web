@@ -16,13 +16,57 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
-        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f8fafc; scroll-behavior: smooth; }
-        .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
-        .glass-card { background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.85) 100%); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.08); }
-        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
-        .btn-gradient:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 28px -5px rgba(168, 85, 247, 0.45); }
-        .btn-ultra { background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%); transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
-        .btn-ultra:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 28px -5px rgba(245, 158, 11, 0.45); }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0b0f19; 
+            color: #f8fafc; 
+            scroll-behavior: smooth;
+        }
+
+        /* MESH DOT GRID BACKGROUND PATTERN */
+        .bg-mesh-grid {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
+        }
+
+        /* GLASSMORPHISM & BORDERS */
+        .glass { 
+            background: rgba(15, 23, 42, 0.75); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07); 
+        }
+        
+        .glass-card { 
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.88) 100%); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            position: relative;
+        }
+
+        /* BUTTONS WITH DYNAMIC NEON GLOW */
+        .btn-gradient { 
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); 
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease; 
+        }
+        .btn-gradient:hover { 
+            transform: translateY(-2px) scale(1.02); 
+            box-shadow: 0 14px 30px -6px rgba(168, 85, 247, 0.5); 
+            filter: brightness(1.08);
+        }
+
+        .btn-ultra { 
+            background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%); 
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease; 
+        }
+        .btn-ultra:hover { 
+            transform: translateY(-2px) scale(1.02); 
+            box-shadow: 0 14px 30px -6px rgba(245, 158, 11, 0.5); 
+            filter: brightness(1.08);
+        }
 
         /* KEYFRAME ANIMATIONS */
         @keyframes floatSlow {
@@ -37,8 +81,18 @@
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
         }
+        @keyframes borderShimmer {
+            0%, 100% { border-color: rgba(99, 102, 241, 0.2); }
+            50% { border-color: rgba(168, 85, 247, 0.45); }
+        }
+
         .animate-float-slow { animation: floatSlow 14s ease-in-out infinite; }
         .animate-float-rev { animation: floatReverse 18s ease-in-out infinite; }
+        .badge-shimmer {
+            background: linear-gradient(90deg, rgba(99,102,241,0.15) 0%, rgba(168,85,247,0.35) 50%, rgba(99,102,241,0.15) 100%);
+            background-size: 200% 100%;
+            animation: shimmerGlow 4s infinite linear;
+        }
 
         /* SCROLL REVEAL (AOS EFFECT) */
         .reveal {
@@ -52,14 +106,14 @@
             transform: translateY(0);
         }
 
-        /* CARD HOVER */
+        /* INTERACTIVE 3D CARD HOVER */
         .card-interactive {
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
         }
         .card-interactive:hover {
-            transform: translateY(-6px) scale(1.015);
-            box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.35);
-            border-color: rgba(129, 140, 248, 0.5);
+            transform: translateY(-6px) scale(1.012);
+            box-shadow: 0 22px 45px -15px rgba(99, 102, 241, 0.38);
+            border-color: rgba(129, 140, 248, 0.55);
         }
     </style>
 </head>
@@ -67,12 +121,16 @@
     <!-- SCROLL PROGRESS BAR -->
     <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 z-50 transition-all duration-75 pointer-events-none" style="width: 0%;"></div>
 
-    <!-- AMBIENT FLOATING LIGHTS (SCROLL BACKGROUND) -->
+    <!-- MESH GRID & DYNAMIC LIGHTS -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute inset-0 bg-mesh-grid opacity-60"></div>
         <div class="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-indigo-600/15 rounded-full blur-[140px] animate-float-slow"></div>
         <div class="absolute top-[45%] right-[10%] w-[550px] h-[550px] bg-purple-600/15 rounded-full blur-[160px] animate-float-rev"></div>
         <div class="absolute top-[80%] left-[20%] w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] animate-float-slow"></div>
     </div>
+
+    <!-- CURSOR MOUSE SPOTLIGHT GLOW -->
+    <div id="mouse-spotlight" class="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500" style="background: radial-gradient(650px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(99, 102, 241, 0.07), transparent 80%);"></div>
 
     <!-- NAVEGACIÓN -->
     <!-- NAVEGACIÓN -->
