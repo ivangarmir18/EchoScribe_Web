@@ -622,7 +622,7 @@
             showToast("Generando acceso directo a Stripe...");
 
             try {
-                const fnNames = ['portal-stripe', 'stripe-portal', 'crear-portal-session', 'stripe_portal'];
+                const fnNames = ['create-portal-session', 'portal-stripe', 'stripe-portal', 'crear-portal-session'];
                 for (const fnName of fnNames) {
                     try {
                         const { data, error } = await sb.functions.invoke(fnName, {

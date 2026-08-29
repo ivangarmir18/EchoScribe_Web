@@ -253,8 +253,8 @@
             showToast("Generando acceso directo a Stripe...");
 
             try {
-                // Invocamos la Edge Function de Supabase
-                const fnNames = ['portal-stripe', 'stripe-portal', 'crear-portal-session', 'stripe_portal'];
+                // Invocamos la Edge Function de Supabase (create-portal-session)
+                const fnNames = ['create-portal-session', 'portal-stripe', 'stripe-portal', 'crear-portal-session'];
                 for (const fnName of fnNames) {
                     try {
                         const { data, error } = await sb.functions.invoke(fnName, {
