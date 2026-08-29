@@ -84,7 +84,7 @@
                 <div id="billing-circle" class="w-5 h-5 bg-white rounded-full transition duration-300 transform translate-x-0"></div>
             </button>
             <span class="text-sm font-bold text-slate-300 flex items-center gap-1.5">
-                Anual <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-black px-2 py-0.5 rounded-full border border-emerald-500/30">-20% AHORRO</span>
+                Anual <span class="bg-amber-500/20 text-amber-400 text-[10px] font-black px-2 py-0.5 rounded-full border border-amber-500/30">-37% AHORRO</span>
             </span>
         </div>
 
@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="flex items-baseline gap-2">
-                        <span id="price-display" class="text-4xl sm:text-5xl font-black text-white tracking-tight">9,99€</span>
+                        <span id="price-display" class="text-4xl sm:text-5xl font-black text-white tracking-tight">7,99€</span>
                         <span id="period-display" class="text-slate-400 text-sm font-semibold">/ mes</span>
                     </div>
 
@@ -126,11 +126,11 @@
                         </div>
                         <div class="flex items-start gap-3">
                             <div class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
-                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">100 transcripciones con IA al mes:</strong> Resúmenes estructurados, titulares y corrección inteligente de texto.</span>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">100 análisis con IA al mes:</strong> En GPU Cloud con soporte de hasta 3 horas por archivo (o 200 horas/mes).</span>
                         </div>
                         <div class="flex items-start gap-3">
                             <div class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
-                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">Modo GPU Cloud Ultrarrápido:</strong> Inferencia Whisper Turbo 62x sin sobrecargar tu PC.</span>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">150 transcripciones rápidas:</strong> Inferencia Whisper Turbo 62x en servidores cloud dedicados.</span>
                         </div>
                     </div>
                 </div>
@@ -188,19 +188,19 @@
                             <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">✓ Desbloqueado</td>
                         </tr>
                         <tr>
-                            <td class="p-4 sm:p-5 font-semibold text-white">Transcripciones IA / Mes</td>
-                            <td class="p-4 sm:p-5 text-center">5 / mes</td>
-                            <td class="p-4 sm:p-5 text-center font-bold text-indigo-400">100 / mes</td>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Análisis con IA / Mes</td>
+                            <td class="p-4 sm:p-5 text-center">30 / mes (local)</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-indigo-400">100 / mes (GPU Cloud)</td>
                         </tr>
                         <tr>
                             <td class="p-4 sm:p-5 font-semibold text-white">Duración Máxima de Audio</td>
-                            <td class="p-4 sm:p-5 text-center">Hasta 10 min</td>
-                            <td class="p-4 sm:p-5 text-center font-bold text-white">Hasta 30 min (200MB)</td>
+                            <td class="p-4 sm:p-5 text-center">Hasta 30 min</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">Hasta 3 Horas (200h/mes)</td>
                         </tr>
                         <tr>
                             <td class="p-4 sm:p-5 font-semibold text-white">GPU Cloud Ultrarrápida</td>
-                            <td class="p-4 sm:p-5 text-center text-slate-500">No incluido</td>
-                            <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">✓ Whisper Turbo 62x</td>
+                            <td class="p-4 sm:p-5 text-center text-slate-500">5 pruebas / mes</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">✓ 150 rápidas dedicadas</td>
                         </tr>
                     </tbody>
                 </table>
@@ -258,12 +258,12 @@
             if (currentBillingPro === 'anual') {
                 circle.classList.add('translate-x-7');
                 circle.classList.remove('translate-x-0');
-                price.innerText = '7,99€';
-                period.innerText = '/ mes (95,88€/año)';
+                price.innerText = '59,99€';
+                period.innerText = '/ año (4,99€/mes)';
             } else {
                 circle.classList.remove('translate-x-7');
                 circle.classList.add('translate-x-0');
-                price.innerText = '9,99€';
+                price.innerText = '7,99€';
                 period.innerText = '/ mes';
             }
         }

@@ -84,7 +84,7 @@
                 <div id="billing-circle" class="w-5 h-5 bg-white rounded-full transition duration-300 transform translate-x-0"></div>
             </button>
             <span class="text-sm font-bold text-slate-300 flex items-center gap-1.5">
-                Anual <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-black px-2 py-0.5 rounded-full border border-emerald-500/30">-20% AHORRO</span>
+                Anual <span class="bg-amber-500/20 text-amber-400 text-[10px] font-black px-2 py-0.5 rounded-full border border-amber-500/30">-37% AHORRO</span>
             </span>
         </div>
 
@@ -118,15 +118,15 @@
                         </div>
                         <div class="flex items-start gap-3">
                             <div class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
-                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">250 transcripciones IA / mes:</strong> Capacidad masiva para procesar podcasts diarios, reuniones y clases.</span>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">250 análisis con IA al mes:</strong> En GPU Cloud con soporte de hasta 12 horas por archivo (o 750 horas/mes).</span>
                         </div>
                         <div class="flex items-start gap-3">
                             <div class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
-                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">Audios gigantescos de hasta 12 Horas:</strong> Soporte para archivos de hasta 2 GB y transmisiones en vivo extensas.</span>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">500 transcripciones rápidas:</strong> GPU Cloud L4 (Whisper Turbo 62x) con archivos gigantescos de hasta 2 GB.</span>
                         </div>
                         <div class="flex items-start gap-3">
                             <div class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
-                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">Todo lo incluido en el Plan Pro:</strong> Subtítulos .SRT sincronizados, copia limpia sin marcas de agua y GPU Cloud.</span>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">Todo lo incluido en el Plan Pro:</strong> Subtítulos .SRT sincronizados, descargas ilimitadas (4K / 320 kbps) y copia limpia.</span>
                         </div>
                         <div class="flex items-start gap-3">
                             <div class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
@@ -207,14 +207,19 @@
                             <td class="p-4 sm:p-5 text-center font-bold text-amber-400">✓ Ilimitado</td>
                         </tr>
                         <tr>
-                            <td class="p-4 sm:p-5 font-semibold text-white">Transcripciones IA / Mes</td>
-                            <td class="p-4 sm:p-5 text-center font-bold text-indigo-400">100 / mes</td>
-                            <td class="p-4 sm:p-5 text-center font-bold text-amber-400">250 / mes</td>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Análisis con IA / Mes</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-indigo-400">100 / mes (GPU Cloud)</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-amber-400">250 / mes (GPU Cloud)</td>
                         </tr>
                         <tr>
                             <td class="p-4 sm:p-5 font-semibold text-white">Duración Máxima de Audio</td>
-                            <td class="p-4 sm:p-5 text-center text-white">Hasta 30 min (200MB)</td>
-                            <td class="p-4 sm:p-5 text-center font-bold text-amber-400">Hasta 12 Horas (2GB)</td>
+                            <td class="p-4 sm:p-5 text-center text-white">Hasta 3 Horas (200h/mes)</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-amber-400">Hasta 12 Horas (750h/mes, 2GB)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Transcripciones Rápidas Cloud</td>
+                            <td class="p-4 sm:p-5 text-center text-slate-300">150 / mes</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-amber-400">500 / mes (Whisper Turbo)</td>
                         </tr>
                         <tr>
                             <td class="p-4 sm:p-5 font-semibold text-white">Exportación de Subtítulos (.SRT)</td>
@@ -282,8 +287,8 @@
             if (currentBillingUltra === 'anual') {
                 circle.classList.add('translate-x-7');
                 circle.classList.remove('translate-x-0');
-                price.innerText = '15,99€';
-                period.innerText = '/ mes (191,88€/año)';
+                price.innerText = '149,99€';
+                period.innerText = '/ año (12,49€/mes)';
             } else {
                 circle.classList.remove('translate-x-7');
                 circle.classList.add('translate-x-0');
