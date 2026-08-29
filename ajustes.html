@@ -244,8 +244,13 @@
     <!-- JAVASCRIPT & SUPABASE LOGIC -->
     <script>
         const SUPABASE_URL = 'https://ggmaiqxbidcxhbungnpx.supabase.co'; 
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnbWFpcXhiaWRjeGhidW5nbnB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2NjI4OTUsImV4cCI6MjEwMzIzODg5NX0.dFblpUUXInw4JLbsQQVa5NcxFWoCz3Ydff2c87_gRew'; 
-        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+            auth: {
+                persistSession: true,
+                autoRefreshToken: true,
+                detectSessionInUrl: true
+            }
+        });
 
         const STRIPE_PORTAL_URL = 'https://billing.stripe.com/p/login/8x23cw1JZddAghT4sggjC00';
 
@@ -304,15 +309,33 @@
         }
 
         async function procesarTokensUrl() {
-            const hash = window.location.hash;
-            if (hash && hash.includes('access_token')) {
-                const params = new URLSearchParams(hash.substring(1));
-                const accessToken = params.get('access_token');
-                const refreshToken = params.get('refresh_token');
-                if (accessToken && refreshToken) {
-                    await sb.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
-                    window.history.replaceState({}, document.title, window.location.pathname);
+            try {
+                const rawHash = window.location.hash.startsWith('#') ? window.location.hash.substring(1) : window.location.hash;
+                const rawQuery = window.location.search.startsWith('?') ? window.location.search.substring(1) : window.location.search;
+                const params = new URLSearchParams(rawHash || rawQuery);
+                let accessToken = params.get('access_token');
+                let refreshToken = params.get('refresh_token');
+
+                if (!accessToken && rawQuery) {
+                    const qParams = new URLSearchParams(rawQuery);
+                    accessToken = qParams.get('access_token');
+                    refreshToken = qParams.get('refresh_token');
                 }
+
+                if (accessToken && refreshToken) {
+                    const { data, error } = await sb.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
+                    if (!error && data?.session) {
+                        currentUser = data.session.user;
+                        let cleanSearch = window.location.search
+                            .replace(/[?&]access_token=[^&]+/g, '')
+                            .replace(/[?&]refresh_token=[^&]+/g, '');
+                        if (cleanSearch.startsWith('&')) cleanSearch = '?' + cleanSearch.substring(1);
+                        if (cleanSearch === '?') cleanSearch = '';
+                        window.history.replaceState({}, document.title, window.location.pathname + cleanSearch);
+                    }
+                }
+            } catch(e) {
+                console.warn('[AUTH] Error procesando tokens:', e);
             }
         }
 

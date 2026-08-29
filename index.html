@@ -43,6 +43,7 @@
                 <a href="/#precios" class="block w-full md:w-auto py-3 px-4 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Precios</a>
                 <a href="/guias" class="block w-full md:w-auto py-3 px-4 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Guías y Herramientas</a>
                 <a href="/guia-instalacion" class="block w-full md:w-auto py-3 px-4 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Instalación Windows</a>
+                <a href="/soporte" class="block w-full md:w-auto py-3 px-4 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Soporte 24/7</a>
                 <a href="/sobre-mi" class="block w-full md:w-auto py-3 px-4 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Sobre Mí</a>
                 
                 <hr class="w-full border-slate-800 md:hidden my-2">
@@ -118,7 +119,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 border-b border-slate-800 pb-3">
                 <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
-                    Demostración Interactiva en Vivo (Sin Registro)
+                    Demostración Interactiva (Sin Registro)
                 </span>
                 <span class="text-xs text-slate-500 font-mono">Simulador de Transcripción Cloud L4 + IA</span>
             </div>
@@ -252,7 +253,14 @@
                             </li>
                         </ul>
                     </div>
-                    <button onclick="checkoutPro()" id="btn-pro" class="w-full py-4 rounded-xl font-bold btn-gradient text-white shadow-lg">Suscribirse a Pro</button>
+                    <div class="space-y-3">
+                        <button onclick="checkoutPro()" id="btn-pro" class="w-full py-4 rounded-xl font-bold btn-gradient text-white shadow-lg flex items-center justify-center gap-2">
+                            <span>⚡</span> <span>Suscribirse a Pro</span>
+                        </button>
+                        <a href="/pro" class="block w-full py-2.5 rounded-xl font-semibold text-xs text-center text-indigo-300 hover:text-white bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 transition">
+                            Ver todos los detalles del Plan Pro →
+                        </a>
+                    </div>
                 </div>
 
                 <!-- ULTRA -->
@@ -295,7 +303,14 @@
                             </li>
                         </ul>
                     </div>
-                    <button onclick="checkoutUltra()" id="btn-ultra" class="w-full py-4 rounded-xl font-bold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 transition">Suscribirse a Ultra</button>
+                    <div class="space-y-3">
+                        <button onclick="checkoutUltra()" id="btn-ultra" class="w-full py-4 rounded-xl font-bold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 transition flex items-center justify-center gap-2">
+                            <span>👑</span> <span>Suscribirse a Ultra</span>
+                        </button>
+                        <a href="/ultra" class="block w-full py-2.5 rounded-xl font-semibold text-xs text-center text-amber-300 hover:text-white bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 transition">
+                            Ver todos los detalles del Plan Ultra →
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -342,6 +357,7 @@
             <div>
                 <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Recursos & Ayuda</h4>
                 <ul class="space-y-2">
+                    <li><a href="/soporte" class="text-indigo-400 hover:text-white font-bold transition">🎧 Centro de Soporte 24/7</a></li>
                     <li><a href="/guia-instalacion" class="hover:text-white transition">Guía de Instalación Windows</a></li>
                     <li><a href="/guias" class="hover:text-white transition">Hub de Guías de Uso</a></li>
                     <li><a href="/recuperar-password" class="hover:text-white transition">Recuperar Contraseña</a></li>
@@ -473,8 +489,13 @@
     <!-- JAVASCRIPT -->
     <script>
         const SUPABASE_URL = 'https://ggmaiqxbidcxhbungnpx.supabase.co'; 
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnbWFpcXhiaWRjeGhidW5nbnB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2NjI4OTUsImV4cCI6MjEwMzIzODg5NX0.dFblpUUXInw4JLbsQQVa5NcxFWoCz3Ydff2c87_gRew'; 
-        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+            auth: {
+                persistSession: true,
+                autoRefreshToken: true,
+                detectSessionInUrl: true
+            }
+        });
 
         const STRIPE_PORTAL_URL = 'https://billing.stripe.com/p/login/8x23cw1JZddAghT4sggjC00';
 
@@ -489,11 +510,50 @@
             ultra_anual: 'https://buy.stripe.com/00w5kEcoDc9waXz0c0gjC03'
         };
 
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            const navLinks = document.getElementById('nav-links');
-            navLinks.classList.toggle('hidden');
-            navLinks.classList.toggle('flex');
-        });
+        async function procesarAutoLoginDesdeApp() {
+            try {
+                const rawHash = window.location.hash.startsWith('#') ? window.location.hash.substring(1) : window.location.hash;
+                const rawQuery = window.location.search.startsWith('?') ? window.location.search.substring(1) : window.location.search;
+                const params = new URLSearchParams(rawHash || rawQuery);
+                let accessToken = params.get('access_token');
+                let refreshToken = params.get('refresh_token');
+
+                if (!accessToken && rawQuery) {
+                    const qParams = new URLSearchParams(rawQuery);
+                    accessToken = qParams.get('access_token');
+                    refreshToken = qParams.get('refresh_token');
+                }
+
+                if (accessToken && refreshToken) {
+                    const { data, error } = await sb.auth.setSession({
+                        access_token: accessToken,
+                        refresh_token: refreshToken
+                    });
+                    if (!error && data?.session) {
+                        currentUser = data.session.user;
+                        let cleanSearch = window.location.search
+                            .replace(/[?&]access_token=[^&]+/g, '')
+                            .replace(/[?&]refresh_token=[^&]+/g, '');
+                        if (cleanSearch.startsWith('&')) cleanSearch = '?' + cleanSearch.substring(1);
+                        if (cleanSearch === '?') cleanSearch = '';
+                        window.history.replaceState({}, document.title, window.location.pathname + cleanSearch);
+                    }
+                }
+            } catch (e) {
+                console.warn('[AUTH] Error procesando tokens:', e);
+            }
+        }
+
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', function() {
+                const navLinks = document.getElementById('nav-links');
+                if (navLinks) {
+                    navLinks.classList.toggle('hidden');
+                    navLinks.classList.toggle('flex');
+                }
+            });
+        }
 
         async function refrescarUsuarioWeb() {
             try {
@@ -513,6 +573,11 @@
                 await refrescarUsuarioWeb();
             }
             actualizarEstadoNavbar();
+        });
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await procesarAutoLoginDesdeApp();
+            await refrescarUsuarioWeb();
         });
 
         function actualizarEstadoNavbar() {
@@ -807,23 +872,21 @@
         }
 
         function checkoutPro() {
-            if (!currentUser) {
-                showToast("Crea una cuenta o inicia sesión antes de suscribirte.", true);
-                openAuthModal('register');
-                return;
+            let link = currentBilling === 'anual' ? STRIPE_LINKS.pro_anual : STRIPE_LINKS.pro_mensual;
+            if (currentUser?.email) {
+                const sep = link.includes('?') ? '&' : '?';
+                link += `${sep}prefilled_email=${encodeURIComponent(currentUser.email)}&client_reference_id=${encodeURIComponent(currentUser.id)}`;
             }
-            const link = currentBilling === 'anual' ? STRIPE_LINKS.pro_anual : STRIPE_LINKS.pro_mensual;
-            window.open(link, '_blank');
+            window.location.href = link;
         }
 
         function checkoutUltra() {
-            if (!currentUser) {
-                showToast("Crea una cuenta o inicia sesión antes de suscribirte.", true);
-                openAuthModal('register');
-                return;
+            let link = currentBilling === 'anual' ? STRIPE_LINKS.ultra_anual : STRIPE_LINKS.ultra_mensual;
+            if (currentUser?.email) {
+                const sep = link.includes('?') ? '&' : '?';
+                link += `${sep}prefilled_email=${encodeURIComponent(currentUser.email)}&client_reference_id=${encodeURIComponent(currentUser.id)}`;
             }
-            const link = currentBilling === 'anual' ? STRIPE_LINKS.ultra_anual : STRIPE_LINKS.ultra_mensual;
-            window.open(link, '_blank');
+            window.location.href = link;
         }
 
         
@@ -897,7 +960,11 @@
             window.open(link, '_blank');
         }
 
+        window.cambiarEjemploDemo = cambiarEjemploDemo;
+        window.mostrarPestanaDemo = mostrarPestanaDemo;
+
         document.addEventListener('DOMContentLoaded', () => {
+            actualizarContenidoDemo();
             const params = new URLSearchParams(window.location.search);
             const authParam = params.get('auth') || params.get('action') || params.get('modal');
             const hash = window.location.hash.toLowerCase();

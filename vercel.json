@@ -1,7 +1,10 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
   "rewrites": [
+    { "source": "/pro", "destination": "/pro.html" },
+    { "source": "/plan-pro", "destination": "/pro.html" },
+    { "source": "/ultra", "destination": "/ultra.html" },
+    { "source": "/plan-ultra", "destination": "/ultra.html" },
     { "source": "/precios", "destination": "/index.html" },
     { "source": "/ajustes", "destination": "/ajustes.html" },
     { "source": "/guias", "destination": "/guias.html" },

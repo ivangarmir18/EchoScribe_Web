@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es" class="dark" style="background-color: #0b0f19; color: #f8fafc;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoScribe Pro | Transcripción Profesional y Subtítulos .SRT</title>
+    <meta name="description" content="Desbloquea subtítulos .SRT sincronizados, transcripciones 100% limpias sin marca de agua, GPU Cloud ultrarrápida y 100 análisis de IA al mes con EchoScribe Pro.">
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#6366f1',
+                            hover: '#4f46e5',
+                            light: '#818cf8',
+                            dark: '#4338ca'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f8fafc; }
+        .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.07); }
+        .glass-card { background: linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.08); }
+        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.4); }
+        .glow-pro { box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.35); }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-500 selection:text-white flex flex-col min-h-screen">
+
+    <!-- NAVEGACIÓN -->
+    <nav class="fixed top-0 left-0 w-full z-40 glass border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
+                🎙️ EchoScribe
+            </a>
+            
+            <div class="flex items-center gap-3 sm:gap-4">
+                <a href="/" class="text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition hidden md:inline-block">Inicio</a>
+                <a href="/ultra" class="text-xs sm:text-sm font-semibold text-amber-400 hover:text-amber-300 transition">👑 Ver Plan Ultra</a>
+                <div id="nav-guest" class="flex items-center gap-2">
+                    <a href="/?auth=login" class="text-xs sm:text-sm font-bold text-slate-200 hover:text-white bg-slate-800/80 border border-slate-700/60 px-3.5 py-1.5 rounded-xl transition">Entrar</a>
+                </div>
+                <div id="nav-user" class="hidden items-center gap-2.5">
+                    <a href="/ajustes" class="flex items-center gap-2 bg-slate-800/90 border border-slate-700/80 px-3 py-1.5 rounded-xl text-xs font-bold text-white hover:border-indigo-500 transition">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span id="nav-user-label">Mi Cuenta</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 pt-32 pb-20">
+        
+        <!-- BADGE & TITULO -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-indigo-500/20 text-indigo-400 border border-indigo-500/40 mb-6 shadow-sm">
+                👑 Suscripción EchoScribe Pro
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-5">
+                Lleva tus transcripciones al <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">siguiente nivel</span>
+            </h1>
+            <p class="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+                Subtítulos .SRT sincronizados listos para Premiere y DaVinci, copia 100% limpia sin marcas de agua, modo Cloud GPU ultrarrápido y 100 transcripciones con IA al mes.
+            </p>
+        </div>
+
+        <!-- SELECTOR DE FACTURACIÓN (MENSUAL / ANUAL) -->
+        <div class="flex justify-center items-center gap-3 mb-10">
+            <span class="text-sm font-bold text-slate-300">Mensual</span>
+            <button id="billing-toggle" onclick="toggleBilling()" class="w-14 h-7 bg-indigo-600 rounded-full p-1 transition duration-300 focus:outline-none relative">
+                <div id="billing-circle" class="w-5 h-5 bg-white rounded-full transition duration-300 transform translate-x-0"></div>
+            </button>
+            <span class="text-sm font-bold text-slate-300 flex items-center gap-1.5">
+                Anual <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-black px-2 py-0.5 rounded-full border border-emerald-500/30">-20% AHORRO</span>
+            </span>
+        </div>
+
+        <!-- TARJETA PRINCIPAL PRO & CHECKOUT -->
+        <div class="glass-card glow-pro rounded-3xl p-6 sm:p-10 border border-indigo-500/40 relative overflow-hidden mb-16">
+            <div class="absolute top-0 right-0 w-80 h-80 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <!-- IZQUIERDA: DETALLES Y PRECIO (7/12) -->
+                <div class="md:col-span-7 space-y-5">
+                    <div class="flex items-center gap-3">
+                        <span class="text-3xl">⚡</span>
+                        <div>
+                            <h2 class="text-2xl font-black text-white">EchoScribe Pro</h2>
+                            <p class="text-xs text-indigo-400 font-bold uppercase tracking-wider">La opción preferida por creadores y profesionales</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-baseline gap-2">
+                        <span id="price-display" class="text-4xl sm:text-5xl font-black text-white tracking-tight">9,99€</span>
+                        <span id="period-display" class="text-slate-400 text-sm font-semibold">/ mes</span>
+                    </div>
+
+                    <p class="text-xs text-slate-400">IVA incluido. Cancela con 1 clic en cualquier momento sin permanencia.</p>
+
+                    <!-- BULLETS DE CARACTERÍSTICAS -->
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">Subtítulos .SRT sincronizados:</strong> Exporta con marcas de tiempo exactas para YouTube, Premiere, DaVinci y CapCut.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">Copia 100% limpia sin marca de agua:</strong> Portapapeles y archivos .TXT sin firmas de ningún tipo.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">Copia directa de fragmentos:</strong> Selecciona cualquier párrafo o frase y cópiala directamente.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">100 transcripciones con IA al mes:</strong> Resúmenes estructurados, titulares y corrección inteligente de texto.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">Modo GPU Cloud Ultrarrápido:</strong> Inferencia Whisper Turbo 62x sin sobrecargar tu PC.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DERECHA: BOTON DE PAGO STRIPE DIRECTO (5/12) -->
+                <div class="md:col-span-5 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center space-y-4 shadow-xl">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-2xl shadow-lg mb-1">
+                        🚀
+                    </div>
+                    
+                    <h3 class="text-lg font-bold text-white">Desbloqueo Inmediato</h3>
+                    <p class="text-xs text-slate-400">Procesamiento seguro mediante pasarela oficial Stripe. Tu cuenta de EchoScribe se actualizará al instante.</p>
+
+                    <button onclick="iniciarCheckoutPro()" id="btn-checkout-pro" class="w-full btn-gradient text-white font-extrabold py-4 px-6 rounded-2xl shadow-xl transition flex items-center justify-center gap-2 text-base">
+                        <span>💳</span>
+                        <span id="btn-cta-text">Suscribirme al Plan Pro</span>
+                    </button>
+
+                    <div class="flex items-center justify-center gap-4 text-[11px] text-slate-500 font-medium pt-2">
+                        <span>🔒 Encriptación SSL 256-bit</span>
+                        <span>⚡ Activación 1s</span>
+                        <span>🛡️ Garantía Total</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLA COMPARATIVA: GRATIS VS PRO -->
+        <div class="mb-16">
+            <h3 class="text-2xl font-black text-white text-center mb-8">Comparativa Detallada: Gratis vs Pro</h3>
+            
+            <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-slate-900/90 text-slate-400 text-xs uppercase font-bold border-b border-slate-800">
+                        <tr>
+                            <th class="p-4 sm:p-5">Característica</th>
+                            <th class="p-4 sm:p-5 text-center">Plan Gratis</th>
+                            <th class="p-4 sm:p-5 text-center text-indigo-400">Plan Pro</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                        <tr>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Exportación de Subtítulos (.SRT)</td>
+                            <td class="p-4 sm:p-5 text-center text-slate-500">Bloqueado</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">✓ Ilimitado</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Copia Limpia sin Marcas de Agua</td>
+                            <td class="p-4 sm:p-5 text-center text-slate-500">Con marca de agua</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">✓ 100% Limpio</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Copia Directa desde el Texto</td>
+                            <td class="p-4 sm:p-5 text-center text-slate-500">Bloqueado</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">✓ Desbloqueado</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Transcripciones IA / Mes</td>
+                            <td class="p-4 sm:p-5 text-center">5 / mes</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-indigo-400">100 / mes</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Duración Máxima de Audio</td>
+                            <td class="p-4 sm:p-5 text-center">Hasta 10 min</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-white">Hasta 30 min (200MB)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 sm:p-5 font-semibold text-white">GPU Cloud Ultrarrápida</td>
+                            <td class="p-4 sm:p-5 text-center text-slate-500">No incluido</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">✓ Whisper Turbo 62x</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PREGUNTAS FRECUENTES -->
+        <div class="max-w-3xl mx-auto space-y-4 mb-16">
+            <h3 class="text-2xl font-black text-white text-center mb-8">Preguntas Frecuentes</h3>
+            
+            <div class="glass-card rounded-2xl p-5 border border-slate-800">
+                <h4 class="font-bold text-white mb-1.5">¿Cómo se activa el Plan Pro en la App de escritorio?</h4>
+                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Al completar el pago en Stripe con tu misma cuenta de correo, abre la App de EchoScribe (o haz clic en 'Sincronizar' en el menú de usuario) y tu aplicación se actualizará instantáneamente a Pro sin reinstalar nada.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 border border-slate-800">
+                <h4 class="font-bold text-white mb-1.5">¿Puedo cancelar mi suscripción cuando quiera?</h4>
+                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Sí, por supuesto. Puedes pausar o cancelar en cualquier momento con un solo clic desde tu panel de ajustes o el portal de Stripe, sin penalizaciones ni preguntas.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 border border-slate-800">
+                <h4 class="font-bold text-white mb-1.5">¿Necesitas más potencia o Prompt Editorial?</h4>
+                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Si requieres transcripciones de audios de hasta 12 horas, 250 análisis de IA mensuales y personalización con prompts editoriales, consulta nuestro <a href="/ultra" class="text-amber-400 hover:underline font-bold">Plan Ultra</a>.</p>
+            </div>
+        </div>
+
+        <!-- CTA FINAL -->
+        <div class="text-center bg-gradient-to-b from-indigo-950/40 to-slate-900/80 border border-indigo-500/30 rounded-3xl p-8 sm:p-12">
+            <h3 class="text-2xl sm:text-3xl font-black text-white mb-4">¿Listo para transcribir sin limitaciones?</h3>
+            <p class="text-sm text-slate-300 max-w-xl mx-auto mb-6">Comienza hoy mismo con EchoScribe Pro y exporta subtítulos perfectos en segundos.</p>
+            <button onclick="iniciarCheckoutPro()" class="btn-gradient text-white font-black py-4 px-8 rounded-2xl shadow-xl transition text-base inline-flex items-center gap-2">
+                <span>⚡</span> <span>Comenzar con EchoScribe Pro</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-500">
+        <p>© 2026 EchoScribe. Todos los derechos reservados. Pagos procesados de forma segura con Stripe.</p>
+    </footer>
+
+    <!-- SCRIPT DE NAVEGACIÓN Y AUTO-LOGIN -->
+    <script src="/nav-auth.js"></script>
+    <script>
+        let currentBillingPro = 'mensual';
+        const STRIPE_PRO_MENSUAL = 'https://buy.stripe.com/8x23cw1JZddAghT4sggjC00';
+        const STRIPE_PRO_ANUAL = 'https://buy.stripe.com/7sY00k0FV8Xkc1D5wkgjC02';
+
+        function toggleBilling() {
+            currentBillingPro = currentBillingPro === 'mensual' ? 'anual' : 'mensual';
+            const circle = document.getElementById('billing-circle');
+            const price = document.getElementById('price-display');
+            const period = document.getElementById('period-display');
+
+            if (currentBillingPro === 'anual') {
+                circle.classList.add('translate-x-7');
+                circle.classList.remove('translate-x-0');
+                price.innerText = '7,99€';
+                period.innerText = '/ mes (95,88€/año)';
+            } else {
+                circle.classList.remove('translate-x-7');
+                circle.classList.add('translate-x-0');
+                price.innerText = '9,99€';
+                period.innerText = '/ mes';
+            }
+        }
+
+        async function iniciarCheckoutPro() {
+            let user = null;
+            if (window.sb) {
+                const { data } = await window.sb.auth.getSession();
+                user = data?.session?.user;
+            }
+
+            let url = currentBillingPro === 'anual' ? STRIPE_PRO_ANUAL : STRIPE_PRO_MENSUAL;
+            if (user?.email) {
+                const sep = url.includes('?') ? '&' : '?';
+                url += `${sep}prefilled_email=${encodeURIComponent(user.email)}&client_reference_id=${encodeURIComponent(user.id)}`;
+            }
+            window.location.href = url;
+        }
+
+        window.addEventListener('echoscribe:auth_ready', (e) => {
+            const user = e.detail?.session?.user;
+            if (user) {
+                console.log('[PRO PAGE] Usuario autenticado:', user.email);
+            }
+        });
+    </script>
+</body>
+</html>
