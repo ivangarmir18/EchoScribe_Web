@@ -29,6 +29,7 @@
 
     <!-- NAVEGACIÓN -->
     <!-- NAVEGACIÓN -->
+    <!-- NAVEGACIÓN -->
     <nav class="fixed top-0 left-0 w-full z-40 glass border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center flex-wrap">
             <a href="/" class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
@@ -41,9 +42,7 @@
             
             <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-5 items-stretch md:items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 p-4 sm:p-5 md:p-0 rounded-2xl md:rounded-none bg-slate-900/98 md:bg-transparent border border-slate-800 md:border-0 shadow-2xl md:shadow-none">
                 <a href="/" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-brand font-bold bg-indigo-500/10 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Inicio</a>
-                <a href="/#precios" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Precios</a>
-                <a href="/pro" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-indigo-400 font-bold hover:text-indigo-300 hover:bg-indigo-500/10 md:hover:bg-transparent md:py-0 md:px-0 transition flex items-center gap-1.5">⚡ Plan Pro</a>
-                <a href="/ultra" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-amber-400 font-bold hover:text-amber-300 hover:bg-amber-500/10 md:hover:bg-transparent md:py-0 md:px-0 transition flex items-center gap-1.5">👑 Plan Ultra</a>
+                <a href="/planes" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Planes</a>
                 <a href="/guias" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Guías</a>
                 <a href="/guia-instalacion" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Instalación</a>
                 <a href="/soporte" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Soporte</a>
@@ -86,7 +85,7 @@
         </p>
         
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10 mb-10">
-            <a href="#precios" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-lg">
+            <a href="/planes" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-lg">
                 ✨ Ver Planes y Precios
             </a>
             <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-500 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-lg shadow-lg">
@@ -166,154 +165,68 @@
         </div>
     </section>
 
-    <!-- PRECIOS -->
-    <section id="precios" class="py-24 relative z-10 border-t border-slate-800/60">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-14">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Planes diseñados para tu ritmo de trabajo</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto mb-8 text-sm">Empieza gratis con 5 transcripciones Cloud al mes o suscríbete a Pro para potencia sin esperas.</p>
+    <!-- SECCIÓN PLANES TEASER -->
+    <section id="planes" class="py-20 relative z-10 border-t border-slate-800/60">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-indigo-500/30 text-center relative overflow-hidden shadow-2xl">
+                <div class="absolute -top-24 -right-24 w-72 h-72 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-purple-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-indigo-500/20 text-indigo-400 border border-indigo-500/40 mb-6 shadow-sm">
+                    ✨ Suscripciones y Opciones
+                </div>
+
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+                    Planes diseñados para tu <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">ritmo de trabajo</span>
+                </h2>
                 
-                <div class="inline-flex items-center bg-slate-900 p-1.5 rounded-2xl border border-slate-800 shadow-inner">
-                    <button id="btn-mensual" onclick="setBilling('mensual')" class="px-6 py-2.5 rounded-xl text-sm font-bold transition bg-indigo-600 text-white shadow-md">Mensual</button>
-                    <button id="btn-anual" onclick="setBilling('anual')" class="px-6 py-2.5 rounded-xl text-sm font-bold transition text-slate-400 hover:text-white">Anual <span class="text-xs text-amber-400 font-extrabold ml-1">-37%</span></button>
-                </div>
-            </div>
+                <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Comienza con nuestro plan Gratuito o desbloquea transcripciones ultrarrápidas en GPU Cloud, subtítulos .SRT sincronizados y Prompts Editoriales con los planes Pro y Ultra.
+                </p>
 
-            <div class="grid lg:grid-cols-3 gap-8 items-stretch">
-                <!-- GRATUITO -->
-                <div class="glass-card p-8 rounded-3xl flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2 text-slate-300">Gratuito</h3>
-                        <p class="text-xs text-slate-400 mb-6">Para pruebas esporádicas y audios breves.</p>
-                        <div class="text-4xl font-extrabold mb-6">0 € <span class="text-lg font-normal text-slate-500">/mes</span></div>
-                        <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium">
-                            <li class="flex gap-2 bg-indigo-950/40 p-2.5 rounded-xl border border-indigo-500/20">
-                                <span>🚀</span>
-                                <span><strong>5 transcripciones rápidas en la nube al mes</strong> (Modo Pro en GPU, máx. 30 min por audio).</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>✨</span>
-                                <span><strong>30 análisis con IA al mes</strong> en local (máx. 30 min por audio).</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>⚡</span>
-                                <span><strong>60 transcripciones básicas al mes</strong> procesadas en la CPU de tu equipo.</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>📥</span>
-                                <span><strong>100 descargas al mes</strong> (MP3 128 kbps / Vídeo 720p).</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>✂️</span>
-                                <span><strong>Recorte y Trimming</strong>: Descarga o transcribe fragmentos específicos seleccionando inicio y fin.</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>📄</span>
-                                <span>Exportación en texto plano <strong>.TXT</strong>.</span>
-                            </li>
-                            <li class="flex gap-2 opacity-70">
-                                <span>💧</span>
-                                <span>Textos exportados con marca de agua.</span>
-                            </li>
+                <!-- Grid de resumen de los 3 planes -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-left mb-10">
+                    <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl">
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Gratuito</div>
+                        <div class="text-2xl font-black text-white mb-3">0 € <span class="text-xs font-normal text-slate-400">/mes</span></div>
+                        <ul class="text-xs text-slate-300 space-y-2">
+                            <li>✓ 5 transcripciones Cloud/mes</li>
+                            <li>✓ 30 análisis IA locales</li>
+                            <li>✓ Exportación .TXT</li>
                         </ul>
                     </div>
-                    <button onclick="openAuthModal('register')" class="w-full py-4 rounded-xl font-bold bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">Crear cuenta gratis</button>
-                </div>
 
-                <!-- PRO -->
-                <div class="glass-card p-8 rounded-3xl border-2 border-indigo-500 relative transform lg:-translate-y-4 shadow-2xl shadow-indigo-500/20 flex flex-col justify-between">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-indigo-500 text-white text-xs font-black px-4 py-1.5 rounded-full shadow-lg tracking-wider">⭐ MÁS POPULAR</div>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-400">Pro</h3>
-                        <p class="text-xs text-indigo-200/70 mb-6">El preferido de redactores, podcasters y editores de vídeo.</p>
-                        <div class="text-4xl font-extrabold mb-6 text-white">
-                            <span id="price-pro">7,99 €</span> <span id="period-pro" class="text-lg font-normal text-slate-400">/mes</span>
+                    <div class="bg-indigo-950/40 border border-indigo-500/40 p-5 rounded-2xl relative shadow-lg">
+                        <div class="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-1 flex items-center justify-between">
+                            <span>Pro</span>
+                            <span class="bg-indigo-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full">POPULAR</span>
                         </div>
-                        <ul class="space-y-4 mb-8 text-sm text-slate-200 font-medium">
-                            <li class="flex gap-2">
-                                <span>☁️</span>
-                                <span><strong>100 análisis con IA al mes</strong> en GPU Cloud (hasta 3 h por archivo / o <strong>200 horas/mes</strong>).</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>⚡</span>
-                                <span><strong>150 transcripciones rápidas</strong> en servidores cloud dedicados.</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>🎬</span>
-                                <span><strong>Subtítulos .SRT sincronizados</strong> para Premiere, DaVinci y CapCut.</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>📥</span>
-                                <span><strong>200 descargas al mes</strong>: Audio a 320 kbps y vídeo en 1080p HD.</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>✂️</span>
-                                <span><strong>Recorte y Trimming ilimitado</strong>: Descarga clips en HD y transcribe fragmentos al vuelo sin procesar horas de más.</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>💧</span>
-                                <span><strong>Sin marcas de agua</strong> y con copia limpia desbloqueada.</span>
-                            </li>
+                        <div class="text-2xl font-black text-white mb-3">7,99 € <span class="text-xs font-normal text-slate-400">/mes</span></div>
+                        <ul class="text-xs text-slate-200 space-y-2">
+                            <li>✓ Subtítulos .SRT sincronizados</li>
+                            <li>✓ 100 análisis IA en GPU Cloud</li>
+                            <li>✓ Copia 100% limpia sin marcas</li>
                         </ul>
                     </div>
-                    <div class="space-y-3">
-                        <button onclick="checkoutPro()" id="btn-pro" class="w-full py-4 rounded-xl font-bold btn-gradient text-white shadow-lg flex items-center justify-center gap-2">
-                            <span>⚡</span> <span>Suscribirse a Pro</span>
-                        </button>
-                        <a href="/pro" class="block w-full py-2.5 rounded-xl font-semibold text-xs text-center text-indigo-300 hover:text-white bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 transition">
-                            Ver todos los detalles del Plan Pro →
-                        </a>
+
+                    <div class="bg-amber-950/30 border border-amber-500/40 p-5 rounded-2xl">
+                        <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1 flex items-center justify-between">
+                            <span>Ultra</span>
+                            <span class="bg-amber-500/20 text-amber-300 text-[9px] font-black px-2 py-0.5 rounded-full border border-amber-500/30">MÁXIMO</span>
+                        </div>
+                        <div class="text-2xl font-black text-white mb-3">19,99 € <span class="text-xs font-normal text-slate-400">/mes</span></div>
+                        <ul class="text-xs text-slate-200 space-y-2">
+                            <li>✓ Prompt Editorial Personalizado</li>
+                            <li>✓ 250 análisis IA (hasta 12 horas)</li>
+                            <li>✓ Cola VIP prioritaria en GPU L4</li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- ULTRA -->
-                <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border border-amber-500/30">
-                    <div>
-                        <div class="inline-block px-2.5 py-0.5 rounded bg-amber-500/10 text-amber-400 text-[10px] font-black uppercase tracking-wider mb-2 border border-amber-500/20">Máximo Rendimiento Cloud</div>
-                        <h3 class="text-2xl font-bold mb-2 text-amber-400">Ultra</h3>
-                        <p class="text-xs text-slate-400 mb-6">Potencia para agencias, redacciones y directos extensos.</p>
-                        <div class="text-4xl font-extrabold mb-6 text-white">
-                            <span id="price-ultra">19,99 €</span> <span id="period-ultra" class="text-lg font-normal text-slate-500">/mes</span>
-                        </div>
-                        <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium">
-                            <li class="flex gap-2">
-                                <span>🚀</span>
-                                <span><strong>250 análisis con IA al mes</strong> en GPU Cloud (hasta 12 h por archivo / o <strong>750 horas/mes</strong>).</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>⚡</span>
-                                <span><strong>500 transcripciones rápidas</strong> en GPU Cloud L4 (Whisper Turbo 62x).</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>📝</span>
-                                <span><strong>Glosario y Contexto Prioritario</strong>: Máxima precisión en nombres propios.</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>🎬</span>
-                                <span><strong>Exportación completa (.SRT y .TXT)</strong> sin restricciones.</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>📥</span>
-                                <span><strong>Descargas ilimitadas</strong> en calidad original disponible (4K / 320 kbps).</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>✂️</span>
-                                <span><strong>Recorte & Clipping Instantáneo</strong>: Extracción de fragmentos de directos largos en segundos.</span>
-                            </li>
-                            <li class="flex gap-2">
-                                <span>👑</span>
-                                <span><strong>Prioridad absoluta</strong> en servidores dedicados.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="space-y-3">
-                        <button onclick="checkoutUltra()" id="btn-ultra" class="w-full py-4 rounded-xl font-bold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 transition flex items-center justify-center gap-2">
-                            <span>👑</span> <span>Suscribirse a Ultra</span>
-                        </button>
-                        <a href="/ultra" class="block w-full py-2.5 rounded-xl font-semibold text-xs text-center text-amber-300 hover:text-white bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 transition">
-                            Ver todos los detalles del Plan Ultra →
-                        </a>
-                    </div>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="/planes" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-base transition">
+                        <span>✨</span> <span>Ver todos los Planes y Comparativa Completa</span>
+                    </a>
                 </div>
             </div>
         </div>
