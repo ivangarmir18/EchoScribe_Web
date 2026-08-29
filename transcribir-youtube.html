@@ -58,10 +58,22 @@
                 <a href="/guias" class="text-slate-300 hover:text-white transition">Guías y Herramientas</a>
                 <a href="/guia-instalacion" class="text-slate-300 hover:text-white transition">Instalación Windows</a>
                 <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
-                <a href="/#demo-interactiva" class="btn-gradient text-white px-4 py-2 rounded-xl shadow-lg text-xs">Probar Online</a>
+                
+                <div id="nav-guest" class="flex gap-3 items-center">
+                    <a href="/#precios" class="text-slate-300 hover:text-brand transition">Iniciar Sesión</a>
+                </div>
+                <div id="nav-user" class="hidden flex gap-3 items-center">
+                    <a href="/ajustes" class="bg-slate-800 hover:bg-slate-700 text-white py-2 px-4 rounded-xl border border-slate-700 transition flex items-center gap-2 text-xs font-bold shadow-md">
+                        <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
+                        <span id="nav-user-label">Mi Cuenta</span>
+                    </a>
+                    <button onclick="cerrarSesionWeb()" class="text-slate-400 hover:text-rose-400 text-xs font-bold transition">Salir</button>
+                </div>
             </div>
         </div>
     </nav>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/nav-auth.js"></script>
     <script>
         document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
             document.getElementById('nav-links')?.classList.toggle('hidden');
