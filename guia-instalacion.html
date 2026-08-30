@@ -183,8 +183,8 @@
     <header class="pt-36 pb-16 px-6 relative overflow-hidden text-center">
         <div class="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none"></div>
         <div class="max-w-4xl mx-auto relative z-10">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-6">
-                <span>📘 MANUAL DE USUARIO & INSTALACIÓN</span>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 mb-6">
+                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span> MANUAL DE USUARIO & INSTALACIÓN
             </div>
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight">
                 Cómo Instalar y Usar <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400">EchoScribe en Windows</span>
@@ -194,10 +194,12 @@
             </p>
             <div class="flex justify-center gap-4 flex-wrap">
                 <a href="/#descarga" class="btn-gradient text-white font-bold px-8 py-4 rounded-xl shadow-lg flex items-center gap-2">
-                    <span>⬇️</span> Descargar EchoScribe Setup
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span>Descargar EchoScribe Setup</span>
                 </a>
-                <a href="#paso-smartscreen" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-7 py-4 rounded-xl transition">
-                    🛡️ Aviso Windows SmartScreen
+                <a href="#paso-smartscreen" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold px-7 py-4 rounded-xl transition flex items-center gap-2">
+                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    <span>Aviso Windows SmartScreen</span>
                 </a>
             </div>
         </div>
@@ -220,8 +222,8 @@
                             Descarga el archivo ejecutable oficial <code>EchoScribe_Setup.exe</code> directamente desde nuestra web. El instalador pesa solo ~300 MB e incluye todos los componentes necesarios para trabajar en GPU Cloud o en CPU local.
                         </p>
                         <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 text-xs text-slate-400 flex items-center gap-3">
-                            <span class="text-xl">💡</span>
-                            <span>Asegúrate de descargarlo siempre desde <strong>echoscribe.vercel.app</strong> o <strong>echoscribe.es</strong> para garantizar la versión auténtica y libre de modificaciones.</span>
+                            <span class="w-2 h-2 rounded-full bg-indigo-400 shrink-0"></span>
+                            <span>Asegúrate de descargarlo siempre desde <strong>echoscribe.es</strong> para garantizar la versión auténtica y libre de modificaciones.</span>
                         </div>
                     </div>
                 </div>
@@ -234,8 +236,8 @@
                         2
                     </div>
                     <div class="flex-1">
-                        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-black bg-amber-500/20 text-amber-400 border border-amber-500/30 mb-2">
-                            ⚠️ IMPORTANTE EN WINDOWS 10 / 11
+                        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-2">
+                            <span>AVISO HABITUAL EN WINDOWS 10 / 11</span>
                         </div>
                         <h2 class="text-2xl font-bold mb-3 text-white">¿Te aparece "Windows protegió su PC"? (SmartScreen)</h2>
                         <p class="text-slate-300 leading-relaxed text-sm mb-4">
@@ -265,12 +267,13 @@
                         </div>
 
                         <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-xs text-slate-300 space-y-2">
-                            <p class="font-bold text-slate-200">🔍 ¿Por qué muestra Windows este aviso?</p>
+                            <p class="font-bold text-slate-200">¿Por qué muestra Windows este aviso?</p>
                             <p class="leading-relaxed">
                                 Microsoft aplica este filtro a todas las aplicaciones creadas por desarrolladores independientes que aún no tienen miles de descargas acumuladas o que no pagan los costosos certificados anuales de Microsoft (más de 600 €/año).
                             </p>
                             <p class="text-emerald-400 font-semibold flex items-center gap-1.5">
-                                <span>🔒</span> EchoScribe es 100% segura, limpia de código y no contiene ningún tipo de malware ni rastreadores.
+                                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                <span>EchoScribe es 100% segura, limpia de código y no contiene ningún tipo de malware ni rastreadores.</span>
                             </p>
                         </div>
                     </div>
@@ -291,15 +294,15 @@
                         </p>
                         <ul class="space-y-2.5 text-xs text-slate-300 mb-4">
                             <li class="flex items-center gap-2">
-                                <span class="text-indigo-400 font-bold">✓</span>
+                                <svg class="w-3.5 h-3.5 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                                 <span>Elige la carpeta de destino o deja la ruta recomendada por defecto.</span>
                             </li>
                             <li class="flex items-center gap-2">
-                                <span class="text-indigo-400 font-bold">✓</span>
+                                <svg class="w-3.5 h-3.5 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                                 <span>Marca la casilla <strong>"Crear acceso directo en el Escritorio"</strong> para tener acceso inmediato.</span>
                             </li>
                             <li class="flex items-center gap-2">
-                                <span class="text-indigo-400 font-bold">✓</span>
+                                <svg class="w-3.5 h-3.5 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                                 <span>Haz clic en <strong>"Instalar"</strong> y en pocos segundos el proceso habrá finalizado.</span>
                             </li>
                         </ul>
@@ -321,16 +324,16 @@
                         </p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 text-xs text-slate-300">
                             <div class="bg-slate-900/50 p-4 rounded-2xl border border-slate-800">
-                                <span class="text-indigo-400 font-bold block mb-1">📦 1. Desempaquetado de librerías</span>
+                                <span class="text-indigo-400 font-bold block mb-1">1. Desempaquetado de librerías</span>
                                 <span>Prepara los controladores multimedia locales (FFmpeg y yt-dlp) en tu carpeta de usuario.</span>
                             </div>
                             <div class="bg-slate-900/50 p-4 rounded-2xl border border-slate-800">
-                                <span class="text-indigo-400 font-bold block mb-1">☁️ 2. Verificación de servidores Cloud</span>
+                                <span class="text-indigo-400 font-bold block mb-1">2. Verificación de servidores Cloud</span>
                                 <span>Comprueba la conexión de baja latencia con los clústeres GPU L4 de transcripción rápida.</span>
                             </div>
                         </div>
                         <p class="text-xs text-slate-400">
-                            ⚡ <strong>A partir de este primer inicio</strong>, las aperturas posteriores de la aplicación son instantáneas.
+                            <strong>A partir de este primer inicio</strong>, las aperturas posteriores de la aplicación son instantáneas.
                         </p>
                     </div>
                 </div>
@@ -343,22 +346,22 @@
                         5
                     </div>
                     <div class="flex-1">
-                        <div class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-1">¡A Transcribir!</div>
+                        <div class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-1">Primer Uso</div>
                         <h2 class="text-2xl font-bold mb-3 text-white">Inicia sesión y transcribe tu primer contenido</h2>
                         <p class="text-slate-300 leading-relaxed text-sm mb-4">
                             Ya tienes EchoScribe listo para trabajar. El flujo de trabajo no puede ser más sencillo:
                         </p>
                         <div class="space-y-3 text-xs text-slate-300">
                             <div class="flex items-center gap-3 bg-slate-900/50 p-3 rounded-xl border border-slate-800">
-                                <span class="text-lg">🔑</span>
+                                <span class="font-bold text-emerald-400">A</span>
                                 <span><strong>Paso A:</strong> Inicia sesión con el email y contraseña de tu cuenta (o regístrate gratis con 1 clic).</span>
                             </div>
                             <div class="flex items-center gap-3 bg-slate-900/50 p-3 rounded-xl border border-slate-800">
-                                <span class="text-lg">🔗</span>
-                                <span><strong>Paso B:</strong> Pega cualquier enlace de YouTube/X/Twitch o haz clic en <strong>"📁 Archivo Local"</strong> para seleccionar un audio o vídeo (.mp3, .wav, .mp4, .m4a).</span>
+                                <span class="font-bold text-emerald-400">B</span>
+                                <span><strong>Paso B:</strong> Pega cualquier enlace de YouTube/X/Twitch o haz clic en <strong>"Archivo Local"</strong> para seleccionar un audio o vídeo (.mp3, .wav, .mp4, .m4a).</span>
                             </div>
                             <div class="flex items-center gap-3 bg-slate-900/50 p-3 rounded-xl border border-slate-800">
-                                <span class="text-lg">🚀</span>
+                                <span class="font-bold text-emerald-400">C</span>
                                 <span><strong>Paso C:</strong> Pulsa <strong>"Comenzar Transcripción"</strong>. En pocos segundos tendrás el texto perfecto, titulares, resumen y subtítulos .SRT listos para copiar o exportar.</span>
                             </div>
                         </div>

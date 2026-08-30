@@ -198,8 +198,8 @@
 
     <!-- HERO -->
     <header class="pt-40 pb-16 px-6 text-center max-w-5xl mx-auto relative">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold mb-6 tracking-wide">
-            <span>🔴</span> Transcripción de YouTube en Servidores GPU L4
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-300 text-xs font-semibold mb-6 tracking-wide">
+            <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> Transcripción de YouTube en Servidores GPU L4
         </div>
         <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
             Transcribe cualquier vídeo de <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-pink-400 to-purple-400">YouTube a Texto y Subtítulos .SRT</span>
@@ -210,22 +210,12 @@
 
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
             <a href="/#precios" id="download-btn" class="btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-base w-full sm:w-auto">
-                🚀 Descargar EchoScribe Gratis
+                <span>Descargar EchoScribe Gratis</span>
+                <span>→</span>
             </a>
-<div id="download-tooltip" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded-md opacity-0 transition-opacity duration-300 z-50">Descarga iniciada. Si Windows muestra la pantalla azul de SmartScreen, pulsa "Más información" → "Ejecutar de todas formas" (ver guía rápida).</div>
-<script>
-  document.getElementById('download-btn').addEventListener('click', function(e) {
-    const tooltip = document.getElementById('download-tooltip');
-    tooltip.classList.remove('opacity-0');
-    tooltip.classList.add('opacity-100');
-    setTimeout(() => {
-      tooltip.classList.remove('opacity-100');
-      tooltip.classList.add('opacity-0');
-    }, 2000);
-  });
-</script>
             <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-base w-full sm:w-auto shadow-lg">
-                💻 Descargar App Oficial (.exe)
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                <span>Descargar para Windows (.exe)</span>
             </a>
         </div>
 
@@ -233,17 +223,17 @@
         <div class="glass-card card-interactive p-6 md:p-8 rounded-3xl text-left border border-slate-700/80 shadow-2xl max-w-4xl mx-auto">
             <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
                 <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                     Demostración de Resultado Real de YouTube
                 </span>
                 <span class="text-xs text-slate-500 font-mono">Vídeo: 45 min procesado en 24s</span>
             </div>
             
-            <div class="flex gap-2 overflow-x-auto pb-2 mb-4 text-xs font-bold">
-                <button onclick="mostrarPestanaDemo('titulares')" id="tab-btn-titulares" class="px-4 py-2 rounded-xl bg-indigo-600 text-white transition">📰 Titulares</button>
-                <button onclick="mostrarPestanaDemo('resumen')" id="tab-btn-resumen" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">📝 Resumen</button>
-                <button onclick="mostrarPestanaDemo('texto')" id="tab-btn-texto" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">📄 Texto Corregido</button>
-                <button onclick="mostrarPestanaDemo('srt')" id="tab-btn-srt" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">⏱️ Subtítulos .SRT</button>
+            <div class="flex gap-2 overflow-x-auto pb-2 mb-4 text-xs font-semibold">
+                <button onclick="mostrarPestanaDemo('titulares')" id="tab-btn-titulares" class="px-4 py-2 rounded-xl bg-indigo-600 text-white transition">Titulares</button>
+                <button onclick="mostrarPestanaDemo('resumen')" id="tab-btn-resumen" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">Resumen Fáctico</button>
+                <button onclick="mostrarPestanaDemo('texto')" id="tab-btn-texto" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">Texto Corregido</button>
+                <button onclick="mostrarPestanaDemo('srt')" id="tab-btn-srt" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">Subtítulos .SRT</button>
             </div>
 
             <div id="demo-content-titulares" class="text-sm text-slate-300 leading-relaxed font-mono bg-slate-950/60 p-4 rounded-2xl border border-slate-800">
@@ -270,22 +260,30 @@
         <h2 class="text-3xl font-bold text-center mb-12 text-white">¿Por qué EchoScribe es el mejor transcriptor de YouTube?</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="glass p-6 rounded-2xl border border-slate-800">
-                <div class="text-3xl mb-3">⚡</div>
-                <h3 class="text-lg font-bold text-white mb-2">Velocidad Extrema (140x)</h3>
+                <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Velocidad Extrema</h3>
                 <p class="text-xs text-slate-400 leading-relaxed">Vídeos de 1 hora se procesan en GPU L4 y se entregan formateados en solo 25-30 segundos.</p>
             </div>
             <div class="glass p-6 rounded-2xl border border-slate-800">
-                <div class="text-3xl mb-3">✂️</div>
+                <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879a3 3 0 11-4.242-4.242L10.758 10.758M12 12l2.879-2.879a3 3 0 114.242 4.242L16.242 16.242"/></svg>
+                </div>
                 <h3 class="text-lg font-bold text-white mb-2">Recorte Preciso (Trim)</h3>
                 <p class="text-xs text-slate-400 leading-relaxed">¿Solo quieres 3 minutos de un directo de 4 horas? Ajusta inicio y fin para descargar o transcribir solo ese clip.</p>
             </div>
             <div class="glass p-6 rounded-2xl border border-slate-800">
-                <div class="text-3xl mb-3">🎯</div>
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
                 <h3 class="text-lg font-bold text-white mb-2">Nombres Propios Exactos</h3>
                 <p class="text-xs text-slate-400 leading-relaxed">La IA contrasta el título y el contexto del vídeo para escribir a la perfección futbolistas, marcas y tecnicismos.</p>
             </div>
             <div class="glass p-6 rounded-2xl border border-slate-800">
-                <div class="text-3xl mb-3">🎬</div>
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+                </div>
                 <h3 class="text-lg font-bold text-white mb-2">Subtítulos .SRT Listos</h3>
                 <p class="text-xs text-slate-400 leading-relaxed">Descarga el archivo .SRT con códigos de tiempo milimétricos y arrástralo directamente a Premiere o CapCut.</p>
             </div>
