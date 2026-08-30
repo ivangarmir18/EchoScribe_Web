@@ -17,7 +17,7 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Historial requerido' });
         }
 
-        const supabaseUrl = "https://fpyawgqebztdqlysvdrb.supabase.co";
+        const supabaseUrl = "https://ggmaiqxbidcxhbungnpx.supabase.co";
         const supabaseAnonKey = "sb_publishable_f0PoBtsO7K98ck4Uh-0tGw_hXqxhWH6";
 
         let geminiKey = process.env.GEMINI_API_KEY || "";
@@ -61,7 +61,7 @@ Reglas clave:
 4. Privacidad: Borrado automático a las 24 horas (TTL 24h), canal seguro HTTPS/TLS 1.3, cero entrenamiento de modelos de IA con datos de usuarios.
 5. Formatos compatibles: MP3, WAV, MP4, M4A, AAC, MKV, FLAC, WebM, enlaces de YouTube, Twitch y X.
 6. Subtítulos .SRT: Sincronización milimétrica para Premiere, CapCut, DaVinci Resolve.
-7. Si el usuario escribe mensajes cortos de seguimiento (ej: 'era un directo', 'en mp4', 'como lo descargo'), mantén el hilo de la conversación y responde adaptado a su contexto previo de forma clara.
+7. Si el usuario escribe mensajes cortos de seguimiento (ej: 'era un directo', 'en mp4', 'como lo descargo'), mantén el hilo de la conversación y responde adaptado a su contexto previo de forma natural y clara.
 8. Formatea tu respuesta con HTML limpio y legible (usa <strong>, <br>, <li>, etc.), sin emojis informales tipo IA cutre.`;
 
         const contents = historial.map(msg => ({
@@ -69,7 +69,7 @@ Reglas clave:
             parts: [{ text: msg.text || '' }]
         }));
 
-        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
+        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${geminiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
