@@ -178,8 +178,8 @@
     <section class="pt-40 pb-16 px-6 text-center max-w-5xl mx-auto relative overflow-hidden">
         <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-full max-w-[600px] h-[400px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none"></div>
         
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-bold mb-6 tracking-wide relative z-10">
-            <span>⚡</span> Servidores Cloud GPU de Alta Velocidad
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold mb-6 tracking-wide relative z-10">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span> Servidores Cloud GPU de Alta Velocidad
         </div>
 
         <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight relative z-10 tracking-tight">
@@ -193,34 +193,44 @@
         </p>
         
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10 mb-10">
-            <a href="/planes" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-lg">
-                ✨ Ver Planes y Precios
+            <a href="/planes" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-base group">
+                <span>Ver Planes y Precios</span>
+                <span class="text-sm transition-transform group-hover:translate-x-1">→</span>
             </a>
-            <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-500 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-lg shadow-lg">
-                💻 Descargar App Oficial (.exe)
+            <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-500 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-base shadow-lg">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                <span>Descargar para Windows (.exe)</span>
             </a>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto text-left relative z-10 reveal">
             <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive">
-                <div class="text-2xl mb-2">⚡</div>
+                <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
                 <strong class="text-white block text-sm mb-1">Inferencia en GPU Cloud</strong>
-                <p class="text-xs text-slate-400">Procesa 30 minutos de rueda de prensa en apenas 10-15 segundos sin consumir recursos de tu ordenador.</p>
+                <p class="text-xs text-slate-400 leading-relaxed">Procesa 30 minutos de rueda de prensa en apenas 10-15 segundos sin consumir recursos de tu ordenador.</p>
             </div>
             <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive">
-                <div class="text-2xl mb-2">✂️</div>
+                <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879a3 3 0 11-4.242-4.242L10.758 10.758M12 12l2.879-2.879a3 3 0 114.242 4.242L16.242 16.242"/></svg>
+                </div>
                 <strong class="text-white block text-sm mb-1">Recorte y Trimming</strong>
-                <p class="text-xs text-slate-400">Define marcas de inicio y fin para descargar o transcribir solo el fragmento exacto que necesitas.</p>
+                <p class="text-xs text-slate-400 leading-relaxed">Define marcas de inicio y fin para descargar o transcribir solo el fragmento exacto que necesitas.</p>
             </div>
             <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive">
-                <div class="text-2xl mb-2">🎯</div>
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
                 <strong class="text-white block text-sm mb-1">Rigor Periodístico IA</strong>
-                <p class="text-xs text-slate-400">Contrasta nombres propios, plantillas deportivas y tecnicismos en tiempo real para evitar confusiones.</p>
+                <p class="text-xs text-slate-400 leading-relaxed">Contrasta nombres propios, plantillas deportivas y tecnicismos en tiempo real para evitar confusiones.</p>
             </div>
             <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive">
-                <div class="text-2xl mb-2">🎬</div>
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+                </div>
                 <strong class="text-white block text-sm mb-1">Subtítulos .SRT Sincronizados</strong>
-                <p class="text-xs text-slate-400">Pistas temporales al milisegundo listas para importar directamente en tu editor de vídeo.</p>
+                <p class="text-xs text-slate-400 leading-relaxed">Pistas temporales al milisegundo listas para importar directamente en tu editor de vídeo.</p>
             </div>
         </div>
 
@@ -228,8 +238,8 @@
         <div class="mt-14 glass-card card-interactive p-6 md:p-8 rounded-3xl text-left border border-slate-700/80 shadow-2xl relative z-10 max-w-4xl mx-auto reveal pulse-glow-border">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 border-b border-slate-800 pb-3">
                 <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
-                    Demostración Interactiva (Sin Registro)
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Demostración Interactiva
                 </span>
                 <span class="text-xs text-slate-500 font-mono">Simulador de Transcripción Cloud L4 + IA</span>
             </div>
@@ -237,16 +247,16 @@
             <p class="text-xs text-slate-400 mb-4">Selecciona un ejemplo real para ver cómo la IA extrae titulares, corrige nombres propios complejos y sincroniza subtítulos .SRT:</p>
 
             <div class="grid grid-cols-3 gap-2 mb-4">
-                <button onclick="cambiarEjemploDemo('futbol')" id="btn-ej-futbol" class="p-2.5 rounded-xl text-xs font-bold bg-indigo-600 text-white transition text-center shadow-md">⚽ Rueda de Prensa Fútbol</button>
-                <button onclick="cambiarEjemploDemo('stream')" id="btn-ej-stream" class="p-2.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-400 hover:text-white transition text-center">🎮 Directo de Twitch</button>
-                <button onclick="cambiarEjemploDemo('tech')" id="btn-ej-tech" class="p-2.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-400 hover:text-white transition text-center">💻 Entrevista Tech / IA</button>
+                <button onclick="cambiarEjemploDemo('futbol')" id="btn-ej-futbol" class="p-2.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white transition text-center shadow-md">Rueda de Prensa Deportiva</button>
+                <button onclick="cambiarEjemploDemo('stream')" id="btn-ej-stream" class="p-2.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white transition text-center">Directo de Twitch</button>
+                <button onclick="cambiarEjemploDemo('tech')" id="btn-ej-tech" class="p-2.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-400 hover:text-white transition text-center">Entrevista Tech / IA</button>
             </div>
 
-            <div class="flex gap-2 overflow-x-auto pb-2 mb-3 text-xs font-bold">
-                <button onclick="mostrarPestanaDemo('titulares')" id="tab-btn-titulares" class="px-4 py-2 rounded-xl bg-indigo-600 text-white transition">📰 Titulares</button>
-                <button onclick="mostrarPestanaDemo('resumen')" id="tab-btn-resumen" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">📝 Resumen Fáctico</button>
-                <button onclick="mostrarPestanaDemo('texto')" id="tab-btn-texto" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">📄 Transcripción Corregida</button>
-                <button onclick="mostrarPestanaDemo('srt')" id="tab-btn-srt" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">⏱️ Subtítulos .SRT</button>
+            <div class="flex gap-2 overflow-x-auto pb-2 mb-3 text-xs font-semibold">
+                <button onclick="mostrarPestanaDemo('titulares')" id="tab-btn-titulares" class="px-4 py-2 rounded-xl bg-indigo-600 text-white transition">Titulares</button>
+                <button onclick="mostrarPestanaDemo('resumen')" id="tab-btn-resumen" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">Resumen Fáctico</button>
+                <button onclick="mostrarPestanaDemo('texto')" id="tab-btn-texto" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">Transcripción Corregida</button>
+                <button onclick="mostrarPestanaDemo('srt')" id="tab-btn-srt" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition">Subtítulos .SRT</button>
             </div>
 
             <div id="demo-content-titulares" class="text-xs md:text-sm text-slate-200 leading-relaxed font-mono bg-slate-950/70 p-4 rounded-2xl border border-slate-800">
@@ -268,7 +278,7 @@
 
             <div class="mt-4 pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center gap-3">
                 <span class="text-xs text-slate-400">¿Quieres transcribir tus propios audios y vídeos completos?</span>
-                <a href="/planes" class="btn-gradient text-white text-xs font-bold py-2.5 px-5 rounded-xl shadow-md transition">Ver Planes y Precios</a>
+                <a href="/planes" class="btn-gradient text-white text-xs font-bold py-2.5 px-5 rounded-xl shadow-md transition">Ver Planes y Precios →</a>
             </div>
         </div>
     </section>
@@ -280,8 +290,8 @@
                 <div class="absolute -top-24 -right-24 w-72 h-72 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-purple-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-indigo-500/20 text-indigo-400 border border-indigo-500/40 mb-6 shadow-sm">
-                    ✨ Suscripciones y Opciones
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 mb-6 shadow-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span> Suscripciones y Opciones
                 </div>
 
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">
@@ -297,43 +307,44 @@
                     <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl card-interactive">
                         <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Gratuito</div>
                         <div class="text-2xl font-black text-white mb-3">0 € <span class="text-xs font-normal text-slate-400">/mes</span></div>
-                        <ul class="text-xs text-slate-300 space-y-2">
-                            <li>✓ 5 transcripciones Cloud/mes</li>
-                            <li>✓ 30 análisis IA locales</li>
-                            <li>✓ Exportación .TXT</li>
+                        <ul class="text-xs text-slate-300 space-y-2 font-medium">
+                            <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>5 transcripciones Cloud/mes</span></li>
+                            <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>30 análisis IA locales</span></li>
+                            <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>Exportación .TXT</span></li>
                         </ul>
                     </div>
 
                     <div class="bg-indigo-950/40 border border-indigo-500/40 p-5 rounded-2xl relative shadow-lg card-interactive">
                         <div class="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-1 flex items-center justify-between">
                             <span>Pro</span>
-                            <span class="bg-indigo-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full">POPULAR</span>
+                            <span class="bg-indigo-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full">POPULAR</span>
                         </div>
                         <div class="text-2xl font-black text-white mb-3">7,99 € <span class="text-xs font-normal text-slate-400">/mes</span></div>
-                        <ul class="text-xs text-slate-200 space-y-2">
-                            <li>✓ Subtítulos .SRT sincronizados</li>
-                            <li>✓ 100 análisis IA en GPU Cloud</li>
-                            <li>✓ Copia 100% limpia sin marcas</li>
+                        <ul class="text-xs text-slate-200 space-y-2 font-medium">
+                            <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>Subtítulos .SRT sincronizados</span></li>
+                            <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>100 análisis IA en GPU Cloud</span></li>
+                            <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-indigo-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>Copia 100% limpia sin marcas</span></li>
                         </ul>
                     </div>
 
                     <div class="bg-amber-950/30 border border-amber-500/40 p-5 rounded-2xl card-interactive">
                         <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1 flex items-center justify-between">
                             <span>Ultra</span>
-                            <span class="bg-amber-500/20 text-amber-300 text-[9px] font-black px-2 py-0.5 rounded-full border border-amber-500/30">MÁXIMO</span>
+                            <span class="bg-amber-500/20 text-amber-300 text-[9px] font-bold px-2 py-0.5 rounded-full border border-amber-500/30">MÁXIMO</span>
                         </div>
                         <div class="text-2xl font-black text-white mb-3">19,99 € <span class="text-xs font-normal text-slate-400">/mes</span></div>
-                        <ul class="text-xs text-slate-200 space-y-2">
-                            <li>✓ Prompt Editorial Personalizado</li>
-                            <li>✓ 250 análisis IA (hasta 12 horas)</li>
-                            <li>✓ Cola VIP prioritaria en GPU L4</li>
+                        <ul class="text-xs text-slate-200 space-y-2 font-medium">
+                            <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>Prompt Editorial Personalizado</span></li>
+                            <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>250 análisis IA (hasta 12 horas)</span></li>
+                            <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>Cola VIP prioritaria en GPU L4</span></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a href="/planes" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-base transition">
-                        <span>✨</span> <span>Ver todos los Planes y Comparativa Completa</span>
+                    <a href="/planes" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-base transition group">
+                        <span>Ver todos los Planes y Comparativa Completa</span>
+                        <span class="text-sm transition-transform group-hover:translate-x-1">→</span>
                     </a>
                 </div>
             </div>
@@ -347,12 +358,16 @@
             <p class="text-slate-400 text-sm leading-relaxed mb-8">Sin permanencias ni sorpresas. Todo bajo el control de tu portal de cliente seguro.</p>
             <div class="grid md:grid-cols-2 gap-6 text-left">
                 <div class="glass p-6 rounded-2xl border border-slate-800">
-                    <div class="text-2xl mb-2">📅</div>
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    </div>
                     <h3 class="text-white font-bold mb-2">Ciclos Claros de Renovación</h3>
                     <p class="text-xs text-slate-400 leading-relaxed">Tu suscripción renueva automáticamente cada mes o año siguiendo la fecha exacta de contratación.</p>
                 </div>
                 <div class="glass p-6 rounded-2xl border border-slate-800">
-                    <div class="text-2xl mb-2">🛑</div>
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
                     <h3 class="text-white font-bold mb-2">Cancela en 1 Clic con Stripe</h3>
                     <p class="text-xs text-slate-400 leading-relaxed">Puedes pausar o cancelar en cualquier instante. Mantendrás todas las ventajas hasta el último día del periodo contratado.</p>
                 </div>
@@ -403,7 +418,7 @@
     <div id="profile-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card card-interactive p-8 rounded-3xl w-full max-w-lg shadow-2xl relative">
             <button onclick="closeProfileModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold transition">✕</button>
-            <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-3 flex items-center gap-2">👤 Panel de Usuario</h2>
+            <h2 class="text-2xl font-bold text-white mb-6 border-b border-slate-700 pb-3 flex items-center gap-2">Mi Cuenta</h2>
             <div class="space-y-6">
                 <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-700/80">
                     <p class="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">Correo Electrónico</p>
@@ -425,8 +440,9 @@
                     </div>
                     <div id="profile-action-buttons" class="flex gap-2"></div>
                     <div class="pt-2 border-t border-slate-800">
-                        <button onclick="abrirPortalStripe()" class="w-full py-2.5 rounded-xl text-xs font-bold bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 transition flex items-center justify-center gap-2">
-                            <span>⚙️</span><span>Gestionar suscripción o cancelar</span>
+                        <button onclick="abrirPortalStripe()" class="w-full py-2.5 rounded-xl text-xs font-bold bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 transition flex items-center justify-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span>Gestionar suscripción o cancelar</span>
                         </button>
                         <p class="text-[10px] text-slate-400 text-center mt-1.5">La gestión se realiza en el portal cifrado de Stripe.</p>
                     </div>
