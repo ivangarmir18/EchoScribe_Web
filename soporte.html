@@ -396,149 +396,710 @@
     <script>
         const KNOWLEDGE_BASE = [
             {
-                id: 'no_transcribe',
-                keywords: ['no va', 'no funciona', 'no transcribe', 'error', 'falla', 'fallo', 'problema', 'no carga', 'se traba', 'se queda', 'bloqueado', 'pantalla negra', 'no avanza', 'incidencia', 'parado', 'pillado'],
-                title: "Guía de Diagnóstico: ¿Por qué no funciona la transcripción?",
-                response: `<strong>Diagnóstico rápido para solucionar el problema:</strong><br><br>
-                <strong>1. Enlaces de YouTube / Twitch:</strong> Comprueba que el vídeo no sea privado ni tenga restricción de edad que requiera inicio de sesión en el navegador.<br>
-                <strong>2. Archivos Locales:</strong> Asegúrate de que el archivo no esté abierto o en uso por otro programa (como Premiere o VLC) y que sea un formato compatible (MP3, WAV, MP4, M4A, MKV).<br>
-                <strong>3. Cuota y Duración:</strong> Si tu audio dura más de 30 minutos, el Plan Gratis alcanzará el límite por archivo (el Plan Pro permite hasta 3 horas y el Plan Ultra hasta 12 horas).<br>
-                <strong>4. Servidor GPU Ocupado:</strong> Si la nube está saturada, pulsa en <em>"Transcripción Rápida"</em> o selecciona <em>"Procesar en Local"</em> en la app de escritorio.<br>
-                <strong>5. Audios sin voz:</strong> Si el audio contiene únicamente música de fondo, silencios o ruido blanco, Whisper devolverá el texto vacío.`,
-                actionLink: "/soporte",
-                actionText: "Si el problema persiste, escríbenos a soporte@echoscribe.es →"
+                        "id": "no_transcribe_general",
+                        "keywords": [
+                                    "no va",
+                                    "no funciona",
+                                    "no transcribe",
+                                    "error",
+                                    "falla",
+                                    "fallo",
+                                    "problema",
+                                    "no avanza",
+                                    "se para",
+                                    "se queda pillado",
+                                    "se traba",
+                                    "no termina"
+                        ],
+                        "title": "Diagnóstico Paso a Paso: Error al transcribir",
+                        "response": "<strong>Guía de Diagnóstico de Transcripción:</strong><br><br>1. <strong>Enlaces Web:</strong> Verifica que el vídeo de YouTube/Twitch no sea privado, de pago o tenga restricción de edad.<br>2. <strong>Archivos Locales:</strong> Comprueba que el archivo de audio o vídeo no esté abierto en Premiere, VLC u otro editor.<br>3. <strong>Cuota de Plan:</strong> En el Plan Gratis el límite por archivo es de 30 min. En Plan Pro hasta 3 horas y en Ultra hasta 12 horas.<br>4. <strong>GPU Cloud Saturada:</strong> Si la nube tarda en responder, selecciona <em>'Transcripción Rápida'</em> o <em>'Procesar en Local'</em>.<br>5. <strong>Pista de Voz:</strong> Si el audio contiene solo música o silencios, el modelo devolverá el texto vacío.",
+                        "actionLink": "/soporte",
+                        "actionText": "Escribir a soporte@echoscribe.es si el error continúa →"
             },
             {
-                id: 'smartscreen',
-                keywords: ['smartscreen', 'windows', 'aviso', 'advertencia', 'peligroso', 'bloquea', 'antivirus', 'defender', 'instalar', 'instalacion', 'abrir', 'ejecutar'],
-                title: "Solución al aviso de Windows SmartScreen",
-                response: `<strong>¿Por qué Windows muestra una advertencia al instalar?</strong><br><br>
-                Al ser una versión recientemente publicada, el filtro Microsoft Defender SmartScreen aún no ha acumulado suficiente historial de descargas para ese archivo ejecutable específico.<br><br>
-                <strong>Pasos para instalarlo en 2 clics:</strong><br>
-                1. En la ventana azul de SmartScreen, pulsa en el texto <em>"Más información"</em>.<br>
-                2. Haz clic en el botón <strong>"Ejecutar de todas formas"</strong>.<br><br>
-                EchoScribe es 100% seguro, verificado y libre de cualquier tipo de malware.`,
-                actionLink: "/guia-instalacion",
-                actionText: "Ver Guía Visual Paso a Paso de Instalación →"
+                        "id": "audio_silencio_musica",
+                        "keywords": [
+                                    "vacio",
+                                    "sin texto",
+                                    "no escribe nada",
+                                    "solo musica",
+                                    "silencio",
+                                    "cancion",
+                                    "instrumental",
+                                    "ruido",
+                                    "no detecta voz"
+                        ],
+                        "title": "Transcripción vacía o sin palabras detectadas",
+                        "response": "<strong>¿Por qué el resultado sale vacío o con pocos caracteres?</strong><br><br>Whisper incluye un filtro acústico que descarta segmentos donde no detecta voz humana comprensible.<br><br>• Si el audio es una canción instrumental, música de fondo o contiene un volumen extremadamente bajo, no se generará texto.<br>• Asegúrate de que el micrófono de la grabación tenga un volumen adecuado y no esté distorsionado.",
+                        "actionLink": "/transcriptor-audio-a-texto",
+                        "actionText": "Ver formatos compatibles de audio →"
             },
             {
-                id: 'planes',
-                keywords: ['plan', 'planes', 'pro', 'ultra', 'gratis', 'diferencia', 'precio', 'precios', 'horas', 'limite', 'cuota', 'minutos', 'suscripcion', 'coste', 'cuanto cuesta'],
-                title: "Diferencias y Ventajas entre Planes",
-                response: `<strong>Comparativa detallada de planes de EchoScribe:</strong><br><br>
-                • <strong>Plan Gratis (0€):</strong> 30 transcripciones IA + 60 básicas/mes, audios de hasta 30 min y procesamiento en tu procesador local.<br>
-                • <strong>Plan Pro (9,99€/mes):</strong> 100 transcripciones IA + 150 básicas en <strong>GPU Cloud de alta velocidad</strong>, audios de hasta <strong>3 horas continuas</strong> y exportación directa de subtítulos .SRT sincronizados.<br>
-                • <strong>Plan Ultra (19,99€/mes):</strong> 250 transcripciones IA + 500 básicas en <strong>GPU Cloud L4 dedicada</strong> (hasta 142x más rápido), soporte para audios gigantes de hasta <strong>12 horas</strong> (podcasts y directos completos) y atención prioritaria.`,
-                actionLink: "/planes",
-                actionText: "Consultar Tabla Comparativa de Planes →"
+                        "id": "youtube_privado_error",
+                        "keywords": [
+                                    "youtube error",
+                                    "video privado",
+                                    "restriccion de edad",
+                                    "bloqueado",
+                                    "copyright",
+                                    "miembro",
+                                    "no descarga youtube"
+                        ],
+                        "title": "Error al procesar vídeos de YouTube con restricción",
+                        "response": "<strong>Causas comunes de fallo con enlaces de YouTube:</strong><br><br>• <strong>Vídeos privados o para miembros:</strong> Requieren autenticación y no pueden ser descargados por la API.<br>• <strong>Restricción de edad (+18):</strong> YouTube bloquea la descarga directa.<br>• <strong>Solución:</strong> Descarga el archivo de audio con tu cuenta y súbelo a EchoScribe como <em>'Archivo Local'</em>.",
+                        "actionLink": "/transcribir-youtube",
+                        "actionText": "Ir a la herramienta YouTube a Texto →"
             },
             {
-                id: 'formatos',
-                keywords: ['formato', 'formatos', 'mp3', 'mp4', 'wav', 'm4a', 'mkv', 'flac', 'aac', 'ogg', 'webm', 'compatibles', 'extension', 'archivos'],
-                title: "Formatos de Audio y Vídeo Compatibles",
-                response: `<strong>EchoScribe es compatible con prácticamente cualquier formato multimedia:</strong><br><br>
-                • <strong>Formatos de Audio:</strong> MP3, WAV, M4A, AAC, FLAC, OGG, WMA, AIFF, Opus.<br>
-                • <strong>Formatos de Vídeo:</strong> MP4, MKV, AVI, MOV, WebM, FLV, WMV, TS.<br>
-                • <strong>Plataformas Web:</strong> Enlaces directos de YouTube, Twitch y X (Twitter).<br><br>
-                La aplicación extrae automáticamente la pista de audio sin pérdida de fidelidad para procesarla a máxima velocidad.`,
-                actionLink: "/transcriptor-audio-a-texto",
-                actionText: "Ver Transcriptor Universal de Audio →"
+                        "id": "gpu_cloud_cola_espera",
+                        "keywords": [
+                                    "esperando cola",
+                                    "servidor ocupado",
+                                    "gpu ocupada",
+                                    "reintentar nube",
+                                    "1 minuto mas",
+                                    "esperando gpu"
+                        ],
+                        "title": "Aviso de espera o cola de procesamiento en GPU Cloud",
+                        "response": "<strong>¿Por qué aparece el aviso de espera en GPU Cloud?</strong><br><br>En momentos de alta concurrencia de usuarios, los servidores GPU pueden tardar unos segundos adicionales en asignar una tarjeta gráfica L4 dedicada.<br><br>• Puedes hacer clic en <strong>'Esperar conexión'</strong> y el sistema procesará tu audio prioritariamente en cuanto se libere un nodo.<br>• Si tienes prisa, pulsa en <strong>'Procesar en Local'</strong> para transcribirlo con el hardware de tu ordenador.",
+                        "actionLink": "/planes",
+                        "actionText": "Conoce la velocidad del Plan Ultra con GPU L4 →"
             },
             {
-                id: 'srt',
-                keywords: ['srt', 'subtitulo', 'subtitulos', 'premiere', 'capcut', 'davinci', 'tiempo', 'sincronizar', 'exportar', 'tiempos', 'redes', 'reels', 'tiktok'],
-                title: "Exportación y generación de subtítulos .SRT",
-                response: `<strong>¿Cómo generar subtítulos sincronizados (.SRT)?</strong><br><br>
-                1. Selecciona tu archivo de vídeo o pega el enlace de YouTube.<br>
-                2. Pulsa en <em>"Transcribir + Análisis IA"</em> o <em>"Transcripción Rápida"</em>.<br>
-                3. Una vez finalizado, pulsa en la pestaña <strong>"Subtítulos (.SRT)"</strong> y haz clic en <strong>"Exportar .SRT"</strong>.<br><br>
-                El archivo generado incluye códigos de tiempo milimétricos (HH:MM:SS,mmm) listos para importar en Adobe Premiere Pro, CapCut, DaVinci Resolve, Final Cut o YouTube Studio.`,
-                actionLink: "/generador-subtitulos-srt",
-                actionText: "Ver Guía de Subtítulos .SRT →"
+                        "id": "smartscreen_aviso",
+                        "keywords": [
+                                    "smartscreen",
+                                    "windows aviso",
+                                    "advertencia azul",
+                                    "peligroso",
+                                    "bloquea instalador",
+                                    "defender",
+                                    "antivirus",
+                                    "mas informacion",
+                                    "ejecutar de todas formas"
+                        ],
+                        "title": "Cómo solucionar el aviso de Windows Defender SmartScreen",
+                        "response": "<strong>Instalación segura en Windows:</strong><br><br>Al ser una versión recién compilada, Windows SmartScreen muestra un aviso por falta de historial de descargas.<br><br><strong>Pasos rápidos (2 clics):</strong><br>1. Pulsa en el enlace <em>'Más información'</em> de la ventana azul.<br>2. Haz clic en <strong>'Ejecutar de todas formas'</strong>.<br><br>La aplicación cuenta con verificación SHA-256 y está 100% libre de virus y malware.",
+                        "actionLink": "/guia-instalacion",
+                        "actionText": "Ver tutorial paso a paso con capturas →"
             },
             {
-                id: 'recortar',
-                keywords: ['recortar', 'recorte', 'barra', 'tiempo', 'minuto', 'segundo', 'rango', 'pedazo', 'trozo', 'parte', 'inicio', 'fin', 'slider'],
-                title: "Cómo recortar un fragmento de audio antes de transcribir",
-                response: `<strong>Uso de la herramienta de recorte integrado:</strong><br><br>
-                1. En la aplicación de escritorio, activa el interruptor <strong>"Recortar"</strong> situado debajo del selector de idioma.<br>
-                2. Ajusta los deslizadores azules para marcar el punto de inicio y el punto de fin de la sección que deseas transcribir.<br>
-                3. Haz clic en el botón de transcripción.<br><br>
-                La aplicación procesará exclusivamente el fragmento seleccionado, ahorrando tiempo de procesamiento y cuotas de tu plan.`,
-                actionLink: null,
-                actionText: null
+                        "id": "requisitos_sistema",
+                        "keywords": [
+                                    "requisitos",
+                                    "hardware",
+                                    "ordenador",
+                                    "memoria",
+                                    "ram",
+                                    "grafica",
+                                    "tarjeta",
+                                    "nvidia",
+                                    "cpu",
+                                    "windows 10",
+                                    "windows 11",
+                                    "mac",
+                                    "linux"
+                        ],
+                        "title": "Requisitos mínimos de sistema para EchoScribe",
+                        "response": "<strong>Requisitos del sistema:</strong><br><br>• <strong>Sistema Operativo:</strong> Windows 10 o Windows 11 (64 bits).<br>• <strong>Procesador:</strong> Intel Core i3 / AMD Ryzen 3 o superior.<br>• <strong>Memoria RAM:</strong> Mínimo 4 GB (Recomendado 8 GB).<br>• <strong>GPU Cloud:</strong> Al procesarse en nuestros servidores con GPUs NVIDIA L4, no necesitas tarjeta gráfica potente en tu PC.<br>• <strong>Mac / Linux:</strong> Próximamente disponible.",
+                        "actionLink": "/guia-instalacion",
+                        "actionText": "Guía de instalación en Windows →"
             },
             {
-                id: 'privacidad',
-                keywords: ['privacidad', 'seguridad', '24 horas', '24h', 'borrado', 'guardan', 'audios', 'servidor', 'confidencial', 'periodismo', 'fuente', 'fuentes', 'secreto', 'datos', 'rgpd'],
-                title: "Política de Privacidad y Borrado Automático (TTL 24h)",
-                response: `<strong>Garantías de Seguridad y Confidencialidad de EchoScribe:</strong><br><br>
-                • <strong>Cifrado TLS 1.3:</strong> La transmisión de archivos entre tu ordenador y la GPU Cloud viaja totalmente encriptada.<br>
-                • <strong>Borrado Irreversible en 24h:</strong> Todos los archivos de audio y textos generados se eliminan automáticamente de los servidores tras 24 horas.<br>
-                • <strong>Cero Entrenamiento de Modelos:</strong> Ninguna grabación ni transcripción se utiliza para entrenar inteligencias artificiales ni se comparte con terceros.<br>
-                • <strong>Secreto Profesional:</strong> Cumplimiento estricto para periodistas, abogados y empresas.`,
-                actionLink: "/politica-privacidad",
-                actionText: "Leer la Política de Privacidad Completa →"
+                        "id": "actualizacion_app",
+                        "keywords": [
+                                    "actualizar",
+                                    "version nueva",
+                                    "descargar update",
+                                    "actualizacion",
+                                    "banner update",
+                                    "como se actualiza"
+                        ],
+                        "title": "Cómo actualizar EchoScribe a la última versión",
+                        "response": "<strong>Actualización automática y segura:</strong><br><br>Cuando publicamos una versión mejorada, la app te muestra un aviso superior discreto.<br><br>1. Haz clic en el botón <strong>'Actualizar'</strong> del banner.<br>2. La aplicación descargará el instalador oficial de GitHub Releases y se actualizará en segundos manteniendo tu sesión y configuración intactas.",
+                        "actionLink": "/guia-instalacion",
+                        "actionText": "Descargar última versión instalador →"
             },
             {
-                id: 'api_gemini',
-                keywords: ['api', 'gemini', 'clave', 'byok', 'gratuita', 'token', 'google', 'configurar', 'aistudio', 'propia clave'],
-                title: "Cómo configurar tu propia API Key de Google Gemini (BYOK)",
-                response: `<strong>Utiliza tu propia clave de IA sin límites de cuota de Gemini:</strong><br><br>
-                1. Accede gratis a <a href="https://aistudio.google.com/app/apikey" target="_blank" class="text-indigo-400 font-bold underline">Google AI Studio</a> con tu cuenta de Google.<br>
-                2. Haz clic en <em>"Create API Key"</em> y copia el código generado (empieza por <code>AIza...</code>).<br>
-                3. Abre EchoScribe en tu PC y haz clic en el botón <strong>"Clave API Personal"</strong> en la barra lateral.<br>
-                4. Pega la clave y pulsa en Guardar.<br><br>
-                A partir de ese momento, los resúmenes y la corrección de nombres propios se gestionarán directamente con tu cuenta de Google.`,
-                actionLink: null,
-                actionText: null
+                        "id": "app_pantalla_blanca_negra",
+                        "keywords": [
+                                    "pantalla blanca",
+                                    "pantalla negra",
+                                    "no abre",
+                                    "se cierra sola",
+                                    "crash",
+                                    "parpadea",
+                                    "webview",
+                                    "chrome",
+                                    "edge"
+                        ],
+                        "title": "Solución si la aplicación muestra pantalla blanca o no inicia",
+                        "response": "<strong>Solución a problemas gráficos al iniciar:</strong><br><br>1. <strong>Cerrar instancias residuales:</strong> Abre el Administrador de Tareas (Ctrl + Shift + Esc) y finaliza cualquier proceso llamado <em>EchoScribe.exe</em>.<br>2. <strong>Microsoft Edge WebView2:</strong> Asegúrate de tener instalado el componente WebView2 de Windows.<br>3. <strong>Reinstalar:</strong> Ejecuta de nuevo el instalador <code>EchoScribe_Setup.exe</code>.",
+                        "actionLink": "/soporte",
+                        "actionText": "Contactar con soporte técnico →"
             },
             {
-                id: 'password',
-                keywords: ['password', 'contraseña', 'clave', 'olvide', 'recuperar', 'restablecer', 'cambiar contraseña', 'login', 'acceso', 'correo'],
-                title: "Recuperar o cambiar la contraseña de tu cuenta",
-                response: `<strong>¿Has olvidado tu contraseña de acceso?</strong><br><br>
-                1. Dirígete a la página oficial de <a href="/recuperar-password" class="text-indigo-400 font-bold underline">Recuperar Contraseña</a>.<br>
-                2. Introduce la dirección de correo electrónico vinculada a tu cuenta de EchoScribe.<br>
-                3. Recibirás un enlace seguro en tu bandeja de entrada para definir una nueva contraseña de acceso.<br><br>
-                Si te registraste mediante Google OAuth, simplemente pulsa en <em>"Continuar con Google"</em> para acceder automáticamente.`,
-                actionLink: "/recuperar-password",
-                actionText: "Ir a Recuperar Contraseña →"
+                        "id": "comparativa_planes",
+                        "keywords": [
+                                    "planes",
+                                    "precios",
+                                    "pro vs ultra",
+                                    "diferencias planes",
+                                    "gratis vs pro",
+                                    "cuanto vale",
+                                    "suscripcion mensual"
+                        ],
+                        "title": "Diferencias detalladas entre Gratis, Pro y Ultra",
+                        "response": "<strong>Planes disponibles en EchoScribe:</strong><br><br>• <strong>Gratis (0€):</strong> 30 transcripciones IA + 60 básicas/mes en CPU local, hasta 30 min por archivo.<br>• <strong>Pro (9,99€/mes):</strong> 100 IA + 150 básicas en GPU Cloud, audios de hasta <strong>3 horas</strong>, subtítulos .SRT sincronizados y sin esperas.<br>• <strong>Ultra (19,99€/mes):</strong> 250 IA + 500 básicas en <strong>GPU Cloud L4</strong> ultrarrápida, audios de hasta <strong>12 horas</strong> continuas (podcasts y directos enteros) y atención prioritaria.",
+                        "actionLink": "/planes",
+                        "actionText": "Ver tabla comparativa oficial de precios →"
             },
             {
-                id: 'cancelar',
-                keywords: ['cancelar', 'factura', 'facturacion', 'tarjeta', 'pagos', 'stripe', 'desuscribir', 'baja', 'renovacion', 'iva', 'recibo', 'modificar plan'],
-                title: "Gestión de suscripción, facturación y cancelaciones",
-                response: `<strong>Control total de tu suscripción en 1 clic:</strong><br><br>
-                • <strong>Cancelar Suscripción:</strong> Puedes darte de baja en cualquier momento desde <a href="/ajustes" class="text-indigo-400 font-bold underline">Ajustes de Cuenta</a> sin ningún tipo de permanencia ni penalización.<br>
-                • <strong>Facturas con IVA:</strong> Puedes descargar todas tus facturas mensuales directamente desde el portal de cliente de Stripe en Ajustes.<br>
-                • <strong>Periodo abonado:</strong> Si cancelas, seguirás disfrutando de todas las ventajas de tu plan hasta que termine el mes en curso.`,
-                actionLink: "/ajustes",
-                actionText: "Ir al Panel de Ajustes y Facturación →"
+                        "id": "limites_horas_archivos",
+                        "keywords": [
+                                    "duracion maxima",
+                                    "cuantas horas",
+                                    "archivo largo",
+                                    "podcast 2 horas",
+                                    "audio largo",
+                                    "3 horas",
+                                    "12 horas",
+                                    "limite de tiempo"
+                        ],
+                        "title": "Límites de duración de audio según tu plan",
+                        "response": "<strong>Duración máxima por archivo individual:</strong><br><br>• <strong>Plan Gratis:</strong> Hasta <strong>30 minutos</strong> por archivo.<br>• <strong>Plan Pro:</strong> Hasta <strong>3 horas continuas</strong> por archivo.<br>• <strong>Plan Ultra:</strong> Hasta <strong>12 horas continuas</strong> por archivo (ideal para directos de Twitch y eventos completos).",
+                        "actionLink": "/planes",
+                        "actionText": "Actualizar a Plan Pro o Ultra →"
             },
             {
-                id: 'youtube_descarga',
-                keywords: ['youtube', 'descargar', 'mp3', 'mp4', 'video', 'musica', 'audio', 'extraer', 'twitch', 'x', 'twitter'],
-                title: "Descargar audio en MP3 o vídeo en MP4 desde la web",
-                response: `<strong>Descarga directa multimedia en segundos:</strong><br><br>
-                1. Pega la URL del vídeo en el campo superior de la aplicación.<br>
-                2. Haz clic en el botón <strong>"MP3"</strong> si deseas únicamente la pista de audio en alta fidelidad.<br>
-                3. Haz clic en el botón <strong>"MP4"</strong> si deseas descargar el vídeo completo con su imagen y sonido.<br><br>
-                El archivo se guardará en tu carpeta predeterminada de descargas o en la que tengas configurada en Ajustes.`,
-                actionLink: "/transcribir-youtube",
-                actionText: "Ver Herramienta de YouTube a Texto →"
+                        "id": "cancelar_suscripcion",
+                        "keywords": [
+                                    "cancelar",
+                                    "dar de baja",
+                                    "desuscribir",
+                                    "quitar suscripcion",
+                                    "permanencia",
+                                    "penalizacion",
+                                    "anular plan"
+                        ],
+                        "title": "Cómo cancelar tu suscripción mensual en cualquier momento",
+                        "response": "<strong>Cancelación instantánea sin permanencia:</strong><br><br>1. Inicia sesión en la web y ve a <a href='/ajustes' class='text-indigo-400 font-bold underline'>Ajustes de Cuenta</a>.<br>2. Haz clic en <strong>'Gestionar Suscripción'</strong> para abrir el portal seguro de Stripe.<br>3. Pulsa en <em>'Cancelar Plan'</em>.<br><br>Mantendrás todas las ventajas Pro/Ultra hasta el final del periodo ya pagado y nunca más se te cobrará nada.",
+                        "actionLink": "/ajustes",
+                        "actionText": "Ir a Ajustes de Facturación →"
             },
             {
-                id: 'nombres_propios',
-                keywords: ['nombres', 'apellidos', 'futbolistas', 'jerga', 'google search', 'correccion', 'alucinacion', 'whisper puro', 'periodistico', 'contexto'],
-                title: "Corrección inteligente de nombres propios con Gemini y Google Search",
-                response: `<strong>¿Cómo elimina EchoScribe las erratas fonéticas?</strong><br><br>
-                Modelos de audio convencionales como Whisper suelen fallar con apellidos complejos o fichajes recientes (por ejemplo, escribiendo <em>"Dimitres"</em> en lugar de <em>"Dimitrievski"</em>).<br><br>
-                Al seleccionar <strong>"Transcribir + Análisis IA"</strong>, EchoScribe conecta la fonética con Google Search para consultar el contexto real de la noticia y corregir automáticamente nombres propios, entidades y tecnicismos.`,
-                actionLink: "/guias",
-                actionText: "Explorar Casos Reales en el Hub de Guías →"
+                        "id": "facturas_iva_cif",
+                        "keywords": [
+                                    "factura",
+                                    "facturas",
+                                    "iva",
+                                    "recibo",
+                                    "cif",
+                                    "nif",
+                                    "empresa",
+                                    "autonomo",
+                                    "descargar factura",
+                                    "stripe factura"
+                        ],
+                        "title": "Descarga de facturas oficiales con IVA y CIF",
+                        "response": "<strong>Facturación para autónomos y empresas:</strong><br><br>Todas las suscripciones emiten facturas legales oficiales con IVA desglosado gestionadas a través de Stripe.<br><br>• Puedes añadir tu NIF/CIF y razón social durante la compra o posteriormente desde tu panel de <a href='/ajustes' class='text-indigo-400 font-bold underline'>Ajustes</a>.<br>• Descarga todas tus facturas históricas en PDF con 1 clic.",
+                        "actionLink": "/ajustes",
+                        "actionText": "Descargar facturas en Ajustes →"
+            },
+            {
+                        "id": "metodos_pago",
+                        "keywords": [
+                                    "metodos de pago",
+                                    "tarjeta",
+                                    "visa",
+                                    "mastercard",
+                                    "apple pay",
+                                    "google pay",
+                                    "paypal",
+                                    "transferencia",
+                                    "como pagar"
+                        ],
+                        "title": "Métodos de pago admitidos",
+                        "response": "<strong>Formas de pago seguras:</strong><br><br>Procesamos los cobros con <strong>Stripe</strong> con cifrado bancario de 256 bits.<br><br>• Tarjetas de crédito y débito (Visa, Mastercard, American Express).<br>• Apple Pay y Google Pay.<br>• Pagos instantáneos 100% seguros y transparentes.",
+                        "actionLink": "/planes",
+                        "actionText": "Ver planes de suscripción →"
+            },
+            {
+                        "id": "renovacion_cuotas",
+                        "keywords": [
+                                    "cuando se resetea",
+                                    "renovar cuota",
+                                    "dia 1",
+                                    "mes siguiente",
+                                    "cuando recargan",
+                                    "cuotas mensuales",
+                                    "reset de saldo"
+                        ],
+                        "title": "Cuándo se renuevan las cuotas de transcripción",
+                        "response": "<strong>Reinicio de cuotas mensuales:</strong><br><br>• Las transcripciones de IA y básicas se reinician automáticamente el <strong>día 1 de cada mes natural</strong> a las 00:00 UTC.<br>• Si eres usuario Pro o Ultra, tus ventajas permanecen activas durante los 30 días de tu ciclo de facturación.",
+                        "actionLink": "/ajustes",
+                        "actionText": "Consultar consumo actual en Ajustes →"
+            },
+            {
+                        "id": "como_exportar_srt",
+                        "keywords": [
+                                    "exportar srt",
+                                    "como sacar subtitulos",
+                                    "descargar srt",
+                                    "generar srt",
+                                    "subtitulos sincronizados",
+                                    "archivo srt"
+                        ],
+                        "title": "Paso a paso para exportar subtítulos .SRT sincronizados",
+                        "response": "<strong>Cómo obtener tu archivo .SRT en 3 pasos:</strong><br><br>1. Introduce tu archivo multimedia o enlace web y pulsa en transcribir.<br>2. Al finalizar, haz clic en la pestaña <strong>'Subtítulos (.SRT)'</strong>.<br>3. Pulsa en el botón morado <strong>'Exportar .SRT'</strong>.<br><br>El archivo se guardará con la numeración secuencial y los timecodes exactos.",
+                        "actionLink": "/generador-subtitulos-srt",
+                        "actionText": "Ver tutorial del generador de subtítulos →"
+            },
+            {
+                        "id": "importar_premiere_capcut_davinci",
+                        "keywords": [
+                                    "premiere",
+                                    "capcut",
+                                    "davinci",
+                                    "final cut",
+                                    "sony vegas",
+                                    "editor de video",
+                                    "como meter subtitulos en premiere",
+                                    "tiktok",
+                                    "reels"
+                        ],
+                        "title": "Cómo importar subtítulos .SRT en Premiere, CapCut y DaVinci Resolve",
+                        "response": "<strong>Uso de los subtítulos en tu editor de vídeo preferido:</strong><br><br>• <strong>Adobe Premiere Pro:</strong> Arrastra el archivo <code>.srt</code> a la línea de tiempo sobre la pista de vídeo. Se creará automáticamente la pista de subtítulos (Captions).<br>• <strong>CapCut:</strong> Ve a <em>Texto > Subtítulos automáticos / Importar archivo SRT</em>.<br>• <strong>DaVinci Resolve:</strong> Arrastra el archivo <code>.srt</code> directamente a la Timeline sobre la pista de Subtitle Track.<br>• <strong>YouTube Studio:</strong> En la sección Subtítulos, sube el archivo con sincronización automática de tiempo.",
+                        "actionLink": "/generador-subtitulos-srt",
+                        "actionText": "Guía completa para creadores de vídeo →"
+            },
+            {
+                        "id": "sincronizacion_tiempos_srt",
+                        "keywords": [
+                                    "desincronizado",
+                                    "tiempo retrasado",
+                                    "va tarde",
+                                    "va antes",
+                                    "timecode",
+                                    "desfase",
+                                    "fps",
+                                    "sincronia"
+                        ],
+                        "title": "Precisión y sincronización exacta de los subtítulos .SRT",
+                        "response": "<strong>¿Cómo garantiza EchoScribe la sincronización milimétrica?</strong><br><br>A diferencia de IAs genéricas que estiman los tiempos por longitud de texto, EchoScribe extrae las marcas de tiempo temporales a nivel de fonema directamente de la capa de atención de Whisper.<br><br>Esto asegura que cada subtítulo empiece y termine en el milisegundo exacto en que la persona pronuncia la frase.",
+                        "actionLink": "/generador-subtitulos-srt",
+                        "actionText": "Más información sobre subtítulos .SRT →"
+            },
+            {
+                        "id": "privacidad_borrado_24h",
+                        "keywords": [
+                                    "privacidad",
+                                    "seguridad",
+                                    "24 horas",
+                                    "borrado",
+                                    "guardan datos",
+                                    "almacenan",
+                                    "servidores",
+                                    "ttl 24h",
+                                    "rgpd",
+                                    "confidencialidad"
+                        ],
+                        "title": "Política de Privacidad y Borrado Automático en 24h",
+                        "response": "<strong>Privacidad y Retención Cero (Zero Data Retention):</strong><br><br>• <strong>Borrado irreversible a las 24h:</strong> Todos los archivos de audio, vídeo y textos generados se eliminan permanentemente de nuestros servidores a las 24 horas.<br>• <strong>Canal seguro HTTPS / TLS 1.3:</strong> Toda la comunicación viaja encriptada de extremo a extremo.<br>• <strong>Cero Entrenamiento de Modelos:</strong> Ningún dato tuyo se utiliza para re-entrenar modelos de IA.<br>• <strong>Cumplimiento RGPD:</strong> Diseñado respetando la normativa europea de protección de datos.",
+                        "actionLink": "/politica-privacidad",
+                        "actionText": "Leer Política de Privacidad Oficial →"
+            },
+            {
+                        "id": "secreto_profesional_periodistas_abogados",
+                        "keywords": [
+                                    "periodismo",
+                                    "periodista",
+                                    "fuentes",
+                                    "abogado",
+                                    "legal",
+                                    "secreto profesional",
+                                    "confidencial",
+                                    "entrevista confidencial",
+                                    "juicio",
+                                    "acta"
+                        ],
+                        "title": "Garantía para periodistas, despachos de abogados y empresas",
+                        "response": "<strong>Protección para fuentes confidenciales y material sensible:</strong><br><br>EchoScribe no comercializa con transcripciones ni almacena historiales permanentes en la nube.<br><br>• En el Plan Gratis puedes transcribir 100% en local sin conexión a servidores.<br>• En los Planes Pro y Ultra la inferencia en GPU Cloud se ejecuta en contenedores efímeros aislados que destruyen los datos temporales tras el procesado.",
+                        "actionLink": "/guias/transcribir-entrevistas-periodismo",
+                        "actionText": "Ver guía para periodismo confidencial →"
+            },
+            {
+                        "id": "correccion_nombres_gemini",
+                        "keywords": [
+                                    "nombres propios",
+                                    "apellidos",
+                                    "futbolistas",
+                                    "jerga",
+                                    "google search",
+                                    "gemini",
+                                    "correccion ia",
+                                    "alucinaciones",
+                                    "como corrige"
+                        ],
+                        "title": "Cómo funciona la corrección de nombres propios con Gemini y Google Search",
+                        "response": "<strong>Tecnología Periodística Grounded AI de EchoScribe:</strong><br><br>Whisper tradicional es un modelo acústico excelente pero desconoce eventos recientes, nombres de futbolistas o términos técnicos nuevos.<br><br>Al elegir <strong>'Transcribir + Análisis IA'</strong>:<br>1. Whisper realiza la transcripción fonética base.<br>2. Gemini cruza el contexto mediante <strong>Google Search en tiempo real</strong> para verificar los nombres reales.<br>3. Se eliminan las erratas fonéticas entregándote el texto limpio y listo para publicar.",
+                        "actionLink": "/guias",
+                        "actionText": "Ver casos de éxito y ejemplos reales →"
+            },
+            {
+                        "id": "whisper_puro_vs_analisis_ia",
+                        "keywords": [
+                                    "whisper puro",
+                                    "transcripcion rapida",
+                                    "analisis ia",
+                                    "diferencia botones",
+                                    "cual elegir",
+                                    "dos botones"
+                        ],
+                        "title": "Diferencia entre 'Transcribir + Análisis IA' y 'Transcripción Rápida'",
+                        "response": "<strong>¿Qué botón debo pulsar según mi necesidad?</strong><br><br>• <strong>Transcribir + Análisis IA (Recomendado):</strong> Ejecuta Whisper en GPU Cloud + verificación con Google Search + extracción de titulares y resumen ejecutivo estructurado (~60-90s).<br>• <strong>Transcripción Rápida:</strong> Ejecuta únicamente el motor acústico de Whisper para entregarte el texto plano en segundos (~20-30s).",
+                        "actionLink": "/planes",
+                        "actionText": "Conocer más detalles de velocidad →"
+            },
+            {
+                        "id": "prompt_personalizado",
+                        "keywords": [
+                                    "prompt",
+                                    "personalizar",
+                                    "instruccion",
+                                    "glosario",
+                                    "resumen personalizado",
+                                    "dar ordenes a la ia"
+                        ],
+                        "title": "Cómo usar la casilla 'Prompt' para personalizar el resultado",
+                        "response": "<strong>Controla el estilo del análisis con la casilla Prompt:</strong><br><br>Puedes escribir instrucciones específicas para que la IA adapte el texto, por ejemplo:<br>• <em>'Resume en 5 viñetas y destaca las tareas asignadas.'</em><br>• <em>'Glosario: el protagonista se llama Kaveh y la empresa es Novatech.'</em><br>• <em>'Formatea como una entrevista de preguntas y respuestas.'</em>",
+                        "actionLink": null,
+                        "actionText": null
+            },
+            {
+                        "id": "configurar_api_key_byok",
+                        "keywords": [
+                                    "api key",
+                                    "clave api",
+                                    "byok",
+                                    "google ai studio",
+                                    "aistudio",
+                                    "clave personal",
+                                    "gemini gratis",
+                                    "sin limites ia"
+                        ],
+                        "title": "Cómo configurar tu propia API Key de Gemini en la aplicación",
+                        "response": "<strong>Usa tu propia clave de Google sin gastar saldo de IA:</strong><br><br>1. Entra en <a href='https://aistudio.google.com/app/apikey' target='_blank' class='text-indigo-400 font-bold underline'>Google AI Studio</a> con tu cuenta de Gmail y pulsa en <em>'Create API key'</em>.<br>2. Copia la clave generada (empieza por <code>AIzaSy...</code>).<br>3. En EchoScribe (barra lateral), pulsa en <strong>'Clave API Personal'</strong>.<br>4. Pega tu clave y pulsa en Guardar.<br><br>¡Listo! Las correcciones periodísticas se conectarán directamente con tu cuenta gratuita de Google.",
+                        "actionLink": null,
+                        "actionText": null
+            },
+            {
+                        "id": "api_key_error_invalida",
+                        "keywords": [
+                                    "api key error",
+                                    "clave no valida",
+                                    "aiza",
+                                    "clave rechazada",
+                                    "error gemini api",
+                                    "clave incorrecta"
+                        ],
+                        "title": "Qué hacer si la aplicación dice 'Clave API no válida'",
+                        "response": "<strong>Comprobaciones para tu Clave API de Gemini:</strong><br><br>1. Asegúrate de haber copiado la clave completa sin espacios al principio ni al final.<br>2. La clave debe comenzar por <code>AIzaSy...</code> generada en Google AI Studio (no confundir con OpenAI ni Cloud Console).<br>3. Si tu clave no funciona, puedes borrarla en la ventana de Ajustes de la app para volver a usar el servidor automático de EchoScribe.",
+                        "actionLink": null,
+                        "actionText": null
+            },
+            {
+                        "id": "recuperar_password_cuenta",
+                        "keywords": [
+                                    "olvide password",
+                                    "recuperar contraseña",
+                                    "restablecer contraseña",
+                                    "cambiar contraseña",
+                                    "no puedo entrar",
+                                    "login"
+                        ],
+                        "title": "Cómo recuperar el acceso o restablecer tu contraseña",
+                        "response": "<strong>Recuperación de contraseña en 1 minuto:</strong><br><br>1. Entra en la página de <a href='/recuperar-password' class='text-indigo-400 font-bold underline'>Recuperar Contraseña</a>.<br>2. Escribe tu email y pulsa en Enviar.<br>3. Abre el enlace que recibirás en tu correo para escribir tu nueva clave.<br><br>Si te registraste con Google OAuth, no necesitas contraseña: pulsa en <em>'Continuar con Google'</em>.",
+                        "actionLink": "/recuperar-password",
+                        "actionText": "Restablecer contraseña ahora →"
+            },
+            {
+                        "id": "sesiones_simultaneas",
+                        "keywords": [
+                                    "varios ordenadores",
+                                    "dos pcs",
+                                    "sesion cerrada en otro equipo",
+                                    "compartir cuenta",
+                                    "cuantos pcs",
+                                    "cerrar sesion"
+                        ],
+                        "title": "¿Puedo usar mi cuenta de EchoScribe en varios ordenadores?",
+                        "response": "<strong>Uso de tu cuenta en diferentes dispositivos:</strong><br><br>• Puedes tener instalada la aplicación en todos los ordenadores que necesites (portátil, sobremesa de trabajo o casa).<br>• Por motivos de seguridad contra uso compartido fraudulento, la sesión activa se mantiene en el último equipo utilizado.<br>• Si abres sesión en otro PC, el anterior mostrará un aviso informativo de sesión cerrada.",
+                        "actionLink": "/ajustes",
+                        "actionText": "Gestionar dispositivos en Ajustes →"
+            },
+            {
+                        "id": "cambiar_email",
+                        "keywords": [
+                                    "cambiar email",
+                                    "cambiar correo",
+                                    "modificar cuenta",
+                                    "pasar suscripcion",
+                                    "nuevo correo"
+                        ],
+                        "title": "Cómo cambiar el correo electrónico de tu cuenta",
+                        "response": "<strong>Cambio de dirección de correo:</strong><br><br>Por seguridad de las suscripciones enlazadas con Stripe, para cambiar el correo de tu cuenta escríbenos a <strong>soporte@echoscribe.es</strong> desde tu correo actual indicándonos el nuevo email que deseas vincular.",
+                        "actionLink": "/soporte",
+                        "actionText": "Contactar con soporte oficial →"
+            },
+            {
+                        "id": "descargar_youtube_mp3_mp4",
+                        "keywords": [
+                                    "descargar youtube",
+                                    "bajar mp3",
+                                    "bajar mp4",
+                                    "descargar video",
+                                    "extraer musica",
+                                    "boton mp3",
+                                    "boton mp4"
+                        ],
+                        "title": "Cómo descargar audio en MP3 o vídeo en MP4 desde YouTube o Twitch",
+                        "response": "<strong>Descargas directas ultrarrápidas:</strong><br><br>1. Pega la URL del vídeo en el campo superior de la aplicación.<br>2. Pulsa en <strong>'MP3'</strong> para descargar solo el archivo de sonido.<br>3. Pulsa en <strong>'MP4'</strong> para descargar el vídeo en máxima resolución disponible.<br><br>Los archivos se guardarán directamente en tu carpeta de descargas.",
+                        "actionLink": "/transcribir-youtube",
+                        "actionText": "Ver herramienta de YouTube a Texto →"
+            },
+            {
+                        "id": "recorte_audio_slider",
+                        "keywords": [
+                                    "recortar audio",
+                                    "cortar video",
+                                    "solo un trozo",
+                                    "seleccionar minutos",
+                                    "barra azul de tiempo",
+                                    "slider recorte"
+                        ],
+                        "title": "Cómo transcribir solo una parte del audio con los deslizadores",
+                        "response": "<strong>Herramienta de Recorte de Tiempo Integrada:</strong><br><br>1. Activa el interruptor <strong>'Recortar'</strong>.<br>2. Arrastra el punto inicial y el punto final para definir el fragmento deseado.<br>3. Pulsa en transcribir.<br><br>EchoScribe procesará únicamente esa sección, ahorrando minutos de tu plan.",
+                        "actionLink": null,
+                        "actionText": null
+            },
+            {
+                        "id": "exportar_txt_copiar",
+                        "keywords": [
+                                    "copiar texto",
+                                    "exportar txt",
+                                    "guardar archivo",
+                                    "word",
+                                    "bloc de notas",
+                                    "como guardo"
+                        ],
+                        "title": "Opciones de exportación de la transcripción",
+                        "response": "<strong>Exporta tu trabajo con un solo clic:</strong><br><br>• <strong>Copiar:</strong> Copia el texto completo o la pestaña activa al portapapeles para pegar en Word, Notion o Google Docs.<br>• <strong>Exportar .TXT:</strong> Guarda un archivo de texto plano limpio en tu ordenador.<br>• <strong>Exportar .SRT:</strong> Genera el archivo de subtítulos con códigos de tiempo.",
+                        "actionLink": null,
+                        "actionText": null
+            },
+            {
+                        "id": "historial_reciente",
+                        "keywords": [
+                                    "historial",
+                                    "recuperar transcripcion",
+                                    "donde esta lo de ayer",
+                                    "ultimas 24h",
+                                    "cache local",
+                                    "ver anteriores"
+                        ],
+                        "title": "Cómo acceder al historial reciente de transcripciones",
+                        "response": "<strong>Historial local de 24 horas:</strong><br><br>• En la barra lateral izquierda, pulsa en el botón <strong>'Historial Reciente (24h)'</strong>.<br>• Podrás recargar en pantalla cualquiera de tus transcripciones recientes sin tener que volver a procesar el audio ni gastar saldo.",
+                        "actionLink": null,
+                        "actionText": null
+            },
+            {
+                        "id": "cambiar_tema_oscuro_claro",
+                        "keywords": [
+                                    "modo oscuro",
+                                    "modo claro",
+                                    "tema",
+                                    "cambiar color",
+                                    "interfaz oscura",
+                                    "interfaz blanca"
+                        ],
+                        "title": "Cómo alternar entre modo oscuro y modo claro",
+                        "response": "<strong>Personalización de la interfaz:</strong><br><br>En la parte inferior del menú lateral izquierdo, haz clic en el botón <strong>'Cambiar Tema'</strong> para alternar al instante entre el modo oscuro moderno y el modo claro de alto contraste.",
+                        "actionLink": null,
+                        "actionText": null
+            },
+            {
+                        "id": "idiomas_soportados",
+                        "keywords": [
+                                    "idiomas",
+                                    "ingles",
+                                    "frances",
+                                    "aleman",
+                                    "catalan",
+                                    "euskera",
+                                    "gallego",
+                                    "italiano",
+                                    "portugues",
+                                    "chino",
+                                    "japones",
+                                    "traducir"
+                        ],
+                        "title": "Idiomas compatibles para transcripción",
+                        "response": "<strong>Más de 99 idiomas soportados con alta precisión:</strong><br><br>Español, Inglés, Francés, Alemán, Italiano, Portugués, Catalán, Gallego, Euskera, Ruso, Chino, Japonés, Árabe, etc.<br><br>Selecciona el idioma del audio en el desplegable superior antes de iniciar la transcripción.",
+                        "actionLink": "/guias/transcribir-traducir-videos-idiomas",
+                        "actionText": "Ver guía de transcripción multilingüe →"
+            },
+            {
+                        "id": "guia_universidad_clases",
+                        "keywords": [
+                                    "universidad",
+                                    "estudiantes",
+                                    "clases",
+                                    "apuntes",
+                                    "profesor",
+                                    "asignatura",
+                                    "estudiar",
+                                    "examen"
+                        ],
+                        "title": "Guía para transcribir clases magistrales y generar apuntes",
+                        "response": "<strong>Convierte grabaciones de clase en apuntes de estudio:</strong><br><br>Graba la clase con tu móvil en audio MP3 o M4A y procesa el archivo con <em>'Transcribir + Análisis IA'</em> para obtener no solo la transcripción completa, sino también el resumen temático con los conceptos clave para estudiar.",
+                        "actionLink": "/guias/transcribir-clases-universidad",
+                        "actionText": "Leer guía para estudiantes universitarios →"
+            },
+            {
+                        "id": "guia_entrevistas_tfg_tesis",
+                        "keywords": [
+                                    "tfg",
+                                    "tfm",
+                                    "tesis",
+                                    "doctorado",
+                                    "investigacion",
+                                    "metodologia cualitativa",
+                                    "citas textuales"
+                        ],
+                        "title": "Transcripción de entrevistas cualitativas para TFG y Tesis",
+                        "response": "<strong>Ahorra cientos de horas en tu investigación académica:</strong><br><br>EchoScribe transcribe fielmente los testimonios de tus entrevistas cualitativas para tu TFG o Tesis Doctoral, extrayendo las citas textuales más relevantes para tu marco empírico.",
+                        "actionLink": "/guias/transcribir-entrevistas-tfg",
+                        "actionText": "Ver guía para TFG y Tesis →"
+            },
+            {
+                        "id": "guia_podcast_a_blog",
+                        "keywords": [
+                                    "podcast",
+                                    "spotify",
+                                    "blog",
+                                    "articulo",
+                                    "seo",
+                                    "creadores",
+                                    "episodio",
+                                    "ivoox"
+                        ],
+                        "title": "Cómo convertir episodios de podcast en artículos de blog indexables",
+                        "response": "<strong>Multiplica el alcance de tu podcast:</strong><br><br>Sube tu archivo de audio a EchoScribe para obtener un artículo estructurado con titulares atractivos y resumen ejecutivo listo para publicar en WordPress, Medium o tu newsletter.",
+                        "actionLink": "/guias/convertir-podcast-en-blog",
+                        "actionText": "Ver guía para podcasters →"
+            },
+            {
+                        "id": "guia_reuniones_actas",
+                        "keywords": [
+                                    "reuniones",
+                                    "actas",
+                                    "empresa",
+                                    "zoom",
+                                    "teams",
+                                    "meet",
+                                    "acuerdos",
+                                    "minuta",
+                                    "corporativo"
+                        ],
+                        "title": "Cómo transcribir reuniones de empresa y redactar actas ejecutivas",
+                        "response": "<strong>Actas de reuniones automatizadas:</strong><br><br>Procesa la grabación de tu reunión en Zoom, Microsoft Teams o Google Meet para obtener automáticamente el listado de acuerdos adoptados, responsables y próximos pasos.",
+                        "actionLink": "/guias/resumir-reuniones-empresa-actas",
+                        "actionText": "Ver guía de reuniones de empresa →"
+            },
+            {
+                        "id": "guia_twitch_vods",
+                        "keywords": [
+                                    "twitch",
+                                    "streamers",
+                                    "vod",
+                                    "directos",
+                                    "clips",
+                                    "tiktok streamers",
+                                    "youtube gaming"
+                        ],
+                        "title": "Transcripción y subtitulado de directos de Twitch y VODs",
+                        "response": "<strong>Monetiza tus directos de varias horas:</strong><br><br>Con el Plan Ultra puedes procesar directos de hasta 12 horas seguidas para extraer los momentos más destacados y generar subtítulos .SRT sincronizados para tus clips en TikTok y Reels.",
+                        "actionLink": "/guias/transcribir-directos-twitch",
+                        "actionText": "Ver guía para streamers de Twitch →"
+            },
+            {
+                        "id": "guia_futbol_cronicas",
+                        "keywords": [
+                                    "futbol",
+                                    "partidos",
+                                    "cronicas",
+                                    "alineaciones",
+                                    "narracion",
+                                    "jugadores",
+                                    "deportes",
+                                    "periodismo deportivo"
+                        ],
+                        "title": "Crónicas deportivas sin erratas en apellidos de futbolistas",
+                        "response": "<strong>Precisión absoluta en periodismo deportivo:</strong><br><br>EchoScribe contrasta las alineaciones y plantillas actuales con Google Search para transcribir nombres propios complejos sin fallos fonéticos.",
+                        "actionLink": "/guias/transcribir-partidos-futbol",
+                        "actionText": "Ver caso real de crónica deportiva →"
+            },
+            {
+                        "id": "sobre_el_creador",
+                        "keywords": [
+                                    "creador",
+                                    "autor",
+                                    "quien hizo esto",
+                                    "ivan garcia",
+                                    "ivan garcia miranda",
+                                    "desarrollador",
+                                    "empresa",
+                                    "de donde es"
+                        ],
+                        "title": "Sobre Iván García Miranda, creador de EchoScribe",
+                        "response": "<strong>Desarrollo y autoría:</strong><br><br>EchoScribe es un proyecto desarrollado y mantenido por <strong>Iván García Miranda</strong>, con el objetivo de democratizar la transcripción de inteligencia artificial de nivel periodístico y profesional en GPU Cloud a precios accesibles.",
+                        "actionLink": "/sobre-mi",
+                        "actionText": "Conocer más sobre Iván García Miranda →"
+            },
+            {
+                        "id": "propiedad_intelectual_transcripciones",
+                        "keywords": [
+                                    "propiedad",
+                                    "derechos",
+                                    "de quien es el texto",
+                                    "copyright",
+                                    "puedo venderlo",
+                                    "uso comercial",
+                                    "licencia"
+                        ],
+                        "title": "Propiedad de los textos generados y uso comercial",
+                        "response": "<strong>El 100% de los derechos te pertenecen:</strong><br><br>Todos los textos, titulares, resúmenes y subtítulos generados con EchoScribe son de tu exclusiva propiedad intelectual. Puedes utilizarlos con fines comerciales, académicos, editoriales o profesionales sin ninguna restricción ni atribución obligatoria.",
+                        "actionLink": "/terminos-y-condiciones",
+                        "actionText": "Consultar Términos y Condiciones Legales →"
+            },
+            {
+                        "id": "contacto_humano_soporte",
+                        "keywords": [
+                                    "hablar con persona",
+                                    "soporte humano",
+                                    "agente",
+                                    "correo soporte",
+                                    "incidencia urgente",
+                                    "ayuda directa",
+                                    "telefono soporte"
+                        ],
+                        "title": "Contacto directo con el equipo de soporte oficial",
+                        "response": "<strong>Atención técnica y resolución de dudas:</strong><br><br>• <strong>Correo Electrónico Oficial:</strong> <a href='mailto:soporte@echoscribe.es' class='text-indigo-400 font-bold underline'>soporte@echoscribe.es</a><br>• <strong>Tiempo medio de respuesta:</strong> Menos de 24 horas laborables.<br>• Puedes adjuntar capturas de pantalla, archivos de log o detalles de tu cuenta para una atención inmediata.",
+                        "actionLink": "mailto:soporte@echoscribe.es",
+                        "actionText": "Enviar correo a soporte@echoscribe.es →"
             }
-        ];
+];
 
         function normalizarTexto(txt) {
             return txt.toLowerCase()
