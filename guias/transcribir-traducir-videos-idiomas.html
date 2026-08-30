@@ -1,59 +1,110 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es" class="dark" style="background-color: #0b0f19; color: #f8fafc;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transcribir y Traducir Vídeos de YouTube al Español | EchoScribe</title>
     <meta name="description" content="Pega un enlace de YouTube en inglés o francés y obtén automáticamente los titulares, el resumen y la transcripción perfectamente traducida a tu idioma.">
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/icono.ico">
+    <link rel="apple-touch-icon" href="/icono.ico">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: '#6366f1' } } } }</script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: '#6366f1' } } }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
-        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.2s, box-shadow 0.2s; }
-    .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.4); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0b0f19; 
+            color: #f8fafc; 
+            scroll-behavior: smooth;
+        }
+
+        /* MESH DOT GRID BACKGROUND PATTERN */
+        .bg-mesh-grid {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
+        }
+
+        /* GLASSMORPHISM & BORDERS */
+        .glass { 
+            background: rgba(15, 23, 42, 0.75); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07); 
+        }
+        
+        .glass-card { 
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.88) 100%); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            position: relative;
+        }
+
+        /* BUTTONS WITH DYNAMIC NEON GLOW */
+        .btn-gradient { 
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); 
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease; 
+        }
+        .btn-gradient:hover { 
+            transform: translateY(-2px) scale(1.02); 
+            box-shadow: 0 14px 30px -6px rgba(168, 85, 247, 0.5); 
+            filter: brightness(1.08);
+        }
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="antialiased flex flex-col min-h-screen relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
 
-        <!-- NAVEGACIÓN -->
-    <nav class="fixed w-full z-40 glass border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap">
-            <a href="/" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
-                <div class="w-7 h-7 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div><span>EchoScribe</span>
+    <!-- DYNAMIC BACKGROUND GLOW & MESH GRID -->
+    <div class="fixed inset-0 bg-mesh-grid pointer-events-none z-0"></div>
+    <div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none z-0"></div>
+    <div class="fixed top-1/3 -left-40 w-[450px] h-[450px] bg-purple-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+    <div class="fixed top-2/3 -right-40 w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="fixed top-0 left-0 w-full z-40 glass border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                </div>
+                <span>EchoScribe</span>
             </a>
             
-            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <button onclick="document.getElementById('nav-links').classList.toggle('hidden')" class="md:hidden p-2 rounded-xl text-slate-300 hover:text-white bg-slate-800/60 border border-slate-700/60 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
             
-            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-4 md:space-y-0">
-                <a href="/" class="text-slate-300 hover:text-white transition">Inicio</a>
-                <a href="/#precios" class="text-slate-300 hover:text-white transition">Precios</a>
-                <a href="/transcribir-youtube" class="text-slate-300 hover:text-white transition">YouTube a Texto</a>
-                <a href="/generador-subtitulos-srt" class="text-slate-300 hover:text-white transition">Subtítulos .SRT</a>
-                <a href="/guia-instalacion" class="text-slate-300 hover:text-white transition">Guía y Ayuda</a>
-                <a href="/guias" class="text-slate-300 hover:text-white transition">Guías</a>
-                <a href="/sobre-mi" class="text-slate-300 hover:text-white transition">Sobre Mí</a>
-                <a href="/#demo-interactiva" class="btn-gradient text-white px-4 py-2 rounded-xl shadow-lg text-xs">Probar Online</a>
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-stretch md:items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 p-4 md:p-0 rounded-2xl md:rounded-none bg-slate-900/95 md:bg-transparent border border-slate-800 md:border-0 shadow-2xl md:shadow-none">
+                <a href="/" class="py-2 px-3 text-slate-300 hover:text-white transition">Inicio</a>
+                <a href="/planes" class="py-2 px-3 text-slate-300 hover:text-white transition">Planes</a>
+                <a href="/transcribir-youtube" class="py-2 px-3 text-slate-300 hover:text-white transition">YouTube a Texto</a>
+                <a href="/generador-subtitulos-srt" class="py-2 px-3 text-slate-300 hover:text-white transition">Subtítulos .SRT</a>
+                <a href="/guia-instalacion" class="py-2 px-3 text-slate-300 hover:text-white transition">Instalación</a>
+                <a href="/guias" class="py-2 px-3 text-indigo-400 font-bold transition">Guías</a>
+                <a href="/sobre-mi" class="py-2 px-3 text-slate-300 hover:text-white transition">Sobre Mí</a>
+                <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe" class="btn-gradient text-white px-5 py-2.5 rounded-xl shadow-lg text-xs font-bold text-center">Descargar App</a>
             </div>
         </div>
     </nav>
-    <script>
-        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
-            document.getElementById('nav-links')?.classList.toggle('hidden');
-        });
-    </script>
 
-    <main class="flex-1 pt-40 pb-20 px-6 max-w-4xl mx-auto w-full">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Transcribe vídeos extranjeros y obtén el resumen en tu idioma</h1>
-        <p class="text-xl text-slate-400 mb-12">A veces necesitas sacar información clave de un documental o conferencia en inglés. Con EchoScribe, pasas la URL del vídeo y la IA se encarga de entenderlo y devolvértelo estructurado en español.</p>
+    <main class="flex-1 pt-36 pb-20 px-4 sm:px-6 max-w-5xl mx-auto w-full relative z-10">
+<div class="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6"><a href="/guias" class="hover:text-white transition">Guías</a> <span>/</span> <span class="text-indigo-400 font-medium">Tutorial Práctico</span></div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 leading-tight tracking-tight">Transcribe vídeos extranjeros y obtén el resumen en tu idioma</h1>
+        <p class="text-lg sm:text-xl text-slate-300 mb-12 leading-relaxed">A veces necesitas sacar información clave de un documental o conferencia en inglés. Con EchoScribe, pasas la URL del vídeo y la IA se encarga de entenderlo y devolvértelo estructurado en español.</p>
 
         <section class="my-12">
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- ANTES -->
-                <div class="bg-red-950/20 border border-red-900/50 p-6 rounded-2xl">
+                <div class="glass-card p-6 sm:p-7 rounded-3xl border border-rose-500/20 shadow-xl relative overflow-hidden">
                     <span class="text-rose-400 font-bold mb-4 flex items-center gap-1.5"><svg class="w-4 h-4 text-rose-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg> <span>Traductores y Subtítulos</span></span>
                     <ul class="space-y-3 text-sm text-slate-400">
                         <li>Subtítulos automáticos de YouTube llenos de errores.</li>
@@ -78,9 +129,9 @@
             <h2 class="text-2xl font-bold text-white mt-10">Rompe la barrera del idioma</h2>
             <p>La combinación del motor Whisper local (que entiende decenas de idiomas a la perfección) con el procesador de lenguaje de Gemini, te permite realizar trabajos de investigación internacional o documentarte sobre temas tecnológicos o científicos de manera instantánea, sin importar que la fuente de YouTube esté en otro idioma.</p>
 
-            <div class="bg-slate-900 p-8 rounded-2xl border border-slate-700 mt-10 text-center">
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-indigo-500/30 my-12 text-center relative overflow-hidden shadow-2xl">
                 <h3 class="text-xl font-bold text-white mb-4">Tu asistente multilingüe en el PC</h3>
-                <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe" class="inline-block bg-brand hover:bg-indigo-500 text-white font-bold py-4 px-8 rounded-xl transition shadow-lg">Descargar Instalador (.exe)</a>
+                <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe" class="inline-flex items-center justify-center gap-2 btn-gradient text-white font-extrabold py-4 px-8 rounded-xl transition shadow-xl shadow-indigo-500/25 text-sm">Descargar Instalador (.exe)</a>
             </div>
         </div>
     
@@ -88,29 +139,31 @@
         <section class="my-14 pt-10 border-t border-slate-800">
             <h3 class="text-2xl font-bold text-white mb-6">Guías y Herramientas Relacionadas</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
-                <a href="/transcribir-youtube" class="glass-card p-4 rounded-2xl border border-slate-800 hover:border-indigo-500/50 transition flex flex-col justify-between">
+                <a href="/transcribir-youtube" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
                     <span class="font-bold text-white text-sm mb-1">Transcribir Vídeos de YouTube</span>
                     <span class="text-slate-400">Pega cualquier enlace y obtén el texto sin esperas en GPU Cloud.</span>
                 </a>
-                <a href="/generador-subtitulos-srt" class="glass-card p-4 rounded-2xl border border-slate-800 hover:border-indigo-500/50 transition flex flex-col justify-between">
+                <a href="/generador-subtitulos-srt" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
                     <span class="font-bold text-white text-sm mb-1">Generador de Subtítulos .SRT</span>
                     <span class="text-slate-400">Sincronización exacta frase a frase para Premiere y CapCut.</span>
                 </a>
-                <a href="/guia-instalacion" class="glass-card p-4 rounded-2xl border border-slate-800 hover:border-indigo-500/50 transition flex flex-col justify-between">
+                <a href="/guia-instalacion" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
                     <span class="font-bold text-white text-sm mb-1">Guía de Instalación en Windows</span>
                     <span class="text-slate-400">Paso a paso de instalación, SmartScreen y primer uso en 2 min.</span>
                 </a>
             </div>
         </section>
-        
     </main>
-
-        <!-- FOOTER -->
-        <!-- FOOTER -->
-    <footer class="border-t border-slate-800 bg-slate-900/60 py-12 px-6 text-xs text-slate-400 mt-auto">
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-slate-900/60 py-12 px-6 text-xs text-slate-400 mt-auto relative z-10">
         <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-left">
             <div>
-                <div class="text-xl font-bold text-white mb-3 flex items-center gap-2"><div class="w-7 h-7 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div><span>EchoScribe</span></div>
+                <div class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                    </div>
+                    <span>EchoScribe</span>
+                </div>
                 <p class="text-slate-400 leading-relaxed mb-4">El transcriptor de audio y vídeo con Whisper en GPU Cloud y corrección de nombres propios con Gemini.</p>
                 <p class="text-slate-500">© 2026 EchoScribe AI. Desarrollado por Iván García Miranda.</p>
             </div>
@@ -129,15 +182,16 @@
                     <li><a href="/guia-instalacion" class="hover:text-white transition">Guía de Instalación Windows</a></li>
                     <li><a href="/guias" class="hover:text-white transition">Hub de Guías de Uso</a></li>
                     <li><a href="/recuperar-password" class="hover:text-white transition">Recuperar Contraseña</a></li>
-                    <li><a href="/#precios" class="hover:text-white transition">Planes y Precios</a></li>
+                    <li><a href="/planes" class="hover:text-white transition">Planes y Precios</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Legal & Autor</h4>
                 <ul class="space-y-2">
                     <li><a href="/sobre-mi" class="hover:text-white transition">Sobre Iván García Miranda</a></li>
-                    <li><a href="/#faq" class="hover:text-white transition">Preguntas Frecuentes</a></li>
-                    <li><a href="/#demo-interactiva" class="hover:text-white transition">Simulador de Prueba Gratis</a></li>
+                    <li><a href="/soporte" class="hover:text-white transition">Atención & Soporte Técnico</a></li>
+                    <li><a href="/politica-privacidad" class="hover:text-white transition">Política de Privacidad</a></li>
+                    <li><a href="/terminos-y-condiciones" class="hover:text-white transition">Términos y Condiciones</a></li>
                 </ul>
             </div>
         </div>
