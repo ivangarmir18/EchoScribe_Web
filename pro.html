@@ -188,8 +188,8 @@
         
         <!-- BADGE & TITULO -->
         <div class="text-center max-w-3xl mx-auto mb-12">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-indigo-500/20 text-indigo-400 border border-indigo-500/40 mb-6 shadow-sm">
-                👑 Suscripción EchoScribe Pro
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 mb-6 shadow-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span> Suscripción EchoScribe Pro
             </div>
             <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-5">
                 Lleva tus transcripciones al <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">siguiente nivel</span>
@@ -218,7 +218,9 @@
                 <!-- IZQUIERDA: DETALLES Y PRECIO (7/12) -->
                 <div class="md:col-span-7 space-y-5">
                     <div class="flex items-center gap-3">
-                        <span class="text-3xl">⚡</span>
+                        <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
                         <div>
                             <h2 class="text-2xl font-black text-white">EchoScribe Pro</h2>
                             <p class="text-xs text-indigo-400 font-bold uppercase tracking-wider">La opción preferida por creadores y profesionales</p>
@@ -259,22 +261,23 @@
 
                 <!-- DERECHA: BOTON DE PAGO STRIPE DIRECTO (5/12) -->
                 <div class="md:col-span-5 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center space-y-4 shadow-xl">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-2xl shadow-lg mb-1">
-                        🚀
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-lg mb-1">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
                     
                     <h3 class="text-lg font-bold text-white">Desbloqueo Inmediato</h3>
                     <p class="text-xs text-slate-400">Procesamiento seguro mediante pasarela oficial Stripe. Tu cuenta de EchoScribe se actualizará al instante.</p>
 
                     <button onclick="iniciarCheckoutPro()" id="btn-checkout-pro" class="w-full btn-gradient text-white font-extrabold py-4 px-6 rounded-2xl shadow-xl transition flex items-center justify-center gap-2 text-base">
-                        <span>💳</span>
                         <span id="btn-cta-text">Suscribirme al Plan Pro</span>
                     </button>
 
                     <div class="flex items-center justify-center gap-4 text-[11px] text-slate-500 font-medium pt-2">
-                        <span>🔒 Encriptación SSL 256-bit</span>
-                        <span>⚡ Activación 1s</span>
-                        <span>🛡️ Garantía Total</span>
+                        <span>Encriptación SSL 256-bit</span>
+                        <span>•</span>
+                        <span>Activación Inmediata</span>
+                        <span>•</span>
+                        <span>Garantía Stripe</span>
                     </div>
                 </div>
             </div>

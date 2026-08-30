@@ -535,7 +535,7 @@
                     <div class="flex items-start justify-between">
                         <div>
                             <span class="text-amber-400 font-extrabold text-sm uppercase flex items-center gap-1.5">
-                                <span>👑</span> Plan Ultra Activo
+                                <span class="w-2 h-2 rounded-full bg-amber-400"></span> Plan Ultra Activo
                             </span>
                             <p class="text-xs text-slate-300 mt-1 leading-relaxed">
                                 Tienes acceso prioritario a la GPU Cloud de alta velocidad, 250 análisis con corrección de nombres propios y descargas ilimitadas.
@@ -544,8 +544,9 @@
                     </div>
                 `;
                 upgradeSec.innerHTML = `
-                    <button onclick="abrirPortalStripe()" class="w-full py-3 rounded-xl text-xs font-bold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 transition flex items-center justify-center gap-2 shadow-sm">
-                        <span>⚙️</span> Gestionar Facturas o Cancelar en Stripe
+                    <button onclick="abrirPortalStripe()" class="w-full py-3 rounded-xl text-xs font-bold bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 transition flex items-center justify-center gap-2 shadow-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <span>Gestionar Facturas o Cancelar en Stripe</span>
                     </button>
                 `;
             } else if (plan === 'PRO') {
@@ -553,7 +554,7 @@
                     <div class="flex items-start justify-between">
                         <div>
                             <span class="text-purple-400 font-extrabold text-sm uppercase flex items-center gap-1.5">
-                                <span>✨</span> Plan Pro Activo
+                                <span class="w-2 h-2 rounded-full bg-indigo-400"></span> Plan Pro Activo
                             </span>
                             <p class="text-xs text-slate-300 mt-1 leading-relaxed">
                                 Disfrutas de 100 transcripciones con GPU Cloud, 150 básicas y soporte prioritario.
@@ -565,7 +566,7 @@
                     <div class="bg-indigo-500/10 border border-indigo-500/30 rounded-2xl p-4">
                         <div class="flex items-center justify-between mb-2">
                             <span class="text-xs font-bold text-white flex items-center gap-1.5">
-                                <span>👑</span> ¿Quieres pasar al Plan Ultra?
+                                <span>Mejorar al Plan Ultra</span>
                             </span>
                             <span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-extrabold">Prorrateo Automático</span>
                         </div>
@@ -573,11 +574,13 @@
                             Stripe descontará automáticamente los días no disfrutados de tu plan Pro actual y solo te cobrará la diferencia en tu próxima factura.
                         </p>
                         <button onclick="abrirPortalStripe()" class="w-full btn-gradient text-white font-bold py-2.5 rounded-xl text-xs shadow-md transition flex items-center justify-center gap-2">
-                            <span>⚡</span> Mejorar a Ultra en el Portal de Stripe
+                            <span>Mejorar a Ultra en el Portal de Stripe</span>
+                            <span>→</span>
                         </button>
                     </div>
                     <button onclick="abrirPortalStripe()" class="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center justify-center gap-2">
-                        <span>⚙️</span> Ver Facturas o Gestionar Suscripción
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <span>Ver Facturas o Gestionar Suscripción</span>
                     </button>
                 `;
             } else {
