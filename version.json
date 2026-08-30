@@ -1,7 +1,7 @@
 {
-  "version": "1.2.1",
-  "release_date": "2026-08-29",
+  "version": "1.2.2",
+  "release_date": "2026-08-30",
   "download_url": "https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe",
-  "notes": "EchoScribe v1.2.1: Soporte de audios de hasta 3h (Pro) y 12h (Ultra), mayor velocidad en GPU Cloud y correcciones de estabilidad.",
+  "notes": "EchoScribe v1.2.2: Interfaz profesional renovada, optimización en inferencia GPU Cloud, subtítulos .SRT sincronizados y mejoras de rendimiento.",
   "mandatory": false
 }
