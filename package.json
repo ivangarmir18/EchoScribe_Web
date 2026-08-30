@@ -1,0 +1,6 @@
+{
+  "name": "echoscribe-web",
+  "version": "1.2.2",
+  "type": "module",
+  "private": true
+}
