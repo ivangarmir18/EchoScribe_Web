@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar vídeos de Twitter (X) en MP4 y transcribir declaraciones a texto | EchoScribe</title>
+    <meta name="description" content="Descarga vídeos y audios de Twitter/X en MP4 y MP3 y extrae transcripciones periodísticas exactas con verificación de nombres en tiempo real.">
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
+    <link rel="shortcut icon" href="/icono.ico">
+    
+    <!-- TAILWIND CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#6366f1',
+                        dark: '#0b0f19',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: #0b0f19; color: #f8fafc; }
+        .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass-card { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .btn-gradient { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5); }
+        .bg-mesh-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-500 selection:text-white flex flex-col min-h-screen relative bg-[#0b0f19]">
+    
+    <!-- MESH GRID & ORBS -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute inset-0 bg-mesh-grid opacity-60"></div>
+        <div class="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-indigo-600/15 rounded-full blur-[140px]"></div>
+        <div class="absolute top-[50%] right-[10%] w-[550px] h-[550px] bg-purple-600/15 rounded-full blur-[160px]"></div>
+    </div>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="fixed top-0 left-0 w-full z-40 glass border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
+                <img src="/icono.ico" class="w-7 h-7 rounded-lg object-contain shrink-0 shadow-sm" alt="EchoScribe Logo">
+                <span>EchoScribe</span>
+            </a>
+            
+            <button onclick="document.getElementById('nav-links').classList.toggle('hidden')" class="md:hidden p-2 rounded-xl text-slate-300 hover:text-white bg-slate-800/60 border border-slate-700/60 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-5 items-stretch md:items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 p-4 sm:p-5 md:p-0 rounded-2xl md:rounded-none bg-slate-900/98 md:bg-transparent border border-slate-800 md:border-0 shadow-2xl md:shadow-none">
+                <a href="/" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Inicio</a>
+                <a href="/planes" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Planes</a>
+                <a href="/guias" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-brand font-bold bg-indigo-500/10 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Guías</a>
+                <a href="/guia-instalacion" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Instalación</a>
+                <a href="/soporte" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Soporte</a>
+                <a href="/sobre-mi" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Sobre Mí</a>
+                
+                <hr class="w-full border-slate-800 md:hidden my-2">
+
+                <div class="flex flex-col md:flex-row gap-2.5 md:gap-3 items-stretch md:items-center w-full md:w-auto pt-1 md:pt-0">
+                    <a href="/planes" class="w-full md:w-auto py-2.5 px-4 rounded-xl text-center font-bold text-sm btn-gradient text-white shadow-lg transition">Ver Planes</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO -->
+    <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 pt-32 pb-20 relative z-10">
+        
+        <!-- BREADCRUMB -->
+        <nav class="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6">
+            <a href="/" class="hover:text-white transition">Inicio</a>
+            <span>/</span>
+            <a href="/guias" class="hover:text-white transition">Guías</a>
+            <span>/</span>
+            <span class="text-indigo-400">Periodismo y Redes Sociales</span>
+        </nav>
+
+        <!-- ENCABEZADO -->
+        <header class="mb-10">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 mb-4">
+                <span>Periodismo y Redes Sociales</span> • <span>Lectura: 3 min</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-5">
+                Descargar vídeos de Twitter (X) en MP4 y transcribir declaraciones a texto
+            </h1>
+            <p class="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+                Descarga vídeos y audios de Twitter/X en MP4 y MP3 y extrae transcripciones periodísticas exactas con verificación de nombres en tiempo real.
+            </p>
+        </header>
+
+        <!-- ARTÍCULO -->
+        <article class="glass-card p-6 sm:p-10 rounded-3xl border border-slate-800 space-y-8 text-slate-200 leading-relaxed text-sm sm:text-base mb-12">
+            
+            <h2 class="text-2xl font-bold text-white mb-4">Periodismo y monitorización de actualidad en X (Twitter)</h2>
+            <p>
+                Twitter / X es el epicentro de la actualidad informativa. Declaraciones políticas de última hora, ruedas de prensa improvisadas, espacios de audio (Spaces) y vídeos ciudadanos se comparten continuamente en la plataforma. Sin embargo, extraer las citas exactas de un vídeo de X suele implicar pausar el reproductor decenas de veces.
+            </p>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4">De un tuit a un texto periodístico verificado</h2>
+            <p>
+                EchoScribe permite pegar cualquier enlace de una publicación de Twitter / X que contenga vídeo o audio para:
+            </p>
+            <ul class="list-disc pl-5 space-y-2 text-slate-300 my-4">
+                <li><strong>Descargar el archivo limpio en MP4 o MP3</strong> sin marcas de agua de terceros.</li>
+                <li><strong>Transcribir el contenido íntegro</strong> con identificación de nombres propios gracias a la verificación en tiempo real de Google Search.</li>
+                <li><strong>Generar titulares y resúmenes ejecutivos</strong> con las citas textuales clave para redactar artículos en segundos.</li>
+            </ul>
+
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4">Privacidad y confidencialidad garantizada (TTL 24h)</h2>
+            <p>
+                Como establece nuestra <a href="/politica-privacidad" class="text-indigo-400 font-bold underline">política estricta de privacidad</a>, todos los archivos y transcripciones procesados se eliminan de forma irreversible a las 24 horas y nunca se emplean para entrenar modelos de IA.
+            </p>
+            <p class="mt-4">
+                Descubre más casos de uso en nuestra <a href="/guias/transcribir-entrevistas-periodismo" class="text-indigo-400 font-bold underline">guía para periodistas</a> o consulta los <a href="/planes" class="text-indigo-400 font-bold underline">planes de EchoScribe</a>.
+            </p>
+
+        </article>
+
+        <!-- PREGUNTAS FRECUENTES -->
+        <section class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 mb-12">
+            <h2 class="text-2xl font-bold text-white mb-6">Preguntas Frecuentes</h2>
+            <div class="space-y-3.5">
+                
+                    <details class="group bg-slate-900/70 p-5 rounded-2xl border border-slate-800 cursor-pointer">
+                        <summary class="font-bold text-sm text-slate-200 group-open:text-brand flex justify-between items-center">
+                            <span>¿Cómo descargo un vídeo de X (Twitter) con EchoScribe?</span>
+                            <span class="text-slate-400 text-xs">▼</span>
+                        </summary>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                            Copia el enlace del tuit que contiene el vídeo, pégalo en la barra de URL de EchoScribe y haz clic en el botón 'MP4' o 'MP3'.
+                        </p>
+                    </details>
+                    <details class="group bg-slate-900/70 p-5 rounded-2xl border border-slate-800 cursor-pointer">
+                        <summary class="font-bold text-sm text-slate-200 group-open:text-brand flex justify-between items-center">
+                            <span>¿Funciona con hilos y vídeos de larga duración en X Premium?</span>
+                            <span class="text-slate-400 text-xs">▼</span>
+                        </summary>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                            Sí, EchoScribe puede procesar vídeos largos subidos por cuentas con suscripción a X Premium.
+                        </p>
+                    </details>
+                    <details class="group bg-slate-900/70 p-5 rounded-2xl border border-slate-800 cursor-pointer">
+                        <summary class="font-bold text-sm text-slate-200 group-open:text-brand flex justify-between items-center">
+                            <span>¿EchoScribe guarda copias de los tuits o vídeos descargados?</span>
+                            <span class="text-slate-400 text-xs">▼</span>
+                        </summary>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                            No. Tras procesar la transcripción, los archivos temporales se destruyen y se eliminan permanentemente de nuestros servidores a las 24 horas.
+                        </p>
+                    </details>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="glass-card p-8 sm:p-10 rounded-3xl border border-indigo-500/30 text-center relative overflow-hidden">
+            <div class="relative z-10">
+                <h3 class="text-2xl sm:text-3xl font-black text-white mb-3">Empieza a trabajar a máxima velocidad</h3>
+                <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">Descarga audios y vídeos en 1080p o 4K y extrae transcripciones perfectas en segundos.</p>
+                <div class="flex flex-col sm:flex-row gap-3.5 justify-center items-center">
+                    <a href="/guia-instalacion" class="btn-gradient text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg transition text-sm flex items-center gap-2">
+                        <span>Descargar EchoScribe Gratis</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    </a>
+                    <a href="/planes" class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-3.5 px-6 rounded-2xl border border-slate-700 transition text-sm">
+                        Ver Planes Pro y Ultra →
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass border-t border-slate-800/80 py-12 relative z-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <img src="/icono.ico" class="w-6 h-6 rounded-md object-contain" alt="EchoScribe">
+                <span class="font-bold text-white text-sm">EchoScribe</span>
+                <span class="text-xs text-slate-500">© 2026 • Desarrollado por Iván García Miranda</span>
+            </div>
+            <div class="flex flex-wrap gap-5 text-xs font-semibold text-slate-400">
+                <a href="/planes" class="hover:text-white transition">Planes</a>
+                <a href="/guias" class="hover:text-white transition">Guías</a>
+                <a href="/guia-instalacion" class="hover:text-white transition">Instalación</a>
+                <a href="/soporte" class="hover:text-white transition">Soporte</a>
+                <a href="/politica-privacidad" class="hover:text-white transition">Privacidad</a>
+                <a href="/terminos-y-condiciones" class="hover:text-white transition">Términos</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VERCEL ANALYTICS -->
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
