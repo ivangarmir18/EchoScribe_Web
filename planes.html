@@ -224,7 +224,13 @@
                 <div>
                     <h3 class="text-2xl font-bold mb-2 text-slate-300">Gratuito</h3>
                     <p class="text-xs text-slate-400 mb-6">Para pruebas esporádicas y audios breves.</p>
-                    <div class="text-4xl font-extrabold mb-6 text-white">0 € <span class="text-lg font-normal text-slate-500">/mes</span></div>
+                    <div class="mb-6">
+                        <div class="text-4xl font-extrabold text-white flex items-baseline gap-1.5">
+                            <span>0 €</span>
+                            <span class="text-base font-semibold text-slate-400">/mes</span>
+                        </div>
+                        <div class="text-xs text-slate-500 font-bold mt-1 min-h-[18px]">Para siempre gratis</div>
+                    </div>
                     
                     <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium">
                         <li class="flex gap-2.5 bg-indigo-950/40 p-2.5 rounded-xl border border-indigo-500/20">
@@ -274,8 +280,12 @@
                 <div>
                     <h3 class="text-2xl font-bold mb-2 text-indigo-400">Pro</h3>
                     <p class="text-xs text-indigo-200/70 mb-6">El preferido de redactores, podcasters y editores de vídeo.</p>
-                    <div class="text-4xl font-extrabold mb-6 text-white">
-                        <span id="price-pro">7,99 €</span> <span id="period-pro" class="text-lg font-normal text-slate-400">/mes</span>
+                    <div class="mb-6">
+                        <div class="text-4xl font-extrabold text-white flex items-baseline gap-1.5">
+                            <span id="price-pro">7,99 €</span>
+                            <span id="period-pro" class="text-base font-semibold text-slate-400">/mes</span>
+                        </div>
+                        <div id="subperiod-pro" class="text-xs text-indigo-300 font-bold mt-1 min-h-[18px]"></div>
                     </div>
 
                     <ul class="space-y-4 mb-8 text-sm text-slate-200 font-medium">
@@ -325,8 +335,12 @@
                 <div>
                     <h3 class="text-2xl font-bold mb-2 text-amber-400">Ultra</h3>
                     <p class="text-xs text-amber-200/70 mb-6">Potencia para agencias, redacciones y conferencias extensas.</p>
-                    <div class="text-4xl font-extrabold mb-6 text-white">
-                        <span id="price-ultra">19,99 €</span> <span id="period-ultra" class="text-lg font-normal text-slate-500">/mes</span>
+                    <div class="mb-6">
+                        <div class="text-4xl font-extrabold text-white flex items-baseline gap-1.5">
+                            <span id="price-ultra">19,99 €</span>
+                            <span id="period-ultra" class="text-base font-semibold text-slate-400">/mes</span>
+                        </div>
+                        <div id="subperiod-ultra" class="text-xs text-amber-300 font-bold mt-1 min-h-[18px]"></div>
                     </div>
 
                     <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium">
@@ -512,9 +526,9 @@
                     labelAnual.className = 'cursor-pointer text-sm sm:text-base font-extrabold text-white drop-shadow transition-all duration-200 flex items-center gap-1.5 focus:outline-none';
                 }
                 if (pricePro) pricePro.innerText = '59,99 €';
-                if (periodPro) periodPro.innerText = '/ año (4,99 €/mes)';
+                if (periodPro) periodPro.innerText = '/ año /br (4,99 €/mes)';
                 if (priceUltra) priceUltra.innerText = '149,99 €';
-                if (periodUltra) periodUltra.innerText = '/ año (12,49 €/mes)';
+                if (periodUltra) periodUltra.innerText = '/ año /br (12,49 €/mes)';
                 if (btnPro) btnPro.innerHTML = '<span>Suscribirse al Plan Pro Anual</span>';
                 if (btnUltra) btnUltra.innerHTML = '<span>Suscribirse al Plan Ultra Anual</span>';
             } else {
