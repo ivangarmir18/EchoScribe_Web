@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es" class="dark" style="background-color: #0b0f19; color: #f8fafc;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo Transcribir Audios Bilingües con 2 Idiomas sin Errores | EchoScribe</title>
+    <meta name="description" content="Descubre cómo transcribir entrevistas o vídeos con dos idiomas hablados (ej: inglés y español) sin que Whisper alucine palabras ni fuerce dialectos incorrectos.">
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/icono.ico">
+    <link rel="apple-touch-icon" href="/icono.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: '#6366f1' } } }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f8fafc; scroll-behavior: smooth; }
+        .bg-mesh-grid {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
+        }
+        .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.07); }
+        .glass-card { background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.88) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); position: relative; }
+        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease; }
+        .btn-gradient:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 30px -6px rgba(168, 85, 247, 0.5); filter: brightness(1.08); }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+
+    <div class="fixed inset-0 bg-mesh-grid pointer-events-none z-0"></div>
+    <div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none z-0"></div>
+    <div class="fixed top-1/3 -left-40 w-[450px] h-[450px] bg-purple-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+    <div class="fixed top-2/3 -right-40 w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-40 glass border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
+                <img src="/icono.ico" class="w-7 h-7 rounded-lg object-contain shrink-0 shadow-sm" alt="EchoScribe Logo">
+                <span>EchoScribe</span>
+            </a>
+            
+            <button onclick="document.getElementById('nav-links').classList.toggle('hidden')" class="md:hidden p-2 rounded-xl text-slate-300 hover:text-white bg-slate-800/60 border border-slate-700/60 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-stretch md:items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 p-4 md:p-0 rounded-2xl md:rounded-none bg-slate-900/95 md:bg-transparent border border-slate-800 md:border-0 shadow-2xl md:shadow-none">
+                <a href="/" class="py-2 px-3 text-slate-300 hover:text-white transition">Inicio</a>
+                <a href="/planes" class="py-2 px-3 text-slate-300 hover:text-white transition">Planes</a>
+                <a href="/transcribir-youtube" class="py-2 px-3 text-slate-300 hover:text-white transition">YouTube a Texto</a>
+                <a href="/generador-subtitulos-srt" class="py-2 px-3 text-slate-300 hover:text-white transition">Subtítulos .SRT</a>
+                <a href="/guia-instalacion" class="py-2 px-3 text-slate-300 hover:text-white transition">Instalación</a>
+                <a href="/guias" class="py-2 px-3 text-indigo-400 font-bold transition">Guías</a>
+                <a href="/sobre-mi" class="py-2 px-3 text-slate-300 hover:text-white transition">Sobre Mí</a>
+                <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe" class="btn-gradient text-white px-5 py-2.5 rounded-xl shadow-lg text-xs font-bold text-center">Descargar App</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 pt-36 pb-20 px-4 sm:px-6 max-w-5xl mx-auto w-full relative z-10">
+        <div class="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6">
+            <a href="/guias" class="hover:text-white transition">Guías</a> <span>/</span> <span class="text-indigo-400 font-medium">Casos Especiales</span>
+        </div>
+        
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 leading-tight tracking-tight">
+            Cómo Transcribir Audios Bilingües con 2 Idiomas sin Errores de Whisper
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-300 mb-12 leading-relaxed">
+            Las entrevistas bilingües (por ejemplo, un periodista español entrevistando a un científico en inglés o un streamer alternando español e inglés) son la pesadilla de la mayoría de transcriptores automáticos. Descubre por qué ocurre este fallo y cómo EchoScribe lo soluciona de raíz.
+        </p>
+
+        <section class="my-12">
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- EL PROBLEMA EN WHISPER TRADICIONAL -->
+                <div class="glass-card p-6 sm:p-7 rounded-3xl border border-rose-500/20 shadow-xl relative overflow-hidden">
+                    <span class="text-rose-400 font-bold mb-4 flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-rose-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <span>El problema en Whisper tradicional</span>
+                    </span>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li>Si fuerzas <code>language='es'</code>, las frases en inglés se transcriben fonéticamente como palabras inconexas en español.</li>
+                        <li>Si fuerzas <code>language='en'</code>, ocurre el efecto contrario con el hablante en español.</li>
+                        <li>El arrastre de contexto (<code>condition_on_previous_text</code>) bloquea al modelo en el primer idioma detectado durante todo el archivo.</li>
+                    </ul>
+                </div>
+
+                <!-- LA SOLUCIÓN EN ECHOSCRIBE -->
+                <div class="bg-indigo-950/30 border border-indigo-500/40 p-6 sm:p-7 rounded-3xl relative shadow-xl">
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[11px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-wider">Solución EchoScribe</div>
+                    <span class="text-emerald-400 font-bold mb-4 flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span>Pipeline Bilingüe & Auto-Detect</span>
+                    </span>
+                    <ul class="space-y-3 text-sm text-slate-200 mt-4">
+                        <li>Auto-detección limpia sin forzar diccionarios erróneos.</li>
+                        <li>Desactivación del bloqueo de contexto previo entre interlocutores.</li>
+                        <li>Traducción semántica neuronal en GPU que homogeneiza todo el texto al idioma elegido por el usuario.</li>
+                        <li>Subtítulos 100% legibles con los dos hablantes perfectamente reflejados.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="prose prose-invert max-w-none text-slate-300 space-y-6">
+            <h2 class="text-2xl font-bold text-white mt-10">Casos reales donde el soporte bilingüe marca la diferencia</h2>
+            
+            <div class="space-y-4 text-sm text-slate-300">
+                <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+                    <h3 class="font-bold text-white text-base mb-1">1. Ruedas de prensa de competiciones internacionales</h3>
+                    <p class="text-slate-400">En la Champions League o en la Fórmula 1, los pilotos o futbolistas responden preguntas tanto en inglés como en su lengua materna (español, italiano, francés). EchoScribe transcribe fielmente cada intervención sin mezclar fonéticas.</p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+                    <h3 class="font-bold text-white text-base mb-1">2. Podcasts y directos con cambio de código (Spanglish / Gaming)</h3>
+                    <p class="text-slate-400">Los creadores de contenido utilizan anglicismos y términos de gaming de forma continua. La combinación de Whisper Turbo y Gemini filtra calcos erróneos y preserva la naturalidad de la conversación.</p>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+                    <h3 class="font-bold text-white text-base mb-1">3. Entrevistas de investigación académica (TFG / Tesis)</h3>
+                    <p class="text-slate-400">Cuando se entrevista a expertos internacionales para investigaciones cualitativas, el sistema genera la transcripción literal y su versión unificada en español para anexar a la memoria académica.</p>
+                </div>
+            </div>
+
+            <div class="bg-indigo-950/20 border border-indigo-500/30 p-6 rounded-2xl my-8 text-sm">
+                <p class="font-bold text-white mb-2">Más tutoriales recomendados:</p>
+                <p class="text-slate-300 leading-relaxed">
+                    Consulta también nuestra guía sobre <a href="/guias/transcribir-traducir-subtitulos-srt-simultaneo" class="text-indigo-400 hover:underline font-semibold">cómo transcribir y traducir subtítulos .SRT en un solo paso</a> o revisa la comparativa <a href="/guias/ecoscribe-vs-whisper" class="text-indigo-400 hover:underline font-semibold">EchoScribe vs Whisper Tradicional</a>.
+                </p>
+            </div>
+
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-indigo-500/30 my-12 text-center relative overflow-hidden shadow-2xl">
+                <h3 class="text-2xl font-bold text-white mb-4">Transcribe tus audios bilingües con rigor profesional</h3>
+                <p class="text-sm text-slate-300 max-w-xl mx-auto mb-6">Evita horas de correcciones manuales y obtén un resultado limpio desde el primer intento.</p>
+                <a href="https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe" class="inline-flex items-center justify-center gap-2 btn-gradient text-white font-extrabold py-4 px-8 rounded-xl transition shadow-xl shadow-indigo-500/25 text-sm">Descargar EchoScribe Gratis (.exe)</a>
+            </div>
+        </div>
+    
+        <!-- RELACIONADOS -->
+        <section class="my-14 pt-10 border-t border-slate-800">
+            <h3 class="text-2xl font-bold text-white mb-6">Guías y Herramientas Relacionadas</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+                <a href="/guias/transcribir-traducir-subtitulos-srt-simultaneo" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Subtítulos .SRT Simultáneos</span>
+                    <span class="text-slate-400">Genera subtítulos traducidos sin pasos intermedios.</span>
+                </a>
+                <a href="/guias/transcribir-entrevistas-periodismo" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Entrevistas Periodísticas</span>
+                    <span class="text-slate-400">Transcripción fiel con anonimización y privacidad local.</span>
+                </a>
+                <a href="/generador-subtitulos-srt" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Generador de Subtítulos .SRT</span>
+                    <span class="text-slate-400">Exportación directa con códigos de tiempo exactos.</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-900/60 py-12 px-6 text-xs text-slate-400 mt-auto relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-left">
+            <div>
+                <div class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <img src="/icono.ico" class="w-7 h-7 rounded-lg object-contain shrink-0 shadow-sm" alt="EchoScribe Logo">
+                    <span>EchoScribe</span>
+                </div>
+                <p class="text-slate-400 leading-relaxed mb-4">El transcriptor multimedia inteligente con Whisper en GPU Cloud y traducción semántica sin coste adicional de tokens.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3">Herramientas</h4>
+                <ul class="space-y-2">
+                    <li><a href="/transcribir-youtube" class="hover:text-white transition">Transcribir YouTube</a></li>
+                    <li><a href="/generador-subtitulos-srt" class="hover:text-white transition">Generar Subtítulos .SRT</a></li>
+                    <li><a href="/transcriptor-audio-a-texto" class="hover:text-white transition">Audio a Texto MP3</a></li>
+                    <li><a href="/planes" class="hover:text-white transition">Planes y Precios</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3">Guías de Traducción</h4>
+                <ul class="space-y-2">
+                    <li><a href="/guias/transcribir-traducir-subtitulos-srt-simultaneo" class="hover:text-white transition">Subtítulos .SRT Simultáneos</a></li>
+                    <li><a href="/guias/transcribir-audios-bilingues-dos-idiomas" class="hover:text-white transition">Vídeos Bilingües (2 Idiomas)</a></li>
+                    <li><a href="/guias/traducir-videos-youtube-espanol-sin-subtitulos" class="hover:text-white transition">YouTube sin Subtítulos</a></li>
+                    <li><a href="/guias" class="hover:text-white transition">Todas las Guías</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3">Soporte & Legal</h4>
+                <ul class="space-y-2">
+                    <li><a href="/soporte" class="hover:text-white transition">Centro de Ayuda 24/7</a></li>
+                    <li><a href="/guia-instalacion" class="hover:text-white transition">Guía de Instalación</a></li>
+                    <li><a href="/politica-privacidad" class="hover:text-white transition">Privacidad & RGPD</a></li>
+                    <li><a href="/terminos-y-condiciones" class="hover:text-white transition">Términos de Uso</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-slate-800/80 text-center text-slate-500">
+            © 2026 EchoScribe AI. Todos los derechos reservados.
+        </div>
+    </footer>
+</body>
+</html>
