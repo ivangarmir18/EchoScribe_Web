@@ -131,6 +131,14 @@
                     <a href="/recuperar-password" class="text-xs text-indigo-400 hover:underline font-semibold">¿Olvidaste tu contraseña?</a>
                 </div>
                 <p id="web-auth-error" class="hidden text-xs text-rose-400 font-semibold"></p>
+                <div id="web-field-legal" class="flex items-start gap-2 text-xs text-slate-400">
+                    <input type="checkbox" id="web-auth-legal" required class="mt-0.5 accent-indigo-500 w-4 h-4 shrink-0">
+                    <label for="web-auth-legal" class="leading-snug">He leído y acepto la <a href="/politica-privacidad" target="_blank" class="text-indigo-400 hover:underline font-semibold">Política de Privacidad</a> y los <a href="/terminos-y-condiciones" target="_blank" class="text-indigo-400 hover:underline font-semibold">Términos y Condiciones</a>.</label>
+                </div>
+                <div id="web-field-promo" class="flex items-start gap-2 text-xs text-slate-400">
+                    <input type="checkbox" id="web-auth-promo" class="mt-0.5 accent-indigo-500 w-4 h-4 shrink-0">
+                    <label for="web-auth-promo" class="leading-snug">Quiero recibir correos promocionales, novedades y ofertas especiales.</label>
+                </div>
                 <button type="submit" id="web-auth-submit-btn" class="w-full btn-gradient text-white font-bold py-3.5 rounded-xl shadow-lg mt-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:opacity-90 transition">Iniciar Sesión</button>
             </form>
             
@@ -189,6 +197,12 @@
             if (fieldUser) fieldUser.classList.remove('hidden');
             if (fieldPwd2) fieldPwd2.classList.remove('hidden');
             if (fieldForgot) fieldForgot.classList.add('hidden');
+            const fieldLegal = document.getElementById('web-field-legal');
+            const fieldPromo = document.getElementById('web-field-promo');
+            const authLegal = document.getElementById('web-auth-legal');
+            if (fieldLegal) fieldLegal.classList.remove('hidden');
+            if (fieldPromo) fieldPromo.classList.remove('hidden');
+            if (authLegal) authLegal.setAttribute('required', 'true');
         } else {
             title.innerText = "Iniciar Sesión";
             subtitle.innerText = "Accede a tu cuenta de EchoScribe.";
@@ -198,6 +212,12 @@
             if (fieldUser) fieldUser.classList.add('hidden');
             if (fieldPwd2) fieldPwd2.classList.add('hidden');
             if (fieldForgot) fieldForgot.classList.remove('hidden');
+            const fieldLegal = document.getElementById('web-field-legal');
+            const fieldPromo = document.getElementById('web-field-promo');
+            const authLegal = document.getElementById('web-auth-legal');
+            if (fieldLegal) fieldLegal.classList.add('hidden');
+            if (fieldPromo) fieldPromo.classList.add('hidden');
+            if (authLegal) authLegal.removeAttribute('required');
         }
     };
 

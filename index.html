@@ -487,8 +487,9 @@
                 <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Legal & Autor</h4>
                 <ul class="space-y-2">
                     <li><a href="/sobre-mi" class="hover:text-white transition">Sobre Iván García Miranda</a></li>
-                    <li><a href="/#faq" class="hover:text-white transition">Preguntas Frecuentes</a></li>
-                    <li><a href="/#demo-interactiva" class="hover:text-white transition">Simulador de Prueba Gratis</a></li>
+                    <li><a href="/politica-privacidad" class="hover:text-white transition">Política de Privacidad</a></li>
+                    <li><a href="/terminos-y-condiciones" class="hover:text-white transition">Términos y Condiciones</a></li>
+                    <li><a href="/soporte" class="hover:text-white transition">Soporte y Contacto</a></li>
                 </ul>
             </div>
         </div>
@@ -576,6 +577,16 @@
                 <div id="field-forgot" class="hidden text-right">
                     <button type="button" onclick="recuperarContrasena()" class="text-xs text-brand hover:underline font-semibold">¿Olvidaste tu contraseña?</button>
                 </div>
+                <div id="field-legal" class="flex items-start gap-2 text-xs text-slate-400">
+                    <input type="checkbox" id="auth-legal" required class="mt-0.5 accent-indigo-500 w-4 h-4 shrink-0">
+                    <label for="auth-legal" class="leading-snug">He leído y acepto la <a href="/politica-privacidad" target="_blank" class="text-brand hover:underline font-semibold">Política de Privacidad</a> y los <a href="/terminos-y-condiciones" target="_blank" class="text-brand hover:underline font-semibold">Términos y Condiciones</a>.</label>
+                </div>
+                <div id="field-promo" class="flex items-start gap-2 text-xs text-slate-400">
+                    <input type="checkbox" id="auth-promo" class="mt-0.5 accent-indigo-500 w-4 h-4 shrink-0">
+                    <label for="auth-promo" class="leading-snug">Quiero recibir correos promocionales, novedades y ofertas especiales.</label>
+                </div>
+                <button type="submit" id="auth-submit-btn" class="w-full btn-gradient text-white font-bold py-3.5 rounded-xl shadow-lg mt-2">Registrarse</button>
+                </div>
                 <button type="submit" id="auth-submit-btn" class="w-full btn-gradient text-white font-bold py-3.5 rounded-xl shadow-lg mt-2">Registrarse</button>
             </form>
 
@@ -622,7 +633,7 @@
         const STRIPE_PORTAL_URL = 'https://billing.stripe.com/p/login/8x23cw1JZddAghT4sggjC00';
 
         let currentUser = null;
-        let currentMode = 'register';
+        let currentMode = 'login';
         let currentBilling = 'mensual';
 
         const STRIPE_LINKS = {
@@ -863,8 +874,11 @@
                 fieldUser.style.display = "block";
                 fieldPwd2.style.display = "block";
                 fieldForgot.classList.add('hidden');
+                document.getElementById('field-legal').style.display = "flex";
+                document.getElementById('auth-legal').setAttribute('required', 'true');
                 document.getElementById('auth-user').setAttribute('required', 'true');
                 document.getElementById('auth-pwd-2').setAttribute('required', 'true');
+                document.getElementById('field-promo').style.display = "flex";
             } else {
                 document.getElementById('auth-title').innerText = "Iniciar Sesión";
                 document.getElementById('auth-subtitle').innerText = "Accede a tu cuenta de EchoScribe.";
@@ -875,7 +889,10 @@
                 fieldUser.style.display = "none";
                 fieldPwd2.style.display = "none";
                 fieldForgot.classList.remove('hidden');
+                document.getElementById('field-legal').style.display = "none";
+                document.getElementById('auth-legal').removeAttribute('required');
                 document.getElementById('auth-user').removeAttribute('required');
+                document.getElementById('field-promo').style.display = "none";
                 document.getElementById('auth-pwd-2').removeAttribute('required');
             }
         }
