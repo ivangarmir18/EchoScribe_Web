@@ -541,7 +541,7 @@
 
     <!-- MODAL AUTENTICACIÓN -->
     <div id="auth-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card card-interactive p-8 rounded-3xl w-[400px] shadow-2xl relative" id="auth-modal-content">
+        <div class="glass-card card-interactive p-8 rounded-3xl w-[400px] max-h-[90vh] overflow-y-auto shadow-2xl relative" id="auth-modal-content">
             <button onclick="closeAuthModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">✕</button>
             <div class="text-center mb-6">
                 <h2 id="auth-title" class="text-2xl font-bold text-white mb-2">Crear Cuenta</h2>
@@ -577,11 +577,11 @@
                 <div id="field-forgot" class="hidden text-right">
                     <button type="button" onclick="recuperarContrasena()" class="text-xs text-brand hover:underline font-semibold">¿Olvidaste tu contraseña?</button>
                 </div>
-                <div id="field-legal" class="flex items-start gap-2 text-xs text-slate-400">
+                <div id="field-legal" class="flex items-start gap-2 text-xs text-slate-400 mb-2">
                     <input type="checkbox" id="auth-legal" required class="mt-0.5 accent-indigo-500 w-4 h-4 shrink-0">
                     <label for="auth-legal" class="leading-snug">He leído y acepto la <a href="/politica-privacidad" target="_blank" class="text-brand hover:underline font-semibold">Política de Privacidad</a> y los <a href="/terminos-y-condiciones" target="_blank" class="text-brand hover:underline font-semibold">Términos y Condiciones</a>.</label>
                 </div>
-                <div id="field-promo" class="flex items-start gap-2 text-xs text-slate-400">
+                <div id="field-promo" class="flex items-start gap-2 text-xs text-slate-400 mb-3">
                     <input type="checkbox" id="auth-promo" class="mt-0.5 accent-indigo-500 w-4 h-4 shrink-0">
                     <label for="auth-promo" class="leading-snug">Quiero recibir correos promocionales, novedades y ofertas especiales.</label>
                 </div>

@@ -131,11 +131,11 @@
                     <a href="/recuperar-password" class="text-xs text-indigo-400 hover:underline font-semibold">¿Olvidaste tu contraseña?</a>
                 </div>
                 <p id="web-auth-error" class="hidden text-xs text-rose-400 font-semibold"></p>
-                <div id="web-field-legal" class="flex items-start gap-2 text-xs text-slate-400">
+                <div id="web-field-legal" class="flex items-start gap-2 text-xs text-slate-400 mb-2">
                     <input type="checkbox" id="web-auth-legal" required class="mt-0.5 accent-indigo-500 w-4 h-4 shrink-0">
                     <label for="web-auth-legal" class="leading-snug">He leído y acepto la <a href="/politica-privacidad" target="_blank" class="text-indigo-400 hover:underline font-semibold">Política de Privacidad</a> y los <a href="/terminos-y-condiciones" target="_blank" class="text-indigo-400 hover:underline font-semibold">Términos y Condiciones</a>.</label>
                 </div>
-                <div id="web-field-promo" class="flex items-start gap-2 text-xs text-slate-400">
+                <div id="web-field-promo" class="flex items-start gap-2 text-xs text-slate-400 mb-3">
                     <input type="checkbox" id="web-auth-promo" class="mt-0.5 accent-indigo-500 w-4 h-4 shrink-0">
                     <label for="web-auth-promo" class="leading-snug">Quiero recibir correos promocionales, novedades y ofertas especiales.</label>
                 </div>
