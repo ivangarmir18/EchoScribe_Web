@@ -199,14 +199,14 @@
                 Empieza gratis para pruebas rápidas o desbloquea transcripción en GPU Cloud, subtítulos .SRT sincronizados y Prompts Editoriales con nuestros planes Pro y Ultra.
             </p>
 
-            <!-- SELECTOR MENSUAL / ANUAL CLÁSICO CON RESALTADO VISUAL CLARO -->
-            <div class="flex justify-center items-center gap-3.5 mt-10 select-none">
+            <!-- SELECTOR MENSUAL / ANUAL CLÁSICO DETERMINISTA -->
+            <div class="flex justify-center items-center gap-4 mt-10 select-none">
                 <button type="button" onclick="setBillingPlanes('mensual')" id="label-mensual" class="cursor-pointer text-sm sm:text-base font-extrabold text-white transition-all duration-200 focus:outline-none">
                     Mensual
                 </button>
                 
-                <button type="button" id="billing-toggle" onclick="toggleBillingPlanes()" class="w-14 h-7 bg-indigo-600 rounded-full p-1 transition duration-300 focus:outline-none relative shadow-lg shadow-indigo-500/30 hover:opacity-95" aria-label="Cambiar entre mensual y anual">
-                    <div id="billing-circle" class="w-5 h-5 bg-white rounded-full transition-transform duration-300 transform translate-x-0 shadow-md"></div>
+                <button type="button" id="billing-toggle" onclick="toggleBillingPlanes()" class="w-14 h-7 bg-indigo-600 rounded-full p-1 transition duration-300 focus:outline-none relative shadow-lg shadow-indigo-500/30 hover:opacity-95 cursor-pointer" aria-label="Cambiar entre mensual y anual">
+                    <div id="billing-circle" class="w-5 h-5 bg-white rounded-full transition-transform duration-300 transform translate-x-0 shadow-md pointer-events-none"></div>
                 </button>
                 
                 <button type="button" onclick="setBillingPlanes('anual')" id="label-anual" class="cursor-pointer text-sm sm:text-base font-medium text-slate-500 hover:text-slate-300 transition-all duration-200 flex items-center gap-1.5 focus:outline-none">
@@ -316,14 +316,15 @@
                 </div>
             </div>
 
-            <!-- ULTRA -->
-            <div class="glass-card card-interactive p-8 rounded-3xl flex flex-col justify-between border border-amber-500/40 relative">
+            <!-- ULTRA (SIMETRÍA PERFECTA CON PRO) -->
+            <div class="glass-card card-interactive p-8 rounded-3xl border-2 border-amber-500/70 relative transform lg:-translate-y-3 shadow-2xl shadow-amber-500/20 flex flex-col justify-between">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-xs font-black px-4 py-1.5 rounded-full shadow-lg shadow-amber-500/30 tracking-wider inline-flex items-center gap-1.5 whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 fill-current text-slate-950" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg>
+                    <span>MÁXIMO RENDIMIENTO CLOUD</span>
+                </div>
                 <div>
-                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-amber-500/10 text-amber-300 text-[10px] font-bold uppercase tracking-wider mb-2 border border-amber-500/20">
-                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> MÁXIMO RENDIMIENTO CLOUD
-                    </div>
                     <h3 class="text-2xl font-bold mb-2 text-amber-400">Ultra</h3>
-                    <p class="text-xs text-slate-400 mb-6">Potencia para agencias, redacciones y conferencias extensas.</p>
+                    <p class="text-xs text-amber-200/70 mb-6">Potencia para agencias, redacciones y conferencias extensas.</p>
                     <div class="text-4xl font-extrabold mb-6 text-white">
                         <span id="price-ultra">19,99 €</span> <span id="period-ultra" class="text-lg font-normal text-slate-500">/mes</span>
                     </div>
@@ -487,30 +488,63 @@
             ultra_anual: 'https://buy.stripe.com/00w5kEcoDc9waXz0c0gjC03'
         };
 
-        function toggleBillingPlanes() {
-            currentBillingPlanes = currentBillingPlanes === 'mensual' ? 'anual' : 'mensual';
+        function setBillingPlanes(mode) {
+            currentBillingPlanes = mode;
             const circle = document.getElementById('billing-circle');
+            const labelMensual = document.getElementById('label-mensual');
+            const labelAnual = document.getElementById('label-anual');
             const pricePro = document.getElementById('price-pro');
             const periodPro = document.getElementById('period-pro');
             const priceUltra = document.getElementById('price-ultra');
             const periodUltra = document.getElementById('period-ultra');
+            const btnPro = document.getElementById('btn-pro');
+            const btnUltra = document.getElementById('btn-ultra');
 
-            if (currentBillingPlanes === 'anual') {
-                circle.classList.add('translate-x-7');
-                circle.classList.remove('translate-x-0');
-                pricePro.innerText = '59,99 €';
-                periodPro.innerText = '/ año (4,99€/mes)';
-                priceUltra.innerText = '149,99 €';
-                periodUltra.innerText = '/ año (12,49€/mes)';
+            if (mode === 'anual') {
+                if (circle) {
+                    circle.classList.remove('translate-x-0');
+                    circle.classList.add('translate-x-7');
+                }
+                if (labelMensual) {
+                    labelMensual.className = 'cursor-pointer text-sm sm:text-base font-medium text-slate-500 hover:text-slate-300 transition-all duration-200 focus:outline-none';
+                }
+                if (labelAnual) {
+                    labelAnual.className = 'cursor-pointer text-sm sm:text-base font-extrabold text-white drop-shadow transition-all duration-200 flex items-center gap-1.5 focus:outline-none';
+                }
+                if (pricePro) pricePro.innerText = '59,99 €';
+                if (periodPro) periodPro.innerText = '/ año (4,99 €/mes)';
+                if (priceUltra) priceUltra.innerText = '149,99 €';
+                if (periodUltra) periodUltra.innerText = '/ año (12,49 €/mes)';
+                if (btnPro) btnPro.innerHTML = '<span>Suscribirse al Plan Pro Anual</span>';
+                if (btnUltra) btnUltra.innerHTML = '<span>Suscribirse al Plan Ultra Anual</span>';
             } else {
-                circle.classList.remove('translate-x-7');
-                circle.classList.add('translate-x-0');
-                pricePro.innerText = '7,99 €';
-                periodPro.innerText = '/ mes';
-                priceUltra.innerText = '19,99 €';
-                periodUltra.innerText = '/ mes';
+                if (circle) {
+                    circle.classList.remove('translate-x-7');
+                    circle.classList.add('translate-x-0');
+                }
+                if (labelMensual) {
+                    labelMensual.className = 'cursor-pointer text-sm sm:text-base font-extrabold text-white drop-shadow transition-all duration-200 focus:outline-none';
+                }
+                if (labelAnual) {
+                    labelAnual.className = 'cursor-pointer text-sm sm:text-base font-medium text-slate-500 hover:text-slate-300 transition-all duration-200 flex items-center gap-1.5 focus:outline-none';
+                }
+                if (pricePro) pricePro.innerText = '7,99 €';
+                if (periodPro) periodPro.innerText = '/ mes';
+                if (priceUltra) priceUltra.innerText = '19,99 €';
+                if (periodUltra) periodUltra.innerText = '/ mes';
+                if (btnPro) btnPro.innerHTML = '<span>Suscribirse al Plan Pro</span>';
+                if (btnUltra) btnUltra.innerHTML = '<span>Suscribirse al Plan Ultra</span>';
             }
         }
+
+        function toggleBillingPlanes() {
+            setBillingPlanes(currentBillingPlanes === 'mensual' ? 'anual' : 'mensual');
+        }
+
+        // Inicializar estado por defecto siempre en Mensual al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            setBillingPlanes('mensual');
+        });
 
         async function checkoutProPlanes() {
             let user = null;
