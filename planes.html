@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planes y Precios | EchoScribe</title>
-    <meta name="description" content="Descubre los planes de EchoScribe: Gratis, Pro y Ultra. Transcripción con IA, subtítulos .SRT sincronizados, servidores GPU Cloud y soporte de hasta 12 horas.">
+    <meta name="description" content="Descubre los planes de EchoScribe: Gratis, Pro y Ultra. Transcripción con IA, subtítulos .SRT sincronizados, exportación limpia a Word y PDF sin marcas de agua y servidores GPU Cloud.">
     <link rel="icon" type="image/x-icon" href="/icono.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -25,7 +25,7 @@
             }
         }
     </script>
-        <style>
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
         body { 
@@ -89,24 +89,11 @@
             0%, 100% { transform: translate(0, 0) scale(1); }
             50% { transform: translate(-35px, 40px) scale(1.08); }
         }
-        @keyframes shimmerGlow {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        @keyframes borderShimmer {
-            0%, 100% { border-color: rgba(99, 102, 241, 0.2); }
-            50% { border-color: rgba(168, 85, 247, 0.45); }
-        }
 
         .animate-float-slow { animation: floatSlow 14s ease-in-out infinite; }
         .animate-float-rev { animation: floatReverse 18s ease-in-out infinite; }
-        .badge-shimmer {
-            background: linear-gradient(90deg, rgba(99,102,241,0.15) 0%, rgba(168,85,247,0.35) 50%, rgba(99,102,241,0.15) 100%);
-            background-size: 200% 100%;
-            animation: shimmerGlow 4s infinite linear;
-        }
 
-        /* SCROLL REVEAL (AOS EFFECT) */
+        /* SCROLL REVEAL */
         .reveal {
             opacity: 0;
             transform: translateY(28px);
@@ -118,7 +105,7 @@
             transform: translateY(0);
         }
 
-        /* INTERACTIVE 3D CARD HOVER */
+        /* INTERACTIVE CARD HOVER */
         .card-interactive {
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
         }
@@ -145,7 +132,6 @@
     <!-- CURSOR MOUSE SPOTLIGHT GLOW -->
     <div id="mouse-spotlight" class="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500" style="background: radial-gradient(650px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(99, 102, 241, 0.07), transparent 80%);"></div>
 
-    <!-- NAVEGACIÓN -->
     <!-- NAVEGACIÓN -->
     <nav class="fixed top-0 left-0 w-full z-40 glass border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center flex-wrap">
@@ -196,10 +182,10 @@
                 Planes diseñados para tu <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">ritmo de trabajo</span>
             </h1>
             <p class="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
-                Empieza gratis para pruebas rápidas o desbloquea transcripción en GPU Cloud, subtítulos .SRT sincronizados y Prompts Editoriales con nuestros planes Pro y Ultra.
+                Empieza gratis con exportación a PDF, Word y todos los idiomas, o da el salto a <strong>Pro y Ultra</strong> para transcribir sin marcas de agua, desbloquear subtítulos .SRT sincronizados y procesar audios extensos en GPU Cloud.
             </p>
 
-            <!-- SELECTOR MENSUAL / ANUAL CLÁSICO DETERMINISTA -->
+            <!-- SELECTOR MENSUAL / ANUAL -->
             <div class="flex justify-center items-center gap-4 mt-10 select-none">
                 <button type="button" onclick="setBillingPlanes('mensual')" id="label-mensual" class="cursor-pointer text-sm sm:text-base font-extrabold text-white transition-all duration-200 focus:outline-none">
                     Mensual
@@ -223,7 +209,7 @@
             <div class="glass-card card-interactive p-8 rounded-3xl flex flex-col justify-between border border-slate-800">
                 <div>
                     <h3 class="text-2xl font-bold mb-2 text-slate-300">Gratuito</h3>
-                    <p class="text-xs text-slate-400 mb-6">Para pruebas esporádicas y audios breves.</p>
+                    <p class="text-xs text-slate-400 mb-6">Para pruebas esporádicas y proyectos personales breves.</p>
                     <div class="mb-6">
                         <div class="text-4xl font-extrabold text-white flex items-baseline gap-1.5">
                             <span>0 €</span>
@@ -239,27 +225,27 @@
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-slate-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>30 análisis con IA al mes</strong> en local (máx. 30 min por audio).</span>
+                            <span><strong>Exportación a PDF, Word (.DOCX), Markdown y .TXT</strong> incluida.</span>
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-slate-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>60 transcripciones básicas al mes</strong> en la CPU de tu equipo.</span>
+                            <span><strong>Todos los idiomas disponibles</strong> y switch multilingüe integrado.</span>
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-slate-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>100 descargas al mes</strong> (MP3 y Vídeo MP4 hasta <strong>1080p Full HD</strong>).</span>
+                            <span><strong>30 análisis IA locales + 60 transcripciones básicas</strong> al mes (máx. 30 min).</span>
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-slate-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>Recorte y Trimming</strong>: Transcribe fragmentos con inicio y fin.</span>
+                            <span><strong>100 descargas al mes</strong> (MP3 128 kbps y Vídeo MP4 hasta 1080p).</span>
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-slate-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span>Exportación en texto plano <strong>.TXT</strong>.</span>
+                            <span>Soporte para <strong>Clave IA Personal (BYOK)</strong> y herramienta de recorte.</span>
                         </li>
                         <li class="flex gap-2.5 opacity-70 text-xs">
-                            <svg class="w-4 h-4 text-slate-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                            <span>Textos exportados con marca de agua.</span>
+                            <svg class="w-4 h-4 text-amber-500/80 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span>Textos exportados con marca de agua y subtítulos .SRT bloqueados.</span>
                         </li>
                     </ul>
                 </div>
@@ -279,7 +265,7 @@
                 </div>
                 <div>
                     <h3 class="text-2xl font-bold mb-2 text-indigo-400">Pro</h3>
-                    <p class="text-xs text-indigo-200/70 mb-6">El preferido de redactores, podcasters y editores de vídeo.</p>
+                    <p class="text-xs text-indigo-200/70 mb-6">El estándar para redactores, podcasters y editores de vídeo.</p>
                     <div class="mb-6">
                         <div class="text-4xl font-extrabold text-white flex items-baseline gap-1.5">
                             <span id="price-pro">7,99 €</span>
@@ -289,17 +275,25 @@
                     </div>
 
                     <ul class="space-y-4 mb-8 text-sm text-slate-200 font-medium">
+                        <li class="flex gap-2.5 bg-emerald-950/40 p-2.5 rounded-xl border border-emerald-500/30 text-emerald-300 font-bold">
+                            <svg class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                            <span>100% Sin marcas de agua: Copia limpia y exportaciones oficiales.</span>
+                        </li>
+                        <li class="flex gap-2.5">
+                            <svg class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                            <span><strong>Subtítulos .SRT sincronizados</strong> listos para Premiere, DaVinci y CapCut.</span>
+                        </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                             <span><strong>100 análisis con IA al mes</strong> en GPU Cloud (hasta 3 h por archivo / o <strong>200 h/mes</strong>).</span>
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>150 transcripciones rápidas</strong> en servidores cloud dedicados.</span>
+                            <span><strong>Exportación limpia completa</strong>: PDF maquetado, Word (.DOCX), Markdown y .TXT.</span>
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>Subtítulos .SRT sincronizados</strong> para Premiere, DaVinci y CapCut.</span>
+                            <span><strong>150 transcripciones rápidas</strong> en servidores dedicados de alta velocidad.</span>
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
@@ -308,10 +302,6 @@
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                             <span><strong>Recorte y Trimming ilimitado</strong> en HD sin procesar horas de más.</span>
-                        </li>
-                        <li class="flex gap-2.5">
-                            <svg class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>Sin marcas de agua</strong> y con copia limpia directa desbloqueada.</span>
                         </li>
                     </ul>
                 </div>
@@ -326,7 +316,7 @@
                 </div>
             </div>
 
-            <!-- ULTRA (SIMETRÍA PERFECTA CON PRO) -->
+            <!-- ULTRA -->
             <div class="glass-card card-interactive p-8 rounded-3xl border-2 border-amber-500/70 relative transform lg:-translate-y-3 shadow-2xl shadow-amber-500/20 flex flex-col justify-between">
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-xs font-black px-4 py-1.5 rounded-full shadow-lg shadow-amber-500/30 tracking-wider inline-flex items-center gap-1.5 whitespace-nowrap">
                     <svg class="w-3.5 h-3.5 fill-current text-slate-950" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg>
@@ -334,7 +324,7 @@
                 </div>
                 <div>
                     <h3 class="text-2xl font-bold mb-2 text-amber-400">Ultra</h3>
-                    <p class="text-xs text-amber-200/70 mb-6">Potencia para agencias, redacciones y conferencias extensas.</p>
+                    <p class="text-xs text-amber-200/70 mb-6">Potencia masiva para agencias, redacciones y conferencias extensas.</p>
                     <div class="mb-6">
                         <div class="text-4xl font-extrabold text-white flex items-baseline gap-1.5">
                             <span id="price-ultra">19,99 €</span>
@@ -344,29 +334,29 @@
                     </div>
 
                     <ul class="space-y-4 mb-8 text-sm text-slate-300 font-medium">
-                        <li class="flex gap-2.5">
+                        <li class="flex gap-2.5 bg-amber-950/40 p-2.5 rounded-xl border border-amber-500/30 text-amber-300 font-bold">
                             <svg class="w-4 h-4 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>Prompt Editorial Personalizado</strong>: Moldea el tono y estructura de la IA.</span>
+                            <span>Prompt Editorial Personalizado: Moldea el estilo, formato y tono de la IA.</span>
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>250 análisis con IA al mes</strong> en GPU Cloud (hasta 12 h por archivo / o <strong>750 h/mes</strong>).</span>
+                            <span><strong>250 análisis con IA al mes</strong> en GPU Cloud (hasta 12 h por archivo / o <strong>750 h/mes, 2 GB</strong>).</span>
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>500 transcripciones rápidas</strong> en GPU Cloud L4 (Whisper Turbo 62x, 2 GB).</span>
+                            <span><strong>500 transcripciones rápidas</strong> en GPU Cloud L4 (Whisper Turbo 62x).</span>
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>Exportación completa (.SRT y .TXT)</strong> sin ninguna restricción.</span>
+                            <span><strong>Subtítulos .SRT + Exportación total limpia</strong> (.DOCX, PDF, .MD, .TXT) sin marcas.</span>
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>Descargas ilimitadas</strong> en <strong>4K Ultra HD con Selector Manual de Calidad</strong> (4K, 2K 1440p, 1080p, 720p).</span>
+                            <span><strong>Descargas ilimitadas</strong> en <strong>4K con Selector Manual de Calidad</strong> (4K, 2K, 1080p).</span>
                         </li>
                         <li class="flex gap-2.5">
                             <svg class="w-4 h-4 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            <span><strong>Cola de procesamiento VIP</strong> prioritaria sin esperas.</span>
+                            <span><strong>Cola de procesamiento VIP</strong> prioritaria sin esperas de servidor.</span>
                         </li>
                     </ul>
                 </div>
@@ -399,18 +389,28 @@
                     <tbody class="divide-y divide-slate-800/60 text-slate-300">
                         <tr>
                             <td class="p-4 sm:p-5 font-semibold text-white">Análisis con IA al mes (GPU Cloud)</td>
-                            <td class="p-4 sm:p-5 text-center text-slate-400">30 en local</td>
+                            <td class="p-4 sm:p-5 text-center text-slate-400">30 en local (5 Cloud Promo)</td>
                             <td class="p-4 sm:p-5 text-center font-bold text-indigo-400">100 / mes</td>
                             <td class="p-4 sm:p-5 text-center font-bold text-amber-400">250 / mes</td>
                         </tr>
                         <tr>
-                            <td class="p-4 sm:p-5 font-semibold text-white">Duración máxima por archivo de audio</td>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Duración máxima por archivo</td>
                             <td class="p-4 sm:p-5 text-center text-slate-400">Hasta 30 min</td>
                             <td class="p-4 sm:p-5 text-center font-bold text-white">Hasta 3 Horas (200h/mes)</td>
                             <td class="p-4 sm:p-5 text-center font-bold text-amber-400">Hasta 12 Horas (750h/mes, 2GB)</td>
                         </tr>
                         <tr>
-                            <td class="p-4 sm:p-5 font-semibold text-white">Exportación de Subtítulos (.SRT)</td>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Copia Limpia sin Marcas de Agua</td>
+                            <td class="p-4 sm:p-5 text-center text-amber-400/80">Con marca de agua</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">
+                                <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> 100% Limpio</span>
+                            </td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">
+                                <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> 100% Limpio</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Subtítulos Sincronizados (.SRT)</td>
                             <td class="p-4 sm:p-5 text-center text-slate-500">Bloqueado</td>
                             <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">
                                 <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Ilimitado</span>
@@ -420,14 +420,20 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="p-4 sm:p-5 font-semibold text-white">Copia Limpia sin Marcas de Agua</td>
-                            <td class="p-4 sm:p-5 text-center text-slate-500">Con marca de agua</td>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Formatos Documentales (PDF, Word, TXT, MD)</td>
+                            <td class="p-4 sm:p-5 text-center text-slate-300">Incluidos (con marca de agua)</td>
                             <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">
-                                <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> 100% Limpio</span>
+                                <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Exportación Limpia</span>
                             </td>
                             <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">
-                                <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> 100% Limpio</span>
+                                <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Exportación Limpia</span>
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Soporte de Idiomas y Detección Multilingüe</td>
+                            <td class="p-4 sm:p-5 text-center text-slate-300">Todos los idiomas</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-indigo-400">Todos los idiomas</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-amber-400">Todos los idiomas</td>
                         </tr>
                         <tr>
                             <td class="p-4 sm:p-5 font-semibold text-white">Prompt Editorial Personalizado</td>
@@ -438,16 +444,16 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="p-4 sm:p-5 font-semibold text-white">Transcripciones Rápidas en la Nube</td>
+                            <td class="p-4 sm:p-5 font-semibold text-white">Transcripciones Rápidas en Servidores Cloud</td>
                             <td class="p-4 sm:p-5 text-center">5 / mes</td>
                             <td class="p-4 sm:p-5 text-center font-bold text-indigo-400">150 / mes</td>
-                            <td class="p-4 sm:p-5 text-center font-bold text-amber-400">500 / mes (Turbo 62x)</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-amber-400">500 / mes (GPU L4 Turbo 62x)</td>
                         </tr>
                         <tr>
                             <td class="p-4 sm:p-5 font-semibold text-white">Calidad de Descarga de Medios</td>
                             <td class="p-4 sm:p-5 text-center">128 kbps / 1080p</td>
-                            <td class="p-4 sm:p-5 text-center font-bold text-white">320 kbps / 4k HD</td>
-                            <td class="p-4 sm:p-5 text-center font-bold text-amber-400">Selector de calidad ULTRA</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-white">320 kbps / 4K HD</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-amber-400">Selector manual 4K Ultra HD</td>
                         </tr>
                         <tr>
                             <td class="p-4 sm:p-5 font-semibold text-white">Cola de Prioridad de Servidor</td>
@@ -555,7 +561,6 @@
             setBillingPlanes(currentBillingPlanes === 'mensual' ? 'anual' : 'mensual');
         }
 
-        // Inicializar estado por defecto siempre en Mensual al cargar
         document.addEventListener('DOMContentLoaded', () => {
             setBillingPlanes('mensual');
         });
@@ -590,7 +595,6 @@
     </script>
     <!-- INTERACTIVE SCROLL ANIMATION OBSERVER -->
     <script>
-        // Scroll Progress Bar
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -599,7 +603,6 @@
             if (progressBar) progressBar.style.width = scrolled + '%';
         }, { passive: true });
 
-        // Scroll Reveal with Intersection Observer
         document.addEventListener('DOMContentLoaded', () => {
             const reveals = document.querySelectorAll('.reveal');
             const revealObserver = new IntersectionObserver((entries, observer) => {
