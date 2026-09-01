@@ -17,35 +17,6 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Historial requerido' });
         }
 
-        const supabaseUrl = "https://ggmaiqxbidcxhbungnpx.supabase.co";
-        const supabaseAnonKey = "sb_publishable_f0PoBtsO7K98ck4Uh-0tGw_hXqxhWH6";
-
-        let geminiKey = process.env.GEMINI_API_KEY || "";
-
-        if (!geminiKey) {
-            try {
-                const sbRes = await fetch(`${supabaseUrl}/rest/v1/api_keys?key_type=eq.gratis&select=key_value`, {
-                    headers: {
-                        "apikey": supabaseAnonKey,
-                        "Authorization": `Bearer ${supabaseAnonKey}`
-                    }
-                });
-                if (sbRes.ok) {
-                    const keys = await sbRes.json();
-                    if (keys && keys.length > 0) {
-                        const randomIndex = Math.floor(Math.random() * keys.length);
-                        geminiKey = keys[randomIndex].key_value;
-                    }
-                }
-            } catch (sbErr) {
-                console.error("Error obteniendo key de Supabase:", sbErr);
-            }
-        }
-
-        if (!geminiKey) {
-            return res.status(500).json({ error: 'No key available', fallback: true });
-        }
-
         const systemInstruction = `Eres el Asistente Virtual Oficial de Soporte de EchoScribe (desarrollado por Iván García Miranda).
 Tu objetivo es resolver dudas de forma concisa, educada, empática y técnicamente precisa.
 Reglas clave:
@@ -69,7 +40,8 @@ Reglas clave:
             parts: [{ text: msg.text || '' }]
         }));
 
-        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${geminiKey}`, {
+        // Llamar al endpoint seguro de Gemini en lugar de exponer la key
+        const callGeminiRes = await fetch(`${process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000'}/api/call-gemini-api`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -80,25 +52,24 @@ Reglas clave:
                 generationConfig: {
                     temperature: 0.35,
                     maxOutputTokens: 750
-                }
+                },
+                plan: 'Gratis'
             })
         });
 
-        if (!geminiRes.ok) {
-            const errBody = await geminiRes.text();
-            console.error("Gemini API Error:", errBody);
+        if (!callGeminiRes.ok) {
+            const errBody = await callGeminiRes.text();
+            console.error("Call Gemini API Error:", errBody);
             return res.status(502).json({ error: 'Gemini API error', fallback: true });
         }
 
-        const data = await geminiRes.json();
-        const candidate = data.candidates?.[0];
-        const replyText = candidate?.content?.parts?.[0]?.text;
-
-        if (!replyText) {
+        const data = await callGeminiRes.json();
+        
+        if (!data.success || !data.respuesta) {
             return res.status(500).json({ error: 'Empty response', fallback: true });
         }
 
-        return res.status(200).json({ respuesta: replyText });
+        return res.status(200).json({ respuesta: data.respuesta });
     } catch (err) {
         console.error("Error en handler asistente:", err);
         return res.status(500).json({ error: err.message, fallback: true });

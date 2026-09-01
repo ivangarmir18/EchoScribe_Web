@@ -1,7 +1,7 @@
 {
-  "version": "1.2.2",
-  "release_date": "2026-08-30",
-  "download_url": "https://github.com/ivangarmir18/EchoScribe/releases/download/V1.2/EchoScribe_Setup.exe",
-  "notes": "EchoScribe v1.2.2: Interfaz profesional renovada, optimización en inferencia GPU Cloud, subtítulos .SRT sincronizados y mejoras de rendimiento.",
-  "mandatory": false
+  "version": "1.3",
+  "release_date": "2026-09-01",
+  "download_url": "https://github.com/ivangarmir18/EchoScribe/releases/download/V1.3/EchoScribe_Setup.exe",
+  "notes": "EchoScribe v1.3: Mejoras en traducción, añadido PDF, WORD, MD. Corrección de bugs en traducción, mejor optimización, nuevo sistema de actualización.",
+  "mandatory": true
 }
