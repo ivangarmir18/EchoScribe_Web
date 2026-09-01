@@ -1,7 +1,7 @@
-﻿{
+?{
   "version": "1.3",
   "release_date": "2026-09-01",
   "download_url": "https://github.com/ivangarmir18/EchoScribe/releases/latest/download/EchoScribe_Setup.exe",
-  "notes": "EchoScribe v1.3: Mejoras en traducciÃ³n, aÃ±adido PDF, WORD, MD. CorrecciÃ³n de bugs en traducciÃ³n, mejor optimizaciÃ³n, nuevo sistema de actualizaciÃ³n.",
+  "notes": "EchoScribe v1.3: Mejoras en traducción, añadido PDF, WORD, MD. Corrección de bugs en traducción, mejor optimización, nuevo sistema de actualización.",
   "mandatory": true
 }
