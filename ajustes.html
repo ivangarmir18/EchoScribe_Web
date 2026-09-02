@@ -27,10 +27,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #0b0f19; 
-            color: #f8fafc; 
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f8fafc;
             scroll-behavior: smooth;
         }
 
@@ -43,39 +43,39 @@
         }
 
         /* GLASSMORPHISM & BORDERS */
-        .glass { 
-            background: rgba(15, 23, 42, 0.75); 
-            backdrop-filter: blur(16px); 
+        .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.07); 
+            border: 1px solid rgba(255, 255, 255, 0.07);
         }
-        
-        .glass-card { 
-            background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.88) 100%); 
-            backdrop-filter: blur(16px); 
+
+        .glass-card {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.88) 100%);
+            backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
         }
 
         /* BUTTONS WITH DYNAMIC NEON GLOW */
-        .btn-gradient { 
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); 
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease; 
+        .btn-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
         }
-        .btn-gradient:hover { 
-            transform: translateY(-2px) scale(1.02); 
-            box-shadow: 0 14px 30px -6px rgba(168, 85, 247, 0.5); 
+        .btn-gradient:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 14px 30px -6px rgba(168, 85, 247, 0.5);
             filter: brightness(1.08);
         }
 
-        .btn-ultra { 
-            background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%); 
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease; 
+        .btn-ultra {
+            background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
         }
-        .btn-ultra:hover { 
-            transform: translateY(-2px) scale(1.02); 
-            box-shadow: 0 14px 30px -6px rgba(245, 158, 11, 0.5); 
+        .btn-ultra:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 14px 30px -6px rgba(245, 158, 11, 0.5);
             filter: brightness(1.08);
         }
 
@@ -152,11 +152,11 @@
                 <img src="/icono.ico" class="w-7 h-7 rounded-lg object-contain shrink-0 shadow-sm" alt="EchoScribe Logo">
                 <span>EchoScribe</span>
             </a>
-            
+
             <button onclick="document.getElementById('nav-links').classList.toggle('hidden')" class="md:hidden p-2 rounded-xl text-slate-300 hover:text-white bg-slate-800/60 border border-slate-700/60 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
-            
+
             <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-5 items-stretch md:items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 p-4 sm:p-5 md:p-0 rounded-2xl md:rounded-none bg-slate-900/98 md:bg-transparent border border-slate-800 md:border-0 shadow-2xl md:shadow-none">
                 <a href="/" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Inicio</a>
                 <a href="/planes" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Planes</a>
@@ -164,7 +164,7 @@
                 <a href="/guia-instalacion" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Instalación</a>
                 <a href="/soporte" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Soporte</a>
                 <a href="/sobre-mi" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Sobre Mí</a>
-                
+
                 <hr class="w-full border-slate-800 md:hidden my-2">
 
                 <div id="nav-guest" class="flex flex-col md:flex-row gap-2.5 md:gap-3 items-stretch md:items-center w-full md:w-auto pt-1 md:pt-0">
@@ -191,11 +191,11 @@
 
     <!-- CONTENIDO PRINCIPAL -->
     <main class="flex-1 max-w-5xl w-full mx-auto px-6 pt-28 pb-16">
-        
+
         <!-- CABECERA DEL PERFIL -->
         <div class="glass-card rounded-3xl p-6 sm:p-8 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
             <div class="absolute -right-16 -top-16 w-60 h-60 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            
+
             <div class="flex items-center gap-4 sm:gap-5 z-10">
                 <div id="user-avatar" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-500 flex items-center justify-center text-2xl sm:text-3xl font-extrabold text-white shadow-xl">
                     U
@@ -221,10 +221,10 @@
 
         <!-- GRID DE MÓDULOS -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
+
             <!-- COLUMNA IZQUIERDA (2/3) -->
             <div class="lg:col-span-2 space-y-8">
-                
+
                 <!-- TARJETA: PLAN Y SUSCRIPCIÓN -->
                 <div class="glass-card rounded-3xl p-6 sm:p-7 border border-slate-800">
                     <div class="flex justify-between items-center mb-4">
@@ -245,6 +245,16 @@
                     <div id="plan-upgrade-section" class="space-y-3">
                         <!-- Botones de compra o cambio prorrateado en Stripe -->
                     </div>
+                </div>
+
+                <!-- TARJETA: PREFERENCIAS DE PROCESADO -->
+                <div class="glass-card rounded-3xl p-6 sm:p-7 border-indigo-500/30">
+                    <div class="flex items-center gap-2.5 mb-4"><svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" d="M12 3v18M3 12h18"/></svg><h2 class="text-lg font-bold text-white">Preferencias de procesado</h2></div>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <label class="text-xs font-semibold text-slate-300">Idioma de interfaz<select id="web-ui-language" class="mt-2 w-full bg-slate-900/70 px-3 py-2.5 rounded-xl border-slate-700 text-white"><option>Español</option><option>English</option><option>Français</option></select></label>
+                        <label class="text-xs font-semibold text-slate-300">Perfil de subtítulos<select id="web-srt-profile" class="mt-2 w-full bg-slate-900/70 px-3 py-2.5 rounded-xl border-slate-700 text-white"><option value="corto">Corto · 15–20 caracteres</option><option value="medio">Medio · 21–35 caracteres</option><option value="largo">Largo · 36–42 caracteres</option></select></label>
+                    </div>
+                    <p class="text-[11px] text-slate-500 mt-4">El perfil se aplica a los subtítulos SRT generados desde la aplicación de escritorio.</p>
                 </div>
 
                 <!-- TARJETA: SEGURIDAD Y CONTRASEÑA -->
@@ -289,7 +299,7 @@
 
             <!-- COLUMNA DERECHA (1/3) -->
             <div class="space-y-8">
-                
+
                 <!-- TARJETA: PERFIL Y ALIAS -->
                 <div class="glass-card rounded-3xl p-6 sm:p-7 border border-slate-800">
                     <div class="flex items-center gap-2.5 mb-4">
@@ -365,7 +375,7 @@
 
     <!-- JAVASCRIPT & SUPABASE LOGIC -->
     <script>
-        const SUPABASE_URL = 'https://ggmaiqxbidcxhbungnpx.supabase.co'; 
+        const SUPABASE_URL = 'https://ggmaiqxbidcxhbungnpx.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnbWFpcXhiaWRjeGhidW5nbnB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2NjI4OTUsImV4cCI6MjEwMzIzODg5NX0.dFblpUUXInw4JLbsQQVa5NcxFWoCz3Ydff2c87_gRew';
         const sb = window.sb || supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
             auth: {
@@ -409,7 +419,7 @@
                 for (const fnName of fnNames) {
                     try {
                         const { data, error } = await sb.functions.invoke(fnName, {
-                            body: { 
+                            body: {
                                 email: currentUser.email,
                                 return_url: window.location.origin + '/ajustes'
                             }
@@ -506,9 +516,9 @@
 
             // Adaptar interfaz si el usuario se registró con Google y aún no tiene contraseña
             const yaTienePassword = currentUser.user_metadata?.has_password === true;
-            const isGoogleUser = (currentUser.app_metadata?.provider === 'google' || 
+            const isGoogleUser = (currentUser.app_metadata?.provider === 'google' ||
                 (currentUser.identities && currentUser.identities.some(i => i.provider === 'google'))) && !yaTienePassword;
-            
+
             const fieldCurrent = document.getElementById('field-current-pwd');
             const googleNotice = document.getElementById('google-auth-notice');
             const labelNew = document.getElementById('label-new-pwd');
@@ -626,7 +636,7 @@
             if (p1 !== p2) return showToast('Las nuevas contraseñas no coinciden.', true);
 
             const yaTienePassword = currentUser.user_metadata?.has_password === true;
-            const isGoogleUser = (currentUser.app_metadata?.provider === 'google' || 
+            const isGoogleUser = (currentUser.app_metadata?.provider === 'google' ||
                 (currentUser.identities && currentUser.identities.some(i => i.provider === 'google'))) && !yaTienePassword;
 
             if (!isGoogleUser) {
@@ -662,7 +672,7 @@
 
             try {
                 // Aplicar nueva contraseña en Supabase Auth y marcar has_password = true
-                const { data, error } = await sb.auth.updateUser({ 
+                const { data, error } = await sb.auth.updateUser({
                     password: p1,
                     data: { has_password: true }
                 });
@@ -673,7 +683,7 @@
                 } else if (currentUser?.user_metadata) {
                     currentUser.user_metadata.has_password = true;
                 }
-                
+
                 renderizarPerfil();
 
                 document.getElementById('input-current-pwd').value = '';
@@ -694,7 +704,7 @@
             const modal = document.getElementById('pwd-success-modal');
             const desc = document.getElementById('pwd-modal-desc');
             if (desc) {
-                desc.innerHTML = esNuevoGoogle 
+                desc.innerHTML = esNuevoGoogle
                     ? `¡Contraseña configurada con éxito! A partir de ahora tu cuenta tiene <strong>acceso dual</strong>: puedes iniciar sesión tanto con <strong>Google</strong> como introduciendo tu <strong>correo y tu nueva contraseña</strong> en la app y en la web.`
                     : `Tu contraseña ha sido actualizada correctamente en el sistema de seguridad.`;
             }

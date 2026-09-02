@@ -28,10 +28,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #0b0f19; 
-            color: #f8fafc; 
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f8fafc;
             scroll-behavior: smooth;
         }
 
@@ -44,39 +44,39 @@
         }
 
         /* GLASSMORPHISM & BORDERS */
-        .glass { 
-            background: rgba(15, 23, 42, 0.75); 
-            backdrop-filter: blur(16px); 
+        .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.07); 
+            border: 1px solid rgba(255, 255, 255, 0.07);
         }
-        
-        .glass-card { 
-            background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.88) 100%); 
-            backdrop-filter: blur(16px); 
+
+        .glass-card {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.88) 100%);
+            backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
         }
 
         /* BUTTONS WITH DYNAMIC NEON GLOW */
-        .btn-gradient { 
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); 
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease; 
+        .btn-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
         }
-        .btn-gradient:hover { 
-            transform: translateY(-2px) scale(1.02); 
-            box-shadow: 0 14px 30px -6px rgba(168, 85, 247, 0.5); 
+        .btn-gradient:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 14px 30px -6px rgba(168, 85, 247, 0.5);
             filter: brightness(1.08);
         }
 
-        .btn-ultra { 
-            background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%); 
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease; 
+        .btn-ultra {
+            background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
         }
-        .btn-ultra:hover { 
-            transform: translateY(-2px) scale(1.02); 
-            box-shadow: 0 14px 30px -6px rgba(245, 158, 11, 0.5); 
+        .btn-ultra:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 14px 30px -6px rgba(245, 158, 11, 0.5);
             filter: brightness(1.08);
         }
 
@@ -153,11 +153,11 @@
                 <img src="/icono.ico" class="w-7 h-7 rounded-lg object-contain shrink-0 shadow-sm" alt="EchoScribe Logo">
                 <span>EchoScribe</span>
             </a>
-            
+
             <button onclick="document.getElementById('nav-links').classList.toggle('hidden')" class="md:hidden p-2 rounded-xl text-slate-300 hover:text-white bg-slate-800/60 border border-slate-700/60 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
-            
+
             <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-5 items-stretch md:items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 p-4 sm:p-5 md:p-0 rounded-2xl md:rounded-none bg-slate-900/98 md:bg-transparent border border-slate-800 md:border-0 shadow-2xl md:shadow-none">
                 <a href="/" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Inicio</a>
                 <a href="/planes" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-brand font-bold bg-indigo-500/10 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Planes</a>
@@ -165,7 +165,7 @@
                 <a href="/guia-instalacion" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Instalación</a>
                 <a href="/soporte" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Soporte</a>
                 <a href="/sobre-mi" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Sobre Mí</a>
-                
+
                 <hr class="w-full border-slate-800 md:hidden my-2">
 
                 <div id="nav-guest" class="flex flex-col md:flex-row gap-2.5 md:gap-3 items-stretch md:items-center w-full md:w-auto pt-1 md:pt-0">
@@ -186,7 +186,7 @@
 
     <!-- HERO SECTION -->
     <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 pt-32 pb-20">
-        
+
         <!-- BADGE & TITULO -->
         <div class="text-center max-w-3xl mx-auto mb-12">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 mb-6 shadow-sm">
@@ -217,7 +217,7 @@
         <!-- TARJETA PRINCIPAL PRO & CHECKOUT -->
         <div class="glass-card glow-pro rounded-3xl p-6 sm:p-10 border border-indigo-500/40 relative overflow-hidden mb-16">
             <div class="absolute top-0 right-0 w-80 h-80 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none"></div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                 <!-- IZQUIERDA: DETALLES Y PRECIO (7/12) -->
                 <div class="md:col-span-7 space-y-5">
@@ -237,12 +237,13 @@
                     </div>
 
                     <p class="text-xs text-slate-400">IVA incluido. Cancela con 1 clic en cualquier momento sin permanencia.</p>
+                    <div class="rounded-2xl border-purple-500/30 bg-purple-500/10 p-4"><p class="text-sm text-purple-200"><strong>Traducción premium con Gemini</strong></p><p class="text-xs text-slate-300 mt-1">10 traducciones al mes para audios con varios idiomas, con contexto y revisión editorial.</p></div>
 
                     <!-- BULLETS DE CARACTERÍSTICAS -->
                     <div class="space-y-3 pt-2">
                         <div class="flex items-start gap-3">
                             <div class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
-                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">Subtítulos .SRT sincronizados:</strong> Exporta con marcas de tiempo exactas para YouTube, Premiere, DaVinci y CapCut.</span>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">Subtítulos .SRT sincronizados:</strong> Exporta con marcas de tiempo exactas y perfiles Corto, Medio y Largo para YouTube, Premiere, DaVinci y CapCut.</span>
                         </div>
                         <div class="flex items-start gap-3">
                             <div class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
@@ -254,7 +255,11 @@
                         </div>
                         <div class="flex items-start gap-3">
                             <div class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
-                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">100 análisis con IA al mes:</strong> En GPU Cloud con soporte de hasta 3 horas por archivo (o 200 horas/mes).</span>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">100 análisis con IA al mes:</strong> En GPU Cloud con soporte de hasta 3 horas por archivo (o 100 horas/mes).</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
+                            <span class="text-sm text-slate-200 font-medium"><strong class="text-white">10 traducciones premium con Gemini al mes:</strong> Traducción contextual multilingüe con revisión editorial.</span>
                         </div>
                         <div class="flex items-start gap-3">
                             <div class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</div>
@@ -268,7 +273,7 @@
                     <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-lg mb-1">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
-                    
+
                     <h3 class="text-lg font-bold text-white">Desbloqueo Inmediato</h3>
                     <p class="text-xs text-slate-400">Procesamiento seguro mediante pasarela oficial Stripe. Tu cuenta de EchoScribe se actualizará al instante.</p>
 
@@ -290,7 +295,7 @@
         <!-- TABLA COMPARATIVA: GRATIS VS PRO -->
         <div class="mb-16">
             <h3 class="text-2xl font-black text-white text-center mb-8">Comparativa Detallada: Gratis vs Pro</h3>
-            
+
             <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
                 <table class="w-full text-left text-sm">
                     <thead class="bg-slate-900/90 text-slate-400 text-xs uppercase font-bold border-b border-slate-800">
@@ -324,7 +329,7 @@
                         <tr>
                             <td class="p-4 sm:p-5 font-semibold text-white">Duración Máxima de Audio</td>
                             <td class="p-4 sm:p-5 text-center">Hasta 30 min</td>
-                            <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">Hasta 3 Horas (200h/mes)</td>
+                            <td class="p-4 sm:p-5 text-center font-bold text-emerald-400">Hasta 3 Horas (100h/mes)</td>
                         </tr>
                         <tr>
                             <td class="p-4 sm:p-5 font-semibold text-white">GPU Cloud Ultrarrápida</td>
@@ -344,7 +349,7 @@
         <!-- PREGUNTAS FRECUENTES -->
         <div class="max-w-3xl mx-auto space-y-4 mb-16">
             <h3 class="text-2xl font-black text-white text-center mb-8">Preguntas Frecuentes</h3>
-            
+
             <div class="glass-card rounded-2xl p-5 border border-slate-800">
                 <h4 class="font-bold text-white mb-1.5">¿Cómo se activa el Plan Pro en la App de escritorio?</h4>
                 <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Al completar el pago en Stripe con tu misma cuenta de correo, abre la App de EchoScribe (o haz clic en 'Sincronizar' en el menú de usuario) y tu aplicación se actualizará instantáneamente a Pro sin reinstalar nada.</p>
@@ -375,6 +380,7 @@
     <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-500">
         <p>© 2026 EchoScribe. Todos los derechos reservados. Pagos procesados de forma segura con Stripe.</p>
     </footer>
+    <p class="text-center text-xs text-slate-500 pb-8">* Las horas de audio traducidas computan el doble del límite mensual por el consumo adicional de recursos.</p>
 
     <!-- SCRIPT DE NAVEGACIÓN Y AUTO-LOGIN -->
     <script src="/nav-auth.js"></script>
