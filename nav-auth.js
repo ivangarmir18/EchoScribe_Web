@@ -1,10 +1,31 @@
 // EchoScribe Universal Navbar & Auth Handshake Synchronization
 (function() {
-    const SUPABASE_URL = 'https://ggmaiqxbidcxhbungnpx.supabase.co'; 
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnbWFpcXhiaWRjeGhidW5nbnB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2NjI4OTUsImV4cCI6MjEwMzIzODg5NX0.dFblpUUXInw4JLbsQQVa5NcxFWoCz3Ydff2c87_gRew'; 
-    
+    const SUPABASE_URL = 'https://ggmaiqxbidcxhbungnpx.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnbWFpcXhiaWRjeGhidW5nbnB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2NjI4OTUsImV4cCI6MjEwMzIzODg5NX0.dFblpUUXInw4JLbsQQVa5NcxFWoCz3Ydff2c87_gRew';
+
+    // Render temprano del navbar desde la sesion persistida en localStorage.
+    // Evita que "Registrate" parpadee (o se quede fijo) si el CDN de Supabase tarda o falla.
+    try {
+        const storageKey = Object.keys(localStorage).find(k => k.startsWith('sb-') && k.endsWith('-auth-token'));
+        if (storageKey) {
+            const raw = JSON.parse(localStorage.getItem(storageKey) || 'null');
+            const cachedUser = raw?.user || raw?.currentSession?.user;
+            if (cachedUser) {
+                const navGuest = document.getElementById('nav-guest');
+                const navUser = document.getElementById('nav-user');
+                if (navGuest && navUser) {
+                    navGuest.classList.add('hidden');
+                    navUser.classList.remove('hidden');
+                    navUser.classList.add('flex');
+                    const label = document.getElementById('nav-user-label');
+                    if (label) label.innerText = cachedUser.user_metadata?.username || cachedUser.email?.split('@')[0] || 'Mi Cuenta';
+                }
+            }
+        }
+    } catch (e) { /* cache corrupta: se ignora */ }
+
     if (typeof supabase === 'undefined') return;
-    
+
     // Configuración robusta de Supabase Client con persistencia en localStorage
     const sb = window.sb || supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
         auth: {
@@ -20,7 +41,7 @@
         try {
             const rawHash = window.location.hash.startsWith('#') ? window.location.hash.substring(1) : window.location.hash;
             const rawQuery = window.location.search.startsWith('?') ? window.location.search.substring(1) : window.location.search;
-            
+
             const params = new URLSearchParams(rawHash || rawQuery);
             let accessToken = params.get('access_token');
             let refreshToken = params.get('refresh_token');
@@ -38,7 +59,7 @@
                     access_token: accessToken,
                     refresh_token: refreshToken
                 });
-                
+
                 if (!error && data?.session) {
                     console.log('[AUTH] ✅ Sesión transferida con éxito:', data.session.user?.email);
                     // Limpiar la barra de direcciones para seguridad y estética
@@ -109,7 +130,7 @@
                     <hr class="flex-1 border-slate-700">
                 </div>
             </div>
-            
+
             <form id="web-auth-form" onsubmit="event.preventDefault(); window.procesarAuthWeb();" class="space-y-4">
                 <div id="web-field-username" class="hidden">
                     <label class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Nombre de Usuario</label>
@@ -141,9 +162,9 @@
                 </div>
                 <button type="submit" id="web-auth-submit-btn" class="w-full btn-gradient text-white font-bold py-3.5 rounded-xl shadow-lg mt-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:opacity-90 transition">Iniciar Sesión</button>
             </form>
-            
+
             <div class="mt-6 text-center text-sm text-slate-400 border-t border-slate-700/50 pt-6">
-                <span id="web-auth-switch-text">¿No tienes cuenta?</span> 
+                <span id="web-auth-switch-text">¿No tienes cuenta?</span>
                 <button onclick="window.toggleAuthModeWeb()" id="web-auth-switch-btn" class="text-indigo-400 font-bold hover:underline ml-1">Regístrate gratis</button>
             </div>
         </div>`;
