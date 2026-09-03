@@ -754,10 +754,14 @@
             }
         }
 
-        function openAuthModal(mode) {
+        window.openAuthModalNative = function(mode) {
             currentMode = mode;
             updateAuthUI();
             document.getElementById('auth-modal').classList.remove('hidden');
+        };
+        
+        function openAuthModal(mode) {
+            window.openAuthModalNative(mode);
         }
 
         function closeAuthModal() {

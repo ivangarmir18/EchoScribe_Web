@@ -174,7 +174,7 @@
     let webAuthMode = 'login';
 
     window.openAuthModal = function(mode) {
-        if (window.location.pathname === '/' && typeof openAuthModalNative === 'function') {
+        if ((window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) && typeof window.openAuthModalNative === 'function') {
             openAuthModalNative(mode);
             return;
         }
