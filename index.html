@@ -1,14 +1,38 @@
-﻿﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es" class="dark" style="background-color: #0b0f19; color: #f8fafc;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EchoScribe | Transcripción de audio, subtítulos SRT y resúmenes</title>
+    <title>EchoScribe - Transcripción de audio, subtítulos SRT y resúmenes</title>
     <link rel="icon" type="image/x-icon" href="/icono.ico">
     <link rel="shortcut icon" type="image/x-icon" href="/icono.ico">
     <link rel="apple-touch-icon" href="/icono.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Comprobación de primer visitante sin cuenta ni cookies para mostrar la bienvenida
+        (function() {
+            try {
+                const search = window.location.search;
+                const hash = window.location.hash;
+                const hasExplicitParam = /[?&](auth|action|access_token|modal)=/.test(search) || /#(access_token|login|register|profile)/.test(hash);
+                if (hasExplicitParam) return;
+
+                const hasVisited = localStorage.getItem('echoscribe_visited') === '1' || 
+                                  localStorage.getItem('echoscribe_bienvenida_vista') === 'true' ||
+                                  localStorage.getItem('echoscribe_cookies_accepted') === 'true' ||
+                                  document.cookie.includes('echoscribe_visited=1') ||
+                                  document.cookie.includes('echoscribe_bienvenida_vista=true') ||
+                                  document.cookie.includes('echoscribe_cookies_accepted=true');
+                const hasAuthToken = Object.keys(localStorage).some(k => k.startsWith('sb-') && k.endsWith('-auth-token'));
+
+                // Si ya visitó, aceptó cookies, o tiene sesión iniciada, NUNCA redirigir a bienvenida
+                if (!hasVisited && !hasAuthToken) {
+                    window.location.replace('/bienvenida');
+                }
+            } catch(e) {}
+        })();
+    </script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -96,17 +120,47 @@
             animation: shimmerGlow 4s infinite linear;
         }
 
-        /* SCROLL REVEAL (AOS EFFECT) */
+        /* SCROLL REVEAL 3D PREMIUM (APPLE STYLE) */
         .reveal {
             opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: perspective(1000px) translate3d(0, 28px, -16px) rotateX(3deg);
+            transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.0s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: opacity, transform;
         }
         .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: perspective(1000px) translate3d(0, 0, 0) rotateX(0deg);
         }
+        .reveal-left {
+            opacity: 0;
+            transform: perspective(1000px) translate3d(-36px, 16px, -10px) rotateY(5deg);
+            transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-left.active {
+            opacity: 1;
+            transform: perspective(1000px) translate3d(0, 0, 0) rotateY(0deg);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: perspective(1000px) translate3d(36px, 16px, -10px) rotateY(-5deg);
+            transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-right.active {
+            opacity: 1;
+            transform: perspective(1000px) translate3d(0, 0, 0) rotateY(0deg);
+        }
+        /* Stagger delays para grupos de cards */
+        .reveal-d1 { transition-delay: 0.05s; }
+        .reveal-d2 { transition-delay: 0.12s; }
+        .reveal-d3 { transition-delay: 0.19s; }
+        .reveal-d4 { transition-delay: 0.26s; }
+        .reveal-d5 { transition-delay: 0.33s; }
+        .reveal-d6 { transition-delay: 0.40s; }
 
         /* INTERACTIVE 3D CARD HOVER */
         .card-interactive {
@@ -194,7 +248,6 @@
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10 mb-10">
             <a href="/planes" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-base group">
                 <span>Ver Planes y Precios</span>
-                <span class="text-sm transition-transform group-hover:translate-x-1">→</span>
             </a>
             <a href="https://github.com/ivangarmir18/EchoScribe/releases/latest/download/EchoScribe_Setup.exe" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-500 text-white font-bold py-4 px-8 rounded-2xl transition flex items-center justify-center gap-2 text-base shadow-lg">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -203,28 +256,28 @@
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto text-left relative z-10 reveal">
-            <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive">
+            <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive reveal">
                 <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-3">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                 </div>
                 <strong class="text-white block text-sm mb-1">Inferencia en GPU Cloud</strong>
                 <p class="text-xs text-slate-400 leading-relaxed">Procesa 30 minutos de rueda de prensa en apenas 10-15 segundos sin consumir recursos de tu ordenador.</p>
             </div>
-            <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive">
+            <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive reveal">
                 <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-3">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879a3 3 0 11-4.242-4.242L10.758 10.758M12 12l2.879-2.879a3 3 0 114.242 4.242L16.242 16.242"/></svg>
                 </div>
                 <strong class="text-white block text-sm mb-1">Recorte y Trimming</strong>
                 <p class="text-xs text-slate-400 leading-relaxed">Define marcas de inicio y fin para descargar o transcribir solo el fragmento exacto que necesitas.</p>
             </div>
-            <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive">
+            <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive reveal">
                 <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-3">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>
                 <strong class="text-white block text-sm mb-1">Rigor Periodístico IA</strong>
                 <p class="text-xs text-slate-400 leading-relaxed">Contrasta nombres propios, plantillas deportivas y tecnicismos en tiempo real para evitar confusiones.</p>
             </div>
-            <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive">
+            <div class="glass p-5 rounded-2xl border border-slate-800 card-interactive reveal">
                 <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-3">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
                 </div>
@@ -277,7 +330,7 @@
 
             <div class="mt-4 pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center gap-3">
                 <span class="text-xs text-slate-400">¿Quieres transcribir tus propios audios y vídeos completos?</span>
-                <a href="/planes" class="btn-gradient text-white text-xs font-bold py-2.5 px-5 rounded-xl shadow-md transition">Ver Planes y Precios →</a>
+                <a href="/planes" class="btn-gradient text-white text-xs font-bold py-2.5 px-5 rounded-xl shadow-md transition">Ver Planes y Precios</a>
             </div>
         </div>
     </section>
@@ -299,7 +352,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Tarjeta 1: Descargas 1080p y 4K -->
-                <div class="glass-card card-interactive p-6 rounded-3xl border border-slate-800 flex flex-col justify-between">
+                <div class="glass-card card-interactive p-6 rounded-3xl border border-slate-800 flex flex-col justify-between reveal">
                     <div>
                         <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-5 border border-emerald-500/30">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
@@ -309,11 +362,11 @@
                             Descarga vídeos de YouTube, Twitch y X en <strong>1080p Full HD</strong> o <strong>4K Ultra HD</strong> y audios a 320 kbps sin anuncios ni páginas dudosas.
                         </p>
                     </div>
-                    <a href="/guias/descargar-videos-youtube-mp3-mp4" class="text-xs font-bold text-emerald-400 hover:underline flex items-center gap-1">Ver guía de descargas →</a>
+                    <a href="/guias/descargar-videos-youtube-mp3-mp4" class="text-xs font-bold text-emerald-400 hover:underline flex items-center gap-1">Ver guía de descargas</a>
                 </div>
 
                 <!-- Tarjeta 2: Traducción Simultánea -->
-                <div class="glass-card card-interactive p-6 rounded-3xl border border-indigo-500/30 bg-indigo-950/20 flex flex-col justify-between shadow-lg">
+                <div class="glass-card card-interactive p-6 rounded-3xl border border-indigo-500/30 bg-indigo-950/20 flex flex-col justify-between shadow-lg reveal">
                     <div>
                         <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center mb-5 border border-indigo-500/30">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
@@ -323,11 +376,11 @@
                             Pega conferencias o vídeos en inglés, francés o alemán y obtén subtítulos .SRT sincronizados en español y audios bilingües limpios sin alucinaciones.
                         </p>
                     </div>
-                    <a href="/guias/transcribir-traducir-subtitulos-srt-simultaneo" class="text-xs font-bold text-indigo-400 hover:underline flex items-center gap-1">Ver traducción simultánea →</a>
+                    <a href="/guias/transcribir-traducir-subtitulos-srt-simultaneo" class="text-xs font-bold text-indigo-400 hover:underline flex items-center gap-1">Ver traducción simultánea</a>
                 </div>
 
                 <!-- Tarjeta 3: Estudio con IA Externa -->
-                <div class="glass-card card-interactive p-6 rounded-3xl border border-slate-800 flex flex-col justify-between">
+                <div class="glass-card card-interactive p-6 rounded-3xl border border-slate-800 flex flex-col justify-between reveal">
                     <div>
                         <div class="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center mb-5 border border-blue-500/30">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
@@ -337,11 +390,11 @@
                             Transcribe conferencias o clases de 3 horas en 90s y genera apuntes, esquemas y tests de estudio sin tener que ver el metraje completo.
                         </p>
                     </div>
-                    <a href="/guias/estudiar-videos-largos-con-ia" class="text-xs font-bold text-blue-400 hover:underline flex items-center gap-1">Ver método de estudio →</a>
+                    <a href="/guias/estudiar-videos-largos-con-ia" class="text-xs font-bold text-blue-400 hover:underline flex items-center gap-1">Ver método de estudio</a>
                 </div>
 
                 <!-- Tarjeta 4: Twitch y Twitter / X -->
-                <div class="glass-card card-interactive p-6 rounded-3xl border border-slate-800 flex flex-col justify-between">
+                <div class="glass-card card-interactive p-6 rounded-3xl border border-slate-800 flex flex-col justify-between reveal">
                     <div>
                         <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center mb-5 border border-purple-500/30">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
@@ -351,7 +404,7 @@
                             Captura declaraciones virales en X o directos de Twitch de hasta 12 horas y genera subtítulos con marcas de tiempo para Premiere Pro y CapCut.
                         </p>
                     </div>
-                    <a href="/guias/descargar-transcribir-clips-directos-twitch" class="text-xs font-bold text-purple-400 hover:underline flex items-center gap-1">Ver flujo de creadores →</a>
+                    <a href="/guias/descargar-transcribir-clips-directos-twitch" class="text-xs font-bold text-purple-400 hover:underline flex items-center gap-1">Ver flujo de creadores</a>
                 </div>
             </div>
         </div>
@@ -382,7 +435,7 @@
                         <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Gratuito</div>
                         <div class="text-2xl font-black text-white mb-3">0 € <span class="text-xs font-normal text-slate-400">/mes</span></div>
                         <ul class="text-xs text-slate-300 space-y-2 font-medium">
-                            <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>5 transcripciones Cloud/mes</span></li>
+                            <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>5 pruebas GPU Cloud/mes (con .SRT)</span></li>
                             <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>30 análisis IA locales</span></li>
                             <li class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>Exportación (marca de agua) <br> Formatos: .TXT, PDF, Word, MD</span></li>
                         </ul>
@@ -418,7 +471,6 @@
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                     <a href="/planes" class="w-full sm:w-auto btn-gradient text-white font-bold py-4 px-8 rounded-2xl shadow-xl flex items-center justify-center gap-2 text-base transition group">
                         <span>Ver todos los Planes y Comparativa Completa</span>
-                        <span class="text-sm transition-transform group-hover:translate-x-1">→</span>
                     </a>
                 </div>
             </div>
@@ -485,6 +537,7 @@
                     <li><a href="/sobre-mi" class="hover:text-white transition">Sobre Iván García Miranda</a></li>
                     <li><a href="/politica-privacidad" class="hover:text-white transition">Política de Privacidad</a></li>
                     <li><a href="/terminos-y-condiciones" class="hover:text-white transition">Términos y Condiciones</a></li>
+                    <li><a href="/politica-cookies" class="hover:text-white transition">Política de Cookies</a></li>
                     <li><a href="/soporte" class="hover:text-white transition">Soporte y Contacto</a></li>
                 </ul>
             </div>
@@ -576,7 +629,7 @@
                 </div>
                 <div id="field-legal" class="flex items-start gap-2 text-xs text-slate-400 mb-2">
                     <input type="checkbox" id="auth-legal" required class="mt-0.5 accent-indigo-500 w-4 h-4 shrink-0">
-                    <label for="auth-legal" class="leading-snug">He leído y acepto la <a href="/politica-privacidad" target="_blank" class="text-brand hover:underline font-semibold">Política de Privacidad</a> y los <a href="/terminos-y-condiciones" target="_blank" class="text-brand hover:underline font-semibold">Términos y Condiciones</a>.</label>
+                    <label for="auth-legal" class="leading-snug">He leído y acepto la <a href="/politica-privacidad" target="_blank" class="text-brand hover:underline font-semibold">Política de Privacidad</a>, los <a href="/terminos-y-condiciones" target="_blank" class="text-brand hover:underline font-semibold">Términos y Condiciones</a> y la <a href="/politica-cookies" target="_blank" class="text-brand hover:underline font-semibold">Política de Cookies</a>.</label>
                 </div>
                 <div id="field-promo" class="flex items-start gap-2 text-xs text-slate-400 mb-3">
                     <input type="checkbox" id="auth-promo" class="mt-0.5 accent-indigo-500 w-4 h-4 shrink-0">
@@ -610,6 +663,30 @@
     <div id="toast" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-slate-800 border border-slate-700 text-white px-6 py-3 rounded-2xl shadow-2xl font-medium transition-all duration-300 translate-y-20 opacity-0 z-50 flex items-center gap-3">
         <span id="toast-icon">✅</span>
         <span id="toast-msg">Mensaje</span>
+    </div>
+
+    <!-- BANNER RGPD DE COOKIES -->
+    <div id="cookie-banner" class="fixed bottom-5 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-md z-50 glass-card p-5 rounded-2xl border border-indigo-500/30 shadow-2xl transition-all duration-500 transform translate-y-36 opacity-0 pointer-events-none">
+        <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+            <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
+                <p class="font-bold text-white text-sm">Privacidad y uso de cookies</p>
+                <p>
+                    Utilizamos cookies esenciales para la gestión segura de tu sesión y rendimiento del transcriptor. Puedes aceptarlas o consultar nuestra <a href="/politica-cookies" class="text-indigo-400 hover:underline font-semibold">Política de Cookies</a>.
+                </p>
+                <div class="flex flex-wrap items-center gap-2 pt-1">
+                    <button onclick="aceptarCookies('all')" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition shadow-md">
+                        Aceptar todas
+                    </button>
+                    <button onclick="aceptarCookies('essential')" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs border border-slate-700 transition">
+                        Solo esenciales
+                    </button>
+                    <a href="/politica-cookies" class="text-slate-400 hover:text-white text-xs px-2 py-1 transition">
+                        Más info
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- JAVASCRIPT -->
@@ -695,6 +772,7 @@
         document.addEventListener('DOMContentLoaded', async () => {
             await procesarAutoLoginDesdeApp();
             await refrescarUsuarioWeb();
+            verificarCookieConsent();
 
             const urlParams = new URLSearchParams(window.location.search);
             const authParam = urlParams.get('auth');
@@ -702,6 +780,31 @@
                 openAuthModal(authParam);
             }
         });
+
+        function verificarCookieConsent() {
+            try {
+                const consent = localStorage.getItem('echoscribe_cookie_consent') || (document.cookie.match(/echoscribe_cookie_consent=([^;]+)/) || [])[1];
+                if (!consent) {
+                    setTimeout(() => {
+                        const banner = document.getElementById('cookie-banner');
+                        if (banner) {
+                            banner.classList.remove('translate-y-36', 'opacity-0', 'pointer-events-none');
+                        }
+                    }, 1200);
+                }
+            } catch(e) {}
+        }
+
+        function aceptarCookies(tipo) {
+            try {
+                localStorage.setItem('echoscribe_cookie_consent', tipo);
+                document.cookie = `echoscribe_cookie_consent=${tipo}; path=/; max-age=31536000; SameSite=Lax`;
+                const banner = document.getElementById('cookie-banner');
+                if (banner) {
+                    banner.classList.add('translate-y-36', 'opacity-0', 'pointer-events-none');
+                }
+            } catch(e) {}
+        }
 
         function actualizarEstadoNavbar() {
             const navGuest = document.getElementById('nav-guest');
@@ -728,19 +831,19 @@
             const plan = (currentUser?.user_metadata?.plan || 'Gratis').toUpperCase();
 
             if (plan === 'ULTRA') {
-                btnUltra.innerText = "✓ Tu Plan Actual";
+                btnUltra.innerText = "Tu Plan Actual";
                 btnUltra.className = "w-full py-4 rounded-xl font-bold bg-green-500/20 text-green-300 border border-green-500/40 cursor-default";
                 btnUltra.onclick = () => showToast("Ya tienes activo el Plan Ultra Máximo.");
 
-                btnPro.innerText = "⚙️ Gestionar en Stripe";
+                btnPro.innerText = "Gestionar en Stripe";
                 btnPro.className = "w-full py-4 rounded-xl font-bold bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 transition";
                 btnPro.onclick = () => abrirPortalStripe();
             } else if (plan === 'PRO') {
-                btnPro.innerText = "✓ Tu Plan Actual";
+                btnPro.innerText = "Tu Plan Actual";
                 btnPro.className = "w-full py-4 rounded-xl font-bold bg-green-500/20 text-green-300 border border-green-500/40 cursor-default";
                 btnPro.onclick = () => showToast("Ya tienes activo el Plan Pro.");
 
-                btnUltra.innerText = "⚡ Mejorar a Ultra en Stripe (Prorrateado)";
+                btnUltra.innerText = "Mejorar a Ultra en Stripe (Prorrateado)";
                 btnUltra.className = "w-full py-4 rounded-xl font-bold btn-gradient text-white shadow-lg";
                 btnUltra.onclick = () => abrirPortalStripe();
             } else {
@@ -781,7 +884,7 @@
                 planLabel.className = "text-indigo-400 font-extrabold text-base uppercase";
                 actionContainer.innerHTML = `
                     <button onclick="window.open(STRIPE_LINKS.ultra_mensual, '_blank')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 transition flex items-center justify-center gap-1.5">
-                        <span>🚀</span><span>Pasar a Ultra</span>
+                        <svg class="w-4 h-4 text-amber-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><span>Mejorar a Ultra</span>
                     </button>`;
             } else {
                 actionContainer.innerHTML = '';
@@ -1109,19 +1212,30 @@
         }, { passive: true });
 
         document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            const revealObserver = new IntersectionObserver((entries, observer) => {
+            // Añadir stagger delays a grupos de cards
+            document.querySelectorAll('.grid .reveal').forEach((el, i) => {
+                el.classList.add('reveal-d' + (Math.min(i % 4 + 1, 6)));
+            });
+
+            const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
                     }
                 });
             }, {
-                threshold: 0.12,
-                rootMargin: '0px 0px -40px 0px'
+                threshold: 0.08,
+                rootMargin: '0px 0px -30px 0px'
             });
 
-            reveals.forEach(el => revealObserver.observe(el));
+            allReveals.forEach(el => revealObserver.observe(el));
+
+            // Mouse spotlight
+            document.addEventListener('mousemove', (e) => {
+                document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+                document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+            });
         });
     </script>
     <script src="/nav-auth.js"></script>

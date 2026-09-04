@@ -16,7 +16,10 @@
     { "source": "/transcriptor-audio-a-texto", "destination": "/transcriptor-audio-a-texto.html" },
     { "source": "/terminos-y-condiciones", "destination": "/terminos-y-condiciones.html" },
     { "source": "/politica-privacidad", "destination": "/politica-privacidad.html" },
+    { "source": "/politica-cookies", "destination": "/politica-cookies.html" },
+    { "source": "/bienvenida", "destination": "/bienvenida.html" },
     { "source": "/transcribir-entrevistas-reuniones", "destination": "/transcribir-entrevistas-reuniones.html" },
+    { "source": "/generador-subtitulos-srt", "destination": "/generador-subtitulos-srt.html" },
     { "source": "/guias/:slug", "destination": "/guias/:slug.html" }
   ]
 }
