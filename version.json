@@ -1,7 +1,7 @@
 {
-  "version": "1.3.1",
-  "release_date": "2026-09-02",
+  "version": "1.3.2",
+  "release_date": "2026-09-04",
   "download_url": "https://github.com/ivangarmir18/EchoScribe/releases/latest/download/EchoScribe_Setup.exe",
-  "notes": "EchoScribe v1.3.1: Nuevo sistema de traducción, nuevo sistema de ajustes.",
-  "mandatory": true
+  "notes": "EchoScribe v1.3.2: Motor nativo WebView2, corrección crítica en traducciones y cuotas, y mejoras de estabilidad.",
+  "mandatory": false
 }

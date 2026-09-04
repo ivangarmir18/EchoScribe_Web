@@ -28,7 +28,7 @@ Reglas clave:
    - Si un directo está emitiéndose EN VIVO, la plataforma aún no tiene el archivo de audio cerrado. Hay que esperar a que el directo termine para transcribir el VOD.
    - Si el directo dura más de 3 horas, requiere Plan Ultra (hasta 12 horas).
    - En Twitch, los directos 'Sub-only' (solo suscriptores) no pueden ser descargados por la API.
-3. Windows SmartScreen: Es un filtro temporal por ser versión nueva. Se soluciona pulsando 'Más información' -> 'Ejecutar de todas formas'.
+3. Windows SmartScreen: Es un filtro temporal por ser versión nueva. Se soluciona pulsando 'Más información' y después 'Ejecutar de todas formas'.
 4. Privacidad: Borrado automático a las 24 horas (TTL 24h), canal seguro HTTPS/TLS 1.3, cero entrenamiento de modelos de IA con datos de usuarios.
 5. Formatos compatibles: MP3, WAV, MP4, M4A, AAC, MKV, FLAC, WebM, enlaces de YouTube, Twitch y X.
 6. Subtítulos .SRT: Sincronización milimétrica para Premiere, CapCut, DaVinci Resolve.
