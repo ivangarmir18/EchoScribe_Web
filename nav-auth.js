@@ -319,13 +319,15 @@
     // ==========================================
     function marcarCookiesYAceptacionGlobal() {
         try {
+            localStorage.setItem('echoscribe_cookie_consent', 'essential');
             localStorage.setItem('echoscribe_cookies_accepted', 'true');
             localStorage.setItem('echoscribe_bienvenida_vista', 'true');
             localStorage.setItem('echoscribe_visited', '1');
             document.cookie = "echoscribe_cookies_accepted=true; path=/; max-age=31536000; SameSite=Lax";
+            document.cookie = "echoscribe_cookie_consent=essential; path=/; max-age=31536000; SameSite=Lax";
             document.cookie = "echoscribe_bienvenida_vista=true; path=/; max-age=31536000; SameSite=Lax";
             document.cookie = "echoscribe_visited=1; path=/; max-age=31536000; SameSite=Lax";
-            const banner = document.getElementById('echoscribe-cookie-banner');
+            const banner = document.getElementById('cookie-banner');
             if (banner) {
                 banner.style.opacity = '0';
                 banner.style.transform = 'translateY(20px)';
@@ -338,19 +340,22 @@
 
     function initCookieBanner() {
         try {
-            const accepted = localStorage.getItem('echoscribe_cookies_accepted') === 'true' || 
-                             document.cookie.includes('echoscribe_cookies_accepted=true');
-            if (accepted || document.getElementById('echoscribe-cookie-banner')) return;
+            const accepted = localStorage.getItem('echoscribe_cookies_accepted') === 'true' ||
+                             localStorage.getItem('echoscribe_cookie_consent') ||
+                             document.cookie.includes('echoscribe_cookies_accepted=true') ||
+                             document.cookie.includes('echoscribe_cookie_consent=');
+            if (accepted || document.getElementById('cookie-banner')) return;
 
             const banner = document.createElement('div');
-            banner.id = 'echoscribe-cookie-banner';
+            banner.id = 'cookie-banner';
             banner.setAttribute('role', 'region');
             banner.setAttribute('aria-label', 'Consentimiento de cookies');
             banner.style.cssText = `
                 position: fixed;
                 bottom: 1.25rem;
                 right: 1.25rem;
-                left: 1.25rem;
+                left: auto;
+                width: calc(100% - 2.5rem);
                 max-width: 440px;
                 margin-left: auto;
                 background: rgba(13, 19, 36, 0.94);
@@ -406,8 +411,8 @@
                     }
                 </style>
                 <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
-                    <div style="width: 36px; height: 36px; border-radius: 0.75rem; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <div style="width: 36px; height: 36px; border-radius: 0.75rem; background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
                             <path d="M8.5 8.5v.01"></path>
                             <path d="M16 15.5v.01"></path>

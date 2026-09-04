@@ -1066,7 +1066,7 @@
             }
 
             #particle-canvas {
-                opacity: .22;
+                display: none;
             }
 
             .right-6.top-1\/2,
@@ -2980,12 +2980,22 @@
         };
 
         // ILUMINACIÓN ESPECULAR 3D Y PARALLAX EN TARJETAS
+        const reduceEffects = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let pointerFrame = null;
+        let lastPointerEvent = null;
         document.addEventListener('mousemove', (e) => {
+            if (reduceEffects || window.matchMedia('(pointer: coarse)').matches) return;
+            lastPointerEvent = e;
+            if (pointerFrame !== null) return;
+            pointerFrame = requestAnimationFrame(() => {
+                const pointerEvent = lastPointerEvent;
+                pointerFrame = null;
+                if (!pointerEvent) return;
             // Actualizar foco de luz especular en los dies de silicio
             document.querySelectorAll('.neural-die-card').forEach(card => {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+                const x = pointerEvent.clientX - rect.left;
+                const y = pointerEvent.clientY - rect.top;
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
             });
@@ -2993,10 +3003,11 @@
             if (!activeSlide) return;
             const cards = activeSlide.querySelectorAll('.glass-panel');
             if (!cards.length) return;
-            const x = (e.clientX / window.innerWidth - 0.5) * 8;
-            const y = (e.clientY / window.innerHeight - 0.5) * 8;
+            const x = (pointerEvent.clientX / window.innerWidth - 0.5) * 8;
+            const y = (pointerEvent.clientY / window.innerHeight - 0.5) * 8;
             cards.forEach(card => {
                 card.style.transform = `perspective(1000px) rotateY(${x * 0.25}deg) rotateX(${-y * 0.25}deg)`;
+            });
             });
         });
 
@@ -3009,7 +3020,7 @@
         // CANVAS PARTICULAS CINEMATOGRÁFICAS
         (function initParticles() {
             const pCanvas = document.getElementById('particle-canvas');
-            if (!pCanvas) return;
+            if (!pCanvas || reduceEffects || window.matchMedia('(pointer: coarse)').matches) return;
             const ctx = pCanvas.getContext('2d');
             let width = pCanvas.width = window.innerWidth;
             let height = pCanvas.height = window.innerHeight;
