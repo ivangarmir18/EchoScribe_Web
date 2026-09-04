@@ -1249,7 +1249,8 @@
 
             .chapter-section h2 {
                 font-size: clamp(2rem, 10vw, 3rem);
-                line-height: 1.02;
+                line-height: 1.12;
+                padding-bottom: .1em;
             }
 
             .chapter-section h2 br {
@@ -1490,6 +1491,202 @@
     </section>
 
     <!-- ========================================== -->
+    <!-- CAPÍTULO: WHISPER GPU vs ECHOSCRIBE IA -->
+    <!-- ========================================== -->
+    <section id="demo-comparativa" class="hidden" data-theme="genesis">
+        <div class="mx-auto space-y-6" style="width: min(100%, 1500px); max-width: 1500px;">
+
+            <div class="text-center space-y-3 animate-reveal">
+                <span
+                    class="text-indigo-400 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2">
+                    <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    Capítulo 02 // Whisper GPU vs EchoScribe IA
+                </span>
+                <h2 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight">
+                    Whisper GPU en crudo. <br>
+                    <span class="text-gradient-purple scroll-typewriter" data-text="EchoScribe lo convierte en noticia.">EchoScribe lo convierte en noticia.</span>
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+                    Comprueba en directo cómo el volcado acústico fonético se transforma en un documento editorial estructurado con titulares, resumen fáctico y redacción sin muletillas.
+                </p>
+            </div>
+
+            <!-- TARJETA HORIZONTAL ANCHA DE COMPARACIÓN -->
+            <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-indigo-500/20 shadow-2xl space-y-6 animate-reveal">
+                
+                <!-- SELECTORES EN LÍNEA SUPERIORES -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800/80 pb-5">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-indigo-500/10 border border-indigo-500/30 text-indigo-400">
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+                                Casos de Estudio Reales
+                            </span>
+                            <span class="text-xs text-slate-500 font-mono hidden md:inline">Whisper Large v3 (GPU L4) + Gemini IA</span>
+                        </div>
+                        <p class="text-xs text-slate-400">Selecciona un escenario para comparar el audio en crudo frente al refinamiento editorial:</p>
+                    </div>
+
+                    <!-- SELECTORES EN LÍNEA -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="seleccionarDemoMuestra('deportes')" id="btn-demo-deportes"
+                            class="demo-sample-btn active px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-indigo-600 text-white shadow-md shadow-indigo-600/30 border border-indigo-500">
+                            <svg class="w-4 h-4 text-indigo-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"/></svg>
+                            <span>Rueda de Prensa</span>
+                        </button>
+                        <button onclick="seleccionarDemoMuestra('tecnologia')" id="btn-demo-tecnologia"
+                            class="demo-sample-btn px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-700">
+                            <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                            <span>Podcast Tech</span>
+                        </button>
+                        <button onclick="seleccionarDemoMuestra('negocios')" id="btn-demo-negocios"
+                            class="demo-sample-btn px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-700">
+                            <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <span>Reunión de Negocios</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CONTENEDOR LADO A LADO ANCHO -->
+                <div class="grid grid-cols-1 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-5 items-stretch">
+                    
+                    <!-- COLUMNA 1: WHISPER GPU EN CRUDO -->
+                    <div class="bg-slate-950/60 p-5 sm:p-6 rounded-2xl border border-slate-800/90 flex flex-col justify-between shadow-inner space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between pb-2.5 border-b border-slate-800/80">
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>Whisper GPU Crudo
+                                </span>
+                                <span class="text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-0.5 rounded font-mono font-medium">Volcado Acústico</span>
+                            </div>
+                            <div class="text-[11px] font-mono text-slate-400 flex flex-wrap items-center gap-3">
+                                <span class="flex items-center gap-1 text-amber-400/80"><svg class="w-3.5 h-3.5 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>Sin titulares</span>
+                                <span class="flex items-center gap-1 text-amber-400/80"><svg class="w-3.5 h-3.5 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>Nombres sin validar</span>
+                                <span class="flex items-center gap-1 text-amber-400/80"><svg class="w-3.5 h-3.5 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>Muletillas</span>
+                            </div>
+                            <p id="demo-whisper-output" class="text-xs sm:text-sm text-slate-300 font-mono leading-relaxed bg-slate-900/70 p-4 rounded-xl border border-slate-800/60 select-text whitespace-pre-wrap max-h-60 sm:max-h-72 overflow-y-auto">
+Cargando muestra...
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+                            <span>Transcripción fonética continua</span>
+                            <span class="text-amber-400/80 font-medium">Requiere corrección manual</span>
+                        </div>
+                    </div>
+
+                    <!-- COLUMNA 2: ECHOSCRIBE CON GEMINI IA -->
+                    <div class="bg-gradient-to-b from-indigo-950/30 to-slate-950/80 p-5 sm:p-6 rounded-2xl border border-indigo-500/30 flex flex-col justify-between shadow-lg shadow-indigo-950/30 space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between pb-2.5 border-b border-indigo-500/20">
+                                <span class="text-xs font-bold uppercase tracking-wider text-indigo-300 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>EchoScribe + Gemini IA
+                                </span>
+                                <span class="text-[10px] bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 px-2.5 py-0.5 rounded font-mono font-medium">Edición Periodística</span>
+                            </div>
+                            <div class="text-[11px] font-mono text-emerald-400 flex flex-wrap items-center gap-3">
+                                <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Titulares listos</span>
+                                <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Nombres verificados</span>
+                                <span class="flex items-center gap-1"><svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Redacción limpia</span>
+                            </div>
+                            <div id="demo-gemini-output" class="demo-editorial-output text-xs sm:text-sm text-slate-100 font-sans leading-snug bg-slate-900/90 p-4 rounded-xl border border-indigo-500/20 select-text whitespace-pre-wrap max-h-60 sm:max-h-72 overflow-y-auto space-y-1">
+Cargando muestra...
+                            </div>
+                        </div>
+                        <div class="pt-3 border-t border-indigo-500/20 flex items-center justify-between text-[11px] text-indigo-300 font-mono">
+                            <span>Listo para publicar</span>
+                            <span class="text-emerald-400 font-bold">100% Precisión Editorial</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- TIRA DE ACCIÓN HORIZONTAL AL PIE DE LA TARJETA -->
+                <div class="pt-3 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs border-t border-slate-800/60">
+                    <span class="text-slate-400 text-center sm:text-left">¿Quieres transcribir audios y vídeos completos de hasta 12 horas seguidas con subtítulos .SRT y exportación a Word?</span>
+                    <div class="flex items-center gap-3 shrink-0">
+                        <a href="/guia-instalacion" class="btn-gradient text-white font-bold py-2.5 px-5 rounded-xl shadow-md transition whitespace-nowrap text-xs">Descargar App Windows</a>
+                        <a href="/planes" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-2.5 px-4 rounded-xl transition whitespace-nowrap text-xs">Ver Planes</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- SCRIPT DE CONTROL DE LA DEMO INTERACTIVA -->
+    <script>
+        const DEMO_SAMPLES = {
+            deportes: {
+                whisper: "bueno pues ha sido un partido muy exigente contra el leipzig vinicius y bellingham han salido muy activos y en la segunda parte nos ha tocado replegar un poco ancelotti nos pedia intensidad y al final conseguimos los tres puntos en el bernabeu que era el objetivo",
+                gemini: `<strong class="text-indigo-300 text-xs uppercase tracking-wider block mb-1">TITULARES:</strong>
+• Victoria trabajada en el Bernabéu: el equipo suma tres puntos ante el RB Leipzig.
+• Vinícius Jr. y Bellingham activan la presión, mientras el equipo resiste en la segunda parte.
+
+<strong class="text-indigo-300 text-xs uppercase tracking-wider block mt-1 mb-1">RESUMEN EJECUTIVO:</strong>
+En la rueda de prensa posterior al partido se destaca el esfuerzo del equipo y el ajuste defensivo tras el descanso. La victoria ante el RB Leipzig permite sumar tres puntos importantes en la clasificación europea.
+
+<strong class="text-indigo-300 text-xs uppercase tracking-wider block mt-1 mb-1">TEXTO EDITORIAL CORREGIDO:</strong>
+"Ha sido un partido muy exigente contra el RB Leipzig. Vinícius Jr. y Jude Bellingham estuvieron muy activos, aunque en la segunda parte nos tocó replegar un poco. Carlo Ancelotti nos pidió intensidad y, al final, conseguimos los tres puntos en el Santiago Bernabéu, que era el objetivo."`
+            },
+            tecnologia: {
+                whisper: "estamos probando la nueva api de claude tres punto siete y comparandola con gpt cuatro o y gemini dos flash para medir el tiempo hasta el primer token y el coste por millon de tokens con el prompt caching se nota bastante el ahorro en kubernetes sobre aws pero si activas el razonamiento extendido el presupuesto sube rapido",
+                gemini: `<strong class="text-indigo-300 text-xs uppercase tracking-wider block mb-1">TITULARES:</strong>
+• Benchmark de modelos: latencia y coste de Claude 3.7, GPT-4o y Gemini 2.0 Flash.
+• Kubernetes en AWS: el almacenamiento de contexto reduce el coste de inferencia.
+
+<strong class="text-indigo-300 text-xs uppercase tracking-wider block mt-1 mb-1">RESUMEN EJECUTIVO:</strong>
+La prueba compara el tiempo hasta el primer token y el coste operativo. El almacenamiento en caché de contexto reduce el consumo, mientras que los modos de razonamiento extendido elevan rápidamente la factura.
+
+<strong class="text-indigo-300 text-xs uppercase tracking-wider block mt-1 mb-1">TEXTO EDITORIAL CORREGIDO:</strong>
+"Estamos probando la nueva API de Claude 3.7 y comparándola con GPT-4o y Gemini 2.0 Flash para medir el tiempo hasta el primer token y el coste por millón de tokens. El prompt caching reduce bastante el gasto en Kubernetes sobre AWS; sin embargo, si activas el razonamiento extendido, el presupuesto sube rápido."`
+            },
+            negocios: {
+                whisper: "respecto al cierre del tercer trimestre tenemos un ebitda positivo del doce por ciento pero el churn en el segmento b to b ha subido al cuatro coma dos para el cuarto trimestre necesitamos que el equipo de customer success se centre en retener las cuentas enterprise y que marketing optimice el cac en las campañas de performance",
+                gemini: `<strong class="text-indigo-300 text-xs uppercase tracking-wider block mb-1">TITULARES:</strong>
+• Balance del tercer trimestre: EBITDA positivo del 12%, con un churn B2B del 4,2%.
+• Objetivos del cuarto trimestre: reforzar la retención Enterprise y optimizar el CAC.
+
+<strong class="text-indigo-300 text-xs uppercase tracking-wider block mt-1 mb-1">RESUMEN EJECUTIVO:</strong>
+La revisión confirma un EBITDA positivo, aunque aumenta la cancelación de clientes corporativos. Las prioridades son reforzar Customer Success en cuentas de alto valor y mejorar el coste de adquisición en las campañas de marketing.
+
+<strong class="text-indigo-300 text-xs uppercase tracking-wider block mt-1 mb-1">TEXTO EDITORIAL CORREGIDO:</strong>
+"Respecto al cierre del tercer trimestre, registramos un EBITDA positivo del 12%, aunque la tasa de cancelación del segmento B2B ha subido al 4,2%. Para el cuarto trimestre, es prioritario que Customer Success se concentre en retener las cuentas Enterprise, mientras Marketing optimiza el coste de adquisición en las campañas de Performance."`
+            }
+        };
+
+        function seleccionarDemoMuestra(tipo) {
+            document.querySelectorAll('.demo-sample-btn').forEach(b => {
+                b.classList.remove('active', 'bg-indigo-600', 'text-white', 'shadow-md', 'shadow-indigo-600/30', 'border-indigo-500');
+                b.classList.add('bg-slate-900/80', 'text-slate-300', 'border-slate-700');
+            });
+            const btn = document.getElementById('btn-demo-' + tipo);
+            if (btn) {
+                btn.classList.add('active', 'bg-indigo-600', 'text-white', 'shadow-md', 'shadow-indigo-600/30', 'border-indigo-500');
+                btn.classList.remove('bg-slate-900/80', 'text-slate-300', 'border-slate-700');
+            }
+
+            const data = DEMO_SAMPLES[tipo] || DEMO_SAMPLES.deportes;
+            const whisperEl = document.getElementById('demo-whisper-output');
+            const geminiEl = document.getElementById('demo-gemini-output');
+            if (whisperEl) whisperEl.innerText = data.whisper;
+            if (geminiEl) geminiEl.innerHTML = data.gemini;
+        }
+
+        window.seleccionarDemoMuestra = seleccionarDemoMuestra;
+
+        // Cargar muestra inicial al iniciar
+        document.addEventListener('DOMContentLoaded', () => {
+            seleccionarDemoMuestra('deportes');
+        });
+    </script>
+
+    <!-- ========================================== -->
     <!-- CAPÍTULO 2: VELOCIDAD SIN FRICCIÓN -->
     <!-- ========================================== -->
     <section id="capitulo-2" class="chapter-section" data-theme="cloud">
@@ -1502,7 +1699,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
-                    Capítulo 01 // Velocidad sin fricción
+                    Capítulo 02 // Velocidad sin fricción
                 </span>
                 <h2 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight">
                     Tu ordenador descansa. <br>
@@ -1625,7 +1822,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    Capítulo 02 // Dominio del Meta: Videojuegos & Palabras de Nicho
+                    Capítulo 03 // Dominio del Meta: Videojuegos & Palabras de Nicho
                 </span>
                 <h2 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight">
                     Entiende el vocabulario de <br>
@@ -1754,7 +1951,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                     </svg>
-                    Capítulo 03 // Orquestación Neuronal Inteligente
+                    Capítulo 04 // Orquestación Neuronal Inteligente
                 </span>
                 <h2 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight">
                     Modelos de última generación. <br>
@@ -1839,7 +2036,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
                     </svg>
-                    Capítulo 04 // Producción y Edición de Vídeo
+                    Capítulo 05 // Producción y Edición de Vídeo
                 </span>
                 <h2 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight">
                     Subtítulos listos para <br>
@@ -2003,7 +2200,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                     </svg>
-                    Capítulo 05 // Cobertura Multilingüe Real
+                    Capítulo 06 // Cobertura Multilingüe Real
                 </span>
                 <h2 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight">
                     Transcripción y Traducción en <br>
@@ -2202,7 +2399,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    Capítulo 06 // Rentabilidad Imbatible
+                    Capítulo 07 // Rentabilidad Imbatible
                 </span>
                 <h2 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight">
                     Planes diseñados para ser <br>
@@ -2980,6 +3177,7 @@
         // ATMOSPHERE THEMES SHIFT ON SCROLL (APPLE AIRPODS PRO FLUID CONTINUOUS CROSSFADE)
         const THEMES = {
             'capitulo-1': 'radial-gradient(circle at 48% 20%, rgba(129, 140, 248, 0.28) 0%, transparent 40%), radial-gradient(circle at 82% 78%, rgba(34, 211, 238, 0.18) 0%, transparent 42%), linear-gradient(135deg, #08091c 0%, #040711 70%)',
+            'demo-comparativa': 'radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.35) 0%, transparent 42%), radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.22) 0%, transparent 42%), linear-gradient(135deg, #0a0a24 0%, #040711 70%)',
             'capitulo-2': 'radial-gradient(circle at 52% 20%, rgba(56, 189, 248, 0.30) 0%, transparent 40%), radial-gradient(circle at 18% 82%, rgba(59, 130, 246, 0.18) 0%, transparent 42%), linear-gradient(135deg, #061522 0%, #040711 70%)',
             'capitulo-3': 'radial-gradient(circle at 18% 20%, rgba(244, 63, 94, 0.44) 0%, transparent 36%), radial-gradient(circle at 86% 78%, rgba(251, 146, 60, 0.32) 0%, transparent 42%), linear-gradient(135deg, #1b0612 0%, #040711 68%)',
             'capitulo-4': 'radial-gradient(circle at 78% 18%, rgba(139, 92, 246, 0.46) 0%, transparent 38%), radial-gradient(circle at 20% 82%, rgba(217, 70, 239, 0.28) 0%, transparent 40%), linear-gradient(135deg, #100522 0%, #040711 68%)',
@@ -2991,6 +3189,7 @@
 
         const LABELS = {
             'capitulo-1': '1. Génesis',
+            'demo-comparativa': '2. Whisper vs EchoScribe',
             'capitulo-2': '2. Velocidad sin fricción',
             'capitulo-3': '3. Videojuegos & Nicho',
             'capitulo-4': '4. Stack IA',
