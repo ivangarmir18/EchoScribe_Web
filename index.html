@@ -171,6 +171,27 @@
             box-shadow: 0 22px 45px -15px rgba(99, 102, 241, 0.38);
             border-color: rgba(129, 140, 248, 0.55);
         }
+
+        .auth-modal-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(129, 140, 248, 0.75) rgba(15, 23, 42, 0.45);
+            overscroll-behavior: contain;
+        }
+
+        .auth-modal-scroll::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        .auth-modal-scroll::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.45);
+            border-radius: 999px;
+        }
+
+        .auth-modal-scroll::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #60a5fa, #8b5cf6);
+            border: 2px solid rgba(15, 23, 42, 0.45);
+            border-radius: 999px;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-purple-500 selection:text-white relative bg-[#0b0f19]">
@@ -588,7 +609,7 @@
 
     <!-- MODAL AUTENTICACIÓN -->
     <div id="auth-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card card-interactive p-8 rounded-3xl w-[400px] max-h-[90vh] overflow-y-auto shadow-2xl relative" id="auth-modal-content">
+        <div class="glass-card card-interactive auth-modal-scroll p-8 rounded-3xl w-full max-w-[400px] max-h-[min(90vh,680px)] overflow-y-auto shadow-2xl relative" id="auth-modal-content">
             <button onclick="closeAuthModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">✕</button>
             <div class="text-center mb-6">
                 <h2 id="auth-title" class="text-2xl font-bold text-white mb-2">Crear Cuenta</h2>
@@ -774,7 +795,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const authParam = urlParams.get('auth');
             if (authParam === 'login' || authParam === 'register') {
-                openAuthModal(authParam);
+                openAuthModalNative(authParam);
             }
         });
 
@@ -854,7 +875,7 @@
             }
         }
 
-        function openAuthModal(mode) {
+        function openAuthModalNative(mode) {
             currentMode = mode;
             updateAuthUI();
             document.getElementById('auth-modal').classList.remove('hidden');

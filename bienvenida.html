@@ -965,6 +965,27 @@
             box-shadow: 0 24px 50px -10px rgba(99, 102, 241, 0.55);
         }
 
+        .auth-modal-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(96, 165, 250, 0.8) rgba(15, 23, 42, 0.45);
+            overscroll-behavior: contain;
+        }
+
+        .auth-modal-scroll::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        .auth-modal-scroll::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.45);
+            border-radius: 999px;
+        }
+
+        .auth-modal-scroll::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #22d3ee, #6366f1);
+            border: 2px solid rgba(15, 23, 42, 0.45);
+            border-radius: 999px;
+        }
+
         /* PROGRESS TRACKER */
         .nav-dot {
             width: 8px;
@@ -1224,6 +1245,29 @@
                 padding: 2rem 1rem;
             }
         }
+
+        /* Mantiene la profundidad visual, pero evita capas animadas constantes en equipos modestos. */
+        html.performance-lite .ambient-layer,
+        html.performance-lite .ambient-layer::after,
+        html.performance-lite .acoustic-ring,
+        html.performance-lite .data-bus-line,
+        html.performance-lite .is-scanning .scanner-beam-line,
+        html.performance-lite .is-in-view .jargon-card-glow,
+        html.performance-lite .wave-bar,
+        html.performance-lite .shimmer-badge {
+            animation: none !important;
+        }
+
+        html.performance-lite .ambient-layer::before {
+            filter: blur(24px) saturate(1.25) brightness(1.04);
+            transition: none;
+        }
+
+        html.performance-lite .animate-reveal,
+        html.performance-lite .animate-reveal-left,
+        html.performance-lite .animate-reveal-right {
+            will-change: auto;
+        }
     </style>
 </head>
 
@@ -1324,8 +1368,7 @@
             </div>
 
             <div class="mt-9 animate-reveal">
-                <span class="text-xs text-slate-400 hero-scroll-cue">Desliza para ver cómo sucede <span
-                        class="text-cyan-300">↓</span></span>
+                <span class="text-xs text-slate-400 hero-scroll-cue">Desliza para ver cómo sucede</span>
             </div>
         </div>
         </div>
@@ -2415,8 +2458,51 @@
                 class="hover:text-slate-400 ml-2">Cookies</a></p>
     </footer>
 
+    <!-- MODAL DE INICIO DE SESION -->
+    <div id="welcome-login-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="glass-panel auth-modal-scroll p-8 sm:p-10 rounded-3xl border border-cyan-500/40 shadow-2xl w-full max-w-md max-h-[min(90vh,680px)] overflow-y-auto relative"
+            style="background: linear-gradient(180deg, rgba(8, 47, 73, 0.55) 0%, rgba(13, 19, 36, 0.97) 100%);">
+            <button type="button" onclick="cerrarLoginBienvenida()" aria-label="Cerrar inicio de sesión"
+                class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl transition">✕</button>
+            <div class="text-center mb-7">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4m-5-4 5-5-5-5m5 5H3" /></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-2">Iniciar Sesión</h2>
+                <p class="text-sm text-slate-400">Vuelve a tu espacio de trabajo en EchoScribe.</p>
+            </div>
+
+            <button type="button" onclick="iniciarConGoogleLoginBienvenida()"
+                class="w-full bg-white hover:bg-slate-100 text-slate-900 font-bold py-3.5 px-4 rounded-2xl flex justify-center items-center gap-3 transition shadow-lg">
+                <svg class="w-5 h-5" viewBox="0 0 24 24"><path d="M22.56 12.25c-.07-.72-.2-1.47-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s-.13-1.43-.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                Continuar con Google
+            </button>
+            <div class="flex items-center my-6"><hr class="flex-1 border-slate-800"><span class="px-3 text-xs text-slate-500 uppercase tracking-widest font-bold">O con tu email</span><hr class="flex-1 border-slate-800"></div>
+
+            <form onsubmit="event.preventDefault(); procesarLoginBienvenida();" class="space-y-4">
+                <div>
+                    <label for="login-email" class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Correo Electrónico</label>
+                    <input type="email" id="login-email" required autocomplete="email" placeholder="tu@correo.com" class="w-full bg-slate-900/90 px-4 py-3 rounded-xl border border-slate-700/80 focus:border-cyan-500 outline-none text-white text-sm">
+                </div>
+                <div>
+                    <label for="login-pwd" class="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Contraseña</label>
+                    <input type="password" id="login-pwd" required autocomplete="current-password" placeholder="Tu contraseña" class="w-full bg-slate-900/90 px-4 py-3 rounded-xl border border-slate-700/80 focus:border-cyan-500 outline-none text-white text-sm">
+                </div>
+                <a href="/recuperar-password" class="block text-right text-xs text-cyan-300 hover:underline font-semibold">¿Olvidaste tu contraseña?</a>
+                <p id="login-error" class="hidden text-xs text-rose-400 font-semibold text-center"></p>
+                <button type="submit" id="login-submit-btn" class="w-full bg-gradient-to-r from-cyan-500 to-indigo-500 hover:brightness-110 text-white font-extrabold py-3.5 rounded-xl shadow-xl transition">Entrar</button>
+            </form>
+            <p class="mt-6 text-center text-xs text-slate-400 border-t border-slate-800 pt-4">¿Aún no tienes cuenta? <button type="button" onclick="cerrarLoginBienvenida(); document.getElementById('capitulo-8').scrollIntoView({ behavior: 'smooth' });" class="text-cyan-300 font-bold hover:underline ml-1">Regístrate gratis</button></p>
+        </div>
+    </div>
+
     <!-- INTERACTIVE SCROLL STORYTELLER, PARTICLES & THEMES -->
     <script>
+        const performanceLite = window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+            (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+            (navigator.deviceMemory && navigator.deviceMemory <= 4);
+        if (performanceLite) document.documentElement.classList.add('performance-lite');
+
         const SUPABASE_URL = 'https://ggmaiqxbidcxhbungnpx.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnbWFpcXhiaWRjeGhidW5nbnB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc2NjI4OTUsImV4cCI6MjEwMzIzODg5NX0.dFblpUUXInw4JLbsQQVa5NcxFWoCz3Ydff2c87_gRew';
         const sb = window.sb || supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
@@ -2432,14 +2518,64 @@
                 document.cookie = "echoscribe_visited=1; path=/; max-age=31536000; SameSite=Lax";
                 document.cookie = "echoscribe_bienvenida_vista=true; path=/; max-age=31536000; SameSite=Lax";
                 document.cookie = "echoscribe_cookies_accepted=true; path=/; max-age=31536000; SameSite=Lax";
-                const banner = document.getElementById('echoscribe-cookie-banner');
+                const banner = document.getElementById('cookie-banner');
                 if (banner) banner.remove();
             } catch (e) { }
         }
 
         function saltarALogin() {
             marcarVisitado();
-            window.location.href = '/?auth=login';
+            const modal = document.getElementById('welcome-login-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.getElementById('login-email')?.focus();
+            }
+        }
+
+        function cerrarLoginBienvenida() {
+            const modal = document.getElementById('welcome-login-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        async function iniciarConGoogleLoginBienvenida() {
+            marcarVisitado();
+            const { error } = await sb.auth.signInWithOAuth({
+                provider: 'google',
+                options: { redirectTo: window.location.origin }
+            });
+            if (error) {
+                const errEl = document.getElementById('login-error');
+                if (errEl) {
+                    errEl.innerText = error.message;
+                    errEl.classList.remove('hidden');
+                }
+            }
+        }
+
+        async function procesarLoginBienvenida() {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-pwd').value;
+            const btn = document.getElementById('login-submit-btn');
+            const errEl = document.getElementById('login-error');
+            errEl.classList.add('hidden');
+            btn.disabled = true;
+            btn.innerText = 'Entrando...';
+
+            const { error } = await sb.auth.signInWithPassword({ email, password });
+            if (error) {
+                errEl.innerText = error.message;
+                errEl.classList.remove('hidden');
+                btn.disabled = false;
+                btn.innerText = 'Entrar';
+                return;
+            }
+
+            marcarVisitado();
+            window.location.href = '/';
         }
 
         async function iniciarConGoogleDirecto() {
@@ -3020,7 +3156,7 @@
         // CANVAS PARTICULAS CINEMATOGRÁFICAS
         (function initParticles() {
             const pCanvas = document.getElementById('particle-canvas');
-            if (!pCanvas || reduceEffects || window.matchMedia('(pointer: coarse)').matches) return;
+            if (!pCanvas || reduceEffects || performanceLite || window.matchMedia('(pointer: coarse)').matches) return;
             const ctx = pCanvas.getContext('2d');
             let width = pCanvas.width = window.innerWidth;
             let height = pCanvas.height = window.innerHeight;
@@ -3031,7 +3167,8 @@
             });
 
             const particles = [];
-            const count = Math.min(50, Math.floor(window.innerWidth / 30));
+            const count = Math.min(30, Math.floor(window.innerWidth / 45));
+            let lastFrameTime = 0;
 
             for (let i = 0; i < count; i++) {
                 particles.push({
@@ -3044,7 +3181,12 @@
                 });
             }
 
-            function render() {
+            function render(timestamp) {
+                if (timestamp - lastFrameTime < 40) {
+                    requestAnimationFrame(render);
+                    return;
+                }
+                lastFrameTime = timestamp;
                 ctx.clearRect(0, 0, width, height);
                 ctx.fillStyle = '#818cf8';
 

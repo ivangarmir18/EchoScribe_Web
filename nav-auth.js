@@ -115,7 +115,7 @@
         modalDiv.id = 'auth-modal';
         modalDiv.className = 'fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4';
         modalDiv.innerHTML = `
-        <div class="glass-card p-8 rounded-3xl w-full max-w-[400px] max-h-[90vh] overflow-y-auto shadow-2xl relative border border-slate-800 bg-[#0f172a]" id="auth-modal-content">
+        <div class="glass-card auth-modal-scroll p-8 rounded-3xl w-full max-w-[400px] max-h-[min(90vh,680px)] overflow-y-auto shadow-2xl relative border border-slate-800 bg-[#0f172a]" id="auth-modal-content">
             <button onclick="window.closeAuthModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white transition">✕</button>
             <div class="text-center mb-6">
                 <h2 id="web-auth-title" class="text-2xl font-bold text-white mb-2">Iniciar Sesión</h2>
