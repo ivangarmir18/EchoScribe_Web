@@ -1042,6 +1042,36 @@
             background-color: rgba(168, 85, 247, .2) !important;
         }
 
+        .pricing-price-block {
+            min-height: 5.5rem;
+        }
+
+        .pricing-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: .35rem;
+            flex-wrap: nowrap;
+        }
+
+        .pricing-price-block.is-annual .pricing-price-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+        }
+
+        .pricing-price-block.is-annual .pricing-period {
+            display: block;
+            margin-top: .15rem;
+            font-size: .72rem;
+            line-height: 1.25;
+        }
+
+        @media (max-width: 1100px) and (min-width: 641px) {
+            .pricing-price-row {
+                flex-wrap: wrap;
+            }
+        }
+
         .pricing-card-pro .text-indigo-400,
         .pricing-card-pro .text-indigo-300,
         .pricing-card-pro .text-indigo-200\/70 {
@@ -2278,10 +2308,10 @@
                                 class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Editores
                                 & Podcasters</span>
                         </div>
-                        <div class="mb-4">
-                            <div class="text-3xl sm:text-4xl font-black text-white flex items-baseline gap-1">
+                        <div class="pricing-price-block mb-4">
+                            <div class="pricing-price-row text-3xl sm:text-4xl font-black text-white">
                                 <span id="price-pro-val">7,99 €</span>
-                                <span id="price-pro-sub" class="text-sm font-semibold text-slate-400">/mes</span>
+                                <span id="price-pro-sub" class="pricing-period text-sm font-semibold text-slate-400">/mes</span>
                             </div>
                             <p id="price-pro-alt" class="text-[11px] text-indigo-300/80 mt-1">O 59,99 €/año (solo 4,99
                                 €/mes · Ahorras 37%)</p>
@@ -2354,10 +2384,10 @@
                                 class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">Agencias
                                 & Media</span>
                         </div>
-                        <div class="mb-4">
-                            <div class="text-3xl sm:text-4xl font-black text-white flex items-baseline gap-1">
+                        <div class="pricing-price-block mb-4">
+                            <div class="pricing-price-row text-3xl sm:text-4xl font-black text-white">
                                 <span id="price-ultra-val">19,99 €</span>
-                                <span id="price-ultra-sub" class="text-sm font-semibold text-slate-400">/mes</span>
+                                <span id="price-ultra-sub" class="pricing-period text-sm font-semibold text-slate-400">/mes</span>
                             </div>
                             <p id="price-ultra-alt" class="text-[11px] text-amber-300/80 mt-1">O 149,99 €/año (solo
                                 12,49 €/mes · Ahorras 37%)</p>
@@ -2881,6 +2911,9 @@
             const valUltra = document.getElementById('price-ultra-val');
             const subUltra = document.getElementById('price-ultra-sub');
             const altUltra = document.getElementById('price-ultra-alt');
+            const priceBlocks = document.querySelectorAll('#capitulo-7 .pricing-price-block');
+
+            priceBlocks.forEach(block => block.classList.toggle('is-annual', periodo === 'anual'));
 
             if (periodo === 'anual') {
                 if (btnA) btnA.className = 'px-4 py-2 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-md flex items-center gap-2';
