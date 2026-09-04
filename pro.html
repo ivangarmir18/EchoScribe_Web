@@ -127,6 +127,31 @@
             box-shadow: 0 22px 45px -15px rgba(99, 102, 241, 0.38);
             border-color: rgba(129, 140, 248, 0.55);
         }
+
+        .pro-theme {
+            border-color: rgba(168, 85, 247, .55) !important;
+            box-shadow: 0 25px 60px -18px rgba(168, 85, 247, .3);
+        }
+
+        .pro-theme .text-indigo-400,
+        .pro-theme .text-indigo-300 {
+            color: #c084fc !important;
+        }
+
+        .pro-theme .bg-indigo-500\/20 {
+            background-color: rgba(168, 85, 247, .2) !important;
+        }
+
+        .pro-theme .border-indigo-500\/20,
+        .pro-theme .border-indigo-500\/30,
+        .pro-theme .border-indigo-500\/40 {
+            border-color: rgba(168, 85, 247, .35) !important;
+        }
+
+        .btn-pro-gradient {
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6 55%, #7e22ce);
+            box-shadow: 0 12px 28px -8px rgba(168, 85, 247, .55);
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-purple-500 selection:text-white flex flex-col min-h-screen relative bg-[#0b0f19]">
@@ -215,7 +240,7 @@
         </div>
 
         <!-- TARJETA PRINCIPAL PRO & CHECKOUT -->
-        <div class="glass-card glow-pro rounded-3xl p-6 sm:p-10 border border-indigo-500/40 relative overflow-hidden mb-16">
+        <div class="glass-card glow-pro pro-theme rounded-3xl p-6 sm:p-10 border border-purple-500/40 relative overflow-hidden mb-16">
             <div class="absolute top-0 right-0 w-80 h-80 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
@@ -277,7 +302,7 @@
                     <h3 class="text-lg font-bold text-white">Desbloqueo Inmediato</h3>
                     <p class="text-xs text-slate-400">Procesamiento seguro mediante pasarela oficial Stripe. Tu cuenta de EchoScribe se actualizará al instante.</p>
 
-                    <button onclick="iniciarCheckoutPro()" id="btn-checkout-pro" class="w-full btn-gradient text-white font-extrabold py-4 px-6 rounded-2xl shadow-xl transition flex items-center justify-center gap-2 text-base">
+                    <button onclick="iniciarCheckoutPro()" id="btn-checkout-pro" class="w-full btn-pro-gradient text-white font-extrabold py-4 px-6 rounded-2xl shadow-xl transition flex items-center justify-center gap-2 text-base">
                         <span id="btn-cta-text">Suscribirme al Plan Pro</span>
                     </button>
 
@@ -302,7 +327,7 @@
                         <tr>
                             <th class="p-4 sm:p-5">Característica</th>
                             <th class="p-4 sm:p-5 text-center">Plan Gratis</th>
-                            <th class="p-4 sm:p-5 text-center text-indigo-400">Plan Pro</th>
+                            <th class="p-4 sm:p-5 text-center text-purple-400">Plan Pro</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-800/60 text-slate-300">

@@ -146,6 +146,16 @@
             filter: brightness(1.08);
         }
 
+        .pro-theme {
+            border-color: rgba(168, 85, 247, .45) !important;
+            box-shadow: 0 14px 32px -14px rgba(168, 85, 247, .35);
+        }
+
+        .btn-pro-gradient {
+            background: linear-gradient(135deg, #7e22ce, #a855f7 55%, #d946ef);
+            box-shadow: 0 10px 24px -8px rgba(168, 85, 247, .5);
+        }
+
         .btn-ultra {
             background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%);
             transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
@@ -651,7 +661,7 @@
                     <div class="flex items-start justify-between">
                         <div>
                             <span class="text-purple-400 font-extrabold text-sm uppercase flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-indigo-400"></span> Plan Pro Activo
+                                <span class="w-2 h-2 rounded-full bg-purple-400"></span> Plan Pro Activo
                             </span>
                             <p class="text-xs text-slate-300 mt-1 leading-relaxed">
                                 Disfrutas de 100 transcripciones con GPU Cloud, 150 básicas y soporte prioritario.
@@ -660,17 +670,17 @@
                     </div>
                 `;
                 upgradeSec.innerHTML = `
-                    <div class="bg-indigo-500/10 border border-indigo-500/30 rounded-2xl p-4">
+                    <div class="pro-theme bg-purple-500/10 border border-purple-500/30 rounded-2xl p-4">
                         <div class="flex items-center justify-between mb-2">
                             <span class="text-xs font-bold text-white flex items-center gap-1.5">
                                 <span>Mejorar al Plan Ultra</span>
                             </span>
-                            <span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-extrabold">Prorrateo Automático</span>
+                            <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded font-extrabold">Prorrateo Automático</span>
                         </div>
                         <p class="text-[11px] text-slate-400 mb-3 leading-relaxed">
                             Stripe descontará automáticamente los días no disfrutados de tu plan Pro actual y solo te cobrará la diferencia en tu próxima factura.
                         </p>
-                        <button onclick="abrirPortalStripe()" class="w-full btn-gradient text-white font-bold py-2.5 rounded-xl text-xs shadow-md transition flex items-center justify-center gap-2">
+                        <button onclick="abrirPortalStripe()" class="w-full btn-pro-gradient text-white font-bold py-2.5 rounded-xl text-xs shadow-md transition flex items-center justify-center gap-2">
                             <span>Mejorar a Ultra en el Portal de Stripe</span>
                         </button>
                     </div>
@@ -690,13 +700,13 @@
                 `;
                 upgradeSec.innerHTML = `
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <a href="${STRIPE_LINKS.pro_mensual}" target="_blank" class="p-4 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 rounded-2xl transition block text-left">
+                        <a href="${STRIPE_LINKS.pro_mensual}" target="_blank" class="pro-theme p-4 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 rounded-2xl transition block text-left">
                             <div class="flex justify-between items-center mb-1">
                                 <span class="font-bold text-white text-xs">Plan Pro</span>
                                 <span class="text-purple-400 font-extrabold text-xs">7,99 €/mes</span>
                             </div>
                             <p class="text-[11px] text-slate-400 mb-2">100 procesos Cloud y 3h por audio.</p>
-                            <span class="text-xs font-bold text-indigo-400 hover:underline">Suscribirse ➔</span>
+                            <span class="text-xs font-bold text-purple-400 hover:underline">Suscribirse ➔</span>
                         </a>
                         <a href="${STRIPE_LINKS.ultra_mensual}" target="_blank" class="p-4 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-2xl transition block text-left">
                             <div class="flex justify-between items-center mb-1">

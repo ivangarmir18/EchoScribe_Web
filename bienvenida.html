@@ -1018,6 +1018,54 @@
             animation: shimmerGlow 3.5s infinite;
         }
 
+        .pricing-card-pro > div:nth-child(2) {
+            transform: translateY(-1.5rem);
+        }
+
+        .pricing-card-pro {
+            border-color: rgba(168, 85, 247, .8) !important;
+            box-shadow: 0 25px 60px -18px rgba(168, 85, 247, .32);
+        }
+
+        .pricing-card-pro .text-indigo-400,
+        .pricing-card-pro .text-indigo-300,
+        .pricing-card-pro .text-indigo-200\/70 {
+            color: #c084fc !important;
+        }
+
+        .pricing-card-pro .border-indigo-500\/30,
+        .pricing-card-pro .border-indigo-500\/20 {
+            border-color: rgba(168, 85, 247, .35) !important;
+        }
+
+        .pricing-card-pro .bg-indigo-500\/20 {
+            background-color: rgba(168, 85, 247, .2) !important;
+        }
+
+        .pricing-card-pro .text-indigo-400,
+        .pricing-card-pro .text-indigo-300,
+        .pricing-card-pro .text-indigo-200\/70 {
+            color: #a855f7 !important;
+        }
+
+        .btn-pro-gradient {
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6 55%, #7e22ce);
+            box-shadow: 0 12px 28px -8px rgba(168, 85, 247, .55);
+            transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .btn-pro-gradient:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 16px 34px -8px rgba(168, 85, 247, .7);
+        }
+
+        footer.text-center {
+            text-align: left !important;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
 
         /* SCANNER CARD: posición relativa explícita para el beam */
         .is-scanning {
@@ -1065,12 +1113,17 @@
 
 
         @media (max-width: 640px) {
+            html,
+            body {
+                overflow-x: clip;
+            }
+
             body {
                 min-width: 0;
             }
 
             .chapter-section {
-                padding: 4.5rem 1rem;
+                padding: 3.5rem .9rem;
             }
 
             header {
@@ -1098,7 +1151,7 @@
 
             .hero-scene {
                 min-height: 100svh;
-                padding: 6.5rem 1rem 4rem;
+                padding: 6rem .9rem 3rem;
                 align-items: flex-start;
             }
 
@@ -1128,8 +1181,9 @@
             }
 
             .hero-scene h1 {
-                font-size: clamp(3rem, 15vw, 4.7rem) !important;
-                letter-spacing: -.075em;
+                font-size: clamp(2.65rem, 13vw, 4rem) !important;
+                letter-spacing: -.055em;
+                line-height: .98;
             }
 
             .hero-scene .animate-reveal.mt-8 {
@@ -1172,6 +1226,14 @@
                 display: none;
             }
 
+            .scroll-typewriter {
+                display: inline;
+                min-width: 0 !important;
+                max-width: 100%;
+                white-space: normal;
+                overflow-wrap: anywhere;
+            }
+
             .chapter-section .grid {
                 gap: 1rem;
             }
@@ -1188,7 +1250,29 @@
 
             .chapter-section .text-3xl,
             .chapter-section .sm\\:text-4xl {
-                font-size: 1.8rem;
+                font-size: 1.65rem;
+            }
+
+            .chapter-section .text-gradient-purple,
+            .chapter-section .text-gradient-cyan,
+            .chapter-section .text-gradient-gaming,
+            .chapter-section .text-gradient-emerald,
+            .chapter-section .text-gradient-gold {
+                max-width: 100%;
+                overflow-wrap: anywhere;
+            }
+
+            .pricing-card-pro > div:nth-child(2) {
+                transform: none;
+            }
+
+            .pricing-card-pro > div:first-child {
+                margin-top: .75rem;
+            }
+
+            .pricing-card-pro .flex.items-center.justify-between {
+                align-items: flex-start;
+                flex-wrap: wrap;
             }
 
             #capitulo-4 .neural-die-card {
@@ -1243,6 +1327,7 @@
 
             footer {
                 padding: 2rem 1rem;
+                text-align: left;
             }
         }
 
@@ -2179,8 +2264,8 @@
                 </div>
 
                 <!-- PLAN PRO (DESTACADO) -->
-                <div class="glass-panel p-6 sm:p-8 rounded-3xl border-2 border-indigo-500 flex flex-col justify-between space-y-6 relative shadow-2xl animate-reveal"
-                    style="background: linear-gradient(180deg, rgba(30, 27, 75, 0.55) 0%, rgba(13, 19, 36, 0.9) 100%);">
+                <div class="glass-panel pricing-card-pro p-6 sm:p-8 rounded-3xl border-2 border-purple-500 flex flex-col justify-between space-y-6 relative shadow-2xl animate-reveal"
+                    style="background: linear-gradient(180deg, rgba(59, 24, 89, 0.55) 0%, rgba(13, 19, 36, 0.9) 100%);">
                     <div
                         class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-500 text-white text-[10px] font-black px-3.5 py-1 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap">
                         MÁS POPULAR • RENTABILIDAD TOP
@@ -2254,7 +2339,7 @@
                     </div>
 
                     <a href="/planes"
-                        class="w-full py-3.5 rounded-xl font-extrabold btn-glow text-white text-xs text-center shadow-lg transition">
+                        class="w-full py-3 rounded-xl font-bold bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/40 text-xs text-center transition">
                         Ver Plan Pro Completo
                     </a>
                 </div>
