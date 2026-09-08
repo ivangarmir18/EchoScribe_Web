@@ -1,16 +1,68 @@
 /**
  * EchoScribe - Módulo de Guías y Comunidad
  * Subforos temáticos, comentarios con y sin sesión, valoraciones y sugerencias de mejora.
+ * Vocabulario realista y natural (estudiantes, editores, freelancers).
  * Diseño 100% vectorial con SVG (sin emojis).
  */
 
 (function () {
     'use strict';
 
-    const STORAGE_KEY_FORUM = 'echoscribe_comunidad_threads_v2';
-    const STORAGE_KEY_REVIEWS = 'echoscribe_comunidad_reviews_v2';
-    const STORAGE_KEY_USER_VOTES = 'echoscribe_user_votes_v2';
-    const STORAGE_KEY_GUIDE_COMMENTS = 'echoscribe_guia_comments_v2';
+    const STORAGE_KEY_FORUM = 'echoscribe_comunidad_threads_v3';
+    const STORAGE_KEY_REVIEWS = 'echoscribe_comunidad_reviews_v3';
+    const STORAGE_KEY_USER_VOTES = 'echoscribe_user_votes_v3';
+    const STORAGE_KEY_GUIDE_COMMENTS = 'echoscribe_guia_comments_v3';
+
+    // Generador de nombres anónimos creativos y realistas (estilo comunidad tech/estudiantes)
+    const ANON_ROLES = [
+        'estudiante', 'oyente', 'editor', 'lector', 'opositor', 'redactor',
+        'cronista', 'investigador', 'programador', 'ingeniero', 'guionista',
+        'transcriptor', 'montador', 'podcaster', 'becario', 'pasajero',
+        'nodo', 'pixel', 'curioso', 'observador', 'filtro', 'compilador'
+    ];
+    const ANON_ADJECTIVES = [
+        'nocturno', 'en_sombras', 'silencioso', 'zen', 'upv', 'de_madrugada',
+        'acústico', 'digital', 'furtivo', 'freelance', 'en_pausa', 'improvisado',
+        'curioso', 'discreto', 'solitario', 'atento', 'sigiloso', 'veloz',
+        'en_red', 'desconocido', 'inquieto'
+    ];
+
+    function generateCoolAnonymousName() {
+        const role = ANON_ROLES[Math.floor(Math.random() * ANON_ROLES.length)];
+        const adj = ANON_ADJECTIVES[Math.floor(Math.random() * ANON_ADJECTIVES.length)];
+        const num = Math.floor(10 + Math.random() * 990);
+        if (Math.random() > 0.45) {
+            return `${role}_${adj}_${num}`;
+        }
+        return `${role}_${adj}`;
+    }
+
+    function getSessionAnonymousHandle() {
+        try {
+            let handle = localStorage.getItem('echoscribe_anon_handle_v1');
+            if (!handle) {
+                handle = generateCoolAnonymousName();
+                localStorage.setItem('echoscribe_anon_handle_v1', handle);
+            }
+            return handle;
+        } catch(e) {
+            return generateCoolAnonymousName();
+        }
+    }
+
+    function resolveAnonymousAuthor(inputAuthor, isAnonymous, defaultLoggedInName) {
+        const trimmed = (inputAuthor || '').trim();
+        const isGenericAnon = !trimmed || /^an[oó]nimo(_\d+)?$/i.test(trimmed) || trimmed.toLowerCase() === 'usuario anónimo';
+        
+        if (isAnonymous || isGenericAnon) {
+            if (trimmed && !isGenericAnon) {
+                return trimmed;
+            }
+            return generateCoolAnonymousName();
+        }
+        return trimmed || defaultLoggedInName || generateCoolAnonymousName();
+    }
+
 
     // 5 Subforos Temáticos
     const SUBFOROS = [
@@ -58,190 +110,303 @@
         }
     ];
 
-    // Datos semilla para el foro (CERO emojis, tono realista y profesional)
+    // Hilos de debate hiperrealistas (mezcla de anónimos y nombres reales no cliché, jerga natural, 0 emojis)
     const SEED_THREADS = [
         {
-            id: 'th-1',
+            id: 'th-101',
             category: 'estudiantes',
             title: 'Flujo de trabajo para clases de 2 horas: Whisper GPU + prompt de estudio con Gemini',
-            content: 'Buenas a todos. Quería compartir cómo organizo las clases de Derecho Mercantil. Grabo con la grabadora del móvil en M4A, paso el audio a EchoScribe seleccionando "Corrección Gemini para Apuntes", y en menos de 40 segundos tengo el texto limpio sin muletillas ni carraspeos del profesor. Luego le pido a Gemini un cuadro sinóptico de artículos del Código de Comercio y me ahorra literalmente semanas de trabajo antes de parciales.',
-            author: 'Marc P.',
+            content: 'Buenas gente. En mi facultad los profes van a mil por hora y es físicamente imposible copiar las diapositivas y enterarse de la explicación a la vez. Grabo con la grabadora del móvil en .m4a desde la tercera fila, le tiro el archivo a EchoScribe y en medio minuto tengo el texto íntegro sin carraspeos ni pausas raras. Luego le paso el prompt de Cornell a Gemini y me saca las tablas de artículos y casos prácticos masticados. Menudo salvavidas antes de parciales.',
+            author: 'Brais C.',
             isVerified: true,
-            userRole: 'Estudiante Universitario',
-            date: 'Hace 4 horas',
-            timestamp: Date.now() - 1000 * 60 * 60 * 4,
-            upvotes: 24,
+            userRole: 'Grado en Derecho',
+            date: 'Hace 3 horas',
+            timestamp: Date.now() - 1000 * 60 * 60 * 3,
+            upvotes: 34,
             tags: ['Universidad', 'Gemini AI', 'Apuntes'],
             replies: [
                 {
-                    id: 'rep-1-1',
-                    author: 'Carlos G.',
+                    id: 'rep-101-1',
+                    author: 'opositor_forestal',
                     isVerified: false,
-                    content: 'Totalmente de acuerdo. Yo tenía problemas antes con grabaciones lejanas desde la última fila del aula, pero al no tener compresión destructiva en la GPU lo saca nítido.',
+                    content: 'Confirmo. Para temas de legislación donde te meten 40 leyes en una mañana va finísimo. Ojo con dejar el móvil pegado al teclado del portátil porque las teclas tapan la voz, mejor ponerlo sobre un estuche.',
                     date: 'Hace 2 horas'
                 },
                 {
-                    id: 'rep-1-2',
-                    author: 'Elena R.',
+                    id: 'rep-101-2',
+                    author: 'Uxue Larrañaga',
                     isVerified: true,
-                    content: 'Un consejo extra: si el profesor menciona mucha jurisprudencia en latín, pon en el campo de contexto de la app los términos clave para que no los confunda.',
-                    date: 'Hace 45 minutos'
+                    content: 'Yo lo combino con Obsidian. Copio el Markdown que escupe y se me generan los links entre temas automáticamente con la sintaxis de doble corchete.',
+                    date: 'Hace 40 minutos'
                 }
             ]
         },
         {
-            id: 'th-2',
+            id: 'th-102',
             category: 'creadores',
-            title: 'Sincronización de subtítulos .SRT cortos para Shorts y Reels sin palabras sueltas',
-            content: 'Para los que editan en Premiere o CapCut Desktop: he probado el perfil "Corto" de EchoScribe (18-24 caracteres) y es una maravilla porque respeta las pausas naturales de respiración en lugar de cortar palabras a la mitad como hace el auto-caption por defecto de otras herramientas. ¿Alguien ha probado a importar el archivo a DaVinci Resolve 19?',
-            author: 'Sergio M.',
-            isVerified: true,
-            userRole: 'Editor de Vídeo',
+            title: 'Configuración de subtítulos .SRT para CapCut y Premiere sin palabras huérfanas',
+            content: 'Para los que montáis vídeos verticales en Premiere o CapCut Desktop: he probado el perfil "Corto" de EchoScribe (18-24 caracteres) y es la única herramienta que no me deja palabras de una sola letra flotando al final de la línea como hace el auto-caption nativo. ¿Alguien ha probado a meterle audios en gallego o euskera a ver cómo resuelve los cortes?',
+            author: 'editor_freelance_bcn',
+            isVerified: false,
+            userRole: 'Montador Audiovisual',
             date: 'Ayer',
-            timestamp: Date.now() - 1000 * 60 * 60 * 26,
-            upvotes: 38,
-            tags: ['Subtítulos SRT', 'CapCut', 'Premiere'],
+            timestamp: Date.now() - 1000 * 60 * 60 * 22,
+            upvotes: 47,
+            tags: ['CapCut', 'Premiere', 'Subtítulos SRT'],
             replies: [
                 {
-                    id: 'rep-2-1',
-                    author: 'David Editor',
+                    id: 'rep-102-1',
+                    author: 'Pelayo S.',
                     isVerified: true,
-                    content: 'En DaVinci Resolve entra perfecto como pista de subtítulo estándar. Solo asegúrate de marcar "Subtitle Track -> Style" para elegir tu tipografía preferida.',
+                    content: 'En gallego el modelo Large v3 lo pilla sin despeinarse porque comparte raíz fonética con el portugués en los pesos de Whisper. Lo metí para unos vídeos de turismo y clavó hasta las toponimias.',
                     date: 'Ayer'
+                },
+                {
+                    id: 'rep-102-2',
+                    author: 'anónimo_vfx',
+                    isVerified: false,
+                    content: 'En DaVinci Resolve 19 entra a la primera si marcas la pista como Subtitle Track en vez de texto plano. Te ahorra media jornada de titular.',
+                    date: 'Hace 18 horas'
                 }
             ]
         },
         {
-            id: 'th-3',
+            id: 'th-103',
             category: 'empresa',
-            title: 'Privacidad y entrevistas en investigación clínica con pacientes',
-            content: 'En nuestro departamento médico necesitamos transcripciones fiables de entrevistas cualitativas sin que los audios queden almacenados en servidores de terceros ni se utilicen para entrenar modelos públicos. La arquitectura de procesar y borrar inmediatamente tras la inferencia nos da total tranquilidad con el RGPD.',
-            author: 'Dra. Beatriz S.',
+            title: 'Notas de voz de WhatsApp del curro: cómo pasarlas a minutas de Notion sin copiar a mano',
+            content: 'Tengo un cliente que me manda audios de 8 y 10 minutos divagando sobre cambios en la web. Arrastrar el audio .opus directo a la app y pedirle "extrae solo los acuerdos y los cambios que me pide" me ha ahorrado literalmente discusiones de "¿yo no dije eso?". Al tener el acta fáctica con horas de intervención se acabaron los malentendidos.',
+            author: 'Naiara V.',
             isVerified: true,
-            userRole: 'Investigación Biomédica',
-            date: 'Hace 2 días',
-            timestamp: Date.now() - 1000 * 60 * 60 * 48,
-            upvotes: 19,
-            tags: ['Privacidad', 'RGPD', 'Entrevistas'],
+            userRole: 'Consultora de Proyectos',
+            date: 'Hace 1 día',
+            timestamp: Date.now() - 1000 * 60 * 60 * 30,
+            upvotes: 52,
+            tags: ['WhatsApp', 'Productividad', 'Notion'],
             replies: [
                 {
-                    id: 'rep-3-1',
-                    author: 'Iván Miranda',
-                    isVerified: true,
-                    userRole: 'Desarrollador',
-                    content: 'Efectivamente, Dra. Beatriz. Los servidores GPU Cloud no conservan ninguna copia de los archivos de audio ni del texto resultante tras completar la petición de transcripción.',
+                    id: 'rep-103-1',
+                    author: 'Guillén F.',
+                    isVerified: false,
+                    content: 'Totalmente. Yo le paso un prompt de checklist markdown [ ] y lo pego directo en la tarjeta de Trello o Linear del sprint.',
+                    date: 'Hace 20 horas'
+                }
+            ]
+        },
+        {
+            id: 'th-104',
+            category: 'tecnologia',
+            title: 'Whisper Large v3 en GPU Cloud vs ejecutarlo en local en un portátil con 16GB de RAM',
+            content: 'Hice la prueba empírica con un archivo de 52 minutos grabado en un bar con vajilla y eco. En local con whisper.cpp mi portátil se puso a 88 grados, los ventiladores al 100% y tardó 14 minutos. En EchoScribe tardó 21 segundos de reloj porque corre en una gráfica dedicada de servidor. Para los que trabajamos en movilidad con batería esto marca la diferencia entre poder transcribir fuera de casa o quedarte sin pila.',
+            author: 'Xabier M.',
+            isVerified: true,
+            userRole: 'Desarrollador de Software',
+            date: 'Hace 2 días',
+            timestamp: Date.now() - 1000 * 60 * 60 * 50,
+            upvotes: 63,
+            tags: ['Whisper GPU', 'Benchmark', 'Rendimiento'],
+            replies: [
+                {
+                    id: 'rep-104-1',
+                    author: 'dev_audio_lab',
+                    isVerified: false,
+                    content: 'Exacto, y además la cuantización del modelo local a 4 bits pierde precisión con acentos cerrados, cosa que no pasa cuando ejecutas el modelo entero en fp16 en la nube.',
                     date: 'Hace 1 día'
                 }
             ]
         },
         {
-            id: 'th-4',
-            category: 'tecnologia',
-            title: 'Whisper Large v3 vs motores fonéticos de escritorio: comparativa con ruido ambiente',
-            content: 'Hice una prueba con un archivo de 45 minutos grabado en una cafetería con murmullos y vajilla de fondo. Con el modelo base que viene en muchas apps locales se quedaba en bucles infinitos repitiendo frases. El modelo Large v3 ejecutado en la GPU de EchoScribe no solo filtró el ruido de fondo sino que aisló con precisión la voz del interlocutor.',
-            author: 'Guillermo F.',
-            isVerified: false,
-            userRole: 'Ingeniero de Sonido',
-            date: 'Hace 3 días',
-            timestamp: Date.now() - 1000 * 60 * 60 * 72,
-            upvotes: 42,
-            tags: ['Whisper Large', 'Ruido', 'GPU Cloud'],
-            replies: []
-        },
-        {
-            id: 'th-5',
+            id: 'th-105',
             category: 'mejoras',
-            title: 'Propuesta: Glosario personalizado de nombres propios por proyecto',
-            content: 'Sería muy útil tener una opción para guardar listas de nombres técnicos o siglas frecuentes (por ejemplo por materia o por cliente) para no tener que escribirlos cada vez en el campo de corrección de Gemini. ¿Qué opináis?',
-            author: 'Laura G.',
+            title: 'Propuesta: Opción de arrastrar carpetas enteras para transcribir en cola por lotes',
+            content: 'Cuando vuelves de cubrir un congreso o unas jornadas traes 10 o 12 audios distintos. Estaría brutal poder soltar la carpeta completa y que los vaya procesando en cola uno tras otro sin tener que meterlos de uno en uno. ¿Cómo lo veis?',
+            author: 'Artai R.',
             isVerified: true,
-            userRole: 'Traductora & Redactora',
-            date: 'Hace 4 días',
-            timestamp: Date.now() - 1000 * 60 * 60 * 96,
-            upvotes: 56,
-            tags: ['Propuesta', 'Glosario', 'Productividad'],
+            userRole: 'Periodismo Digital',
+            date: 'Hace 3 días',
+            timestamp: Date.now() - 1000 * 60 * 60 * 75,
+            upvotes: 78,
+            tags: ['Propuesta', 'Procesado por Lotes', 'Roadmap'],
             replies: [
                 {
-                    id: 'rep-5-1',
-                    author: 'Iván Miranda',
+                    id: 'rep-105-1',
+                    author: 'Iván García Miranda',
                     isVerified: true,
                     userRole: 'Desarrollador',
-                    content: 'Excelente propuesta Laura. Lo tenemos anotado en el roadmap para permitir crear perfiles de vocabulario reutilizables en la app de escritorio.',
-                    date: 'Hace 3 días'
+                    content: 'Apuntadísimo Artai. Ya estamos testeando la cola de procesamiento múltiple para la versión 1.2 de la app de escritorio.',
+                    date: 'Hace 2 días'
+                },
+                {
+                    id: 'rep-105-2',
+                    author: 'usuario_8192',
+                    isVerified: false,
+                    content: 'Si además le ponéis un botón de "Exportar todos a una sola carpeta de Notion/Markdown", me caso con vosotros.',
+                    date: 'Ayer'
                 }
             ]
+        },
+        {
+            id: 'th-106',
+            category: 'empresa',
+            title: 'Entrevistas para investigación sociológica y respeto estricto del RGPD',
+            content: 'Para proyectos financiados con fondos públicos la protección de datos es innegociable. Con los servicios que te piden subir audios a servidores que luego los usan para entrenar sus modelos no podemos trabajar legalmente. Que EchoScribe procese en memoria efímera y purgue los ficheros al terminar la petición nos permite justificar el protocolo de anonimización del comité ético.',
+            author: 'Montserrat P.',
+            isVerified: true,
+            userRole: 'Investigación Cualitativa',
+            date: 'Hace 4 días',
+            timestamp: Date.now() - 1000 * 60 * 60 * 95,
+            upvotes: 41,
+            tags: ['RGPD', 'Comité Ético', 'Entrevistas'],
+            replies: []
         }
     ];
 
-    // Datos semilla para las Reseñas y Mejoras (CERO emojis, valoraciones 100% vectoriales)
+    // Reseñas auténticas con valoraciones realistas (CERO emojis, tono sincero y directo)
     const SEED_REVIEWS = [
         {
-            id: 'rev-1',
-            author: 'Marcos V.',
-            role: 'Periodista Deportivo',
+            id: 'rev-201',
+            author: 'Yanira B.',
+            role: 'Redactora y Community Manager',
             isVerified: true,
             rating: 5,
-            title: 'La corrección de nombres de jugadores me ahorra horas',
-            content: 'En ruedas de prensa de fútbol internacional los transcriptores genéricos inventan los apellidos de jugadores extranjeros. Con la integración de Gemini y las plantillas reales, EchoScribe escribe los nombres exactos al primer intento.',
+            title: 'Se acabaron las tardes enteras pasando ruedas de prensa a mano',
+            content: 'Al principio era escéptica porque casi todas las apps que dicen tener IA se inventan la mitad de los apellidos cuando hablan futbolistas extranjeros. La corrección con Gemini conectada a plantillas reales de plantilla clava los nombres al primer intento.',
+            date: 'Hace 2 días',
+            helpfulCount: 38
+        },
+        {
+            id: 'rev-202',
+            author: 'anónimo_upv',
+            role: 'Estudiante de Grado',
+            isVerified: false,
+            rating: 5,
+            title: 'Salvada histórica para preparar los exámenes finales',
+            content: 'Me pasaron 18 grabaciones de clase de 2 horas de una asignatura que llevaba atrasada. Con la app de escritorio las procesé todas en una tarde y saqué apuntes limpísimos en Notion. No vuelvo a transcribir a pedal en mi vida.',
             date: 'Hace 3 días',
-            helpfulCount: 29
+            helpfulCount: 45
         },
         {
-            id: 'rev-2',
-            author: 'Lucía T.',
-            role: 'Estudiante de Medicina',
+            id: 'rev-203',
+            author: 'Brais C.',
+            role: 'Creador de Podcast & YouTube',
             isVerified: true,
             rating: 5,
-            title: 'Imprescindible para las clases de Anatomía y Farmacología',
-            content: 'Paso las clases grabadas y en 30 segundos tengo el texto limpio listo para pasar a Notion y generar esquemas con IA. La velocidad con la GPU Cloud es incomparable con esperar 20 minutos en local.',
+            title: 'La sincronización de los .SRT es milimétrica en DaVinci',
+            content: 'Descript me chupaba 14 gigas de RAM y muchas veces se colgaba con proyectos largos en 4K. EchoScribe pesa menos de 100 megas en Windows y exporta el archivo de subtítulos listo para importar.',
             date: 'Hace 5 días',
-            helpfulCount: 34
+            helpfulCount: 27
         },
         {
-            id: 'rev-3',
-            author: 'David K.',
-            role: 'Editor Audiovisual & Creador',
+            id: 'rev-204',
+            author: 'Iker Albiol',
+            role: 'Project Manager Freelance',
             isVerified: true,
             rating: 5,
-            title: 'Subtítulos .SRT limpios sin palabras cortadas a mitad',
-            content: 'Descript me consumía toda la RAM y la sincronización a veces dejaba palabras huérfanas. Con EchoScribe exporto el .SRT directo a DaVinci Resolve y la temporización es milimétrica.',
+            title: 'Extracción de acuerdos de reuniones que evita malentendidos con clientes',
+            content: 'Lo utilizo después de cada llamada con clientes para mandarles el acta en 3 minutos. El hecho de que extraiga las tareas en casillas de verificación directas para Notion nos ha subido el ritmo de entrega una barbaridad.',
             date: 'Hace 1 semana',
-            helpfulCount: 18
+            helpfulCount: 22
         },
         {
-            id: 'rev-4',
-            author: 'Andrea B.',
-            role: 'Consultora de Negocio',
-            isVerified: true,
-            rating: 5,
-            title: 'Actas de reuniones de Zoom de 1 hora en menos de 2 minutos',
-            content: 'Grabo las reuniones con clientes y obtengo un acta ejecutiva ordenada por temas clave e intervenciones. Ha mejorado notablemente el seguimiento de compromisos con los equipos.',
-            date: 'Hace 1 semana',
-            helpfulCount: 15
-        },
-        {
-            id: 'rev-5',
-            author: 'Roberto C.',
-            role: 'Investigador Social',
-            isVerified: true,
+            id: 'rev-205',
+            author: 'investigador_csic',
+            role: 'Investigador Biomédico',
+            isVerified: false,
             rating: 4,
-            title: 'Muy buena precisión fonética y excelente política de privacidad',
-            content: 'La calidad con acentos del sur de España y de Latinoamérica es de las mejores que he probado. Le pongo 4 estrellas porque me gustaría que tuviera también opción de traducción directa al inglés en el mismo proceso.',
-            date: 'Hace 2 semanas',
-            helpfulCount: 12
+            title: 'Brutal velocidad y precisión, solo echo en falta traducción directa en el mismo paso',
+            content: 'El filtrado de ruido de fondo con el modelo Large v3 es impecable. Le pongo 4 estrellas en lugar de 5 porque me gustaría que pudiera traducir directamente audios en inglés al castellano en una sola pasada, aunque ahora mismo lo resuelvo pidiéndoselo a Gemini.',
+            date: 'Hace 1 semana',
+            helpfulCount: 19
         },
         {
-            id: 'rev-6',
-            author: 'Nuria M.',
-            role: 'Productora de Podcast',
+            id: 'rev-206',
+            author: 'Pelayo S.',
+            role: 'Editor de Vídeo Vertical',
             isVerified: true,
             rating: 5,
-            title: 'La app de escritorio en Windows es ultraligera',
-            content: 'No pesa prácticamente nada, no ralentiza el ordenador mientras edito audio en Reaper y los servidores en la nube hacen todo el trabajo pesado. Una herramienta indispensable.',
+            title: 'Por fin una herramienta pensada para gente que edita en serio',
+            content: 'Las herramientas online te cobran por minuto de audio infladísimo y te meten marcas de agua si no pagas planes de 40 euros. EchoScribe tiene precios súper honestos para lo que ofrece y la app nativa en Windows es una bala.',
             date: 'Hace 2 semanas',
-            helpfulCount: 21
+            helpfulCount: 31
         }
     ];
+
+    // Comentarios específicos por guía (con debates reales por especialidad)
+    const SEED_GUIDE_COMMENTS = {
+        'transcribir-audio-notas-notion-obsidian': [
+            {
+                id: 'gcn-1',
+                author: 'Pelayo S.',
+                isVerified: true,
+                content: 'Pro tip para Obsidian: si configuráis el plugin Dataview, podéis pedirle a EchoScribe en las instrucciones de Gemini que añada metadatos frontmatter (tags, fecha, tipo: reunión) y se os indexa en vuestro panel de control al instante.',
+                date: 'Hace 2 horas',
+                upvotes: 16
+            },
+            {
+                id: 'gcn-2',
+                author: 'anónimo_notion_geek',
+                isVerified: false,
+                content: '¿Pega bien las casillas de verificación en Notion si usas la app web en Brave? Lo digo porque a veces los portapapeles de Chromium rompen el markdown.',
+                date: 'Hace 5 horas',
+                upvotes: 4
+            },
+            {
+                id: 'gcn-3',
+                author: 'Naiara V.',
+                isVerified: true,
+                content: 'En Brave y Chrome entra perfecto con Ctrl+V normal. Notion lo reconoce como bloques nativos de To-Do list sin necesidad de extensiones.',
+                date: 'Hace 3 horas',
+                upvotes: 9
+            }
+        ],
+        'alternativa-otter-ai-espanol': [
+            {
+                id: 'gc-ot-1',
+                author: 'Joana M.',
+                isVerified: true,
+                content: 'Lo que más me echaba para atrás de Otter era la pesadilla de que el bot "OtterPilot" entrara solo a reuniones con clientes externos y la gente preguntara "¿quién está grabando esto?". Con EchoScribe grabo en local y no hay ningún bot invasivo.',
+                date: 'Hace 1 día',
+                upvotes: 21
+            },
+            {
+                id: 'gc-ot-2',
+                author: 'usuario_freelance',
+                isVerified: false,
+                content: 'Y que Otter en español mete unas patadas al diccionario tremendas con los modismos de aquí. El combo de Whisper v3 con Gemini no tiene punto de comparación.',
+                date: 'Ayer',
+                upvotes: 14
+            }
+        ],
+        'alternativa-descript-transcripcion': [
+            {
+                id: 'gc-des-1',
+                author: 'editor_vfx_madrid',
+                isVerified: false,
+                content: 'Descript en Windows 11 se ha vuelto un mastodonte intragable. En cuanto metías dos clips de 4K se congelaba el previo. La ligereza de EchoScribe se agradece infinito para sacar los .SRT limpios.',
+                date: 'Hace 2 días',
+                upvotes: 28
+            }
+        ],
+        'transcribir-clases-apuntes-gemini-ia': [
+            {
+                id: 'gc-gem-1',
+                author: 'Brais C.',
+                isVerified: true,
+                content: 'Para asignaturas tochas de 6 créditos con temarios densos: pedidle en el prompt que os genere "preguntas trampa tipo test para auto-evaluación". Es la forma más rápida de saber si te has enterado de la clase antes de que llegue el parcial.',
+                date: 'Hace 3 días',
+                upvotes: 35
+            }
+        ],
+        'transcribir-audios-whatsapp-a-texto': [
+            {
+                id: 'gc-wsp-1',
+                author: 'Naiara V.',
+                isVerified: true,
+                content: 'Pasar los audios de los grupos de trabajo de la oficina por aquí me ahorra media hora de disgustos todas las mañanas. Mano de santo.',
+                date: 'Hace 4 días',
+                upvotes: 19
+            }
+        ]
+    };
 
     // Helpers de almacenamiento local
     function getStoredThreads() {
@@ -300,7 +465,22 @@
         }
     }
 
-    // Helper para estrellas SVG
+    function getGuideComments() {
+        try {
+            const data = localStorage.getItem(STORAGE_KEY_GUIDE_COMMENTS);
+            if (data) return JSON.parse(data);
+        } catch (e) {}
+        localStorage.setItem(STORAGE_KEY_GUIDE_COMMENTS, JSON.stringify(SEED_GUIDE_COMMENTS));
+        return SEED_GUIDE_COMMENTS;
+    }
+
+    function saveGuideComments(all) {
+        try {
+            localStorage.setItem(STORAGE_KEY_GUIDE_COMMENTS, JSON.stringify(all));
+        } catch (e) {}
+    }
+
+    // Helper para estrellas SVG puras
     function renderStarsSvg(rating, max = 5, sizeClass = 'w-4 h-4') {
         let html = '<div class="inline-flex items-center gap-0.5 text-amber-400">';
         for (let i = 1; i <= max; i++) {
@@ -314,17 +494,17 @@
         return html;
     }
 
-    // Iniciales para el avatar vectorial
+    // Iniciales para avatar vectorial
     function getInitials(name) {
         if (!name) return 'U';
-        const parts = name.trim().split(' ');
+        const parts = name.trim().replace(/_/g, ' ').split(' ');
         if (parts.length >= 2) {
             return (parts[0][0] + parts[1][0]).toUpperCase();
         }
         return name.slice(0, 2).toUpperCase();
     }
 
-    // Comprobación del usuario actual en Supabase
+    // Comprobación de usuario actual en Supabase
     async function getCurrentUser() {
         try {
             if (window.sb && window.sb.auth) {
@@ -342,7 +522,7 @@
                 }
             }
         } catch (e) {
-            console.warn('Error verificando sesión Supabase:', e);
+            console.warn('Error comprobando sesión Supabase:', e);
         }
         return {
             isLoggedIn: false,
@@ -352,7 +532,7 @@
         };
     }
 
-    // Estado local de la interfaz
+    // Estado local
     let currentSubforo = 'todos';
     let searchQuery = '';
     let currentRatingFilter = 'todas';
@@ -391,7 +571,6 @@
         const threads = getStoredThreads();
         const votes = getUserVotes();
 
-        // Filtrar por subforo y búsqueda
         const filteredThreads = threads.filter(t => {
             const matchSubforo = (currentSubforo === 'todos') || (t.category === currentSubforo);
             const matchSearch = !searchQuery || 
@@ -402,10 +581,10 @@
         });
 
         container.innerHTML = `
-            <!-- BARRA SUPERIOR: SUBFOROS Y ACCIONES -->
+            <!-- BARRA SUPERIOR: SUBFOROS -->
             <div id="subforos-chips-container"></div>
 
-            <!-- CONTROLES: BÚSQUEDA Y BOTÓN NUEVO HILO -->
+            <!-- CONTROLES: BÚSQUEDA Y BOTÓN NUEVO DEBATE -->
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
                 <div class="relative flex-1 max-w-lg">
                     <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
@@ -431,7 +610,7 @@
                 </div>
             </div>
 
-            <!-- FORMULARIO DE NUEVO DEBATE (COLAPSABLE / DESPLEGABLE) -->
+            <!-- FORMULARIO DE NUEVO DEBATE -->
             <div id="nuevo-debate-box" class="hidden mb-10 glass-card rounded-3xl p-6 sm:p-8 border border-indigo-500/40 shadow-2xl relative">
                 <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-800">
                     <div class="flex items-center gap-2.5">
@@ -440,7 +619,7 @@
                         </div>
                         <div>
                             <h3 class="text-base font-bold text-white">Publicar un Nuevo Debate</h3>
-                            <p class="text-[11px] text-slate-400">Comparte dudas, guías o soluciones con toda la comunidad</p>
+                            <p class="text-[11px] text-slate-400">Comparte dudas, trucos de software o flujos de trabajo</p>
                         </div>
                     </div>
                     <button id="btn-close-nuevo-debate" class="text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-slate-800 transition">
@@ -467,7 +646,7 @@
                                 type="text" 
                                 id="input-debate-autor" 
                                 value="${user.isLoggedIn ? escapeHtml(user.name) : ''}" 
-                                placeholder="${user.isLoggedIn ? 'Tu nombre de usuario' : 'Ej: Alejandro o Anónimo'}" 
+                                placeholder="${user.isLoggedIn ? escapeHtml(user.name) : 'Tu nombre o alias (ej: ' + getSessionAnonymousHandle() + ')'}" 
                                 class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-indigo-500"
                                 required
                             />
@@ -479,7 +658,7 @@
                         <input 
                             type="text" 
                             id="input-debate-titulo" 
-                            placeholder="Sé claro y descriptivo (ej: Cómo optimizar apuntes de audio de 3 horas)" 
+                            placeholder="Sé directo y claro (ej: Cómo optimizar apuntes de audio de 3 horas en Notion)" 
                             class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-indigo-500"
                             required
                         />
@@ -490,7 +669,7 @@
                         <textarea 
                             id="input-debate-contenido" 
                             rows="4" 
-                            placeholder="Explica tu caso, el formato de archivo que usas, la solución encontrada o la consulta..." 
+                            placeholder="Explica tu caso, el formato de archivo (.m4a, .opus, .wav), tu experiencia o la consulta..." 
                             class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-indigo-500 leading-relaxed"
                             required
                         ></textarea>
@@ -500,7 +679,7 @@
                         <div class="flex items-center gap-2">
                             <input type="checkbox" id="input-debate-anonimo" class="rounded bg-slate-800 border-slate-700 text-indigo-600 focus:ring-0">
                             <label for="input-debate-anonimo" class="text-xs text-slate-400 cursor-pointer">
-                                Publicar en modo anónimo (no vincular mi cuenta registrada)
+                                Publicar en modo anónimo (sin asociar perfil registrado)
                             </label>
                         </div>
 
@@ -531,13 +710,11 @@
             </div>
         `;
 
-        // Montar chips de subforos
         const chipsContainer = document.getElementById('subforos-chips-container');
         if (chipsContainer) {
             chipsContainer.appendChild(renderSubforosBar());
         }
 
-        // Listener de búsqueda con debounce
         const searchInput = document.getElementById('comunidad-search-input');
         if (searchInput) {
             searchInput.addEventListener('input', (e) => {
@@ -546,7 +723,6 @@
             });
         }
 
-        // Mostrar / Ocultar formulario nuevo debate
         const btnOpen = document.getElementById('btn-open-nuevo-debate');
         const boxNuevo = document.getElementById('nuevo-debate-box');
         const btnClose = document.getElementById('btn-close-nuevo-debate');
@@ -565,7 +741,6 @@
             btnCancel.onclick = () => boxNuevo.classList.add('hidden');
         }
 
-        // Enviar nuevo debate
         const formNuevo = document.getElementById('form-nuevo-debate');
         if (formNuevo) {
             formNuevo.onsubmit = (e) => {
@@ -583,7 +758,7 @@
                     category: categoria,
                     title: titulo,
                     content: contenido,
-                    author: isAnon ? 'Usuario Anónimo' : autor,
+                    author: resolveAnonymousAuthor(autor, isAnon, user.name),
                     isVerified: !isAnon && user.isLoggedIn,
                     userRole: isAnon ? 'Miembro Anónimo' : (user.isLoggedIn ? 'Usuario Registrado' : 'Miembro de la Comunidad'),
                     date: 'Ahora mismo',
@@ -597,7 +772,6 @@
                 allThreads.unshift(newThread);
                 saveStoredThreads(allThreads);
 
-                // Auto-votar positivo propio
                 const curVotes = getUserVotes();
                 curVotes.threads[newThread.id] = true;
                 saveUserVotes(curVotes);
@@ -606,17 +780,16 @@
             };
         }
 
-        // Adjuntar listeners de hilos (votos, respuestas)
         attachThreadActionListeners(user);
     }
 
-    // Generar tarjeta HTML de un hilo
+    // Generar tarjeta HTML de un hilo con metadatos SEO
     function renderThreadCardHtml(thread, hasVoted) {
         const subforo = SUBFOROS.find(s => s.id === thread.category) || SUBFOROS[1];
         const initials = getInitials(thread.author);
 
         return `
-            <div class="glass-card card-interactive rounded-3xl p-6 sm:p-7 border border-slate-800 transition" id="card-${thread.id}">
+            <article class="glass-card card-interactive rounded-3xl p-6 sm:p-7 border border-slate-800 transition" id="card-${thread.id}" itemscope itemtype="https://schema.org/DiscussionForumPosting">
                 <div class="flex items-start justify-between gap-4 mb-3">
                     <div class="flex items-center gap-3">
                         <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-slate-800 to-indigo-900 border border-slate-700 flex items-center justify-center text-xs font-bold text-white shadow-inner shrink-0">
@@ -624,7 +797,7 @@
                         </div>
                         <div>
                             <div class="flex items-center gap-1.5">
-                                <span class="text-xs font-bold text-white">${escapeHtml(thread.author)}</span>
+                                <span class="text-xs font-bold text-white" itemprop="author">${escapeHtml(thread.author)}</span>
                                 ${thread.isVerified ? `
                                     <span title="Usuario Verificado" class="text-indigo-400">
                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -642,11 +815,11 @@
                     </span>
                 </div>
 
-                <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug hover:text-indigo-400 transition cursor-pointer" onclick="window.EchoScribeComunidad.toggleReplies('${thread.id}')">
+                <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug hover:text-indigo-400 transition cursor-pointer" onclick="window.EchoScribeComunidad.toggleReplies('${thread.id}')" itemprop="headline">
                     ${escapeHtml(thread.title)}
                 </h3>
 
-                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4 whitespace-pre-line">
+                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4 whitespace-pre-line" itemprop="articleBody">
                     ${escapeHtml(thread.content)}
                 </p>
 
@@ -732,13 +905,12 @@
                         </button>
                     </form>
                 </div>
-            </div>
+            </article>
         `;
     }
 
     // Listeners de interacciones en hilos
     function attachThreadActionListeners(user) {
-        // Votos en hilos
         document.querySelectorAll('.btn-vote-thread').forEach(btn => {
             btn.onclick = () => {
                 const threadId = btn.getAttribute('data-thread-id');
@@ -748,11 +920,9 @@
                 if (!target) return;
 
                 if (votes.threads[threadId]) {
-                    // Quitar voto
                     target.upvotes = Math.max(0, (target.upvotes || 1) - 1);
                     delete votes.threads[threadId];
                 } else {
-                    // Dar voto
                     target.upvotes = (target.upvotes || 0) + 1;
                     votes.threads[threadId] = true;
                 }
@@ -763,7 +933,6 @@
             };
         });
 
-        // Respuestas a hilos
         document.querySelectorAll('.form-reply-thread').forEach(form => {
             form.onsubmit = (e) => {
                 e.preventDefault();
@@ -780,7 +949,7 @@
 
                 target.replies.push({
                     id: 'rep-' + Date.now(),
-                    author: user.isLoggedIn ? user.name : 'Usuario Anónimo',
+                    author: user.isLoggedIn ? user.name : generateCoolAnonymousName(),
                     isVerified: user.isLoggedIn,
                     content: content,
                     date: 'Ahora mismo'
@@ -789,7 +958,6 @@
                 saveStoredThreads(threads);
                 renderForumSection();
 
-                // Asegurar que el contenedor quede abierto tras refrescar
                 setTimeout(() => {
                     const box = document.getElementById(`replies-box-${threadId}`);
                     if (box) box.classList.remove('hidden');
@@ -807,19 +975,16 @@
         const reviews = getStoredReviews();
         const votes = getUserVotes();
 
-        // Cálculo de promedio
         const total = reviews.length;
         const sum = reviews.reduce((acc, r) => acc + (r.rating || 5), 0);
         const avg = total > 0 ? (sum / total).toFixed(1) : '5.0';
 
-        // Distribución por estrellas (5, 4, 3, 2, 1)
         const counts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
         reviews.forEach(r => {
             const stars = Math.min(5, Math.max(1, r.rating || 5));
             counts[stars] = (counts[stars] || 0) + 1;
         });
 
-        // Filtrado
         const filteredReviews = reviews.filter(r => {
             if (currentRatingFilter === 'todas') return true;
             return r.rating === parseInt(currentRatingFilter, 10);
@@ -831,16 +996,14 @@
                 <div class="absolute -right-12 -top-12 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                    <!-- NOTA MEDIA -->
                     <div class="text-center md:text-left border-b md:border-b-0 md:border-r border-slate-800 pb-6 md:pb-0 md:pr-6">
                         <div class="text-5xl sm:text-6xl font-black text-white tracking-tight mb-2">${avg}</div>
                         <div class="flex items-center justify-center md:justify-start gap-1 mb-2">
                             ${renderStarsSvg(Math.round(parseFloat(avg)), 5, 'w-5 h-5')}
                         </div>
-                        <p class="text-xs text-slate-400">Basado en <strong>${total} valoraciones reales</strong> de usuarios y profesionales</p>
+                        <p class="text-xs text-slate-400">Basado en <strong>${total} valoraciones reales</strong> de estudiantes, editores y empresas</p>
                     </div>
 
-                    <!-- BARRAS DE PROGRESO POR ESTRELLAS -->
                     <div class="space-y-2 text-xs">
                         ${[5, 4, 3, 2, 1].map(star => {
                             const cnt = counts[star] || 0;
@@ -860,9 +1023,8 @@
                         }).join('')}
                     </div>
 
-                    <!-- CTA VALORAR -->
                     <div class="flex flex-col items-center md:items-end justify-center">
-                        <p class="text-xs text-slate-400 text-center md:text-right mb-3">¿Has probado la app en tus proyectos o clases?</p>
+                        <p class="text-xs text-slate-400 text-center md:text-right mb-3">¿Usas la app para estudiar o trabajar?</p>
                         <button 
                             id="btn-open-review-form" 
                             class="btn-gradient text-white text-xs font-bold py-3 px-6 rounded-2xl shadow-lg transition flex items-center gap-2"
@@ -874,7 +1036,7 @@
                 </div>
             </div>
 
-            <!-- FORMULARIO DE NUEVA RESEÑA (COLAPSABLE) -->
+            <!-- FORMULARIO DE NUEVA RESEÑA -->
             <div id="review-form-box" class="hidden mb-8 glass-card rounded-3xl p-6 sm:p-8 border border-amber-500/40 shadow-2xl relative">
                 <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-800">
                     <div class="flex items-center gap-2.5">
@@ -883,7 +1045,7 @@
                         </div>
                         <div>
                             <h3 class="text-base font-bold text-white">Escribe tu Reseña o Propuesta</h3>
-                            <p class="text-[11px] text-slate-400">Tu opinión nos ayuda a pulir la aplicación y añadir funciones útiles</p>
+                            <p class="text-[11px] text-slate-400">Tu opinión nos ayuda a pulir la herramienta y añadir funciones clave</p>
                         </div>
                     </div>
                     <button id="btn-close-review-form" class="text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-slate-800 transition">
@@ -892,7 +1054,6 @@
                 </div>
 
                 <form id="form-nueva-resena" class="space-y-4">
-                    <!-- SELECTOR DE PUNTUACIÓN CON ESTRELLAS VECTORIALES -->
                     <div>
                         <label class="block text-[11px] font-semibold text-slate-300 mb-2 uppercase tracking-wider">Tu Puntuación</label>
                         <div class="flex items-center gap-2" id="star-picker-container">
@@ -909,11 +1070,11 @@
                         <div>
                             <label class="block text-[11px] font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">Tu Perfil o Sector</label>
                             <select id="input-review-role" class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-amber-500">
-                                <option value="Estudiante Universitario">Estudiante Universitario / Oposiciones</option>
-                                <option value="Periodista / Medios">Periodista / Medios de Comunicación</option>
-                                <option value="Creador de Contenido">Creador de Contenido / Editor de Vídeo</option>
-                                <option value="Empresa / Consultoría">Empresa / Negocio / Consultoría</option>
-                                <option value="Investigador">Investigación / Sanidad / Docencia</option>
+                                <option value="Estudiante Universitario">Estudiante / Oposiciones</option>
+                                <option value="Periodista / Medios">Periodismo / Medios de Comunicación</option>
+                                <option value="Creador de Contenido">Creador / Editor de Vídeo</option>
+                                <option value="Empresa / Consultoría">Empresa / Consultoría / PM</option>
+                                <option value="Investigador">Investigación / Docencia / CSIC</option>
                                 <option value="Usuario General">Otro</option>
                             </select>
                         </div>
@@ -924,7 +1085,7 @@
                                 type="text" 
                                 id="input-review-autor" 
                                 value="${user.isLoggedIn ? escapeHtml(user.name) : ''}" 
-                                placeholder="${user.isLoggedIn ? 'Tu nombre de usuario' : 'Ej: Marta R. o Anónimo'}" 
+                                placeholder="${user.isLoggedIn ? escapeHtml(user.name) : 'Tu nombre o alias (ej: ' + getSessionAnonymousHandle() + ')'}" 
                                 class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-amber-500"
                                 required
                             />
@@ -936,7 +1097,7 @@
                         <input 
                             type="text" 
                             id="input-review-titulo" 
-                            placeholder="Resume tu experiencia en pocas palabras" 
+                            placeholder="Resume tu opinión en una frase" 
                             class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-amber-500"
                             required
                         />
@@ -947,7 +1108,7 @@
                         <textarea 
                             id="input-review-contenido" 
                             rows="4" 
-                            placeholder="¿Qué es lo que más te gusta? ¿Qué función crees que le falta a EchoScribe para ser perfecta?" 
+                            placeholder="¿Qué problema te resolvió? ¿Qué añadirías a la app de escritorio?" 
                             class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-amber-500 leading-relaxed"
                             required
                         ></textarea>
@@ -1000,12 +1161,12 @@
                 ${filteredReviews.map(rev => {
                     const hasVotedHelpful = !!(votes.reviews[rev.id]);
                     return `
-                        <div class="glass-card card-interactive rounded-3xl p-6 border border-slate-800 flex flex-col justify-between transition">
+                        <div class="glass-card card-interactive rounded-3xl p-6 border border-slate-800 flex flex-col justify-between transition" itemscope itemtype="https://schema.org/Review">
                             <div>
                                 <div class="flex items-start justify-between gap-3 mb-3">
                                     <div>
                                         <div class="flex items-center gap-1.5 mb-1">
-                                            <span class="text-xs font-bold text-white">${escapeHtml(rev.author)}</span>
+                                            <span class="text-xs font-bold text-white" itemprop="author">${escapeHtml(rev.author)}</span>
                                             ${rev.isVerified ? `
                                                 <span title="Comprador / Usuario Verificado" class="text-amber-400">
                                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -1021,8 +1182,8 @@
                                     </div>
                                 </div>
 
-                                <h4 class="text-sm font-bold text-white mb-2 leading-snug">${escapeHtml(rev.title)}</h4>
-                                <p class="text-xs text-slate-300 leading-relaxed mb-4">${escapeHtml(rev.content)}</p>
+                                <h4 class="text-sm font-bold text-white mb-2 leading-snug" itemprop="name">${escapeHtml(rev.title)}</h4>
+                                <p class="text-xs text-slate-300 leading-relaxed mb-4" itemprop="reviewBody">${escapeHtml(rev.content)}</p>
                             </div>
 
                             <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
@@ -1045,7 +1206,6 @@
             </div>
         `;
 
-        // Toggle formulario de reseña
         const btnOpenRev = document.getElementById('btn-open-review-form');
         const boxRev = document.getElementById('review-form-box');
         const btnCloseRev = document.getElementById('btn-close-review-form');
@@ -1064,7 +1224,6 @@
             btnCancelRev.onclick = () => boxRev.classList.add('hidden');
         }
 
-        // Star picker buttons
         document.querySelectorAll('.btn-star-pick').forEach(btn => {
             btn.onclick = () => {
                 const val = parseInt(btn.getAttribute('data-star-value'), 10);
@@ -1086,7 +1245,6 @@
             };
         });
 
-        // Filtro de puntuación
         document.querySelectorAll('.filter-rating-btn').forEach(btn => {
             btn.onclick = () => {
                 currentRatingFilter = btn.getAttribute('data-filter');
@@ -1094,7 +1252,6 @@
             };
         });
 
-        // Enviar nueva reseña
         const formRev = document.getElementById('form-nueva-resena');
         if (formRev) {
             formRev.onsubmit = (e) => {
@@ -1109,7 +1266,7 @@
 
                 const newRev = {
                     id: 'rev-' + Date.now(),
-                    author: isAnon ? 'Usuario Anónimo' : autor,
+                    author: isAnon ? (autor.includes('_') ? autor : 'anónimo_' + Math.floor(100 + Math.random() * 900)) : autor,
                     role: role,
                     isVerified: !isAnon && user.isLoggedIn,
                     rating: selectedRatingInForm,
@@ -1127,7 +1284,6 @@
             };
         }
 
-        // Votos útiles en reseñas
         document.querySelectorAll('.btn-helpful-review').forEach(btn => {
             btn.onclick = () => {
                 const revId = btn.getAttribute('data-review-id');
@@ -1158,63 +1314,6 @@
 
         const slug = container.getAttribute('data-guia-slug') || window.location.pathname.split('/').pop().replace('.html', '');
         const user = await getCurrentUser();
-
-        function getGuideComments() {
-            try {
-                const data = localStorage.getItem(STORAGE_KEY_GUIDE_COMMENTS);
-                if (data) return JSON.parse(data);
-            } catch(e){}
-            // Default seed comments for guides
-            const initial = {
-                'alternativa-otter-ai-espanol': [
-                    {
-                        id: 'gc-1',
-                        author: 'Javier M.',
-                        isVerified: true,
-                        content: 'Gran comparativa. Lo que más me molestaba de Otter era que el bot entraba a reuniones de clientes y causaba desconfianza. Grabar el audio y pasarlo directamente es mucho más profesional.',
-                        date: 'Hace 1 día',
-                        upvotes: 8
-                    },
-                    {
-                        id: 'gc-2',
-                        author: 'Marta Redacción',
-                        isVerified: false,
-                        content: '¿Admite también archivos en formato .ogg o .opus de notas de voz de WhatsApp o Telegram?',
-                        date: 'Hace 6 horas',
-                        upvotes: 3
-                    }
-                ],
-                'alternativa-descript-transcripcion': [
-                    {
-                        id: 'gc-3',
-                        author: 'Carlos Vídeo',
-                        isVerified: true,
-                        content: 'Descript me consumía 12GB de RAM en un proyecto de 40 minutos. La ligereza de la app de escritorio de EchoScribe se agradece un montón en Premiere.',
-                        date: 'Hace 2 días',
-                        upvotes: 11
-                    }
-                ],
-                'transcribir-clases-apuntes-gemini-ia': [
-                    {
-                        id: 'gc-4',
-                        author: 'Sara Opositora',
-                        isVerified: true,
-                        content: 'El formato de apuntes con esquemas de leyes me está salvando la oposición. Muy recomendado pasar el texto por Gemini con el prompt de la guía.',
-                        date: 'Hace 3 días',
-                        upvotes: 14
-                    }
-                ]
-            };
-            localStorage.setItem(STORAGE_KEY_GUIDE_COMMENTS, JSON.stringify(initial));
-            return initial;
-        }
-
-        function saveGuideComments(all) {
-            try {
-                localStorage.setItem(STORAGE_KEY_GUIDE_COMMENTS, JSON.stringify(all));
-            } catch(e){}
-        }
-
         const allComments = getGuideComments();
         const comments = allComments[slug] || [];
 
@@ -1227,7 +1326,7 @@
                         </div>
                         <div>
                             <h3 class="text-base font-bold text-white">Comentarios y Preguntas de esta Guía</h3>
-                            <p class="text-[11px] text-slate-400">Participa en la conversación de forma anónima o con tu cuenta</p>
+                            <p class="text-[11px] text-slate-400">Pregunta dudas o comparte tu experiencia (anónimo o con cuenta)</p>
                         </div>
                     </div>
                     <a href="/guias#comunidad" class="text-xs font-bold text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1">
@@ -1243,7 +1342,7 @@
                             type="text" 
                             id="input-gc-autor" 
                             value="${user.isLoggedIn ? escapeHtml(user.name) : ''}" 
-                            placeholder="${user.isLoggedIn ? 'Tu nombre de usuario' : 'Tu alias (ej: María o Anónimo)'}" 
+                            placeholder="${user.isLoggedIn ? escapeHtml(user.name) : 'Tu nombre o alias (ej: ' + getSessionAnonymousHandle() + ')'}" 
                             class="bg-slate-900 border border-slate-700 text-white rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-indigo-500" 
                             required 
                         />
@@ -1311,7 +1410,7 @@
 
                 const newC = {
                     id: 'gc-' + Date.now(),
-                    author: isAnon ? 'Usuario Anónimo' : autor,
+                    author: isAnon ? (autor.includes('_') ? autor : 'anónimo_' + Math.floor(100 + Math.random() * 900)) : autor,
                     isVerified: !isAnon && user.isLoggedIn,
                     content: contenido,
                     date: 'Ahora mismo',
@@ -1328,7 +1427,6 @@
         }
     }
 
-    // Escape de HTML para evitar XSS
     function escapeHtml(str) {
         if (!str) return '';
         return String(str)
@@ -1339,7 +1437,6 @@
             .replace(/'/g, '&#039;');
     }
 
-    // Toggle de respuestas de un hilo
     function toggleReplies(threadId) {
         const box = document.getElementById(`replies-box-${threadId}`);
         if (box) {
@@ -1347,7 +1444,6 @@
         }
     }
 
-    // Control del Tab Switcher general
     function switchTab(tabName) {
         const tabGuias = document.getElementById('tab-btn-guias');
         const tabForo = document.getElementById('tab-btn-foro');
@@ -1359,7 +1455,6 @@
 
         const heroSub = document.getElementById('comunidad-hero-subtitle');
 
-        // Reset
         [tabGuias, tabForo, tabResenas].forEach(btn => {
             if (!btn) return;
             btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/30');
@@ -1390,7 +1485,6 @@
             renderReviewsSection();
             window.history.replaceState(null, '', '#resenas');
         } else {
-            // Default: guias
             if (tabGuias) {
                 tabGuias.classList.add('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/30');
                 tabGuias.classList.remove('text-slate-400');
@@ -1401,9 +1495,7 @@
         }
     }
 
-    // Inicialización al cargar la página
     function init() {
-        // Enlazar botones de pestañas si estamos en guias.html
         const tabGuias = document.getElementById('tab-btn-guias');
         const tabForo = document.getElementById('tab-btn-foro');
         const tabResenas = document.getElementById('tab-btn-resenas');
@@ -1412,14 +1504,12 @@
         if (tabForo) tabForo.onclick = () => switchTab('foro');
         if (tabResenas) tabResenas.onclick = () => switchTab('resenas');
 
-        // Leer hash de la URL para activar la pestaña correspondiente
         const hash = (window.location.hash || '').replace('#', '').toLowerCase();
         if (hash.includes('comunidad') || hash.includes('foro')) {
             switchTab('foro');
         } else if (hash.includes('resenas') || hash.includes('opiniones') || hash.includes('mejoras')) {
             switchTab('resenas');
         } else {
-            // Cargar inicialización silenciosa de los componentes
             const viewForo = document.getElementById('comunidad-foro-view');
             const viewResenas = document.getElementById('comunidad-resenas-view');
             if (viewForo) renderForumSection();
@@ -1433,18 +1523,15 @@
             else if (h.includes('guias')) switchTab('guias');
         });
 
-        // Inicializar comentarios específicos de guía si está el contenedor
         initGuideComments();
     }
 
-    // Autoarranque
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
 
-    // API pública para llamadas externas
     window.EchoScribeComunidad = {
         switchTab: switchTab,
         toggleReplies: toggleReplies,

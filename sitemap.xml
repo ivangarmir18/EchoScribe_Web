@@ -3,7 +3,7 @@
   <!-- Páginas Core -->
   <url><loc>https://www.echoscribe.es/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://www.echoscribe.es/bienvenida</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://www.echoscribe.es/guias</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
   <url><loc>https://www.echoscribe.es/guia-instalacion</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.echoscribe.es/politica-cookies</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.echoscribe.es/politica-privacidad</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
@@ -51,4 +51,5 @@
   <url><loc>https://www.echoscribe.es/guias/alternativa-descript-transcripcion</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.echoscribe.es/guias/transcribir-clases-apuntes-gemini-ia</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.echoscribe.es/guias/transcribir-audio-a-apuntes-estudiantes</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.echoscribe.es/guias/transcribir-audio-notas-notion-obsidian</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
 </urlset>

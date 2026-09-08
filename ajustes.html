@@ -1,20 +1,11 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es" class="dark" style="background-color: #0b0f19; color: #f8fafc;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajustes y Perfil - EchoScribe</title>
     <link rel="icon" type="image/x-icon" href="/icono.ico">
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('echo_theme') || localStorage.getItem('theme');
-            if (savedTheme === 'light' || (!savedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)) {
-                document.documentElement.classList.remove('dark');
-            } else {
-                document.documentElement.classList.add('dark');
-            }
-        })();
-    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
@@ -42,14 +33,9 @@
             scroll-behavior: smooth;
         }
 
-        html.dark body {
+        body {
             background-color: #0b0f19;
             color: #f8fafc;
-        }
-
-        html:not(.dark) body {
-            background-color: #f4f7fd;
-            color: #0f172a;
         }
 
         /* MESH DOT GRID BACKGROUND PATTERN */
@@ -74,76 +60,6 @@
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
-        }
-
-        /* MODO CLARO ELEGANTE */
-        html:not(.dark) .bg-mesh-grid {
-            background-image: radial-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px);
-        }
-        html:not(.dark) .glass {
-            background: rgba(255, 255, 255, 0.9) !important;
-            border: 1px solid #e2e8f0 !important;
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-        }
-        html:not(.dark) .glass-card {
-            background: #ffffff !important;
-            border: 1px solid #e2e8f0 !important;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05) !important;
-        }
-        html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3 {
-            color: #0f172a !important;
-        }
-        html:not(.dark) .text-white {
-            color: #0f172a !important;
-        }
-        html:not(.dark) .btn-gradient, 
-        html:not(.dark) .btn-ultra, 
-        html:not(.dark) .btn-gradient span, 
-        html:not(.dark) .btn-ultra span {
-            color: #ffffff !important;
-        }
-        html:not(.dark) #user-avatar {
-            color: #ffffff !important;
-        }
-        html:not(.dark) .bg-slate-900\/70,
-        html:not(.dark) .bg-slate-900\/60,
-        html:not(.dark) .bg-slate-900\/80,
-        html:not(.dark) .bg-slate-900\/30 {
-            background-color: #f8fafc !important;
-            border-color: #e2e8f0 !important;
-        }
-        html:not(.dark) input, 
-        html:not(.dark) select {
-            background-color: #f8fafc !important;
-            border-color: #cbd5e1 !important;
-            color: #0f172a !important;
-        }
-        html:not(.dark) input:focus, 
-        html:not(.dark) select:focus {
-            background-color: #ffffff !important;
-            border-color: #6366f1 !important;
-        }
-        html:not(.dark) footer {
-            background-color: #eef2f9 !important;
-            border-top-color: #e2e8f0 !important;
-            color: #64748b !important;
-        }
-        html:not(.dark) nav a:not(.btn-gradient) {
-            color: #475569 !important;
-        }
-        html:not(.dark) nav a:not(.btn-gradient):hover {
-            color: #0f172a !important;
-        }
-
-        /* BUTTONS WITH DYNAMIC NEON GLOW */
-        .btn-gradient {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
-        }
-        .btn-gradient:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 14px 30px -6px rgba(168, 85, 247, 0.5);
-            filter: brightness(1.08);
         }
 
         .pro-theme {
@@ -247,17 +163,14 @@
             <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-5 items-stretch md:items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 p-4 sm:p-5 md:p-0 rounded-2xl md:rounded-none bg-slate-900/98 md:bg-transparent border border-slate-800 md:border-0 shadow-2xl md:shadow-none">
                 <a href="/" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Inicio</a>
                 <a href="/planes" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Planes</a>
-                <a href="/guias" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Guías</a>
+                <a href="/guias" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Guías y Comunidad</a>
                 <a href="/guia-instalacion" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Instalación</a>
                 <a href="/soporte" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Soporte</a>
-                <a href="/sobre-mi" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">Sobre Mí</a>
+                <a href="/sobre-mi" class="block w-full md:w-auto py-2.5 px-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 md:hover:bg-transparent md:py-0 md:px-0 transition">El Proyecto</a>
 
                 <hr class="w-full border-slate-800 md:hidden my-2">
 
-                <button id="theme-toggle-btn" onclick="const isDark = document.documentElement.classList.toggle('dark'); localStorage.setItem('echo_theme', isDark ? 'dark' : 'light'); updateThemeIcon();" class="p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition self-center flex items-center justify-center shadow-sm" title="Cambiar tema claro / oscuro">
-                    <svg id="theme-icon-moon" class="w-4 h-4 hidden dark:block text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-                    <svg id="theme-icon-sun" class="w-4 h-4 block dark:hidden text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                </button>
+                
 
                 <div id="nav-guest" class="flex flex-col md:flex-row gap-2.5 md:gap-3 items-stretch md:items-center w-full md:w-auto pt-1 md:pt-0">
                     <button onclick="openAuthModal('login')" class="w-full md:w-auto py-2.5 px-3.5 rounded-xl text-center font-bold text-sm text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800/80 md:bg-transparent border border-slate-300 dark:border-slate-700/70 md:border-0 hover:bg-slate-200 dark:hover:bg-slate-700 transition">Iniciar Sesión</button>
@@ -510,9 +423,7 @@
 
         let currentUser = null;
 
-        function updateThemeIcon() {
-            // Sincronización automática de iconos de tema mediante clases de Tailwind (hidden / block)
-        }
+        
 
         function showToast(msg, isError = false) {
             const toast = document.getElementById('toast');
