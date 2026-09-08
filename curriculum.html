@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CV Iván García Miranda</title>
+    <style>
+        :root { --main-color: #2c3e50; --accent-color: #3498db; --text-color: #444; }
+        
+        /* Forzar al navegador a imprimir los fondos y colores exactos */
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-color); 
+            background: #555; /* Fondo oscuro fuera del CV para verlo mejor en web */
+        }
+        
+        .download-container {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+        }
+        .btn-download {
+            padding: 12px 25px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn-download:hover { background-color: #2980b9; }
+
+        /* Tamaño exacto de un A4 */
+        .page { 
+            width: 210mm; 
+            height: 297mm; /* Fijo para que no haga 2 páginas */
+            margin: 20px auto; 
+            background: white; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+            display: flex; 
+            box-sizing: border-box;
+            overflow: hidden; /* Evita que nada sobresalga */
+        }
+
+        /* Columna Izquierda (Sidebar) */
+        .sidebar { 
+            width: 35%; 
+            background-color: var(--main-color) !important; 
+            color: white !important; 
+            padding: 30px 20px; 
+            box-sizing: border-box;
+        }
+        
+        .photo-container { 
+            width: 130px; 
+            height: 130px; 
+            border-radius: 50%; 
+            margin: 0 auto 15px; 
+            border: 4px solid white; 
+            overflow: hidden; 
+            background: #95a5a6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .photo-container img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+
+        .sidebar h3 { border-bottom: 1px solid var(--accent-color); padding-bottom: 4px; font-size: 0.95rem; margin-top: 18px; margin-bottom: 8px;}
+        .sidebar p, .sidebar li { font-size: 0.8rem; list-style: none; padding: 0; margin: 6px 0; word-wrap: break-word; }
+        .sidebar a { color: white !important; text-decoration: none; }
+
+        /* Columna Derecha (Main) */
+        .main { 
+            width: 65%; 
+            padding: 30px 40px; 
+            box-sizing: border-box;
+        }
+        h1 { margin: 0; color: var(--main-color) !important; text-transform: uppercase; letter-spacing: 1px; font-size: 1.8rem; }
+        .subtitle { color: var(--accent-color) !important; font-weight: bold; margin-bottom: 15px; font-size: 1rem; }
+        h2 { font-size: 1.1rem; color: var(--main-color) !important; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-top: 15px; margin-bottom: 12px; }
+        .item { margin-bottom: 10px; }
+        .item-head { display: flex; justify-content: space-between; font-weight: bold; font-size: 0.95rem; }
+        .item-head a { color: var(--accent-color); text-decoration: none; }
+        .item-head a:hover { text-decoration: underline; }
+        .item-sub { font-style: italic; color: #777; font-size: 0.85rem; }
+        .description { font-size: 0.85rem; margin-top: 3px; text-align: justify; line-height: 1.4; }
+        .tag { background: #eee !important; padding: 3px 8px; border-radius: 3px; font-size: 0.75rem; display: inline-block; margin: 3px 2px; color: var(--main-color) !important; font-weight: bold; }
+
+        /* REGLAS ESTRICTAS PARA CUANDO SE IMPRIME/DESCARGA EN PDF */
+        @media print {
+            @page { 
+                size: A4; 
+                margin: 0; 
+            }
+            body { background: white; margin: 0; padding: 0; }
+            .download-container { display: none; } 
+            .page { 
+                margin: 0; 
+                box-shadow: none; 
+                width: 210mm;
+                height: 297mm;
+                page-break-after: avoid; 
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="download-container">
+        <button class="btn-download" onclick="window.print()">Descargar como PDF</button>
+    </div>
+
+    <div class="page">
+        <div class="sidebar">
+            <div class="photo-container">
+                <img src="cv.jpeg" alt="Iván García Miranda">
+            </div>
+            
+            <h3>CONTACTO</h3>
+            <p>📍 Benetússer, Valencia</p>
+            <p>📱 +34 640 897 858</p>
+            <p>✉️ ivangarmir18@gmail.com</p>
+            <p>🔗 <a href="https://github.com/ivangarmir18">GitHub</a></p>
+            <p>💼 <a href="https://www.linkedin.com/in/iván-garcía-miranda-785a8735b">LinkedIn</a></p>
+
+            <h3>IDIOMAS</h3>
+            <p><strong>Castellano:</strong> Nativo</p>
+            <p><strong>Valenciano:</strong> C1 (Oficial)</p>
+            <p><strong>Inglés:</strong> B2 (Oficial)</p>
+            <p><strong>Francés:</strong> A2 (Oficial)</p>
+
+            <h3>SOFTWARE</h3>
+            <p>Python</p>
+            <p>PostgreSQL / Bash</p>
+            <p>DaVinci Resolve</p>
+            <p>Unity / Blender</p>
+            <p>Git / GitHub</p>
+
+            <h3>OTROS DATOS</h3>
+            <p>🚗 Permiso de conducir (Tipo B)</p>
+        </div>
+
+        <div class="main">
+            <h1>Iván García Miranda</h1>
+            <div class="subtitle">Tecnología Digital y Multimedia, IA & Machine Learning</div>
+
+            <h2>SOBRE MÍ</h2>
+            <p class="description">
+                Perfil resolutivo y autodidacta centrado en la intersección entre la tecnología multimedia y la inteligencia artificial. Especializado en el desarrollo de soluciones prácticas en Python y la optimización de procesos mediante pipelines de datos.
+            </p>
+
+            <h2>FORMACIÓN</h2>
+            <div class="item">
+                <div class="item-head">
+                    <span>Grado en Tecnología Digital y Multimedia</span>
+                    <span>2024 - Actual</span>
+                </div>
+                <div class="item-sub">Universitat Politècnica de València (UPV)</div>
+                <p class="description"><strong>Logro destacado:</strong> 3 Matrículas de Honor.</p>
+            </div>
+
+            <div class="item">
+                <div class="item-head">
+                    <span>Bachillerato Científico-Técnico</span>
+                    <span>2022 - 2024</span>
+                </div>
+                <div class="item-sub">Nuestra Señora del Socorro (Benetússer)</div>
+                <p class="description">Nota media del expediente: 8.72. EBAU: 11.72</p>
+            </div>
+
+            <h2>CERTIFICACIONES CLAVE</h2>
+            <div class="item">
+                <div class="item-head">
+                    <span>Python Developer Certification</span>
+                    <span>2026</span>
+                </div>
+                <div class="item-sub">freeCodeCamp (Acreditación 300h)</div>
+                <p class="description">Foco en POO, Algoritmos avanzados y lógica de programación estructurada.</p>
+            </div>
+
+            <div class="item">
+                <div class="item-head">
+                    <span>Relational Databases</span>
+                    <span>2026</span>
+                </div>
+                <div class="item-sub">freeCodeCamp</div>
+                <p class="description">Administración de PostgreSQL, Bash Scripting y Git.</p>
+            </div>
+
+            <div class="item">
+                <div class="item-head">
+                    <span>AI Fundamentals</span>
+                    <span>2026</span>
+                </div>
+                <div class="item-sub">IBM Skillsbuild</div>
+            </div>
+
+            <h2>PROYECTOS & HABILIDADES</h2>
+            <div class="item">
+                <div class="item-head">
+                    <span>EchoScribe — <a href="https://echoscribe.es" target="_blank">echoscribe.es</a></span>
+                </div>
+                <p class="description">
+                    Herramienta y plataforma de transcripción acústica con IA, diarización de hablantes y generación de subtítulos .SRT sincronizados para medios y creadores.
+                </p>
+            </div>
+            <div class="item">
+                <div class="item-head">
+                    <span>GitHub Personal</span>
+                </div>
+                <p class="description">
+                    Creación de pipelines de IA y funciones modulares para finanzas, videojuegos y análisis de grandes volúmenes de datos.
+                </p>
+            </div>
+            <div style="margin-top:8px;">
+                <span class="tag">Software</span>
+                <span class="tag">Desarrollo de Software</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Python</span>
+                <span class="tag">FinTech</span>
+                <span class="tag">Data Analysis</span>
+                <span class="tag">Multimedia Prod.</span>
+            </div>
+
+            <h2>METAS</h2>
+            <p class="description">
+                Preparación activa para el acceso al máster <strong>MUIARFID</strong> (UPV). Busco una oportunidad como Junior para aplicar Machine Learning en la agilización de procesos empresariales y bases de datos.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
