@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es" class="dark" style="background-color: #0b0f19; color: #f8fafc;">
+<head>
+    <title>Alternativa Ligera a Descript en Español: Transcriptor Rápido y Subtítulos .SRT - EchoScribe</title>
+    <meta name="description" content="¿Cansado de la lentitud y el alto consumo de memoria de Descript? EchoScribe es la alternativa ligera en Windows (<180MB RAM) para transcribir y generar subtítulos .SRT sincronizados en 25 segundos.">
+    <meta name="keywords" content="alternativa a descript, descript en espanol, descript alternativa ligera, subtitulos srt como descript, transcriptor audio ligero windows, pasar video a texto rapido">
+    <link rel="canonical" href="https://www.echoscribe.es/guias/alternativa-descript-transcripcion">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/icono.ico">
+    <link rel="apple-touch-icon" href="/icono.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: '#6366f1' } } }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0b0f19; 
+            color: #f8fafc; 
+            scroll-behavior: smooth;
+        }
+        .bg-mesh-grid {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
+        }
+        .glass { 
+            background: rgba(15, 23, 42, 0.75); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07); 
+        }
+        .glass-card { 
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.88) 100%); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            position: relative;
+        }
+        .btn-gradient { 
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); 
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease; 
+        }
+        .btn-gradient:hover { 
+            transform: translateY(-2px) scale(1.02); 
+            box-shadow: 0 14px 30px -6px rgba(168, 85, 247, 0.5); 
+            filter: brightness(1.08);
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Alternativa Ligera a Descript en Español: Transcriptor Rápido y Subtítulos .SRT",
+      "description": "Comparativa de rendimiento y flujo de trabajo entre Descript y EchoScribe. Descubre cómo obtener transcripciones exactas y subtítulos sin palabras huérfanas sin sobrecargar tu ordenador.",
+      "author": { "@type": "Person", "name": "Iván García Miranda" },
+      "publisher": { "@type": "Organization", "name": "EchoScribe AI", "logo": { "@type": "ImageObject", "url": "https://www.echoscribe.es/icono.ico" } },
+      "mainEntityOfPage": "https://www.echoscribe.es/guias/alternativa-descript-transcripcion"
+    }
+    </script>
+</head>
+<body class="antialiased flex flex-col min-h-screen relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+
+    <div class="fixed inset-0 bg-mesh-grid pointer-events-none z-0"></div>
+    <div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none z-0"></div>
+    <div class="fixed top-1/3 -left-40 w-[450px] h-[450px] bg-purple-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+    <div class="fixed top-2/3 -right-40 w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-40 glass border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
+                <img src="/icono.ico" class="w-7 h-7 rounded-lg object-contain shrink-0 shadow-sm" alt="EchoScribe Logo">
+                <span>EchoScribe</span>
+            </a>
+            
+            <button onclick="document.getElementById('nav-links').classList.toggle('hidden')" class="md:hidden p-2 rounded-xl text-slate-300 hover:text-white bg-slate-800/60 border border-slate-700/60 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-stretch md:items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 p-4 md:p-0 rounded-2xl md:rounded-none bg-slate-900/95 md:bg-transparent border border-slate-800 md:border-0 shadow-2xl md:shadow-none">
+                <a href="/" class="py-2 px-3 text-slate-300 hover:text-white transition">Inicio</a>
+                <a href="/planes" class="py-2 px-3 text-slate-300 hover:text-white transition">Planes</a>
+                <a href="/transcribir-youtube" class="py-2 px-3 text-slate-300 hover:text-white transition">YouTube a Texto</a>
+                <a href="/generador-subtitulos-srt" class="py-2 px-3 text-slate-300 hover:text-white transition">Subtítulos .SRT</a>
+                <a href="/guia-instalacion" class="py-2 px-3 text-slate-300 hover:text-white transition">Instalación</a>
+                <a href="/guias" class="py-2 px-3 text-indigo-400 font-bold transition">Guías</a>
+                <a href="/sobre-mi" class="py-2 px-3 text-slate-300 hover:text-white transition">Sobre Mí</a>
+                <a href="/planes" class="btn-gradient text-white px-5 py-2.5 rounded-xl shadow-lg text-xs font-bold text-center">Probar Gratis</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 pt-36 pb-20 px-4 sm:px-6 max-w-5xl mx-auto w-full relative z-10">
+        <div class="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6">
+            <a href="/guias" class="hover:text-white transition">Guías</a>
+            <span>/</span>
+            <span class="text-indigo-400 font-medium">Comparativa de Edición</span>
+        </div>
+        
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 leading-tight tracking-tight">Alternativa a Descript: Transcripción Ultraligera y Subtítulos .SRT sin Complicaciones</h1>
+        <p class="text-lg sm:text-xl text-slate-300 mb-12 leading-relaxed">Descript revolucionó la edición de audio basada en texto, pero con los años se ha convertido en una suite pesada, lenta y costosa ($24-$35/mes) que devora gigabytes de RAM. Si ya editas en Premiere Pro, DaVinci Resolve o CapCut y solo necesitas transcripción veloz y subtítulos perfectos, EchoScribe es tu mejor aliado.</p>
+
+        <!-- CARDS COMPARATIVAS -->
+        <section class="my-12">
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- DESCRIPT -->
+                <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-700/60 shadow-xl relative overflow-hidden">
+                    <span class="text-rose-400 font-bold mb-4 flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-rose-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <span>Descript</span>
+                    </span>
+                    <ul class="space-y-3.5 text-sm text-slate-400">
+                        <li class="flex items-start gap-2">
+                            <span class="text-rose-500 font-bold">✕</span>
+                            <span><strong>Software pesado en Electron:</strong> Consume entre 3 y 5 GB de memoria RAM, ralentizando el equipo si tienes Premiere o After Effects abierto.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-rose-500 font-bold">✕</span>
+                            <span><strong>Subidas interminables:</strong> Te obliga a subir archivos de vídeo de 10 a 20 GB a su nube antes de poder transcribir una sola frase.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-rose-500 font-bold">✕</span>
+                            <span><strong>Curva de aprendizaje compleja:</strong> Intenta sustituir a tu editor de vídeo habitual, forzándote a aprender su propio timeline.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-rose-500 font-bold">✕</span>
+                            <span><strong>Coste prohibitivo:</strong> Planes Creator y Pro entre $24 y $35 al mes por creador, con límites mensuales de horas.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ECHOSCRIBE -->
+                <div class="glass-card p-6 sm:p-7 rounded-3xl border border-indigo-500/40 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Ventaja EchoScribe</div>
+                    <span class="text-emerald-400 font-bold mb-4 flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span>EchoScribe Studio</span>
+                    </span>
+                    <ul class="space-y-3.5 text-sm text-slate-300">
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-400 font-bold">✓</span>
+                            <span><strong>App nativa ultraligera:</strong> Construida sobre Windows WebView2, consume menos de 180 MB de RAM y arranca en 1 segundo.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-400 font-bold">✓</span>
+                            <span><strong>Inferencia GPU Cloud en 25 segundos:</strong> Envía solo el stream de audio optimizado a NVIDIA L4 o procesa localmente sin subidas de vídeo masivas.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-400 font-bold">✓</span>
+                            <span><strong>Subtítulos .SRT sin huérfanas:</strong> Algoritmo elástico que respeta el ritmo de lectura con perfiles dedicados para TikTok/Reels y YouTube.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-400 font-bold">✓</span>
+                            <span><strong>Precio independiente:</strong> Planes transparentes desde 7,99 €/mes diseñados para creadores y pequeñas agencias.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTENIDO DETALLADO -->
+        <section class="prose prose-invert max-w-none text-slate-300 space-y-6 my-12">
+            <h2 class="text-2xl font-bold text-white mt-10">¿Por qué cambiar de Descript a EchoScribe si editas vídeo?</h2>
+            <p>Muchos creadores y editores audiovisuales empezaron a usar Descript seducidos por la promesa de editar vídeo borrando texto. Sin embargo, en la práctica profesional, el montaje final siempre se realiza en software especializado como <strong>Adobe Premiere Pro, DaVinci Resolve o CapCut</strong> debido a la flexibilidad de color, audio y efectos.</p>
+            
+            <p>Tener que pagar una suscripción de más de 30 euros mensuales y esperar media hora a que Descript suba y procese un vídeo en 4K solo para extraer el guion o unos subtítulos resulta ineficiente.</p>
+
+            <div class="bg-indigo-950/20 border border-indigo-500/30 p-6 rounded-2xl my-8 text-sm">
+                <p class="font-bold text-white mb-2">Para editores audiovisuales:</p>
+                <p class="text-slate-300 leading-relaxed">
+                    Aprende cómo importar y sincronizar subtítulos en segundos con nuestra guía de <a href="/guias/generar-subtitulos-premiere-capcut-davinci" class="text-indigo-400 hover:underline font-semibold">subtítulos .SRT para Premiere, CapCut y DaVinci</a> o usa directamente el <a href="/generador-subtitulos-srt" class="text-indigo-400 hover:underline font-semibold">generador de subtítulos .SRT online</a>.
+                </p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-white mt-10">El problema de las palabras huérfanas en los subtítulos</h2>
+            <p>La mayoría de plataformas cortan las líneas de subtítulos por un número fijo de caracteres arbitrario. Esto produce los temidos <em>subtítulos con palabras huérfanas</em>: líneas de una sola palabra ("de", "la", "que") que parpadean durante 0,3 segundos y arruinan la retención del espectador en TikTok y YouTube Shorts.</p>
+
+            <p>EchoScribe incorpora un <strong>algoritmo de ventana semántica elástica</strong>:</p>
+            <ul class="list-disc pl-6 space-y-2 text-slate-300">
+                <li><strong>Perfil TikTok / Reels:</strong> Genera bloques de 1 a 2 líneas cortas (15 a 26 caracteres por línea), maximizando la velocidad de lectura y el impacto visual.</li>
+                <li><strong>Perfil YouTube / Horizontal:</strong> Frases naturales de 28 a 42 caracteres, sincronizadas frase a frase con pausas respiratorias naturales.</li>
+                <li><strong>Detección y rotura de bucles:</strong> Si el audio contiene música o silencios, Whisper estándar puede entrar en bucles infinitos ("Gracias por ver..."). EchoScribe detecta y purga estas alucinaciones automáticamente.</li>
+            </ul>
+
+            <h2 class="text-2xl font-bold text-white mt-10">Tabla Comparativa: Descript vs EchoScribe</h2>
+            <div class="overflow-x-auto my-6 not-prose">
+                <table class="w-full text-left text-xs sm:text-sm text-slate-300 border border-slate-800 rounded-2xl overflow-hidden">
+                    <thead class="bg-slate-900/90 text-white font-bold uppercase text-[11px] tracking-wider border-b border-slate-800">
+                        <tr>
+                            <th class="p-4">Criterio</th>
+                            <th class="p-4 text-indigo-400">EchoScribe</th>
+                            <th class="p-4 text-slate-400">Descript</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800/60 bg-slate-900/40">
+                        <tr>
+                            <td class="p-4 font-semibold text-white">Consumo de RAM</td>
+                            <td class="p-4 text-emerald-400 font-semibold">&lt; 180 MB (Nativo WebView2)</td>
+                            <td class="p-4 text-rose-400">3.000 - 5.000 MB (Electron)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold text-white">Tiempo de procesamiento (1h)</td>
+                            <td class="p-4 text-emerald-400 font-semibold">~25 segundos (NVIDIA L4 Cloud)</td>
+                            <td class="p-4 text-amber-400">10-25 min (incluyendo subida)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold text-white">Exportación .SRT / .VTT</td>
+                            <td class="p-4 text-emerald-400 font-semibold">Optimizado sin palabras huérfanas</td>
+                            <td class="p-4 text-slate-400">Básico (requiere ajuste manual)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold text-white">Corrección con IA contextual</td>
+                            <td class="p-4 text-emerald-400 font-semibold">Sí (Gemini 2.5 Flash integrado)</td>
+                            <td class="p-4 text-slate-400">Solo búsqueda y reemplazo</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold text-white">Descarga directa de YouTube/Twitch</td>
+                            <td class="p-4 text-emerald-400 font-semibold">Sí, descarga y transcribe con 1 clic</td>
+                            <td class="p-4 text-rose-400">No (debes descargar previamente)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold text-white">Precio mensual</td>
+                            <td class="p-4 text-emerald-400 font-semibold">Desde 7,99 €/mes</td>
+                            <td class="p-4 text-rose-400">$24 a $35/mes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- CTA -->
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-indigo-500/30 my-12 text-center relative overflow-hidden shadow-2xl not-prose">
+                <h3 class="text-2xl font-bold text-white mb-4">Acelera tu flujo de edición hoy mismo</h3>
+                <p class="text-slate-400 text-sm max-w-xl mx-auto mb-6">Deja de esperar horas para transcribir y obtén archivos .SRT limpios y sincronizados para tus proyectos de vídeo.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="/planes" class="inline-flex items-center justify-center gap-2 btn-gradient text-white font-extrabold py-3.5 px-8 rounded-xl transition shadow-xl text-sm">Explorar Planes desde 7,99 €</a>
+                    <a href="/generador-subtitulos-srt" class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-3.5 px-6 rounded-xl border border-slate-700 transition text-sm">Probar Generador .SRT</a>
+                </div>
+            </div>
+
+            <!-- PREGUNTAS FRECUENTES -->
+            <h2 class="text-2xl font-bold text-white mt-12 mb-6">Preguntas Frecuentes sobre la Alternativa a Descript</h2>
+            <div class="space-y-4 not-prose">
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-slate-800">
+                    <h3 class="text-white font-bold text-base mb-2">¿Puedo usar los subtítulos de EchoScribe directamente en CapCut o Premiere?</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Sí. EchoScribe exporta pistas estándar .SRT con códigos de tiempo milimétricos (horas:minutos:segundos,milisegundos). En Premiere Pro solo tienes que arrastrar el archivo .SRT al panel de proyecto y en CapCut PC ir a "Texto > Subtítulos locales > Importar".</p>
+                </div>
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-slate-800">
+                    <h3 class="text-white font-bold text-base mb-2">¿EchoScribe sustituye a mi editor de vídeo?</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">No, y esa es precisamente su ventaja. En lugar de forzarte a editar en una interfaz web limitada como Descript, EchoScribe se centra en ser el transcriptor más rápido del mercado y entregarte los subtítulos y el texto para que sigas editando en tu software favorito.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELACIONADOS -->
+        <section class="my-14 pt-10 border-t border-slate-800">
+            <h3 class="text-2xl font-bold text-white mb-6">Otras Guías para Creadores</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+                <a href="/guias/pasar-video-a-texto" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Pasar Vídeo a Texto (MP4/MKV)</span>
+                    <span class="text-slate-400">Cómo convertir cualquier grabación de vídeo en texto estructurado.</span>
+                </a>
+                <a href="/guias/capitulos-youtube-automaticos" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Capítulos y Marcas de Tiempo</span>
+                    <span class="text-slate-400">Automatiza las descripciones y marcas de tiempo SEO en YouTube.</span>
+                </a>
+                <a href="/guias/convertir-podcast-en-blog" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">De Podcast a Post de Blog</span>
+                    <span class="text-slate-400">Multiplica el alcance de tus audios transformándolos en artículos web.</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER ESTANDARIZADO -->
+    <footer class="border-t border-slate-800 bg-slate-900/60 py-12 px-6 text-xs text-slate-400 mt-auto relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-left">
+            <div>
+                <div class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <img src="/icono.ico" class="w-7 h-7 rounded-lg object-contain shrink-0 shadow-sm" alt="EchoScribe Logo">
+                    <span>EchoScribe</span>
+                </div>
+                <p class="text-slate-400 leading-relaxed mb-4">El transcriptor de audio y vídeo con Whisper en GPU Cloud y corrección de nombres propios con Gemini.</p>
+                <p class="text-slate-500">© 2026 EchoScribe AI. Desarrollado por Iván García Miranda.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Herramientas</h4>
+                <ul class="space-y-2">
+                    <li><a href="/transcribir-youtube" class="hover:text-white transition">Transcribir YouTube a Texto</a></li>
+                    <li><a href="/generador-subtitulos-srt" class="hover:text-white transition">Generador de Subtítulos .SRT</a></li>
+                    <li><a href="/transcriptor-audio-a-texto" class="hover:text-white transition">Transcriptor de Audio a Texto</a></li>
+                    <li><a href="/transcribir-entrevistas-reuniones" class="hover:text-white transition">Transcribir Entrevistas y Reuniones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Recursos & Ayuda</h4>
+                <ul class="space-y-2">
+                    <li><a href="/guia-instalacion" class="hover:text-white transition">Guía de Instalación Windows</a></li>
+                    <li><a href="/guias" class="hover:text-white transition">Hub de Guías de Uso</a></li>
+                    <li><a href="/recuperar-password" class="hover:text-white transition">Recuperar Contraseña</a></li>
+                    <li><a href="/planes" class="hover:text-white transition">Planes y Precios</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Legal & Autor</h4>
+                <ul class="space-y-2">
+                    <li><a href="/sobre-mi" class="hover:text-white transition">Sobre Iván García Miranda</a></li>
+                    <li><a href="/politica-privacidad" class="hover:text-white transition">Política de Privacidad</a></li>
+                    <li><a href="/terminos-y-condiciones" class="hover:text-white transition">Términos y Condiciones</a></li>
+                    <li><a href="/politica-cookies" class="hover:text-white transition">Política de Cookies</a></li>
+                    <li><a href="/soporte" class="hover:text-white transition">Atención & Soporte Técnico</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

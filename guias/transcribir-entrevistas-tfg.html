@@ -1,10 +1,12 @@
-?<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es" class="dark" style="background-color: #0b0f19; color: #f8fafc;">
 <head>
+    <title>Transcribir Entrevistas Cualitativas para TFG y Tesis en Minutos - EchoScribe</title>
+    <meta name="description" content="Aprende a transcribir entrevistas para tu Trabajo de Fin de Grado (TFG), Máster o Tesis Doctoral. Limpieza de muletillas, formato académico APA y borrado confidencial.">
+    <meta name="keywords" content="transcribir entrevistas tfg, transcribir tesis doctoral, transcripcion cualitativa tfg, pasar entrevistas a texto investigacion, formato apa transcripciones">
+    <link rel="canonical" href="https://www.echoscribe.es/guias/transcribir-entrevistas-tfg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transcribir Entrevistas para TFG, TFM e Investigación - EchoScribe</title>
-    <meta name="description" content="Automatiza la transcripción de entrevistas cualitativas para tu Trabajo de Fin de Grado o Tesis. Limpia muletillas y extrae conclusiones clave en minutos.">
     <link rel="icon" type="image/x-icon" href="/icono.ico">
     <link rel="shortcut icon" type="image/x-icon" href="/icono.ico">
     <link rel="apple-touch-icon" href="/icono.ico">
@@ -24,23 +26,18 @@
             color: #f8fafc; 
             scroll-behavior: smooth;
         }
-
-        /* MESH DOT GRID BACKGROUND PATTERN */
         .bg-mesh-grid {
             background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
             background-size: 32px 32px;
             mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
             -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
         }
-
-        /* GLASSMORPHISM & BORDERS */
         .glass { 
             background: rgba(15, 23, 42, 0.75); 
             backdrop-filter: blur(16px); 
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.07); 
         }
-        
         .glass-card { 
             background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.88) 100%); 
             backdrop-filter: blur(16px); 
@@ -48,8 +45,6 @@
             border: 1px solid rgba(255, 255, 255, 0.08); 
             position: relative;
         }
-
-        /* BUTTONS WITH DYNAMIC NEON GLOW */
         .btn-gradient { 
             background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); 
             transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease; 
@@ -60,16 +55,25 @@
             filter: brightness(1.08);
         }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Cómo Transcribir Entrevistas para TFG y Tesis Doctoral",
+      "description": "Guía para investigadores universitarios: acelera el análisis cualitativo de entrevistas de campo con Whisper y EchoScribe.",
+      "author": { "@type": "Person", "name": "Iván García Miranda" },
+      "publisher": { "@type": "Organization", "name": "EchoScribe AI", "logo": { "@type": "ImageObject", "url": "https://www.echoscribe.es/icono.ico" } },
+      "mainEntityOfPage": "https://www.echoscribe.es/guias/transcribir-entrevistas-tfg"
+    }
+    </script>
 </head>
 <body class="antialiased flex flex-col min-h-screen relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
 
-    <!-- DYNAMIC BACKGROUND GLOW & MESH GRID -->
     <div class="fixed inset-0 bg-mesh-grid pointer-events-none z-0"></div>
     <div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none z-0"></div>
     <div class="fixed top-1/3 -left-40 w-[450px] h-[450px] bg-purple-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
     <div class="fixed top-2/3 -right-40 w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
 
-    <!-- NAVEGACIÓN -->
     <nav class="fixed top-0 left-0 w-full z-40 glass border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center flex-wrap">
             <a href="/" class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
@@ -89,72 +93,86 @@
                 <a href="/guia-instalacion" class="py-2 px-3 text-slate-300 hover:text-white transition">Instalación</a>
                 <a href="/guias" class="py-2 px-3 text-indigo-400 font-bold transition">Guías</a>
                 <a href="/sobre-mi" class="py-2 px-3 text-slate-300 hover:text-white transition">Sobre Mí</a>
-                <a href="https://github.com/ivangarmir18/EchoScribe/releases/latest/download/EchoScribe_Setup.exe" class="btn-gradient text-white px-5 py-2.5 rounded-xl shadow-lg text-xs font-bold text-center">Descargar App</a>
+                <a href="/planes" class="btn-gradient text-white px-5 py-2.5 rounded-xl shadow-lg text-xs font-bold text-center">Probar Gratis</a>
             </div>
         </div>
     </nav>
 
     <main class="flex-1 pt-36 pb-20 px-4 sm:px-6 max-w-5xl mx-auto w-full relative z-10">
-<div class="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6"><a href="/guias" class="hover:text-white transition">Guías</a> <span>/</span> <span class="text-indigo-400 font-medium">Tutorial Práctico</span></div>
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 leading-tight tracking-tight">Transcribe las entrevistas cualitativas de tu TFG o Tesis en minutos</h1>
-        <p class="text-lg sm:text-xl text-slate-300 mb-12 leading-relaxed">No pases semanas tecleando pausas, muletillas y "ehhhs" de tus grabaciones. La IA de EchoScribe limpia el diálogo y te extrae los hallazgos principales de tu investigación listos para citar.</p>
+        <div class="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6">
+            <a href="/guias" class="hover:text-white transition">Guías</a>
+            <span>/</span>
+            <span class="text-indigo-400 font-medium">Investigación Académica</span>
+        </div>
+        
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 leading-tight tracking-tight">Transcribe las Entrevistas Cualitativas de tu TFG o Tesis en Minutos</h1>
+        <p class="text-lg sm:text-xl text-slate-300 mb-12 leading-relaxed">No pases semanas enteras tecleando manualmente las pausas, muletillas y titubeos de tus sujetos de estudio. La IA de EchoScribe limpia el diálogo, formatea las intervenciones y te ayuda a extraer las conclusiones de tu investigación para los anexos de tu trabajo.</p>
 
+        <!-- ANTES Y DESPUES -->
         <section class="my-12">
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- ANTES -->
-                <div class="glass-card p-6 sm:p-7 rounded-3xl border border-rose-500/20 shadow-xl relative overflow-hidden">
-                    <span class="text-rose-400 font-bold mb-4 flex items-center gap-1.5"><svg class="w-4 h-4 text-rose-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg> <span>Transcripción Literal (Manual)</span></span>
-                    <p class="text-slate-300 text-sm leading-relaxed font-normal">
-                        "Ehhh, sí, bueno... yo creo que el impacto de la, mmm, inflación, ha sido bastante duro en nuestra empresa este año, ¿sabes?, por el tema de los costes."
+                <div class="glass-card p-6 sm:p-7 rounded-3xl border border-rose-500/30 shadow-xl relative overflow-hidden">
+                    <span class="text-rose-400 font-bold mb-4 flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-rose-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <span>Transcripción Literal Manual (Lenta y Tediosa)</span>
+                    </span>
+                    <p class="text-slate-300 text-sm leading-relaxed font-mono bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                        "Ehhh, sí, bueno... yo creo que el impacto de la, mmm, inflación, ha sido bastante duro en nuestra empresa este año, ¿sabes?, por el tema de los costes de los proveedores y tal."
                     </p>
                 </div>
                 <!-- DESPUÉS -->
-                <div class="bg-green-950/20 border border-green-900/50 p-6 rounded-2xl relative">
-                    <div class="absolute top-0 right-0 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">EchoScribe IA</div>
-                    <span class="text-emerald-400 font-bold mb-4 flex items-center gap-1.5"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> <span>Transcripción Limpia para TFG</span></span>
-                    <p class="text-slate-300 text-sm leading-relaxed font-normal mt-4">
-                        "Sí, creo que el impacto de la inflación ha sido bastante duro en nuestra empresa este año debido a los costes."
+                <div class="glass-card p-6 sm:p-7 rounded-3xl border border-emerald-500/40 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">EchoScribe IA</div>
+                    <span class="text-emerald-400 font-bold mb-4 flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span>Transcripción Limpia Lista para Citar en APA</span>
+                    </span>
+                    <p class="text-slate-200 text-sm leading-relaxed font-mono bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                        "El impacto de la inflación ha sido bastante severo en nuestra empresa este año debido al incremento en los costes de los proveedores."
                     </p>
                 </div>
             </div>
         </section>
 
-        <div class="prose prose-invert max-w-none text-slate-300 space-y-6">
-            <h2 class="text-2xl font-bold text-white mt-10">Exporta en .TXT directo a tus Anexos</h2>
-            <p>Con un solo clic puedes arrastrar el archivo de voz de tu grabadora o móvil. La aplicación no solo te genera el diálogo perfectamente puntuado para añadirlo a los anexos de tu trabajo, sino que la función de <strong>Resumen</strong> te ayuda a categorizar mentalmente los puntos clave de cada sujeto de estudio.</p>
+        <section class="prose prose-invert max-w-none text-slate-300 space-y-6 my-12">
+            <h2 class="text-2xl font-bold text-white mt-10">Exporta directo a los anexos de tu documento Word</h2>
+            <p>Con un solo clic puedes arrastrar el archivo de voz grabado con tu móvil o grabadora. EchoScribe no solo genera el diálogo perfectamente puntuado para añadirlo a los anexos de tu trabajo de investigación, sino que la función de <strong>Resumen y Titulares</strong> te ayuda a categorizar mentalmente los hallazgos principales de cada entrevistado.</p>
+            
+            <h2 class="text-2xl font-bold text-white mt-10">Garantía de Confidencialidad y RGPD para Comités de Ética</h2>
+            <p>Muchas universidades y comités de ética académica exigen que las grabaciones de entrevistas a menores, profesionales de la salud o personas anónimas no se almacenen en plataformas que utilicen la voz para entrenar algoritmos públicos. EchoScribe cumple estrictamente con estas directrices: el audio se procesa en servidores seguros con GPU y se purga de forma efímera tras la inferencia.</p>
 
-                        <div class="bg-indigo-950/20 border border-indigo-500/30 p-6 rounded-2xl my-8 text-sm">
-                <p class="font-bold text-white mb-2">Ahorro de tiempo para estudiantes e investigadores:</p>
-                <p class="text-slate-300 leading-relaxed">
-                    Acelera tu investigación con nuestro <a href="/transcriptor-audio-a-texto" class="text-indigo-400 hover:underline font-semibold">transcriptor de audio a texto para grabaciones</a>, consulta la <a href="/guia-instalacion" class="text-indigo-400 hover:underline font-semibold">guía de instalación rápida en Windows</a> y conoce las garantías de la <a href="/politica-privacidad" class="text-indigo-400 hover:underline font-semibold">política de privacidad</a>.
-                </p>
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-indigo-500/30 my-12 text-center relative overflow-hidden shadow-2xl not-prose">
+                <h3 class="text-2xl font-bold text-white mb-4">Ahorra semanas de trabajo en tu investigación</h3>
+                <p class="text-slate-400 text-sm max-w-xl mx-auto mb-6">Pasa tus entrevistas a texto con máxima exactitud y dedícate al análisis en lugar de teclear audios interminables.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="/planes" class="inline-flex items-center justify-center gap-2 btn-gradient text-white font-extrabold py-3.5 px-8 rounded-xl transition shadow-xl text-sm">Planes con Horas Ampliadas</a>
+                    <a href="/transcriptor-audio-a-texto" class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-3.5 px-6 rounded-xl border border-slate-700 transition text-sm">Transcriptor de Entrevistas</a>
+                </div>
             </div>
-<div class="glass-card p-8 sm:p-12 rounded-3xl border border-indigo-500/30 my-12 text-center relative overflow-hidden shadow-2xl">
-                <h3 class="text-xl font-bold text-white mb-4">Ahorra semanas de trabajo en tu investigación</h3>
-                <a href="https://github.com/ivangarmir18/EchoScribe/releases/latest/download/EchoScribe_Setup.exe" class="inline-flex items-center justify-center gap-2 btn-gradient text-white font-extrabold py-4 px-8 rounded-xl transition shadow-xl shadow-indigo-500/25 text-sm">Descargar para Windows</a>
-            </div>
-        </div>
-    
-        <!-- RELACIONADOS Y HERRAMIENTAS RECOMENDADAS -->
+        </section>
+
+        <!-- RELACIONADOS -->
         <section class="my-14 pt-10 border-t border-slate-800">
-            <h3 class="text-2xl font-bold text-white mb-6">Guías y Herramientas Relacionadas</h3>
+            <h3 class="text-2xl font-bold text-white mb-6">Guías Relacionadas</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
-                <a href="/transcribir-youtube" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
-                    <span class="font-bold text-white text-sm mb-1">Transcribir Vídeos de YouTube</span>
-                    <span class="text-slate-400">Pega cualquier enlace y obtén el texto sin esperas en GPU Cloud.</span>
+                <a href="/guias/transcribir-entrevistas-periodismo" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Entrevistas Periodísticas Confidenciales</span>
+                    <span class="text-slate-400">Técnicas para proteger la identidad de tus fuentes y transcribir rápido.</span>
                 </a>
-                <a href="/generador-subtitulos-srt" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
-                    <span class="font-bold text-white text-sm mb-1">Generador de Subtítulos .SRT</span>
-                    <span class="text-slate-400">Sincronización exacta frase a frase para Premiere y CapCut.</span>
+                <a href="/guias/transcribir-clases-apuntes-gemini-ia" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Apuntes de Clase con Gemini</span>
+                    <span class="text-slate-400">Cómo sintetizar lecciones académicas usando modelos de lenguaje avanzados.</span>
                 </a>
-                <a href="/guia-instalacion" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
-                    <span class="font-bold text-white text-sm mb-1">Guía de Instalación en Windows</span>
-                    <span class="text-slate-400">Paso a paso de instalación, SmartScreen y primer uso en 2 min.</span>
+                <a href="/guias/transcribir-audio-a-apuntes-estudiantes" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">De Audio a Apuntes de Sobresaliente</span>
+                    <span class="text-slate-400">Estructuración y jerarquización de apuntes para exámenes universitarios.</span>
                 </a>
             </div>
         </section>
     </main>
-    <!-- FOOTER -->
+
+    <!-- FOOTER ESTANDARIZADO -->
     <footer class="border-t border-slate-800 bg-slate-900/60 py-12 px-6 text-xs text-slate-400 mt-auto relative z-10">
         <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-left">
             <div>
@@ -187,14 +205,14 @@
                 <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Legal & Autor</h4>
                 <ul class="space-y-2">
                     <li><a href="/sobre-mi" class="hover:text-white transition">Sobre Iván García Miranda</a></li>
-                    <li><a href="/soporte" class="hover:text-white transition">Atención & Soporte Técnico</a></li>
                     <li><a href="/politica-privacidad" class="hover:text-white transition">Política de Privacidad</a></li>
                     <li><a href="/terminos-y-condiciones" class="hover:text-white transition">Términos y Condiciones</a></li>
+                    <li><a href="/politica-cookies" class="hover:text-white transition">Política de Cookies</a></li>
+                    <li><a href="/soporte" class="hover:text-white transition">Atención & Soporte Técnico</a></li>
                 </ul>
             </div>
         </div>
     </footer>
-    <!-- VERCEL ANALYTICS -->
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>

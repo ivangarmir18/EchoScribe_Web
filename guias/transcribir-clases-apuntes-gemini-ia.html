@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es" class="dark" style="background-color: #0b0f19; color: #f8fafc;">
+<head>
+    <title>Cómo Transcribir Clases Universitarias y Crear Apuntes con Google Gemini - EchoScribe</title>
+    <meta name="description" content="Aprende el método definitivo para universitarios: transcribe clases de 2-3 horas con EchoScribe y pásalas a Google Gemini o NotebookLM para crear apuntes Cornell, exámenes y flashcards.">
+    <meta name="keywords" content="transcribir clases y pasarlas a gemini, hacer apuntes con gemini audio, pasar clase grabada a gemini, apuntes universitarios ia, transcribir clases universidad apuntes">
+    <link rel="canonical" href="https://www.echoscribe.es/guias/transcribir-clases-apuntes-gemini-ia">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/icono.ico">
+    <link rel="apple-touch-icon" href="/icono.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: '#6366f1' } } }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0b0f19; 
+            color: #f8fafc; 
+            scroll-behavior: smooth;
+        }
+        .bg-mesh-grid {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
+        }
+        .glass { 
+            background: rgba(15, 23, 42, 0.75); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07); 
+        }
+        .glass-card { 
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.88) 100%); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            position: relative;
+        }
+        .btn-gradient { 
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); 
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease; 
+        }
+        .btn-gradient:hover { 
+            transform: translateY(-2px) scale(1.02); 
+            box-shadow: 0 14px 30px -6px rgba(168, 85, 247, 0.5); 
+            filter: brightness(1.08);
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Cómo Transcribir Clases Universitarias y Crear Apuntes con Google Gemini",
+      "description": "Flujo de trabajo para estudiantes: captura la lección del profesor, transcribe con EchoScribe y alimenta Google Gemini para sintetizar apuntes de matrícula de honor.",
+      "author": { "@type": "Person", "name": "Iván García Miranda" },
+      "publisher": { "@type": "Organization", "name": "EchoScribe AI", "logo": { "@type": "ImageObject", "url": "https://www.echoscribe.es/icono.ico" } },
+      "mainEntityOfPage": "https://www.echoscribe.es/guias/transcribir-clases-apuntes-gemini-ia"
+    }
+    </script>
+</head>
+<body class="antialiased flex flex-col min-h-screen relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+
+    <div class="fixed inset-0 bg-mesh-grid pointer-events-none z-0"></div>
+    <div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none z-0"></div>
+    <div class="fixed top-1/3 -left-40 w-[450px] h-[450px] bg-purple-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+    <div class="fixed top-2/3 -right-40 w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-40 glass border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
+                <img src="/icono.ico" class="w-7 h-7 rounded-lg object-contain shrink-0 shadow-sm" alt="EchoScribe Logo">
+                <span>EchoScribe</span>
+            </a>
+            
+            <button onclick="document.getElementById('nav-links').classList.toggle('hidden')" class="md:hidden p-2 rounded-xl text-slate-300 hover:text-white bg-slate-800/60 border border-slate-700/60 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-stretch md:items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 p-4 md:p-0 rounded-2xl md:rounded-none bg-slate-900/95 md:bg-transparent border border-slate-800 md:border-0 shadow-2xl md:shadow-none">
+                <a href="/" class="py-2 px-3 text-slate-300 hover:text-white transition">Inicio</a>
+                <a href="/planes" class="py-2 px-3 text-slate-300 hover:text-white transition">Planes</a>
+                <a href="/transcribir-youtube" class="py-2 px-3 text-slate-300 hover:text-white transition">YouTube a Texto</a>
+                <a href="/generador-subtitulos-srt" class="py-2 px-3 text-slate-300 hover:text-white transition">Subtítulos .SRT</a>
+                <a href="/guia-instalacion" class="py-2 px-3 text-slate-300 hover:text-white transition">Instalación</a>
+                <a href="/guias" class="py-2 px-3 text-indigo-400 font-bold transition">Guías</a>
+                <a href="/sobre-mi" class="py-2 px-3 text-slate-300 hover:text-white transition">Sobre Mí</a>
+                <a href="/planes" class="btn-gradient text-white px-5 py-2.5 rounded-xl shadow-lg text-xs font-bold text-center">Probar Gratis</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 pt-36 pb-20 px-4 sm:px-6 max-w-5xl mx-auto w-full relative z-10">
+        <div class="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6">
+            <a href="/guias" class="hover:text-white transition">Guías</a>
+            <span>/</span>
+            <span class="text-indigo-400 font-medium">Metodología de Estudio con IA</span>
+        </div>
+        
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 leading-tight tracking-tight">Cómo Transcribir Clases Universitarias y Crear Apuntes con EchoScribe y Google Gemini</h1>
+        <p class="text-lg sm:text-xl text-slate-300 mb-12 leading-relaxed">Tomar apuntes a mano mientras un profesor explica a toda velocidad hace que te pierdas explicaciones cruciales. Con EchoScribe y la gigantesca ventana de contexto de Google Gemini (1 millón de tokens), puedes convertir cualquier grabación de clase de 3 horas en apuntes estructurados, resúmenes Cornell y exámenes de prueba en minutos.</p>
+
+        <!-- RESUMEN DEL FLUJO -->
+        <section class="my-10 bg-indigo-950/20 border border-indigo-500/30 p-6 sm:p-8 rounded-3xl">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span class="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">3</span>
+                <span>El Flujo de Estudio Inteligente</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6 not-prose text-xs text-slate-300">
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800">
+                    <span class="text-indigo-400 font-bold uppercase text-[10px] tracking-wider mb-1 block">Paso 1: Captura</span>
+                    <h3 class="font-bold text-white text-sm mb-2">Graba o descarga el audio</h3>
+                    <p class="text-slate-400 leading-relaxed">Graba la clase con la grabadora del móvil o descarga el archivo MP4 de Teams, Blackboard o Zoom de tu campus virtual.</p>
+                </div>
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800">
+                    <span class="text-indigo-400 font-bold uppercase text-[10px] tracking-wider mb-1 block">Paso 2: Transcripción</span>
+                    <h3 class="font-bold text-white text-sm mb-2">Procesa con EchoScribe</h3>
+                    <p class="text-slate-400 leading-relaxed">Arrastra el audio a EchoScribe: en 25 segundos Whisper Large-v3 y Gemini transcriben el audio corrigiendo términos técnicos y nombres propios.</p>
+                </div>
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800">
+                    <span class="text-indigo-400 font-bold uppercase text-[10px] tracking-wider mb-1 block">Paso 3: Síntesis</span>
+                    <h3 class="font-bold text-white text-sm mb-2">Gemini / NotebookLM</h3>
+                    <p class="text-slate-400 leading-relaxed">Pega la transcripción en Gemini o NotebookLM con nuestros prompts académicos y obtén apuntes, esquemas y preguntas de examen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ARTICULO PASO A PASO -->
+        <section class="prose prose-invert max-w-none text-slate-300 space-y-6 my-12">
+            <h2 class="text-2xl font-bold text-white mt-10">Por qué Google Gemini es el compañero ideal para transcripciones largas</h2>
+            <p>Modelos como GPT-4o tienen límites de contexto más ajustados o truncan documentos cuando el texto supera varias decenas de páginas. En cambio, <strong>Google Gemini (Gemini 1.5 Pro y Gemini Flash) cuenta con una ventana de contexto de más de 1.000.000 de tokens</strong>, lo que equivale a más de 700.000 palabras de golpe.</p>
+            
+            <p>Esto significa que puedes pegarle una lección universitaria completa de 3 o 4 horas sin dividirla en partes. Gemini analizará cada matiz del profesor, desde las fórmulas matemáticas hasta los ejemplos prácticos que dijo que caerían en el examen.</p>
+
+            <h2 class="text-2xl font-bold text-white mt-10">Prompts Académicos Listos para Copiar y Pegar</h2>
+            <p>Una vez que EchoScribe te entrega la transcripción limpia y corregida, abre <a href="https://gemini.google.com" target="_blank" rel="noopener" class="text-indigo-400 hover:underline font-semibold">Google Gemini</a> o <a href="https://notebooklm.google.com" target="_blank" rel="noopener" class="text-indigo-400 hover:underline font-semibold">Google NotebookLM</a> y utiliza estos comandos probados:</p>
+
+            <div class="space-y-6 my-6 not-prose">
+                <!-- PROMPT 1 -->
+                <div class="glass-card p-5 rounded-2xl border border-indigo-500/30">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Prompt 1: Apuntes con Método Cornell</span>
+                        <span class="text-[11px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full font-semibold">Estructuración</span>
+                    </div>
+                    <p class="text-xs font-mono text-slate-200 bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 leading-relaxed select-all">
+                        "Actúa como un profesor universitario experto en pedagogía. A partir de la siguiente transcripción completa de clase, genera unos apuntes siguiendo rigurosamente el Método Cornell:<br><br>
+                        1. Columna de ideas clave y preguntas guía a la izquierda.<br>
+                        2. Notas detalladas, fórmulas y explicaciones paso a paso en el centro.<br>
+                        3. Un resumen ejecutivo de 3 párrafos al final con las conclusiones que no pueden faltar para aprobar.<br><br>
+                        Transcripción:<br>
+                        [PEGA AQUÍ EL TEXTO DE ECHOSCRIBE]"
+                    </p>
+                </div>
+
+                <!-- PROMPT 2 -->
+                <div class="glass-card p-5 rounded-2xl border border-indigo-500/30">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Prompt 2: Simulacro de Examen Tipo Test con Justificación</span>
+                        <span class="text-[11px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full font-semibold">Evaluación</span>
+                    </div>
+                    <p class="text-xs font-mono text-slate-200 bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 leading-relaxed select-all">
+                        "Basándote exclusivamente en las explicaciones de la transcripción adjunta, redacta un examen de prueba de 10 preguntas tipo test con 4 opciones (A, B, C, D).<br><br>
+                        - Incluye preguntas teóricas y de casos prácticos.<br>
+                        - No muestres las soluciones hasta el final del documento.<br>
+                        - Para cada respuesta correcta, justifica por qué lo es citando la parte relevante de la clase.<br><br>
+                        Transcripción:<br>
+                        [PEGA AQUÍ EL TEXTO DE ECHOSCRIBE]"
+                    </p>
+                </div>
+
+                <!-- PROMPT 3 -->
+                <div class="glass-card p-5 rounded-2xl border border-indigo-500/30">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Prompt 3: Generador de Tarjetas Anki (Flashcards)</span>
+                        <span class="text-[11px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-semibold">Memorización</span>
+                    </div>
+                    <p class="text-xs font-mono text-slate-200 bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 leading-relaxed select-all">
+                        "Extrae todos los conceptos, definiciones, fechas, autores y leyes mencionados en la transcripción y conviértelos en una tabla de dos columnas en formato CSV listo para importar en Anki:<br>
+                        - Columna 1: Anverso (Pregunta o concepto clave conciso).<br>
+                        - Columna 2: Reverso (Definición clara en un máximo de 2 frases).<br><br>
+                        Transcripción:<br>
+                        [PEGA AQUÍ EL TEXTO DE ECHOSCRIBE]"
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-white mt-10">Por qué transcribir primero con EchoScribe en lugar de subir el audio a Gemini</h2>
+            <p>Aunque Gemini admite subir archivos de audio directamente, tiene importantes limitaciones para los estudiantes:</p>
+            <ul class="list-disc pl-6 space-y-2 text-slate-300">
+                <li><strong>Límites de tamaño y cuota:</strong> Las subidas directas de archivos pesados a la interfaz web de Gemini fallan frecuentemente o tardan minutos en procesar.</li>
+                <li><strong>Pérdida de control del texto:</strong> Si Gemini interpreta el audio internamente, no dispones del texto completo ni de las marcas de tiempo para verificar si una cita fue exacta.</li>
+                <li><strong>EchoScribe te entrega el documento editable:</strong> Obtienes un archivo de texto (.TXT) y subtítulos (.SRT) con marcas de tiempo exactas para saltar al minuto justo del audio en el que el profesor resolvió una duda.</li>
+            </ul>
+
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-indigo-500/30 my-12 text-center relative overflow-hidden shadow-2xl not-prose">
+                <h3 class="text-2xl font-bold text-white mb-4">Empieza a estudiar a otro nivel este cuatrimestre</h3>
+                <p class="text-slate-400 text-sm max-w-xl mx-auto mb-6">Prueba EchoScribe gratis y comprueba cómo una grabación de clase de 2 horas se convierte en apuntes limpios en menos de medio minuto.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="/planes" class="inline-flex items-center justify-center gap-2 btn-gradient text-white font-extrabold py-3.5 px-8 rounded-xl transition shadow-xl text-sm">Ver Tarifas para Estudiantes</a>
+                    <a href="/transcriptor-audio-a-texto" class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-3.5 px-6 rounded-xl border border-slate-700 transition text-sm">Transcribir Grabación Ahora</a>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <h2 class="text-2xl font-bold text-white mt-12 mb-6">Preguntas Frecuentes sobre Transcripciones Universitarias</h2>
+            <div class="space-y-4 not-prose">
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-slate-800">
+                    <h3 class="text-white font-bold text-base mb-2">¿Es legal grabar clases universitarias para uso personal?</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">En la mayoría de legislaciones universitarias (incluyendo España), los estudiantes pueden grabar lecciones para su propio estudio personal y repaso académico. Sin embargo, no está permitido difundir públicamente la voz o imagen del docente en redes sociales o páginas web sin su consentimiento.</p>
+                </div>
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-slate-800">
+                    <h3 class="text-white font-bold text-base mb-2">¿Qué pasa si el profesor habla con mucho eco o desde el fondo del aula?</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">EchoScribe integra modelos Whisper Large-v3 optimizados con filtros de reducción de ruido espectral y normalización de audio, lo que permite descifrar voces lejanas con una fidelidad muy superior a los reconocedores de voz convencionales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELACIONADOS -->
+        <section class="my-14 pt-10 border-t border-slate-800">
+            <h3 class="text-2xl font-bold text-white mb-6">Otras Guías para Estudiantes</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+                <a href="/guias/transcribir-clases-universidad" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Transcribir Clases Universitarias</span>
+                    <span class="text-slate-400">Técnicas para ignorar divagaciones del profesor y extraer temario útil.</span>
+                </a>
+                <a href="/guias/transcribir-entrevistas-tfg" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Entrevistas para TFG y Tesis</span>
+                    <span class="text-slate-400">Cómo procesar entrevistas cualitativas y formatearlas según normas APA.</span>
+                </a>
+                <a href="/guias/estudiar-videos-largos-con-ia" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Estudiar Vídeos Largos con IA</span>
+                    <span class="text-slate-400">Metodología para másteres y conferencias extensas de YouTube.</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER ESTANDARIZADO -->
+    <footer class="border-t border-slate-800 bg-slate-900/60 py-12 px-6 text-xs text-slate-400 mt-auto relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-left">
+            <div>
+                <div class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <img src="/icono.ico" class="w-7 h-7 rounded-lg object-contain shrink-0 shadow-sm" alt="EchoScribe Logo">
+                    <span>EchoScribe</span>
+                </div>
+                <p class="text-slate-400 leading-relaxed mb-4">El transcriptor de audio y vídeo con Whisper en GPU Cloud y corrección de nombres propios con Gemini.</p>
+                <p class="text-slate-500">© 2026 EchoScribe AI. Desarrollado por Iván García Miranda.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Herramientas</h4>
+                <ul class="space-y-2">
+                    <li><a href="/transcribir-youtube" class="hover:text-white transition">Transcribir YouTube a Texto</a></li>
+                    <li><a href="/generador-subtitulos-srt" class="hover:text-white transition">Generador de Subtítulos .SRT</a></li>
+                    <li><a href="/transcriptor-audio-a-texto" class="hover:text-white transition">Transcriptor de Audio a Texto</a></li>
+                    <li><a href="/transcribir-entrevistas-reuniones" class="hover:text-white transition">Transcribir Entrevistas y Reuniones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Recursos & Ayuda</h4>
+                <ul class="space-y-2">
+                    <li><a href="/guia-instalacion" class="hover:text-white transition">Guía de Instalación Windows</a></li>
+                    <li><a href="/guias" class="hover:text-white transition">Hub de Guías de Uso</a></li>
+                    <li><a href="/recuperar-password" class="hover:text-white transition">Recuperar Contraseña</a></li>
+                    <li><a href="/planes" class="hover:text-white transition">Planes y Precios</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Legal & Autor</h4>
+                <ul class="space-y-2">
+                    <li><a href="/sobre-mi" class="hover:text-white transition">Sobre Iván García Miranda</a></li>
+                    <li><a href="/politica-privacidad" class="hover:text-white transition">Política de Privacidad</a></li>
+                    <li><a href="/terminos-y-condiciones" class="hover:text-white transition">Términos y Condiciones</a></li>
+                    <li><a href="/politica-cookies" class="hover:text-white transition">Política de Cookies</a></li>
+                    <li><a href="/soporte" class="hover:text-white transition">Atención & Soporte Técnico</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

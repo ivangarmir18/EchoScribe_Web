@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es" class="dark" style="background-color: #0b0f19; color: #f8fafc;">
+<head>
+    <title>De Audio de Clase a Apuntes de Sobresaliente: Guía Completa para Estudiantes - EchoScribe</title>
+    <meta name="description" content="Guía práctica para universitarios y opositores: cómo pasar notas de voz y grabaciones de clase a apuntes estructurados, tablas comparativas y esquemas listos para estudiar.">
+    <meta name="keywords" content="pasar audio a apuntes, convertir grabacion en apuntes universidad, resumir clases grabadas, de audio a texto estudiantes, transcribir clases oposiciones apuntes">
+    <link rel="canonical" href="https://www.echoscribe.es/guias/transcribir-audio-a-apuntes-estudiantes">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/icono.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/icono.ico">
+    <link rel="apple-touch-icon" href="/icono.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: '#6366f1' } } }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0b0f19; 
+            color: #f8fafc; 
+            scroll-behavior: smooth;
+        }
+        .bg-mesh-grid {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 95%);
+        }
+        .glass { 
+            background: rgba(15, 23, 42, 0.75); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07); 
+        }
+        .glass-card { 
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.88) 100%); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            position: relative;
+        }
+        .btn-gradient { 
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); 
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease; 
+        }
+        .btn-gradient:hover { 
+            transform: translateY(-2px) scale(1.02); 
+            box-shadow: 0 14px 30px -6px rgba(168, 85, 247, 0.5); 
+            filter: brightness(1.08);
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "De Audio de Clase a Apuntes de Sobresaliente: Guía Completa para Estudiantes",
+      "description": "Metodología para transformar grabaciones de audio en apuntes limpios, esquemas y conceptos clave sin pasar horas tecleando.",
+      "author": { "@type": "Person", "name": "Iván García Miranda" },
+      "publisher": { "@type": "Organization", "name": "EchoScribe AI", "logo": { "@type": "ImageObject", "url": "https://www.echoscribe.es/icono.ico" } },
+      "mainEntityOfPage": "https://www.echoscribe.es/guias/transcribir-audio-a-apuntes-estudiantes"
+    }
+    </script>
+</head>
+<body class="antialiased flex flex-col min-h-screen relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+
+    <div class="fixed inset-0 bg-mesh-grid pointer-events-none z-0"></div>
+    <div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none z-0"></div>
+    <div class="fixed top-1/3 -left-40 w-[450px] h-[450px] bg-purple-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+    <div class="fixed top-2/3 -right-40 w-[450px] h-[450px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none z-0"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-40 glass border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center flex-wrap">
+            <a href="/" class="text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight flex items-center gap-2">
+                <img src="/icono.ico" class="w-7 h-7 rounded-lg object-contain shrink-0 shadow-sm" alt="EchoScribe Logo">
+                <span>EchoScribe</span>
+            </a>
+            
+            <button onclick="document.getElementById('nav-links').classList.toggle('hidden')" class="md:hidden p-2 rounded-xl text-slate-300 hover:text-white bg-slate-800/60 border border-slate-700/60 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto md:gap-6 items-stretch md:items-center font-semibold text-sm mt-4 md:mt-0 flex-col md:flex-row space-y-2 md:space-y-0 p-4 md:p-0 rounded-2xl md:rounded-none bg-slate-900/95 md:bg-transparent border border-slate-800 md:border-0 shadow-2xl md:shadow-none">
+                <a href="/" class="py-2 px-3 text-slate-300 hover:text-white transition">Inicio</a>
+                <a href="/planes" class="py-2 px-3 text-slate-300 hover:text-white transition">Planes</a>
+                <a href="/transcribir-youtube" class="py-2 px-3 text-slate-300 hover:text-white transition">YouTube a Texto</a>
+                <a href="/generador-subtitulos-srt" class="py-2 px-3 text-slate-300 hover:text-white transition">Subtítulos .SRT</a>
+                <a href="/guia-instalacion" class="py-2 px-3 text-slate-300 hover:text-white transition">Instalación</a>
+                <a href="/guias" class="py-2 px-3 text-indigo-400 font-bold transition">Guías</a>
+                <a href="/sobre-mi" class="py-2 px-3 text-slate-300 hover:text-white transition">Sobre Mí</a>
+                <a href="/planes" class="btn-gradient text-white px-5 py-2.5 rounded-xl shadow-lg text-xs font-bold text-center">Probar Gratis</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 pt-36 pb-20 px-4 sm:px-6 max-w-5xl mx-auto w-full relative z-10">
+        <div class="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-6">
+            <a href="/guias" class="hover:text-white transition">Guías</a>
+            <span>/</span>
+            <span class="text-indigo-400 font-medium">Productividad Académica</span>
+        </div>
+        
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 leading-tight tracking-tight">De Audio de Clase a Apuntes de Sobresaliente: La Guía Definitiva para Estudiantes</h1>
+        <p class="text-lg sm:text-xl text-slate-300 mb-12 leading-relaxed">¿Tienes horas de grabaciones en el móvil que nunca vuelves a escuchar porque no tienes tiempo de transcribirlas? Descubre cómo transformar cualquier nota de voz o lección magistral en apuntes organizados con títulos, negritas, esquemas y definiciones clave.</p>
+
+        <!-- PROBLEMA Y SOLUCION -->
+        <section class="my-12">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-700/60 shadow-xl relative overflow-hidden">
+                    <span class="text-rose-400 font-bold mb-4 flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-rose-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <span>El problema de las grabaciones de voz</span>
+                    </span>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li>Una clase de 2 horas requiere al menos 3 horas para volver a escucharla.</li>
+                        <li>No puedes buscar palabras clave ni hacer Ctrl+F dentro de un archivo de audio.</li>
+                        <li>El profesor intercala anécdotas personales con conceptos del examen.</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-6 sm:p-7 rounded-3xl border border-indigo-500/40 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Solución EchoScribe</div>
+                    <span class="text-emerald-400 font-bold mb-4 flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        <span>Apuntes limpios en 25 segundos</span>
+                    </span>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li><strong>Búsqueda instantánea:</strong> Encuentra al instante cualquier término o fórmula con búsqueda de texto.</li>
+                        <li><strong>Filtro de muletillas:</strong> Eliminación automática de pausas, repeticiones y "ehhhs".</li>
+                        <li><strong>Marcas temporales:</strong> Salta exactamente al minuto donde se explicó cada tema.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONSEJOS DE GRABACION -->
+        <section class="prose prose-invert max-w-none text-slate-300 space-y-6 my-12">
+            <h2 class="text-2xl font-bold text-white mt-10">Paso 1: Cómo grabar un audio nítido en el aula</h2>
+            <p>La calidad de los apuntes depende en gran medida de la claridad con la que se capture la voz del docente. No necesitas una grabadora profesional de 200 euros; tu propio teléfono móvil (iPhone o Android) es más que suficiente si sigues estas tres pautas:</p>
+            
+            <div class="grid sm:grid-cols-3 gap-4 my-6 not-prose text-xs">
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800">
+                    <h3 class="font-bold text-white text-sm mb-2 text-indigo-400">1. Ubicación estratégica</h3>
+                    <p class="text-slate-400 leading-relaxed">Coloca el móvil en las primeras filas, preferiblemente apoyado sobre un estuche o cuaderno para amortiguar las vibraciones de la mesa.</p>
+                </div>
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800">
+                    <h3 class="font-bold text-white text-sm mb-2 text-indigo-400">2. Modo Avión activado</h3>
+                    <p class="text-slate-400 leading-relaxed">Evita que la grabación se corte ante llamadas entrantes o notificaciones de WhatsApp durante la sesión.</p>
+                </div>
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800">
+                    <h3 class="font-bold text-white text-sm mb-2 text-indigo-400">3. Formato estándar</h3>
+                    <p class="text-slate-400 leading-relaxed">Graba en formatos comunes como M4A, MP3 o WAV. EchoScribe los procesa todos directamente sin necesidad de convertirlos.</p>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-white mt-10">Paso 2: Transcripción rápida con aceleración GPU</h2>
+            <p>Una vez terminada la clase, arrastra el archivo de voz a EchoScribe. Gracias a sus servidores dedicados con GPUs <strong>NVIDIA L4</strong>, un archivo de 2 horas se transcribe en menos de 50 segundos, devolviéndote:</p>
+            <ol class="list-decimal pl-6 space-y-2 text-slate-300">
+                <li><strong>Texto completo estructurado por párrafos</strong> y puntuado según las normas ortográficas del español.</li>
+                <li><strong>Corrección automática de términos técnicos</strong> (nombres de filósofos, jurisprudencia, medicina o física) contrastados con fuentes reales.</li>
+                <li><strong>Titulares destacados y resumen ejecutivo</strong> con los tres conceptos clave que vertebraron la clase.</li>
+            </ol>
+
+            <div class="bg-indigo-950/20 border border-indigo-500/30 p-6 rounded-2xl my-8 text-sm">
+                <p class="font-bold text-white mb-2">Comienza ahora:</p>
+                <p class="text-slate-300 leading-relaxed">
+                    Sube tu primera grabación al <a href="/transcriptor-audio-a-texto" class="text-indigo-400 hover:underline font-semibold">transcriptor de audio a texto gratuito</a> o revisa nuestros <a href="/planes" class="text-indigo-400 hover:underline font-semibold">planes con horas ampliadas</a> para todo el curso académico.
+                </p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-white mt-10">Paso 3: Transformar el texto en apuntes de examen</h2>
+            <p>Para memorizar y estudiar eficientemente, divide tus apuntes en tres bloques fundamentales:</p>
+            
+            <div class="space-y-4 my-6 not-prose">
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-slate-800">
+                    <h3 class="text-white font-bold text-base mb-1 text-indigo-400">A. Glosario de términos clave</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Copia los nombres y definiciones centrales en una sección superior. Cuando repases semanas después para el examen final, este glosario te recordará los conceptos esenciales en 5 minutos.</p>
+                </div>
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-slate-800">
+                    <h3 class="text-white font-bold text-base mb-1 text-indigo-400">B. Desarrollo cronológico por apartados</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Organiza el cuerpo de la clase con títulos y subtítulos H2/H3. Añade viñetas para enumeraciones y negritas en los datos numéricos o fechas relevantes.</p>
+                </div>
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-slate-800">
+                    <h3 class="text-white font-bold text-base mb-1 text-indigo-400">C. Sección "Ojo: Posible pregunta de examen"</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Los profesores suelen recalcar frases como "fijaos bien en esto" o "esto lo suelo preguntar siempre". Anota estas alertas al final de tus apuntes con la marca de tiempo de EchoScribe.</p>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-indigo-500/30 my-12 text-center relative overflow-hidden shadow-2xl not-prose">
+                <h3 class="text-2xl font-bold text-white mb-4">Ahorra decenas de horas de estudio este trimestre</h3>
+                <p class="text-slate-400 text-sm max-w-xl mx-auto mb-6">Convierte tus notas de voz en apuntes que tus compañeros te pedirán prestados.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="/planes" class="inline-flex items-center justify-center gap-2 btn-gradient text-white font-extrabold py-3.5 px-8 rounded-xl transition shadow-xl text-sm">Ver Tarifas para Estudiantes</a>
+                    <a href="/guia-instalacion" class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-3.5 px-6 rounded-xl border border-slate-700 transition text-sm">Descargar App Windows</a>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <h2 class="text-2xl font-bold text-white mt-12 mb-6">Preguntas Frecuentes sobre Apuntes con Audio</h2>
+            <div class="space-y-4 not-prose">
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-slate-800">
+                    <h3 class="text-white font-bold text-base mb-2">¿Puedo transcribir clases en otros idiomas como inglés o francés?</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Sí. Whisper Large-v3 cuenta con soporte nativo multilingüe para más de 90 idiomas. Incluso puedes solicitar que la transcripción se mantenga en el idioma original o que se traduzca directamente al español.</p>
+                </div>
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-slate-800">
+                    <h3 class="text-white font-bold text-base mb-2">¿Qué formatos de exportación ofrece EchoScribe?</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Puedes copiar el texto con un solo clic al portapapeles, exportar en texto plano .TXT (compatible con Word, Google Docs y Notion) o generar pistas .SRT sincronizadas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELACIONADOS -->
+        <section class="my-14 pt-10 border-t border-slate-800">
+            <h3 class="text-2xl font-bold text-white mb-6">Guías Complementarias</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+                <a href="/guias/transcribir-clases-apuntes-gemini-ia" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Apuntes con Google Gemini</span>
+                    <span class="text-slate-400">Cómo usar la ventana de contexto de 1M tokens para crear exámenes test.</span>
+                </a>
+                <a href="/guias/transcribir-clases-universidad" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Transcribir Clases de Universidad</span>
+                    <span class="text-slate-400">Técnicas para convertir lecciones de 2 horas en resúmenes listos para imprimir.</span>
+                </a>
+                <a href="/guias/estudiar-videos-largos-con-ia" class="glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/40 hover:-translate-y-1 transition duration-300 flex flex-col justify-between shadow-lg">
+                    <span class="font-bold text-white text-sm mb-1">Estudiar Vídeos Largos con IA</span>
+                    <span class="text-slate-400">Procesa conferencias de YouTube y masterclasses en tiempo récord.</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER ESTANDARIZADO -->
+    <footer class="border-t border-slate-800 bg-slate-900/60 py-12 px-6 text-xs text-slate-400 mt-auto relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-left">
+            <div>
+                <div class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <img src="/icono.ico" class="w-7 h-7 rounded-lg object-contain shrink-0 shadow-sm" alt="EchoScribe Logo">
+                    <span>EchoScribe</span>
+                </div>
+                <p class="text-slate-400 leading-relaxed mb-4">El transcriptor de audio y vídeo con Whisper en GPU Cloud y corrección de nombres propios con Gemini.</p>
+                <p class="text-slate-500">© 2026 EchoScribe AI. Desarrollado por Iván García Miranda.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Herramientas</h4>
+                <ul class="space-y-2">
+                    <li><a href="/transcribir-youtube" class="hover:text-white transition">Transcribir YouTube a Texto</a></li>
+                    <li><a href="/generador-subtitulos-srt" class="hover:text-white transition">Generador de Subtítulos .SRT</a></li>
+                    <li><a href="/transcriptor-audio-a-texto" class="hover:text-white transition">Transcriptor de Audio a Texto</a></li>
+                    <li><a href="/transcribir-entrevistas-reuniones" class="hover:text-white transition">Transcribir Entrevistas y Reuniones</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Recursos & Ayuda</h4>
+                <ul class="space-y-2">
+                    <li><a href="/guia-instalacion" class="hover:text-white transition">Guía de Instalación Windows</a></li>
+                    <li><a href="/guias" class="hover:text-white transition">Hub de Guías de Uso</a></li>
+                    <li><a href="/recuperar-password" class="hover:text-white transition">Recuperar Contraseña</a></li>
+                    <li><a href="/planes" class="hover:text-white transition">Planes y Precios</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white uppercase text-xs tracking-wider mb-3">Legal & Autor</h4>
+                <ul class="space-y-2">
+                    <li><a href="/sobre-mi" class="hover:text-white transition">Sobre Iván García Miranda</a></li>
+                    <li><a href="/politica-privacidad" class="hover:text-white transition">Política de Privacidad</a></li>
+                    <li><a href="/terminos-y-condiciones" class="hover:text-white transition">Términos y Condiciones</a></li>
+                    <li><a href="/politica-cookies" class="hover:text-white transition">Política de Cookies</a></li>
+                    <li><a href="/soporte" class="hover:text-white transition">Atención & Soporte Técnico</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
