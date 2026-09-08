@@ -2,71 +2,111 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CV Iván García Miranda</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Iván García Miranda - Desarrollador & Tecnología Multimedia</title>
+    <meta name="description" content="Currículum Vitae de Iván García Miranda. Estudiante de Tecnología Digital y Multimedia en la UPV con 3 Matrículas de Honor. Creador de EchoScribe AI y desarrollador Python / Machine Learning.">
+    <link rel="canonical" href="https://echoscribe.es/curriculum">
+    <link rel="icon" type="image/x-icon" href="/icono.ico?v=2">
     <style>
-        :root { --main-color: #2c3e50; --accent-color: #3498db; --text-color: #444; }
+        :root { 
+            --main-color: #1e293b; 
+            --accent-color: #4f46e5; 
+            --text-color: #334155; 
+            --light-bg: #f8fafc;
+            --border-color: #e2e8f0;
+        }
         
-        /* Forzar al navegador a imprimir los fondos y colores exactos */
         * {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
+            box-sizing: border-box;
         }
 
         body { 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; 
             margin: 0; 
             padding: 0; 
             color: var(--text-color); 
-            background: #555; /* Fondo oscuro fuera del CV para verlo mejor en web */
+            background: #0b0f19;
         }
         
         .download-container {
             text-align: center;
-            padding: 20px;
-            background: #333;
+            padding: 16px 20px;
+            background: #0f172a;
+            border-bottom: 1px solid #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
         }
         .btn-download {
-            padding: 12px 25px;
+            padding: 10px 22px;
             background-color: var(--accent-color);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background 0.3s;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
         }
-        .btn-download:hover { background-color: #2980b9; }
+        .btn-download:hover { 
+            background-color: #4338ca; 
+            transform: translateY(-1px);
+        }
+        .btn-back {
+            padding: 10px 18px;
+            background-color: #1e293b;
+            color: #cbd5e1;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-back:hover { 
+            background-color: #334155; 
+            color: white; 
+        }
 
-        /* Tamaño exacto de un A4 */
+        /* Tamaño A4 estricto para impresión sin desbordes */
         .page { 
             width: 210mm; 
-            height: 297mm; /* Fijo para que no haga 2 páginas */
+            min-height: 297mm;
+            max-height: 297mm;
             margin: 20px auto; 
             background: white; 
-            box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
             display: flex; 
-            box-sizing: border-box;
-            overflow: hidden; /* Evita que nada sobresalga */
+            overflow: hidden;
+            border-radius: 4px;
         }
 
         /* Columna Izquierda (Sidebar) */
         .sidebar { 
-            width: 35%; 
+            width: 34%; 
             background-color: var(--main-color) !important; 
-            color: white !important; 
-            padding: 30px 20px; 
-            box-sizing: border-box;
+            color: #f1f5f9 !important; 
+            padding: 26px 18px; 
+            display: flex;
+            flex-direction: column;
         }
         
         .photo-container { 
-            width: 130px; 
-            height: 130px; 
+            width: 105px; 
+            height: 105px; 
             border-radius: 50%; 
-            margin: 0 auto 15px; 
-            border: 4px solid white; 
+            margin: 0 auto 12px; 
+            border: 3px solid rgba(255,255,255,0.9); 
             overflow: hidden; 
-            background: #95a5a6;
+            background: #334155;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -76,29 +116,116 @@
             height: 100%; 
             object-fit: cover; 
         }
+        .photo-initials {
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: 1px;
+        }
 
-        .sidebar h3 { border-bottom: 1px solid var(--accent-color); padding-bottom: 4px; font-size: 0.95rem; margin-top: 18px; margin-bottom: 8px;}
-        .sidebar p, .sidebar li { font-size: 0.8rem; list-style: none; padding: 0; margin: 6px 0; word-wrap: break-word; }
-        .sidebar a { color: white !important; text-decoration: none; }
+        .sidebar h3 { 
+            border-bottom: 1px solid var(--accent-color); 
+            padding-bottom: 3px; 
+            font-size: 0.82rem; 
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 14px; 
+            margin-bottom: 6px;
+            color: #e2e8f0;
+        }
+        .sidebar p, .sidebar li { 
+            font-size: 0.74rem; 
+            list-style: none; 
+            padding: 0; 
+            margin: 4px 0; 
+            line-height: 1.35;
+            word-wrap: break-word; 
+            color: #cbd5e1;
+        }
+        .sidebar a { 
+            color: #93c5fd !important; 
+            text-decoration: none; 
+        }
+        .sidebar strong {
+            color: white;
+        }
 
         /* Columna Derecha (Main) */
         .main { 
-            width: 65%; 
-            padding: 30px 40px; 
-            box-sizing: border-box;
+            width: 66%; 
+            padding: 26px 30px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        h1 { margin: 0; color: var(--main-color) !important; text-transform: uppercase; letter-spacing: 1px; font-size: 1.8rem; }
-        .subtitle { color: var(--accent-color) !important; font-weight: bold; margin-bottom: 15px; font-size: 1rem; }
-        h2 { font-size: 1.1rem; color: var(--main-color) !important; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-top: 15px; margin-bottom: 12px; }
-        .item { margin-bottom: 10px; }
-        .item-head { display: flex; justify-content: space-between; font-weight: bold; font-size: 0.95rem; }
-        .item-head a { color: var(--accent-color); text-decoration: none; }
-        .item-head a:hover { text-decoration: underline; }
-        .item-sub { font-style: italic; color: #777; font-size: 0.85rem; }
-        .description { font-size: 0.85rem; margin-top: 3px; text-align: justify; line-height: 1.4; }
-        .tag { background: #eee !important; padding: 3px 8px; border-radius: 3px; font-size: 0.75rem; display: inline-block; margin: 3px 2px; color: var(--main-color) !important; font-weight: bold; }
+        h1 { 
+            margin: 0; 
+            color: var(--main-color) !important; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            font-size: 1.6rem; 
+            line-height: 1.1;
+        }
+        .subtitle { 
+            color: var(--accent-color) !important; 
+            font-weight: 700; 
+            margin-top: 4px;
+            margin-bottom: 10px; 
+            font-size: 0.88rem; 
+            letter-spacing: 0.3px;
+        }
+        h2 { 
+            font-size: 0.96rem; 
+            color: var(--main-color) !important; 
+            border-bottom: 2px solid var(--border-color); 
+            padding-bottom: 3px; 
+            margin-top: 10px; 
+            margin-bottom: 6px; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .item { margin-bottom: 7px; }
+        .item-head { 
+            display: flex; 
+            justify-content: space-between; 
+            font-weight: 700; 
+            font-size: 0.82rem; 
+            color: #1e293b;
+        }
+        .item-sub { 
+            font-style: italic; 
+            color: #64748b; 
+            font-size: 0.75rem; 
+        }
+        .description { 
+            font-size: 0.74rem; 
+            margin-top: 2px; 
+            text-align: justify; 
+            line-height: 1.35; 
+            color: #334155;
+        }
+        .tag { 
+            background: #f1f5f9 !important; 
+            border: 1px solid #cbd5e1;
+            padding: 2px 7px; 
+            border-radius: 4px; 
+            font-size: 0.68rem; 
+            display: inline-block; 
+            margin: 2px 2px; 
+            color: var(--main-color) !important; 
+            font-weight: 700; 
+        }
+        .honor-badge {
+            background: #eef2ff !important;
+            border: 1px solid #c7d2fe;
+            color: #4338ca !important;
+            font-weight: 800;
+            padding: 1px 6px;
+            border-radius: 4px;
+            display: inline-block;
+        }
 
-        /* REGLAS ESTRICTAS PARA CUANDO SE IMPRIME/DESCARGA EN PDF */
+        /* IMPRESIÓN A4 */
         @media print {
             @page { 
                 size: A4; 
@@ -111,134 +238,184 @@
                 box-shadow: none; 
                 width: 210mm;
                 height: 297mm;
+                border-radius: 0;
                 page-break-after: avoid; 
                 page-break-inside: avoid;
             }
         }
     </style>
+    <!-- JSON-LD SEO SCHEMA -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "dateCreated": "2026-09-08",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Iván García Miranda",
+            "jobTitle": "Desarrollador de Software & Especialista en Tecnología Multimedia",
+            "alumniOf": {
+                "@type": "EducationalOrganization",
+                "name": "Universitat Politècnica de València (UPV)"
+            },
+            "sameAs": [
+                "https://github.com/ivangarmir18",
+                "https://www.linkedin.com/in/iván-garcía-miranda-785a8735b",
+                "https://echoscribe.es"
+            ],
+            "knowsAbout": ["Python", "Machine Learning", "Whisper", "Gemini AI", "PostgreSQL", "Full-Stack Software"]
+        }
+    }
+    </script>
 </head>
 <body>
 
     <div class="download-container">
-        <button class="btn-download" onclick="window.print()">Descargar como PDF</button>
+        <a href="/" class="btn-back">Volver a EchoScribe</a>
+        <a href="/sobre-mi" class="btn-back">Página del Desarrollador</a>
+        <button class="btn-download" onclick="window.print()">
+            <svg style="width:16px;height:16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span>Descargar / Imprimir en PDF</span>
+        </button>
     </div>
 
     <div class="page">
+        <!-- COLUMNA IZQUIERDA -->
         <div class="sidebar">
             <div class="photo-container">
-                <img src="cv.jpeg" alt="Iván García Miranda">
+                <img src="/cv.jpeg" alt="Iván García Miranda" onerror="this.onerror=null; this.src='/icono.ico';">
             </div>
             
             <h3>CONTACTO</h3>
-            <p>📍 Benetússer, Valencia</p>
-            <p>📱 +34 640 897 858</p>
-            <p>✉️ ivangarmir18@gmail.com</p>
-            <p>🔗 <a href="https://github.com/ivangarmir18">GitHub</a></p>
-            <p>💼 <a href="https://www.linkedin.com/in/iván-garcía-miranda-785a8735b">LinkedIn</a></p>
+            <p>Benetússer, Valencia</p>
+            <p>+34 640 897 858</p>
+            <p>ivangarmir18@gmail.com</p>
+            <p><a href="https://github.com/ivangarmir18" target="_blank">github.com/ivangarmir18</a></p>
+            <p><a href="https://www.linkedin.com/in/iván-garcía-miranda-785a8735b" target="_blank">linkedin.com/in/ivangarciamiranda</a></p>
+            <p><a href="https://echoscribe.es" target="_blank">echoscribe.es</a></p>
 
             <h3>IDIOMAS</h3>
             <p><strong>Castellano:</strong> Nativo</p>
-            <p><strong>Valenciano:</strong> C1 (Oficial)</p>
+            <p><strong>Valenciano:</strong> C1 (Oficial · JQCV)</p>
             <p><strong>Inglés:</strong> B2 (Oficial)</p>
             <p><strong>Francés:</strong> A2 (Oficial)</p>
 
-            <h3>SOFTWARE</h3>
-            <p>Python</p>
-            <p>PostgreSQL / Bash</p>
-            <p>DaVinci Resolve</p>
-            <p>Unity / Blender</p>
-            <p>Git / GitHub</p>
+            <h3>SOFTWARE & STACK</h3>
+            <p><strong>Lenguajes:</strong> Python, SQL, JavaScript</p>
+            <p><strong>IA / Audio:</strong> Whisper L-v3, Gemini API, ML</p>
+            <p><strong>Bases de Datos:</strong> PostgreSQL, Supabase</p>
+            <p><strong>Frontend / App:</strong> PyWebView, Tailwind, HTML5</p>
+            <p><strong>Multimedia:</strong> DaVinci Resolve, Blender, Unity</p>
+            <p><strong>Control Versiones:</strong> Git, GitHub, Linux/Bash</p>
 
             <h3>OTROS DATOS</h3>
-            <p>🚗 Permiso de conducir (Tipo B)</p>
+            <p>Permiso de conducir B (vehículo propio)</p>
+            <p>Disponibilidad inmediata para proyectos de impacto</p>
         </div>
 
+        <!-- COLUMNA DERECHA -->
         <div class="main">
-            <h1>Iván García Miranda</h1>
-            <div class="subtitle">Tecnología Digital y Multimedia, IA & Machine Learning</div>
+            <div>
+                <h1>Iván García Miranda</h1>
+                <div class="subtitle">Grado en Tecnología Digital y Multimedia · Especialización en IA & Machine Learning</div>
 
-            <h2>SOBRE MÍ</h2>
-            <p class="description">
-                Perfil resolutivo y autodidacta centrado en la intersección entre la tecnología multimedia y la inteligencia artificial. Especializado en el desarrollo de soluciones prácticas en Python y la optimización de procesos mediante pipelines de datos.
-            </p>
-
-            <h2>FORMACIÓN</h2>
-            <div class="item">
-                <div class="item-head">
-                    <span>Grado en Tecnología Digital y Multimedia</span>
-                    <span>2024 - Actual</span>
-                </div>
-                <div class="item-sub">Universitat Politècnica de València (UPV)</div>
-                <p class="description"><strong>Logro destacado:</strong> 3 Matrículas de Honor.</p>
-            </div>
-
-            <div class="item">
-                <div class="item-head">
-                    <span>Bachillerato Científico-Técnico</span>
-                    <span>2022 - 2024</span>
-                </div>
-                <div class="item-sub">Nuestra Señora del Socorro (Benetússer)</div>
-                <p class="description">Nota media del expediente: 8.72. EBAU: 11.72</p>
-            </div>
-
-            <h2>CERTIFICACIONES CLAVE</h2>
-            <div class="item">
-                <div class="item-head">
-                    <span>Python Developer Certification</span>
-                    <span>2026</span>
-                </div>
-                <div class="item-sub">freeCodeCamp (Acreditación 300h)</div>
-                <p class="description">Foco en POO, Algoritmos avanzados y lógica de programación estructurada.</p>
-            </div>
-
-            <div class="item">
-                <div class="item-head">
-                    <span>Relational Databases</span>
-                    <span>2026</span>
-                </div>
-                <div class="item-sub">freeCodeCamp</div>
-                <p class="description">Administración de PostgreSQL, Bash Scripting y Git.</p>
-            </div>
-
-            <div class="item">
-                <div class="item-head">
-                    <span>AI Fundamentals</span>
-                    <span>2026</span>
-                </div>
-                <div class="item-sub">IBM Skillsbuild</div>
-            </div>
-
-            <h2>PROYECTOS & HABILIDADES</h2>
-            <div class="item">
-                <div class="item-head">
-                    <span>EchoScribe — <a href="https://echoscribe.es" target="_blank">echoscribe.es</a></span>
-                </div>
+                <h2>PERFIL PROFESIONAL</h2>
                 <p class="description">
-                    Herramienta y plataforma de transcripción acústica con IA, diarización de hablantes y generación de subtítulos .SRT sincronizados para medios y creadores.
+                    Desarrollador con mentalidad orientada a producto y perfil resolutivo, especializado en la convergencia entre tecnología multimedia e Inteligencia Artificial. Creador y mantenedor de soluciones nativas en producción, con experiencia práctica en pipelines de inferencia acústica, microservicios en la nube y optimización algorítmica de alto rendimiento.
+                </p>
+
+                <h2>FORMACIÓN ACADÉMICA</h2>
+                <div class="item">
+                    <div class="item-head">
+                        <span>Grado en Tecnología Digital y Multimedia</span>
+                        <span>2024 - Actual</span>
+                    </div>
+                    <div class="item-sub">Universitat Politècnica de València (UPV)</div>
+                    <p class="description">
+                        <strong>Rendimiento académico destacado:</strong> <span class="honor-badge">3 Matrículas de Honor</span> acreditadas en asignaturas de computación y tecnología multimedia (carrera en curso).
+                    </p>
+                </div>
+
+                <div class="item">
+                    <div class="item-head">
+                        <span>Bachillerato Científico-Tecnológico</span>
+                        <span>2022 - 2024</span>
+                    </div>
+                    <div class="item-sub">Nuestra Señora del Socorro (Benetússer)</div>
+                    <p class="description">Nota media del expediente: <strong>8.72</strong>. Calificación de acceso EBAU: <strong>11.72</strong>.</p>
+                </div>
+
+                <h2>PROYECTOS DESTACADOS</h2>
+                <div class="item">
+                    <div class="item-head">
+                        <span>EchoScribe AI — Plataforma y Aplicación de Transcripción</span>
+                        <span><a href="https://echoscribe.es" target="_blank" style="color:var(--accent-color);text-decoration:none;">echoscribe.es ↗</a></span>
+                    </div>
+                    <div class="item-sub">Arquitectura de Escritorio Nativa (PyWebView / Python) + Inferencia GPU Cloud</div>
+                    <p class="description">
+                        Diseño, desarrollo y despliegue integral de un software de transcripción fonética y generación de subtítulos .SRT sincronizados con Whisper Large v3 y corrección contextual con Gemini. Plataforma con base de datos en Supabase, pasarela de pagos en Stripe y más de 45 herramientas SEO en producción.
+                    </p>
+                </div>
+
+                <div class="item">
+                    <div class="item-head">
+                        <span>Repositorio de Algoritmos & Pipelines de Datos</span>
+                        <span><a href="https://github.com/ivangarmir18" target="_blank" style="color:var(--accent-color);text-decoration:none;">GitHub ↗</a></span>
+                    </div>
+                    <div class="item-sub">Machine Learning, FinTech y análisis de flujos de audio</div>
+                    <p class="description">
+                        Creación de módulos reutilizables para automatización de tareas, procesamiento de señales de audio y pipelines de integración con modelos LLM.
+                    </p>
+                </div>
+
+                <h2>CERTIFICACIONES PROFESIONALES</h2>
+                <div class="item">
+                    <div class="item-head">
+                        <span>Python Developer Certification (300h)</span>
+                        <span>2026</span>
+                    </div>
+                    <div class="item-sub">freeCodeCamp — Algoritmos avanzados, estructuras de datos y POO</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-head">
+                        <span>Relational Databases & PostgreSQL</span>
+                        <span>2026</span>
+                    </div>
+                    <div class="item-sub">freeCodeCamp — Modelado relacional, Bash Scripting, consultas SQL y Git</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-head">
+                        <span>AI Fundamentals</span>
+                        <span>2026</span>
+                    </div>
+                    <div class="item-sub">IBM SkillsBuild — Redes neuronales, aprendizaje supervisado y ética en IA</div>
+                </div>
+            </div>
+
+            <div>
+                <h2>HABILIDADES TÉCNICAS</h2>
+                <div>
+                    <span class="tag">Python</span>
+                    <span class="tag">Software Desktop</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Whisper GPU</span>
+                    <span class="tag">Gemini API</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">Supabase</span>
+                    <span class="tag">Pipelines de Datos</span>
+                    <span class="tag">Git / GitHub</span>
+                    <span class="tag">Tailwind CSS</span>
+                    <span class="tag">DaVinci Resolve</span>
+                    <span class="tag">Stripe API</span>
+                </div>
+
+                <h2>METAS & PROYECCIÓN</h2>
+                <p class="description">
+                    Preparación activa para el acceso al máster oficial <strong>MUIARFID</strong> (Máster Universitario en Inteligencia Artificial, Reconocimiento de Formas e Imagen Digital) en la UPV. Orientado a colaborar en equipos de ingeniería para aplicar Inteligencia Artificial en el desarrollo de software de alta eficiencia.
                 </p>
             </div>
-            <div class="item">
-                <div class="item-head">
-                    <span>GitHub Personal</span>
-                </div>
-                <p class="description">
-                    Creación de pipelines de IA y funciones modulares para finanzas, videojuegos y análisis de grandes volúmenes de datos.
-                </p>
-            </div>
-            <div style="margin-top:8px;">
-                <span class="tag">Software</span>
-                <span class="tag">Desarrollo de Software</span>
-                <span class="tag">Machine Learning</span>
-                <span class="tag">Python</span>
-                <span class="tag">FinTech</span>
-                <span class="tag">Data Analysis</span>
-                <span class="tag">Multimedia Prod.</span>
-            </div>
-
-            <h2>METAS</h2>
-            <p class="description">
-                Preparación activa para el acceso al máster <strong>MUIARFID</strong> (UPV). Busco una oportunidad como Junior para aplicar Machine Learning en la agilización de procesos empresariales y bases de datos.
-            </p>
         </div>
     </div>
 

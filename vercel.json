@@ -1,5 +1,16 @@
 {
   "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/(.*)\\.(ico|png|jpg|jpeg)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/planes", "destination": "/planes.html" },
     { "source": "/precios", "destination": "/planes.html" },
