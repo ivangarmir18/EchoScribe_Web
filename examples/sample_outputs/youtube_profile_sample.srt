@@ -1,0 +1,28 @@
+1
+00:00:00,000 --> 00:00:02,351
+Welcome to the lecture on distributed
+
+2
+00:00:02,351 --> 00:00:04,702
+computing and cloud speech models. Thank
+
+3
+00:00:04,702 --> 00:00:07,054
+you for watching. Today we are
+
+4
+00:00:07,054 --> 00:00:08,229
+discussing how autoregressive
+
+5
+00:00:08,229 --> 00:00:09,405
+transformers process high-throughput
+
+6
+00:00:09,405 --> 00:00:12,148
+audio streams with low latency and zero
+
+7
+00:00:12,148 --> 00:00:14,500
+temporal drift. Subscribe to the channel.
+

@@ -1,0 +1,20 @@
+1
+00:00:00,000 --> 00:00:03,135
+Welcome to the lecture on distributed computing.
+Bienvenidos a la clase sobre computación distribuida.
+
+2
+00:00:03,135 --> 00:00:06,662
+Today we analyze autoregressive speech-to-text models.
+Hoy analizamos modelos autoregresivos de voz a texto.
+
+3
+00:00:06,662 --> 00:00:10,148
+Notice how the serverless GPU cluster achieves 140x speed.
+Observad cómo el clúster GPU serverless alcanza 140x de velocidad.
+
+4
+00:00:10,148 --> 00:00:14,500
+All temporal markers stay locked with zero desynchronization.
+Todas las marcas temporales se mantienen fijas sin desincronización.
+

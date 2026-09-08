@@ -1,0 +1,43 @@
+name: EchoScribe CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    name: Lint & Algorithmic Tests
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest ruff
+
+      - name: Lint with Ruff
+        run: |
+          ruff check . --ignore E501
+
+      - name: Run Standalone Algorithmic Test
+        run: |
+          python quickstart_demo.py
+
+      - name: Run Unit Tests with Pytest
+        run: |
+          pytest test_quickstart.py
+
