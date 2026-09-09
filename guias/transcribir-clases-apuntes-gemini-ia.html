@@ -125,7 +125,7 @@
                 <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800">
                     <span class="text-indigo-400 font-bold uppercase text-[10px] tracking-wider mb-1 block">Paso 2: Transcripción</span>
                     <h3 class="font-bold text-white text-sm mb-2">Procesa con EchoScribe</h3>
-                    <p class="text-slate-400 leading-relaxed">Arrastra el audio a EchoScribe: en 25 segundos Whisper Large-v3 y Gemini transcriben el audio corrigiendo términos técnicos y nombres propios.</p>
+                    <p class="text-slate-400 leading-relaxed">Arrastra el audio a EchoScribe: en 25 segundos Whisper Large-v3 Turbo en GPU Cloud (o Whisper local) y la cascada Gemini (3.6 Flash y 3.5 Flash-Lite) transcriben el audio corrigiendo términos técnicos y nombres propios.</p>
                 </div>
                 <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800">
                     <span class="text-indigo-400 font-bold uppercase text-[10px] tracking-wider mb-1 block">Paso 3: Síntesis</span>
@@ -138,7 +138,7 @@
         <!-- ARTICULO PASO A PASO -->
         <section class="prose prose-invert max-w-none text-slate-300 space-y-6 my-12">
             <h2 class="text-2xl font-bold text-white mt-10">Por qué Google Gemini es el compañero ideal para transcripciones largas</h2>
-            <p>Modelos como GPT-4o tienen límites de contexto más ajustados o truncan documentos cuando el texto supera varias decenas de páginas. En cambio, <strong>Google Gemini (Gemini 1.5 Pro y Gemini Flash) cuenta con una ventana de contexto de más de 1.000.000 de tokens</strong>, lo que equivale a más de 700.000 palabras de golpe.</p>
+            <p>Modelos como GPT-4o tienen límites de contexto más ajustados o truncan documentos cuando el texto supera varias decenas de páginas. En cambio, <strong>Google Gemini (modelos Gemini 3 Flash y Gemini Pro) cuenta con una ventana de contexto de más de 1.000.000 de tokens</strong>, lo que equivale a más de 700.000 palabras de golpe.</p>
             
             <p>Esto significa que puedes pegarle una lección universitaria completa de 3 o 4 horas sin dividirla en partes. Gemini analizará cada matiz del profesor, desde las fórmulas matemáticas hasta los ejemplos prácticos que dijo que caerían en el examen.</p>
 
@@ -246,7 +246,78 @@
 
         <!-- FORO Y COMENTARIOS DE LA GUÍA -->
         <section class="my-10 not-prose">
-            <div id="comunidad-guia-comments" data-guia-slug="transcribir-clases-apuntes-gemini-ia"></div>
+            <div id="comunidad-guia-comments" data-guia-slug="transcribir-clases-apuntes-gemini-ia">
+            <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white" itemprop="headline">Comentarios y Preguntas de la Comunidad</h3>
+                            <p class="text-[11px] text-slate-400">Pregunta dudas o comparte tu experiencia técnica con esta guía</p>
+                        </div>
+                    </div>
+                    <a href="/guias#comunidad" class="text-xs font-bold text-indigo-400 hover:text-indigo-300 transition flex items-center gap-1">
+                        <span>Ver Foro General</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                </div>
+
+                <!-- FORMULARIO COMENTARIO EN GUÍA -->
+                <form id="form-guia-comment" class="space-y-3 mb-6 bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <input 
+                            type="text" 
+                            id="input-gc-autor" 
+                            placeholder="Tu nombre o alias" 
+                            class="bg-slate-900 border border-slate-700 text-white rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-indigo-500" 
+                            required 
+                        />
+                        <div class="flex items-center gap-2 px-1">
+                            <input type="checkbox" id="input-gc-anonimo" class="rounded bg-slate-800 border-slate-700 text-indigo-600 focus:ring-0">
+                            <label for="input-gc-anonimo" class="text-xs text-slate-400 cursor-pointer">
+                                Publicar como anónimo
+                            </label>
+                        </div>
+                    </div>
+                    <textarea 
+                        id="input-gc-contenido" 
+                        rows="2" 
+                        placeholder="Escribe tu consulta o aportación sobre esta guía..." 
+                        class="w-full bg-slate-900 border border-slate-700 text-white rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-indigo-500 leading-relaxed" 
+                        required
+                    ></textarea>
+                    <div class="flex justify-end">
+                        <button type="submit" class="btn-gradient text-white text-xs font-bold py-2 px-5 rounded-xl transition flex items-center gap-1.5 shadow-md">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                            <span>Comentar</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- LISTA DE COMENTARIOS INDEXABLE POR GOOGLE -->
+                <div class="space-y-3" id="guia-comments-list">
+
+                        <div class="bg-slate-900/70 border border-slate-800/80 rounded-2xl p-4" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-[10px] font-bold">
+                                        BC
+                                    </div>
+                                    <span class="text-xs font-bold text-white" itemprop="author">Brais C.</span>
+                                    <span title="Verificado" class="text-indigo-400">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </span>
+                                    <span class="text-[10px] text-slate-500">·</span>
+                                    <span class="text-[10px] text-slate-400" itemprop="datePublished">Hace 3 días</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed" itemprop="text">Para asignaturas tochas de 6 créditos con temarios densos: pedidle en el prompt que os genere &#039;preguntas trampa tipo test para auto-evaluación&#039;. Es la forma más rápida de saber si te has enterado de la clase antes de que llegue el parcial.</p>
+                        </div>
+                </div>
+            </div>
+</div>
         </section>
     </main>
 

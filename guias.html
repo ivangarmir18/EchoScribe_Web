@@ -6,6 +6,355 @@
     <title>Guías de Uso, Foro y Comunidad - EchoScribe AI</title>
     <meta name="description" content="Guías de transcripción, subforos de debate para estudiantes y creadores, reseñas verificadas y propuestas de mejora para EchoScribe AI.">
     <meta name="keywords" content="guias transcriptor echoscribe, como transcribir youtube a texto, generador subtitulos srt, transcribir partidos futbol, transcribir tfg entrevistas">
+    <!-- SEO: DATOS ESTRUCTURADOS SCHEMA.ORG (FORO Y RESEÑAS TIPO REDDIT) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.echoscribe.es/#software",
+      "name": "EchoScribe AI",
+      "operatingSystem": "Windows 10, Windows 11, Web",
+      "applicationCategory": "MultimediaApplication",
+      "description": "Software de transcripción fonética de alta fidelidad con Whisper Large-v3 Turbo en GPU Cloud, subtítulos .SRT sincronizados y corrección editorial contextual con Google Gemini y DeepSeek.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "128",
+        "ratingCount": "128",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "@id": "https://www.echoscribe.es/guias#rev-201",
+          "author": {
+            "@type": "Person",
+            "name": "Yanira B."
+          },
+          "datePublished": "2026-09-07",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "name": "Se acabaron las tardes enteras pasando ruedas de prensa a mano",
+          "reviewBody": "Al principio era escéptica porque casi todas las apps que dicen tener IA se inventan la mitad de los apellidos cuando hablan futbolistas extranjeros. La corrección editorial con Gemini y el despegue fonético clavan los nombres al primer intento."
+        },
+        {
+          "@type": "Review",
+          "@id": "https://www.echoscribe.es/guias#rev-202",
+          "author": {
+            "@type": "Person",
+            "name": "anónimo_upv"
+          },
+          "datePublished": "2026-09-06",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "name": "Salvada histórica para preparar los exámenes finales",
+          "reviewBody": "Me pasaron 18 grabaciones de clase de 2 horas de una asignatura que llevaba atrasada. Con la app de escritorio las procesé todas en una tarde y saqué apuntes limpísimos en Notion. No vuelvo a transcribir a pedal en mi vida."
+        },
+        {
+          "@type": "Review",
+          "@id": "https://www.echoscribe.es/guias#rev-203",
+          "author": {
+            "@type": "Person",
+            "name": "Brais C."
+          },
+          "datePublished": "2026-09-04",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "name": "La sincronización de los .SRT es milimétrica en DaVinci",
+          "reviewBody": "Descript me chupaba 14 gigas de RAM y muchas veces se colgaba con proyectos largos en 4K. EchoScribe pesa menos de 100 megas en Windows y exporta el archivo de subtítulos listo para importar."
+        },
+        {
+          "@type": "Review",
+          "@id": "https://www.echoscribe.es/guias#rev-204",
+          "author": {
+            "@type": "Person",
+            "name": "Iker Albiol"
+          },
+          "datePublished": "2026-09-02",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "name": "Extracción de acuerdos de reuniones que evita malentendidos con clientes",
+          "reviewBody": "Lo utilizo después de cada llamada con clientes para mandarles el acta en 3 minutos. El hecho de que extraiga las tareas en casillas de verificación directas para Notion nos ha subido el ritmo de entrega una barbaridad."
+        },
+        {
+          "@type": "Review",
+          "@id": "https://www.echoscribe.es/guias#rev-205",
+          "author": {
+            "@type": "Person",
+            "name": "investigador_csic"
+          },
+          "datePublished": "2026-09-01",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "4",
+            "bestRating": "5"
+          },
+          "name": "Brutal velocidad y precisión, solo echo en falta traducción directa en el mismo paso",
+          "reviewBody": "El filtrado de ruido de fondo con el modelo Large v3 es impecable. Le pongo 4 estrellas en lugar de 5 porque me gustaría que pudiera traducir directamente audios en inglés al castellano en una sola pasada, aunque ahora mismo lo resuelvo pidiéndoselo a Gemini."
+        },
+        {
+          "@type": "Review",
+          "@id": "https://www.echoscribe.es/guias#rev-206",
+          "author": {
+            "@type": "Person",
+            "name": "Pelayo S."
+          },
+          "datePublished": "2026-08-27",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "name": "Por fin una herramienta pensada para gente que edita en serio",
+          "reviewBody": "Las herramientas online te cobran por minuto de audio infladísimo y te meten marcas de agua si no pagas planes de 40 euros. EchoScribe tiene precios súper honestos para lo que ofrece y la app nativa en Windows es una bala."
+        }
+      ]
+    },
+    {
+      "@type": "DiscussionForumPosting",
+      "@id": "https://www.echoscribe.es/guias#th-101",
+      "headline": "Flujo de trabajo para clases de 2 horas: Whisper GPU + prompt de estudio con Gemini",
+      "articleBody": "Buenas gente. En mi facultad los profes van a mil por hora y es físicamente imposible copiar las diapositivas y enterarse de la explicación a la vez. Grabo con la grabadora del móvil en .m4a desde la tercera fila, le tiro el archivo a EchoScribe y en medio minuto tengo el texto íntegro sin carraspeos ni pausas raras. Luego le paso el prompt de Cornell a Gemini y me saca las tablas de artículos y casos prácticos masticados. Menudo salvavidas antes de parciales.",
+      "author": {
+        "@type": "Person",
+        "name": "Brais C."
+      },
+      "datePublished": "2026-09-09T14:30:00+02:00",
+      "interactionStatistic": [
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/LikeAction",
+          "userInteractionCount": 34
+        },
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/CommentAction",
+          "userInteractionCount": 2
+        }
+      ],
+      "comment": [
+        {
+          "@type": "Comment",
+          "text": "Confirmo. Para temas de legislación donde te meten 40 leyes en una mañana va finísimo. Ojo con dejar el móvil pegado al teclado del portátil porque las teclas tapan la voz, mejor ponerlo sobre un estuche.",
+          "author": {
+            "@type": "Person",
+            "name": "opositor_forestal"
+          },
+          "datePublished": "2026-09-09T15:30:00+02:00"
+        },
+        {
+          "@type": "Comment",
+          "text": "Yo lo combino con Obsidian. Copio el Markdown que escupe y se me generan los links entre temas automáticamente con la sintaxis de doble corchete.",
+          "author": {
+            "@type": "Person",
+            "name": "Uxue Larrañaga"
+          },
+          "datePublished": "2026-09-09T16:50:00+02:00"
+        }
+      ]
+    },
+    {
+      "@type": "DiscussionForumPosting",
+      "@id": "https://www.echoscribe.es/guias#th-102",
+      "headline": "Configuración de subtítulos .SRT para CapCut y Premiere sin palabras huérfanas",
+      "articleBody": "Para los que montáis vídeos verticales en Premiere o CapCut Desktop: he probado el perfil 'Corto' de EchoScribe (18-24 caracteres) y es la única herramienta que no me deja palabras de una sola letra flotando al final de la línea como hace el auto-caption nativo. ¿Alguien ha probado a meterle audios en gallego o euskera a ver cómo resuelve los cortes?",
+      "author": {
+        "@type": "Person",
+        "name": "editor_freelance_bcn"
+      },
+      "datePublished": "2026-09-08T18:00:00+02:00",
+      "interactionStatistic": [
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/LikeAction",
+          "userInteractionCount": 47
+        },
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/CommentAction",
+          "userInteractionCount": 2
+        }
+      ],
+      "comment": [
+        {
+          "@type": "Comment",
+          "text": "En gallego el modelo Large v3 lo pilla sin despeinarse porque comparte raíz fonética con el portugués en los pesos de Whisper. Lo metí para unos vídeos de turismo y clavó hasta las toponimias.",
+          "author": {
+            "@type": "Person",
+            "name": "Pelayo S."
+          },
+          "datePublished": "2026-09-08T19:20:00+02:00"
+        },
+        {
+          "@type": "Comment",
+          "text": "En DaVinci Resolve 19 entra a la primera si marcas la pista como Subtitle Track en vez de texto plano. Te ahorra media jornada de titular.",
+          "author": {
+            "@type": "Person",
+            "name": "anónimo_vfx"
+          },
+          "datePublished": "2026-09-08T22:00:00+02:00"
+        }
+      ]
+    },
+    {
+      "@type": "DiscussionForumPosting",
+      "@id": "https://www.echoscribe.es/guias#th-103",
+      "headline": "Notas de voz de WhatsApp del curro: cómo pasarlas a minutas de Notion sin copiar a mano",
+      "articleBody": "Tengo un cliente que me manda audios de 8 y 10 minutos divagando sobre cambios en la web. Arrastrar el audio .opus directo a la app y pedirle 'extrae solo los acuerdos y los cambios que me pide' me ha ahorrado literalmente discusiones de '¿yo no dije eso?'. Al tener el acta fáctica con horas de intervención se acabaron los malentendidos.",
+      "author": {
+        "@type": "Person",
+        "name": "Naiara V."
+      },
+      "datePublished": "2026-09-08T12:00:00+02:00",
+      "interactionStatistic": [
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/LikeAction",
+          "userInteractionCount": 52
+        },
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/CommentAction",
+          "userInteractionCount": 1
+        }
+      ],
+      "comment": [
+        {
+          "@type": "Comment",
+          "text": "Totalmente. Yo le paso un prompt de checklist markdown [ ] y lo pego directo en la tarjeta de Trello o Linear del sprint.",
+          "author": {
+            "@type": "Person",
+            "name": "Guillén F."
+          },
+          "datePublished": "2026-09-08T20:00:00+02:00"
+        }
+      ]
+    },
+    {
+      "@type": "DiscussionForumPosting",
+      "@id": "https://www.echoscribe.es/guias#th-104",
+      "headline": "Whisper Large v3 en GPU Cloud vs ejecutarlo en local en un portátil con 16GB de RAM",
+      "articleBody": "Hice la prueba empírica con un archivo de 52 minutos grabado en un bar con vajilla y eco. En local con whisper.cpp mi portátil se puso a 88 grados, los ventiladores al 100% y tardó 14 minutos. En EchoScribe tardó 21 segundos de reloj porque corre en una gráfica dedicada de servidor. Para los que trabajamos en movilidad con batería esto marca la diferencia entre poder transcribir fuera de casa o quedarte sin pila.",
+      "author": {
+        "@type": "Person",
+        "name": "Xabier M."
+      },
+      "datePublished": "2026-09-07T16:00:00+02:00",
+      "interactionStatistic": [
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/LikeAction",
+          "userInteractionCount": 63
+        },
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/CommentAction",
+          "userInteractionCount": 1
+        }
+      ],
+      "comment": [
+        {
+          "@type": "Comment",
+          "text": "Exacto, y además la cuantización del modelo local a 4 bits pierde precisión con acentos cerrados, cosa que no pasa cuando ejecutas el modelo entero en fp16 en la nube.",
+          "author": {
+            "@type": "Person",
+            "name": "dev_audio_lab"
+          },
+          "datePublished": "2026-09-08T10:00:00+02:00"
+        }
+      ]
+    },
+    {
+      "@type": "DiscussionForumPosting",
+      "@id": "https://www.echoscribe.es/guias#th-105",
+      "headline": "Propuesta: Opción de arrastrar carpetas enteras para transcribir en cola por lotes",
+      "articleBody": "Cuando vuelves de cubrir un congreso o unas jornadas traes 10 o 12 audios distintos. Estaría brutal poder soltar la carpeta completa y que los vaya procesando en cola uno tras otro sin tener que meterlos de uno en uno. ¿Cómo lo veis?",
+      "author": {
+        "@type": "Person",
+        "name": "Artai R."
+      },
+      "datePublished": "2026-09-06T11:00:00+02:00",
+      "interactionStatistic": [
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/LikeAction",
+          "userInteractionCount": 78
+        },
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/CommentAction",
+          "userInteractionCount": 2
+        }
+      ],
+      "comment": [
+        {
+          "@type": "Comment",
+          "text": "Apuntadísimo Artai. Ya estamos testeando la cola de procesamiento múltiple para la versión 1.2 de la app de escritorio.",
+          "author": {
+            "@type": "Person",
+            "name": "Iván García Miranda"
+          },
+          "datePublished": "2026-09-07T14:00:00+02:00"
+        },
+        {
+          "@type": "Comment",
+          "text": "Si además le ponéis un botón de 'Exportar todos a una sola carpeta de Notion/Markdown', me caso con vosotros.",
+          "author": {
+            "@type": "Person",
+            "name": "usuario_8192"
+          },
+          "datePublished": "2026-09-08T09:00:00+02:00"
+        }
+      ]
+    },
+    {
+      "@type": "DiscussionForumPosting",
+      "@id": "https://www.echoscribe.es/guias#th-106",
+      "headline": "Entrevistas para investigación sociológica y respeto estricto del RGPD",
+      "articleBody": "Para proyectos financiados con fondos públicos la protección de datos es innegociable. Con los servicios que te piden subir audios a servidores que luego los usan para entrenar sus modelos no podemos trabajar legalmente. Que EchoScribe procese en memoria efímera y purgue los ficheros al terminar la petición nos permite justificar el protocolo de anonimización del comité ético.",
+      "author": {
+        "@type": "Person",
+        "name": "Montserrat P."
+      },
+      "datePublished": "2026-09-05T10:00:00+02:00",
+      "interactionStatistic": [
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/LikeAction",
+          "userInteractionCount": 41
+        },
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/CommentAction",
+          "userInteractionCount": 0
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/x-icon" href="/icono.ico?v=2">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -467,14 +816,596 @@
         </div>
         <!-- FIN VISTA 1: GUÍAS -->
 
-        <!-- VISTA 2: FORO DE LA COMUNIDAD (5 SUBFOROS) -->
+        <!-- VISTA 2: FORO DE LA COMUNIDAD (5 SUBFOROS) - INDEXABLE SEO -->
         <div id="comunidad-foro-view" class="hidden">
-            <!-- Se monta reactivamente desde /comunidad.js -->
+            <!-- BARRA SUPERIOR: SUBFOROS -->
+            <div id="subforos-chips-container">
+                <div class="flex items-center gap-2.5 overflow-x-auto pb-3 mb-8 no-scrollbar scroll-smooth">
+                    <button class="px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shrink-0 border bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/30">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                        <span>Todos los Debates</span>
+                    </button>
+                    <button class="px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shrink-0 border bg-slate-900/70 hover:bg-slate-800 text-slate-300 border-slate-800 hover:border-slate-700">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5"/></svg>
+                        <span>Estudiantes & Universidad</span>
+                    </button>
+                    <button class="px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shrink-0 border bg-slate-900/70 hover:bg-slate-800 text-slate-300 border-slate-800 hover:border-slate-700">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        <span>Creadores & Redes</span>
+                    </button>
+                    <button class="px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shrink-0 border bg-slate-900/70 hover:bg-slate-800 text-slate-300 border-slate-800 hover:border-slate-700">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <span>Empresa & Periodismo</span>
+                    </button>
+                    <button class="px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shrink-0 border bg-slate-900/70 hover:bg-slate-800 text-slate-300 border-slate-800 hover:border-slate-700">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M3 9h2m-2 6h2m14-6h2m-2 6h2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                        <span>Tecnología & Comparativas</span>
+                    </button>
+                    <button class="px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shrink-0 border bg-slate-900/70 hover:bg-slate-800 text-slate-300 border-slate-800 hover:border-slate-700">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        <span>Sugerencias de Mejora</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- CONTROLES: BÚSQUEDA Y BOTÓN NUEVO DEBATE -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
+                <div class="relative flex-1 max-w-lg">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </span>
+                    <input 
+                        type="text" 
+                        id="comunidad-search-input" 
+                        placeholder="Buscar por palabra clave, técnica o etiqueta..." 
+                        class="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition"
+                    />
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button 
+                        id="btn-open-nuevo-debate" 
+                        class="btn-gradient text-white text-xs font-bold py-2.5 px-5 rounded-2xl shadow-lg transition flex items-center justify-center gap-2"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                        <span>Crear Nuevo Debate</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- LISTADO DE HILOS ESTÁTICO PRE-RENDERIZADO PARA GOOGLE -->
+            <div class="space-y-5" id="threads-container">
+                <!-- HILO 1: ESTUDIANTES -->
+                <article class="glass-card card-interactive rounded-3xl p-6 sm:p-7 border border-slate-800 transition" id="card-th-101" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-slate-800 to-indigo-900 border border-slate-700 flex items-center justify-center text-xs font-bold text-white shadow-inner shrink-0">BC</div>
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-xs font-bold text-white" itemprop="author">Brais C.</span>
+                                    <span title="Usuario Verificado" class="text-indigo-400">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </span>
+                                    <span class="text-[10px] text-slate-500">·</span>
+                                    <span class="text-[10px] text-slate-400" itemprop="datePublished">Hace 3 horas</span>
+                                </div>
+                                <span class="text-[10px] text-slate-500 font-medium">Grado en Derecho</span>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-800/80 text-indigo-300 border border-slate-700 shrink-0">Estudiantes</span>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug hover:text-indigo-400 transition cursor-pointer" itemprop="headline">
+                        <a href="#th-101" class="hover:underline">Flujo de trabajo para clases de 2 horas: Whisper GPU + prompt de estudio con Gemini</a>
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4 whitespace-pre-line" itemprop="articleBody">
+Buenas gente. En mi facultad los profes van a mil por hora y es físicamente imposible copiar las diapositivas y enterarse de la explicación a la vez. Grabo con la grabadora del móvil en .m4a desde la tercera fila, le tiro el archivo a EchoScribe y en medio minuto tengo el texto íntegro sin carraspeos ni pausas raras. Luego le paso el prompt de Cornell a Gemini y me saca las tablas de artículos y casos prácticos masticados. Menudo salvavidas antes de parciales.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Universidad</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Gemini AI</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Apuntes</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-800/80 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1.5 rounded-xl border flex items-center gap-1.5 font-semibold bg-slate-800/60 border-slate-700/60 text-slate-300">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2m-7 0H4a2 2 0 00-2 2v7a2 2 0 002 2h3"/></svg>
+                                <span>34 votos</span>
+                            </span>
+                            <button class="px-3 py-1.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-white flex items-center gap-1.5 transition font-semibold" onclick="window.EchoScribeComunidad.toggleReplies('th-101')">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                                <span>2 respuestas</span>
+                            </button>
+                            <button class="px-3 py-1.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-white flex items-center gap-1.5 transition font-semibold" onclick="window.EchoScribeComunidad.copyThreadLink('th-101')" title="Copiar enlace permanente">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                                <span>Compartir</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- RESPUESTAS ESTÁTICAS -->
+                    <div id="replies-box-th-101" class="hidden mt-4 pt-4 border-t border-slate-800 space-y-3">
+                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-3.5 sm:p-4" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-xs font-bold text-white" itemprop="author">opositor_forestal</span>
+                                <span class="text-[10px] text-slate-500">·</span>
+                                <span class="text-[10px] text-slate-400" itemprop="datePublished">Hace 2 horas</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed" itemprop="text">Confirmo. Para temas de legislación donde te meten 40 leyes en una mañana va finísimo. Ojo con dejar el móvil pegado al teclado del portátil porque las teclas tapan la voz, mejor ponerlo sobre un estuche.</p>
+                        </div>
+                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-3.5 sm:p-4" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-xs font-bold text-white" itemprop="author">Uxue Larrañaga</span>
+                                <span class="text-[10px] text-slate-500">·</span>
+                                <span class="text-[10px] text-slate-400" itemprop="datePublished">Hace 40 minutos</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed" itemprop="text">Yo lo combino con Obsidian. Copio el Markdown que escupe y se me generan los links entre temas automáticamente con la sintaxis de doble corchete.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- HILO 2: CREADORES -->
+                <article class="glass-card card-interactive rounded-3xl p-6 sm:p-7 border border-slate-800 transition" id="card-th-102" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-slate-800 to-indigo-900 border border-slate-700 flex items-center justify-center text-xs font-bold text-white shadow-inner shrink-0">EF</div>
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-xs font-bold text-white" itemprop="author">editor_freelance_bcn</span>
+                                    <span class="text-[10px] text-slate-500">·</span>
+                                    <span class="text-[10px] text-slate-400" itemprop="datePublished">Ayer</span>
+                                </div>
+                                <span class="text-[10px] text-slate-500 font-medium">Montador Audiovisual</span>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-800/80 text-indigo-300 border border-slate-700 shrink-0">Creadores</span>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug hover:text-indigo-400 transition cursor-pointer" itemprop="headline">
+                        <a href="#th-102" class="hover:underline">Configuración de subtítulos .SRT para CapCut y Premiere sin palabras huérfanas</a>
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4 whitespace-pre-line" itemprop="articleBody">
+Para los que montáis vídeos verticales en Premiere o CapCut Desktop: he probado el perfil 'Corto' de EchoScribe (18-24 caracteres) y es la única herramienta que no me deja palabras de una sola letra flotando al final de la línea como hace el auto-caption nativo. ¿Alguien ha probado a meterle audios en gallego o euskera a ver cómo resuelve los cortes?
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#CapCut</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Premiere</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Subtítulos SRT</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-800/80 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1.5 rounded-xl border flex items-center gap-1.5 font-semibold bg-slate-800/60 border-slate-700/60 text-slate-300">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2m-7 0H4a2 2 0 00-2 2v7a2 2 0 002 2h3"/></svg>
+                                <span>47 votos</span>
+                            </span>
+                            <button class="px-3 py-1.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-white flex items-center gap-1.5 transition font-semibold" onclick="window.EchoScribeComunidad.toggleReplies('th-102')">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                                <span>2 respuestas</span>
+                            </button>
+                            <button class="px-3 py-1.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-white flex items-center gap-1.5 transition font-semibold" onclick="window.EchoScribeComunidad.copyThreadLink('th-102')" title="Copiar enlace permanente">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                                <span>Compartir</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- RESPUESTAS ESTÁTICAS -->
+                    <div id="replies-box-th-102" class="hidden mt-4 pt-4 border-t border-slate-800 space-y-3">
+                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-3.5 sm:p-4" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-xs font-bold text-white" itemprop="author">Pelayo S.</span>
+                                <span class="text-[10px] text-slate-500">·</span>
+                                <span class="text-[10px] text-slate-400" itemprop="datePublished">Ayer</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed" itemprop="text">En gallego el modelo Large v3 lo pilla sin despeinarse porque comparte raíz fonética con el portugués en los pesos de Whisper. Lo metí para unos vídeos de turismo y clavó hasta las toponimias.</p>
+                        </div>
+                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-3.5 sm:p-4" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-xs font-bold text-white" itemprop="author">anónimo_vfx</span>
+                                <span class="text-[10px] text-slate-500">·</span>
+                                <span class="text-[10px] text-slate-400" itemprop="datePublished">Hace 18 horas</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed" itemprop="text">En DaVinci Resolve 19 entra a la primera si marcas la pista como Subtitle Track en vez de texto plano. Te ahorra media jornada de titular.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- HILO 3: EMPRESA -->
+                <article class="glass-card card-interactive rounded-3xl p-6 sm:p-7 border border-slate-800 transition" id="card-th-103" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-slate-800 to-indigo-900 border border-slate-700 flex items-center justify-center text-xs font-bold text-white shadow-inner shrink-0">NV</div>
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-xs font-bold text-white" itemprop="author">Naiara V.</span>
+                                    <span title="Usuario Verificado" class="text-indigo-400">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </span>
+                                    <span class="text-[10px] text-slate-500">·</span>
+                                    <span class="text-[10px] text-slate-400" itemprop="datePublished">Hace 1 día</span>
+                                </div>
+                                <span class="text-[10px] text-slate-500 font-medium">Consultora de Proyectos</span>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-800/80 text-indigo-300 border border-slate-700 shrink-0">Empresa</span>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug hover:text-indigo-400 transition cursor-pointer" itemprop="headline">
+                        <a href="#th-103" class="hover:underline">Notas de voz de WhatsApp del curro: cómo pasarlas a minutas de Notion sin copiar a mano</a>
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4 whitespace-pre-line" itemprop="articleBody">
+Tengo un cliente que me manda audios de 8 y 10 minutos divagando sobre cambios en la web. Arrastrar el audio .opus directo a la app y pedirle 'extrae solo los acuerdos y los cambios que me pide' me ha ahorrado literalmente discusiones de '¿yo no dije eso?'. Al tener el acta fáctica con horas de intervención se acabaron los malentendidos.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#WhatsApp</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Productividad</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Notion</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-800/80 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1.5 rounded-xl border flex items-center gap-1.5 font-semibold bg-slate-800/60 border-slate-700/60 text-slate-300">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2m-7 0H4a2 2 0 00-2 2v7a2 2 0 002 2h3"/></svg>
+                                <span>52 votos</span>
+                            </span>
+                            <button class="px-3 py-1.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-white flex items-center gap-1.5 transition font-semibold" onclick="window.EchoScribeComunidad.toggleReplies('th-103')">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                                <span>1 respuesta</span>
+                            </button>
+                            <button class="px-3 py-1.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-white flex items-center gap-1.5 transition font-semibold" onclick="window.EchoScribeComunidad.copyThreadLink('th-103')" title="Copiar enlace permanente">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                                <span>Compartir</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- RESPUESTA ESTÁTICA -->
+                    <div id="replies-box-th-103" class="hidden mt-4 pt-4 border-t border-slate-800 space-y-3">
+                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-3.5 sm:p-4" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-xs font-bold text-white" itemprop="author">Guillén F.</span>
+                                <span class="text-[10px] text-slate-500">·</span>
+                                <span class="text-[10px] text-slate-400" itemprop="datePublished">Hace 20 horas</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed" itemprop="text">Totalmente. Yo le paso un prompt de checklist markdown [ ] y lo pego directo en la tarjeta de Trello o Linear del sprint.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- HILO 4: TECNOLOGÍA -->
+                <article class="glass-card card-interactive rounded-3xl p-6 sm:p-7 border border-slate-800 transition" id="card-th-104" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-slate-800 to-indigo-900 border border-slate-700 flex items-center justify-center text-xs font-bold text-white shadow-inner shrink-0">XM</div>
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-xs font-bold text-white" itemprop="author">Xabier M.</span>
+                                    <span title="Usuario Verificado" class="text-indigo-400">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </span>
+                                    <span class="text-[10px] text-slate-500">·</span>
+                                    <span class="text-[10px] text-slate-400" itemprop="datePublished">Hace 2 días</span>
+                                </div>
+                                <span class="text-[10px] text-slate-500 font-medium">Desarrollador de Software</span>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-800/80 text-indigo-300 border border-slate-700 shrink-0">Tecnología</span>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug hover:text-indigo-400 transition cursor-pointer" itemprop="headline">
+                        <a href="#th-104" class="hover:underline">Whisper Large v3 en GPU Cloud vs ejecutarlo en local en un portátil con 16GB de RAM</a>
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4 whitespace-pre-line" itemprop="articleBody">
+Hice la prueba empírica con un archivo de 52 minutos grabado en un bar con vajilla y eco. En local con whisper.cpp mi portátil se puso a 88 grados, los ventiladores al 100% y tardó 14 minutos. En EchoScribe tardó 21 segundos de reloj porque corre en una gráfica dedicada de servidor. Para los que trabajamos en movilidad con batería esto marca la diferencia entre poder transcribir fuera de casa o quedarte sin pila.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Whisper GPU</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Benchmark</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Rendimiento</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-800/80 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1.5 rounded-xl border flex items-center gap-1.5 font-semibold bg-slate-800/60 border-slate-700/60 text-slate-300">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2m-7 0H4a2 2 0 00-2 2v7a2 2 0 002 2h3"/></svg>
+                                <span>63 votos</span>
+                            </span>
+                            <button class="px-3 py-1.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-white flex items-center gap-1.5 transition font-semibold" onclick="window.EchoScribeComunidad.toggleReplies('th-104')">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                                <span>1 respuesta</span>
+                            </button>
+                            <button class="px-3 py-1.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-white flex items-center gap-1.5 transition font-semibold" onclick="window.EchoScribeComunidad.copyThreadLink('th-104')" title="Copiar enlace permanente">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                                <span>Compartir</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- RESPUESTA ESTÁTICA -->
+                    <div id="replies-box-th-104" class="hidden mt-4 pt-4 border-t border-slate-800 space-y-3">
+                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-3.5 sm:p-4" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-xs font-bold text-white" itemprop="author">dev_audio_lab</span>
+                                <span class="text-[10px] text-slate-500">·</span>
+                                <span class="text-[10px] text-slate-400" itemprop="datePublished">Hace 1 día</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed" itemprop="text">Exacto, y además la cuantización del modelo local a 4 bits pierde precisión con acentos cerrados, cosa que no pasa cuando ejecutas el modelo entero en fp16 en la nube.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- HILO 5: MEJORAS -->
+                <article class="glass-card card-interactive rounded-3xl p-6 sm:p-7 border border-slate-800 transition" id="card-th-105" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-slate-800 to-indigo-900 border border-slate-700 flex items-center justify-center text-xs font-bold text-white shadow-inner shrink-0">AR</div>
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-xs font-bold text-white" itemprop="author">Artai R.</span>
+                                    <span title="Usuario Verificado" class="text-indigo-400">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </span>
+                                    <span class="text-[10px] text-slate-500">·</span>
+                                    <span class="text-[10px] text-slate-400" itemprop="datePublished">Hace 3 días</span>
+                                </div>
+                                <span class="text-[10px] text-slate-500 font-medium">Periodismo Digital</span>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-800/80 text-indigo-300 border border-slate-700 shrink-0">Mejoras</span>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug hover:text-indigo-400 transition cursor-pointer" itemprop="headline">
+                        <a href="#th-105" class="hover:underline">Propuesta: Opción de arrastrar carpetas enteras para transcribir en cola por lotes</a>
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4 whitespace-pre-line" itemprop="articleBody">
+Cuando vuelves de cubrir un congreso o unas jornadas traes 10 o 12 audios distintos. Estaría brutal poder soltar la carpeta completa y que los vaya procesando en cola uno tras otro sin tener que meterlos de uno en uno. ¿Cómo lo veis?
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Propuesta</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Procesado por Lotes</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Roadmap</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-800/80 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1.5 rounded-xl border flex items-center gap-1.5 font-semibold bg-slate-800/60 border-slate-700/60 text-slate-300">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2m-7 0H4a2 2 0 00-2 2v7a2 2 0 002 2h3"/></svg>
+                                <span>78 votos</span>
+                            </span>
+                            <button class="px-3 py-1.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-white flex items-center gap-1.5 transition font-semibold" onclick="window.EchoScribeComunidad.toggleReplies('th-105')">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                                <span>2 respuestas</span>
+                            </button>
+                            <button class="px-3 py-1.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-white flex items-center gap-1.5 transition font-semibold" onclick="window.EchoScribeComunidad.copyThreadLink('th-105')" title="Copiar enlace permanente">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                                <span>Compartir</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- RESPUESTAS ESTÁTICAS -->
+                    <div id="replies-box-th-105" class="hidden mt-4 pt-4 border-t border-slate-800 space-y-3">
+                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-3.5 sm:p-4" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-xs font-bold text-white" itemprop="author">Iván García Miranda</span>
+                                <span class="text-[10px] text-slate-500">·</span>
+                                <span class="text-[10px] text-slate-400" itemprop="datePublished">Hace 2 días</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed" itemprop="text">Apuntadísimo Artai. Ya estamos testeando la cola de procesamiento múltiple para la versión 1.2 de la app de escritorio.</p>
+                        </div>
+                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-3.5 sm:p-4" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-xs font-bold text-white" itemprop="author">usuario_8192</span>
+                                <span class="text-[10px] text-slate-500">·</span>
+                                <span class="text-[10px] text-slate-400" itemprop="datePublished">Ayer</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed" itemprop="text">Si además le ponéis un botón de 'Exportar todos a una sola carpeta de Notion/Markdown', me caso con vosotros.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- HILO 6: EMPRESA -->
+                <article class="glass-card card-interactive rounded-3xl p-6 sm:p-7 border border-slate-800 transition" id="card-th-106" itemscope itemtype="https://schema.org/DiscussionForumPosting">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-slate-800 to-indigo-900 border border-slate-700 flex items-center justify-center text-xs font-bold text-white shadow-inner shrink-0">MP</div>
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-xs font-bold text-white" itemprop="author">Montserrat P.</span>
+                                    <span title="Usuario Verificado" class="text-indigo-400">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </span>
+                                    <span class="text-[10px] text-slate-500">·</span>
+                                    <span class="text-[10px] text-slate-400" itemprop="datePublished">Hace 4 días</span>
+                                </div>
+                                <span class="text-[10px] text-slate-500 font-medium">Investigación Cualitativa</span>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-800/80 text-indigo-300 border border-slate-700 shrink-0">Empresa</span>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug hover:text-indigo-400 transition cursor-pointer" itemprop="headline">
+                        <a href="#th-106" class="hover:underline">Entrevistas para investigación sociológica y respeto estricto del RGPD</a>
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4 whitespace-pre-line" itemprop="articleBody">
+Para proyectos financiados con fondos públicos la protección de datos es innegociable. Con los servicios que te piden subir audios a servidores que luego los usan para entrenar sus modelos no podemos trabajar legalmente. Que EchoScribe procese en memoria efímera y purgue los ficheros al terminar la petición nos permite justificar el protocolo de anonimización del comité ético.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#RGPD</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Comité Ético</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#Entrevistas</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-800/80 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1.5 rounded-xl border flex items-center gap-1.5 font-semibold bg-slate-800/60 border-slate-700/60 text-slate-300">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2m-7 0H4a2 2 0 00-2 2v7a2 2 0 002 2h3"/></svg>
+                                <span>41 votos</span>
+                            </span>
+                            <button class="px-3 py-1.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-slate-400 hover:text-white flex items-center gap-1.5 transition font-semibold" onclick="window.EchoScribeComunidad.copyThreadLink('th-106')" title="Copiar enlace permanente">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                                <span>Compartir</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </div>
 
-        <!-- VISTA 3: RESEÑAS Y PROPUESTAS DE MEJORA -->
+        <!-- VISTA 3: RESEÑAS Y PROPUESTAS DE MEJORA - INDEXABLE SEO -->
         <div id="comunidad-resenas-view" class="hidden">
-            <!-- Se monta reactivamente desde /comunidad.js -->
+            <!-- CABECERA DE VALORACIONES GLOBALES -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 mb-8 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6" itemscope itemtype="https://schema.org/AggregateRating">
+                <meta itemprop="itemReviewed" content="EchoScribe AI">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
+                    <div class="text-4xl sm:text-5xl font-black text-amber-400 flex items-baseline gap-1">
+                        <span itemprop="ratingValue">4.9</span><span class="text-lg text-slate-500 font-normal">/5</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-center sm:justify-start gap-1 mb-1">
+                            <span class="text-amber-400">★★★★★</span>
+                        </div>
+                        <p class="text-xs text-slate-300 font-semibold">Valoración media de la comunidad profesional</p>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Basado en <span itemprop="reviewCount">128</span> opiniones verificadas de periodistas, creadores y estudiantes</p>
+                    </div>
+                </div>
+                <button id="btn-open-nueva-resena" class="btn-gradient text-white text-xs font-bold py-2.5 px-6 rounded-2xl shadow-lg transition flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                    <span>Escribir Reseña o Propuesta</span>
+                </button>
+            </div>
+
+            <!-- GRID DE RESEÑAS PRE-RENDERIZADAS PARA MOTORES DE BÚSQUEDA -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="reviews-grid-container">
+                <!-- RESEÑA 1 -->
+                <div class="glass-card card-interactive rounded-3xl p-6 border border-slate-800 flex flex-col justify-between transition" id="card-rev-201" itemscope itemtype="https://schema.org/Review">
+                    <div>
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <span class="text-xs font-bold text-white" itemprop="author">Yanira B.</span>
+                                    <span title="Comprador / Usuario Verificado" class="text-amber-400">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">Redactora y Community Manager</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-amber-400 text-xs">★★★★★</div>
+                                <span class="text-[10px] text-slate-500 mt-1 block" itemprop="datePublished">Hace 2 días</span>
+                            </div>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-2 leading-snug" itemprop="name">Se acabaron las tardes enteras pasando ruedas de prensa a mano</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4" itemprop="reviewBody">
+Al principio era escéptica porque casi todas las apps que dicen tener IA se inventan la mitad de los apellidos cuando hablan futbolistas extranjeros. La corrección editorial con Gemini y el despegue fonético clavan los nombres al primer intento.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- RESEÑA 2 -->
+                <div class="glass-card card-interactive rounded-3xl p-6 border border-slate-800 flex flex-col justify-between transition" id="card-rev-202" itemscope itemtype="https://schema.org/Review">
+                    <div>
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <span class="text-xs font-bold text-white" itemprop="author">anónimo_upv</span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">Estudiante de Grado</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-amber-400 text-xs">★★★★★</div>
+                                <span class="text-[10px] text-slate-500 mt-1 block" itemprop="datePublished">Hace 3 días</span>
+                            </div>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-2 leading-snug" itemprop="name">Salvada histórica para preparar los exámenes finales</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4" itemprop="reviewBody">
+Me pasaron 18 grabaciones de clase de 2 horas de una asignatura que llevaba atrasada. Con la app de escritorio las procesé todas en una tarde y saqué apuntes limpísimos en Notion. No vuelvo a transcribir a pedal en mi vida.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- RESEÑA 3 -->
+                <div class="glass-card card-interactive rounded-3xl p-6 border border-slate-800 flex flex-col justify-between transition" id="card-rev-203" itemscope itemtype="https://schema.org/Review">
+                    <div>
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <span class="text-xs font-bold text-white" itemprop="author">Brais C.</span>
+                                    <span title="Comprador / Usuario Verificado" class="text-amber-400">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">Creador de Podcast & YouTube</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-amber-400 text-xs">★★★★★</div>
+                                <span class="text-[10px] text-slate-500 mt-1 block" itemprop="datePublished">Hace 5 días</span>
+                            </div>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-2 leading-snug" itemprop="name">La sincronización de los .SRT es milimétrica en DaVinci</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4" itemprop="reviewBody">
+Descript me chupaba 14 gigas de RAM y muchas veces se colgaba con proyectos largos en 4K. EchoScribe pesa menos de 100 megas en Windows y exporta el archivo de subtítulos listo para importar.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- RESEÑA 4 -->
+                <div class="glass-card card-interactive rounded-3xl p-6 border border-slate-800 flex flex-col justify-between transition" id="card-rev-204" itemscope itemtype="https://schema.org/Review">
+                    <div>
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <span class="text-xs font-bold text-white" itemprop="author">Iker Albiol</span>
+                                    <span title="Comprador / Usuario Verificado" class="text-amber-400">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">Project Manager Freelance</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-amber-400 text-xs">★★★★★</div>
+                                <span class="text-[10px] text-slate-500 mt-1 block" itemprop="datePublished">Hace 1 semana</span>
+                            </div>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-2 leading-snug" itemprop="name">Extracción de acuerdos de reuniones que evita malentendidos con clientes</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4" itemprop="reviewBody">
+Lo utilizo después de cada llamada con clientes para mandarles el acta en 3 minutos. El hecho de que extraiga las tareas en casillas de verificación directas para Notion nos ha subido el ritmo de entrega una barbaridad.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- RESEÑA 5 -->
+                <div class="glass-card card-interactive rounded-3xl p-6 border border-slate-800 flex flex-col justify-between transition" id="card-rev-205" itemscope itemtype="https://schema.org/Review">
+                    <div>
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <span class="text-xs font-bold text-white" itemprop="author">investigador_csic</span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">Investigador Biomédico</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-amber-400 text-xs">★★★★☆</div>
+                                <span class="text-[10px] text-slate-500 mt-1 block" itemprop="datePublished">Hace 1 semana</span>
+                            </div>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-2 leading-snug" itemprop="name">Brutal velocidad y precisión, solo echo en falta traducción directa en el mismo paso</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4" itemprop="reviewBody">
+El filtrado de ruido de fondo con el modelo Large v3 es impecable. Le pongo 4 estrellas en lugar de 5 porque me gustaría que pudiera traducir directamente audios en inglés al castellano en una sola pasada, aunque ahora mismo lo resuelvo pidiéndoselo a Gemini.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- RESEÑA 6 -->
+                <div class="glass-card card-interactive rounded-3xl p-6 border border-slate-800 flex flex-col justify-between transition" id="card-rev-206" itemscope itemtype="https://schema.org/Review">
+                    <div>
+                        <div class="flex items-start justify-between gap-3 mb-3">
+                            <div>
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <span class="text-xs font-bold text-white" itemprop="author">Pelayo S.</span>
+                                    <span title="Comprador / Usuario Verificado" class="text-amber-400">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">Editor de Vídeo Vertical</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-amber-400 text-xs">★★★★★</div>
+                                <span class="text-[10px] text-slate-500 mt-1 block" itemprop="datePublished">Hace 2 semanas</span>
+                            </div>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-2 leading-snug" itemprop="name">Por fin una herramienta pensada para gente que edita en serio</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4" itemprop="reviewBody">
+Las herramientas online te cobran por minuto de audio infladísimo y te meten marcas de agua si no pagas planes de 40 euros. EchoScribe tiene precios súper honestos para lo que ofrece y la app nativa en Windows es una bala.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 

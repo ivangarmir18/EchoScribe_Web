@@ -269,7 +269,7 @@
             isVerified: true,
             rating: 5,
             title: 'Se acabaron las tardes enteras pasando ruedas de prensa a mano',
-            content: 'Al principio era escéptica porque casi todas las apps que dicen tener IA se inventan la mitad de los apellidos cuando hablan futbolistas extranjeros. La corrección con Gemini conectada a plantillas reales de plantilla clava los nombres al primer intento.',
+            content: 'Al principio era escéptica porque casi todas las apps que dicen tener IA se inventan la mitad de los apellidos cuando hablan futbolistas extranjeros. La corrección editorial con Gemini y el despegue fonético clavan los nombres al primer intento.',
             date: 'Hace 2 días',
             helpfulCount: 38
         },
@@ -405,7 +405,141 @@
                 date: 'Hace 4 días',
                 upvotes: 19
             }
-        ]
+        ],
+        'ecoscribe-vs-whisper': [
+            {
+                        "id": "gc-evw-1",
+                        "author": "dev_audio_lab",
+                        "isVerified": false,
+                        "content": "La diferencia fundamental es que Whisper puro no tiene capa léxica de validación. Para audios limpios en inglés va sobrado, pero en español coloquial o jerga profesional la tasa de error por deformación fonética sube bastante. El paso con Gemini lo deja perfecto.",
+                        "date": "Hace 1 día",
+                        "upvotes": 24
+            },
+            {
+                        "id": "gc-evw-2",
+                        "author": "Pelayo S.",
+                        "isVerified": true,
+                        "content": "Totalmente. En edición de vídeo, tener que corregir a mano cada nombre propio arruina cualquier automatización. Con la corrección editorial de EchoScribe te ahorras esa revisión manual.",
+                        "date": "Ayer",
+                        "upvotes": 17
+            }
+],
+        'generar-subtitulos-premiere-capcut-davinci': [
+            {
+                        "id": "gc-sub-1",
+                        "author": "editor_freelance_bcn",
+                        "isVerified": false,
+                        "content": "El perfil 'Corto' (18-24 caracteres) es perfecto para TikTok y Reels. Evita que el texto tape la cara del creador o los botones de la interfaz nativa.",
+                        "date": "Hace 2 días",
+                        "upvotes": 31
+            },
+            {
+                        "id": "gc-sub-2",
+                        "author": "anónimo_vfx",
+                        "isVerified": false,
+                        "content": "En Premiere basta con arrastrar el .srt a la línea de tiempo y aplicarle un estilo de pista con la fuente que uses siempre. Ahorro de horas absoluto.",
+                        "date": "Ayer",
+                        "upvotes": 15
+            }
+],
+        'transcribir-clases-universidad': [
+            {
+                        "id": "gc-clu-1",
+                        "author": "Brais C.",
+                        "isVerified": true,
+                        "content": "Consejo: si grabáis con móvil, colocadlo sobre un estuche o pañuelo para amortiguar el ruido de la gente tecleando en los portátiles alrededor.",
+                        "date": "Hace 2 días",
+                        "upvotes": 42
+            },
+            {
+                        "id": "gc-clu-2",
+                        "author": "opositor_forestal",
+                        "isVerified": false,
+                        "content": "Para preparar repasos espaciados, pasarle la transcripción a Gemini pidiéndole tarjetas Anki en formato CSV funciona de locos.",
+                        "date": "Hace 1 día",
+                        "upvotes": 29
+            }
+],
+        'transcribir-partidos-futbol': [
+            {
+                        "id": "gc-fut-1",
+                        "author": "periodista_deportivo",
+                        "isVerified": true,
+                        "content": "Lo mejor es que cuando el comentarista suelta de carrerilla tres nombres propios ('Dimitrievski, Maffeo, Tárrega') no los junta en una palabra rara como hace el transcriptor tradicional. El despegue fonético funciona impecable.",
+                        "date": "Hace 3 días",
+                        "upvotes": 26
+            }
+],
+        'transcribir-traducir-subtitulos-srt-simultaneo': [
+            {
+                        "id": "gc-trad-1",
+                        "author": "subtitulador_freelance",
+                        "isVerified": true,
+                        "content": "El mapeo cue a cue con DeepSeek V4 Flash mantiene la duración exacta del subtítulo sin desfases ni palabras apelotonadas. Clave para entregar trabajos a agencias.",
+                        "date": "Hace 2 días",
+                        "upvotes": 33
+            }
+],
+        'transcribir-entrevistas-periodismo': [
+            {
+                        "id": "gc-per-1",
+                        "author": "Naiara V.",
+                        "isVerified": true,
+                        "content": "La confidencialidad del borrado en 24h es indispensable para fuentes protegidas y entrevistas sensibles. Cumple al 100% con los requisitos de protección de datos de la redacción.",
+                        "date": "Hace 4 días",
+                        "upvotes": 28
+            }
+],
+        'transcribir-reuniones-zoom-teams-meet': [
+            {
+                        "id": "gc-reu-1",
+                        "author": "Iker Albiol",
+                        "isVerified": true,
+                        "content": "Mucho mejor que los bots que se meten a la llamada y asustan a los clientes. Grabo el audio con la grabadora del sistema y lo proceso aquí en 20 segundos.",
+                        "date": "Hace 3 días",
+                        "upvotes": 37
+            }
+],
+        'transcribir-audios-bilingues-dos-idiomas': [
+            {
+                        "id": "gc-bil-1",
+                        "author": "Joana M.",
+                        "isVerified": true,
+                        "content": "En ruedas de prensa internacionales donde mezclan preguntas en inglés y respuestas en español es el único transcriptor que no inventa palabras por forzar un solo idioma.",
+                        "date": "Hace 2 días",
+                        "upvotes": 22
+            }
+],
+        'transcribir-entrevistas-tfg': [
+            {
+                        "id": "gc-tfg-1",
+                        "author": "Uxue Larrañaga",
+                        "isVerified": true,
+                        "content": "Para análisis cualitativo con codificación temático-conceptual te ahorra semanas de transcripción manual antes de meter los textos a ATLAS.ti o MAXQDA.",
+                        "date": "Hace 3 días",
+                        "upvotes": 30
+            }
+],
+        'transcribir-podcast-spotify-ivoox-a-texto': [
+            {
+                        "id": "gc-pod-1",
+                        "author": "Pelayo S.",
+                        "isVerified": true,
+                        "content": "Subir el episodio completo y pedirle que extraiga los 5 mejores momentos para crear hilos en X o carruseles en LinkedIn nos ha duplicado el alcance orgánico.",
+                        "date": "Hace 4 días",
+                        "upvotes": 25
+            }
+],
+        'transcribir-ruedas-prensa': [
+            {
+                        "id": "gc-rdp-1",
+                        "author": "periodista_deportivo",
+                        "isVerified": true,
+                        "content": "La acústica en las salas de prensa suele tener eco de micrófonos y preguntas sin micro desde el fondo. La combinación de Whisper Turbo y la corrección editorial saca el texto limpio al primer intento.",
+                        "date": "Hace 5 días",
+                        "upvotes": 19
+            }
+]
     };
 
     // Helpers de almacenamiento local
@@ -858,13 +992,23 @@
                         </button>
                     </div>
 
-                    <button 
-                        class="text-indigo-400 hover:text-indigo-300 font-semibold text-xs flex items-center gap-1 transition"
-                        onclick="window.EchoScribeComunidad.toggleReplies('${thread.id}')"
-                    >
-                        <span>Responder</span>
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
+                    <div class="flex items-center gap-3">
+                        <button 
+                            class="text-slate-400 hover:text-white font-semibold text-xs flex items-center gap-1 transition"
+                            onclick="window.EchoScribeComunidad.copyThreadLink('${thread.id}')"
+                            title="Copiar enlace al debate"
+                        >
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                            <span>Compartir</span>
+                        </button>
+                        <button 
+                            class="text-indigo-400 hover:text-indigo-300 font-semibold text-xs flex items-center gap-1 transition"
+                            onclick="window.EchoScribeComunidad.toggleReplies('${thread.id}')"
+                        >
+                            <span>Responder</span>
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- CONTENEDOR DESPLEGABLE DE RESPUESTAS -->
@@ -1437,11 +1581,42 @@
             .replace(/'/g, '&#039;');
     }
 
-    function toggleReplies(threadId) {
+    function toggleReplies(threadId, forceOpen) {
         const box = document.getElementById(`replies-box-${threadId}`);
         if (box) {
-            box.classList.toggle('hidden');
+            if (forceOpen === true) {
+                box.classList.remove('hidden');
+            } else {
+                box.classList.toggle('hidden');
+            }
         }
+    }
+
+    function copyThreadLink(threadId) {
+        const url = `${window.location.origin}/guias#${threadId}`;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url)
+                .then(() => showToast('Enlace al debate copiado al portapapeles'))
+                .catch(() => fallbackCopy(threadId));
+        } else {
+            fallbackCopy(threadId);
+        }
+    }
+
+    function fallbackCopy(threadId) {
+        window.location.hash = threadId;
+        showToast('Enlace permanente activado');
+    }
+
+    function showToast(msg) {
+        const existing = document.getElementById('comunidad-toast');
+        if (existing) existing.remove();
+        const toast = document.createElement('div');
+        toast.id = 'comunidad-toast';
+        toast.className = 'fixed bottom-6 right-6 z-50 bg-indigo-600 text-white text-xs font-bold px-4 py-2.5 rounded-2xl shadow-2xl transition flex items-center gap-2 border border-indigo-400/40 animate-bounce';
+        toast.innerHTML = '<svg class="w-4 h-4 text-emerald-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span>' + escapeHtml(msg) + '</span>';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
     }
 
     function switchTab(tabName) {
@@ -1474,7 +1649,6 @@
             if (viewForo) viewForo.classList.remove('hidden');
             if (heroSub) heroSub.textContent = 'Espacio de intercambio para resolver dudas técnicas, compartir prompts y debatir sobre transcripción con IA.';
             renderForumSection();
-            window.history.replaceState(null, '', '#comunidad');
         } else if (tabName === 'resenas' || tabName === 'opiniones') {
             if (tabResenas) {
                 tabResenas.classList.add('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/30');
@@ -1483,7 +1657,6 @@
             if (viewResenas) viewResenas.classList.remove('hidden');
             if (heroSub) heroSub.textContent = 'Valora tu experiencia con EchoScribe, consulta opiniones contrastadas o propón nuevas características para el software.';
             renderReviewsSection();
-            window.history.replaceState(null, '', '#resenas');
         } else {
             if (tabGuias) {
                 tabGuias.classList.add('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/30');
@@ -1491,7 +1664,40 @@
             }
             if (viewGuias) viewGuias.classList.remove('hidden');
             if (heroSub) heroSub.textContent = 'Descubre cómo EchoScribe resuelve problemas reales de transcripción periodística, subtitulado automático y redacción con IA.';
-            window.history.replaceState(null, '', '#guias');
+        }
+    }
+
+    function handleHashRouting() {
+        const rawHash = (window.location.hash || '').replace('#', '').toLowerCase();
+        if (!rawHash) return;
+
+        if (rawHash.includes('comunidad') || rawHash.includes('foro') || rawHash.startsWith('th-') || rawHash.includes('debate')) {
+            switchTab('foro');
+            if (rawHash.startsWith('th-')) {
+                setTimeout(() => {
+                    const el = document.getElementById(`card-${rawHash}`) || document.getElementById(rawHash);
+                    if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        toggleReplies(rawHash, true);
+                        el.classList.add('ring-2', 'ring-indigo-500', 'ring-offset-2', 'ring-offset-slate-900');
+                        setTimeout(() => el.classList.remove('ring-2', 'ring-indigo-500', 'ring-offset-2', 'ring-offset-slate-900'), 3500);
+                    }
+                }, 300);
+            }
+        } else if (rawHash.includes('resenas') || rawHash.includes('opiniones') || rawHash.includes('mejoras') || rawHash.startsWith('rev-')) {
+            switchTab('resenas');
+            if (rawHash.startsWith('rev-')) {
+                setTimeout(() => {
+                    const el = document.getElementById(`card-${rawHash}`) || document.getElementById(rawHash);
+                    if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        el.classList.add('ring-2', 'ring-amber-500', 'ring-offset-2', 'ring-offset-slate-900');
+                        setTimeout(() => el.classList.remove('ring-2', 'ring-amber-500', 'ring-offset-2', 'ring-offset-slate-900'), 3500);
+                    }
+                }, 300);
+            }
+        } else if (rawHash.includes('guias')) {
+            switchTab('guias');
         }
     }
 
@@ -1500,27 +1706,14 @@
         const tabForo = document.getElementById('tab-btn-foro');
         const tabResenas = document.getElementById('tab-btn-resenas');
 
-        if (tabGuias) tabGuias.onclick = () => switchTab('guias');
-        if (tabForo) tabForo.onclick = () => switchTab('foro');
-        if (tabResenas) tabResenas.onclick = () => switchTab('resenas');
+        if (tabGuias) tabGuias.onclick = () => { switchTab('guias'); window.history.replaceState(null, '', '#guias'); };
+        if (tabForo) tabForo.onclick = () => { switchTab('foro'); window.history.replaceState(null, '', '#comunidad'); };
+        if (tabResenas) tabResenas.onclick = () => { switchTab('resenas'); window.history.replaceState(null, '', '#resenas'); };
 
-        const hash = (window.location.hash || '').replace('#', '').toLowerCase();
-        if (hash.includes('comunidad') || hash.includes('foro')) {
-            switchTab('foro');
-        } else if (hash.includes('resenas') || hash.includes('opiniones') || hash.includes('mejoras')) {
-            switchTab('resenas');
-        } else {
-            const viewForo = document.getElementById('comunidad-foro-view');
-            const viewResenas = document.getElementById('comunidad-resenas-view');
-            if (viewForo) renderForumSection();
-            if (viewResenas) renderReviewsSection();
-        }
+        handleHashRouting();
 
         window.addEventListener('hashchange', () => {
-            const h = (window.location.hash || '').replace('#', '').toLowerCase();
-            if (h.includes('comunidad') || h.includes('foro')) switchTab('foro');
-            else if (h.includes('resenas') || h.includes('opiniones')) switchTab('resenas');
-            else if (h.includes('guias')) switchTab('guias');
+            handleHashRouting();
         });
 
         initGuideComments();
@@ -1535,9 +1728,144 @@
     window.EchoScribeComunidad = {
         switchTab: switchTab,
         toggleReplies: toggleReplies,
+        copyThreadLink: copyThreadLink,
         renderForum: renderForumSection,
         renderReviews: renderReviewsSection,
-        initGuideComments: initGuideComments
+        initGuideComments: initGuideComments,
+        'ecoscribe-vs-whisper': [
+            {
+                        "id": "gc-evw-1",
+                        "author": "dev_audio_lab",
+                        "isVerified": false,
+                        "content": "La diferencia fundamental es que Whisper puro no tiene capa léxica de validación. Para audios limpios en inglés va sobrado, pero en español coloquial o jerga profesional la tasa de error por deformación fonética sube bastante. El paso con Gemini lo deja perfecto.",
+                        "date": "Hace 1 día",
+                        "upvotes": 24
+            },
+            {
+                        "id": "gc-evw-2",
+                        "author": "Pelayo S.",
+                        "isVerified": true,
+                        "content": "Totalmente. En edición de vídeo, tener que corregir a mano cada nombre propio arruina cualquier automatización. Con la corrección editorial de EchoScribe te ahorras esa revisión manual.",
+                        "date": "Ayer",
+                        "upvotes": 17
+            }
+],
+        'generar-subtitulos-premiere-capcut-davinci': [
+            {
+                        "id": "gc-sub-1",
+                        "author": "editor_freelance_bcn",
+                        "isVerified": false,
+                        "content": "El perfil 'Corto' (18-24 caracteres) es perfecto para TikTok y Reels. Evita que el texto tape la cara del creador o los botones de la interfaz nativa.",
+                        "date": "Hace 2 días",
+                        "upvotes": 31
+            },
+            {
+                        "id": "gc-sub-2",
+                        "author": "anónimo_vfx",
+                        "isVerified": false,
+                        "content": "En Premiere basta con arrastrar el .srt a la línea de tiempo y aplicarle un estilo de pista con la fuente que uses siempre. Ahorro de horas absoluto.",
+                        "date": "Ayer",
+                        "upvotes": 15
+            }
+],
+        'transcribir-clases-universidad': [
+            {
+                        "id": "gc-clu-1",
+                        "author": "Brais C.",
+                        "isVerified": true,
+                        "content": "Consejo: si grabáis con móvil, colocadlo sobre un estuche o pañuelo para amortiguar el ruido de la gente tecleando en los portátiles alrededor.",
+                        "date": "Hace 2 días",
+                        "upvotes": 42
+            },
+            {
+                        "id": "gc-clu-2",
+                        "author": "opositor_forestal",
+                        "isVerified": false,
+                        "content": "Para preparar repasos espaciados, pasarle la transcripción a Gemini pidiéndole tarjetas Anki en formato CSV funciona de locos.",
+                        "date": "Hace 1 día",
+                        "upvotes": 29
+            }
+],
+        'transcribir-partidos-futbol': [
+            {
+                        "id": "gc-fut-1",
+                        "author": "periodista_deportivo",
+                        "isVerified": true,
+                        "content": "Lo mejor es que cuando el comentarista suelta de carrerilla tres nombres propios ('Dimitrievski, Maffeo, Tárrega') no los junta en una palabra rara como hace el transcriptor tradicional. El despegue fonético funciona impecable.",
+                        "date": "Hace 3 días",
+                        "upvotes": 26
+            }
+],
+        'transcribir-traducir-subtitulos-srt-simultaneo': [
+            {
+                        "id": "gc-trad-1",
+                        "author": "subtitulador_freelance",
+                        "isVerified": true,
+                        "content": "El mapeo cue a cue con DeepSeek V4 Flash mantiene la duración exacta del subtítulo sin desfases ni palabras apelotonadas. Clave para entregar trabajos a agencias.",
+                        "date": "Hace 2 días",
+                        "upvotes": 33
+            }
+],
+        'transcribir-entrevistas-periodismo': [
+            {
+                        "id": "gc-per-1",
+                        "author": "Naiara V.",
+                        "isVerified": true,
+                        "content": "La confidencialidad del borrado en 24h es indispensable para fuentes protegidas y entrevistas sensibles. Cumple al 100% con los requisitos de protección de datos de la redacción.",
+                        "date": "Hace 4 días",
+                        "upvotes": 28
+            }
+],
+        'transcribir-reuniones-zoom-teams-meet': [
+            {
+                        "id": "gc-reu-1",
+                        "author": "Iker Albiol",
+                        "isVerified": true,
+                        "content": "Mucho mejor que los bots que se meten a la llamada y asustan a los clientes. Grabo el audio con la grabadora del sistema y lo proceso aquí en 20 segundos.",
+                        "date": "Hace 3 días",
+                        "upvotes": 37
+            }
+],
+        'transcribir-audios-bilingues-dos-idiomas': [
+            {
+                        "id": "gc-bil-1",
+                        "author": "Joana M.",
+                        "isVerified": true,
+                        "content": "En ruedas de prensa internacionales donde mezclan preguntas en inglés y respuestas en español es el único transcriptor que no inventa palabras por forzar un solo idioma.",
+                        "date": "Hace 2 días",
+                        "upvotes": 22
+            }
+],
+        'transcribir-entrevistas-tfg': [
+            {
+                        "id": "gc-tfg-1",
+                        "author": "Uxue Larrañaga",
+                        "isVerified": true,
+                        "content": "Para análisis cualitativo con codificación temático-conceptual te ahorra semanas de transcripción manual antes de meter los textos a ATLAS.ti o MAXQDA.",
+                        "date": "Hace 3 días",
+                        "upvotes": 30
+            }
+],
+        'transcribir-podcast-spotify-ivoox-a-texto': [
+            {
+                        "id": "gc-pod-1",
+                        "author": "Pelayo S.",
+                        "isVerified": true,
+                        "content": "Subir el episodio completo y pedirle que extraiga los 5 mejores momentos para crear hilos en X o carruseles en LinkedIn nos ha duplicado el alcance orgánico.",
+                        "date": "Hace 4 días",
+                        "upvotes": 25
+            }
+],
+        'transcribir-ruedas-prensa': [
+            {
+                        "id": "gc-rdp-1",
+                        "author": "periodista_deportivo",
+                        "isVerified": true,
+                        "content": "La acústica en las salas de prensa suele tener eco de micrófonos y preguntas sin micro desde el fondo. La combinación de Whisper Turbo y la corrección editorial saca el texto limpio al primer intento.",
+                        "date": "Hace 5 días",
+                        "upvotes": 19
+            }
+]
     };
 
 })();

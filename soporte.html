@@ -755,14 +755,14 @@
                                     "apellidos",
                                     "futbolistas",
                                     "jerga",
-                                    "google search",
                                     "gemini",
                                     "correccion ia",
                                     "alucinaciones",
-                                    "como corrige"
+                                    "como corrige",
+                                    "glosario"
                         ],
-                        "title": "Cómo funciona la corrección de nombres propios con Gemini y Google Search",
-                        "response": "<strong>Tecnología Periodística Grounded AI de EchoScribe:</strong><br><br>Whisper tradicional es un modelo acústico excelente pero desconoce eventos recientes, nombres de futbolistas o términos técnicos nuevos.<br><br>Al elegir <strong>'Transcribir + Análisis IA'</strong>:<br>1. Whisper realiza la transcripción fonética base.<br>2. Gemini cruza el contexto mediante <strong>Google Search en tiempo real</strong> para verificar los nombres reales.<br>3. Se eliminan las erratas fonéticas entregándote el texto limpio y listo para publicar.",
+                        "title": "Cómo funciona la corrección de nombres propios con la cascada Whisper + Gemini",
+                        "response": "<strong>Tecnología Periodística y Editorial de EchoScribe:</strong><br><br>Whisper tradicional es un modelo acústico excelente pero desconoce eventos recientes, nombres de personas o tecnicismos nuevos.<br><br>Al elegir <strong>'Transcribir + Análisis IA'</strong>:<br>1. Faster-Whisper (Large-v3 Turbo en Cloud GPU o base en local) realiza la captura fonética de alta fidelidad.<br>2. Google Gemini (Gemini 3.6 Flash y 3.5 Flash-Lite) analiza el dominio temático, extrae un glosario de entidades y despega deformaciones acústicas bajo un contrato estricto de fidelidad sin invención.<br>3. Genera titulares estructurados y resumen ejecutivo entregándote el texto limpio y listo para publicar.",
                         "actionLink": "/guias",
                         "actionText": "Ver casos de éxito y ejemplos reales"
             },
@@ -777,7 +777,7 @@
                                     "dos botones"
                         ],
                         "title": "Diferencia entre 'Transcribir + Análisis IA' y 'Transcripción Rápida'",
-                        "response": "<strong>¿Qué botón debo pulsar según mi necesidad?</strong><br><br>• <strong>Transcribir + Análisis IA (Recomendado):</strong> Ejecuta Whisper en GPU Cloud + verificación con Google Search + extracción de titulares y resumen ejecutivo estructurado (~60-90s).<br>• <strong>Transcripción Rápida:</strong> Ejecuta únicamente el motor acústico de Whisper para entregarte el texto plano en segundos (~20-30s).",
+                        "response": "<strong>¿Qué botón debo pulsar según mi necesidad?</strong><br><br>• <strong>Transcribir + Análisis IA (Recomendado):</strong> Ejecuta Faster-Whisper en GPU Cloud + cascada editorial de Google Gemini (3.6 Flash y 3.5 Flash-Lite) con corrección de nombres propios + extracción de titulares y resumen ejecutivo estructurado (~60-90s).<br>• <strong>Transcripción Rápida:</strong> Ejecuta únicamente el motor acústico de Faster-Whisper Large-v3 Turbo para entregarte el texto plano en segundos (~20-30s).",
                         "actionLink": "/planes",
                         "actionText": "Conocer más detalles de velocidad"
             },
@@ -1097,7 +1097,7 @@
                                     "periodismo deportivo"
                         ],
                         "title": "Crónicas deportivas sin erratas en apellidos de futbolistas",
-                        "response": "<strong>Precisión absoluta en periodismo deportivo:</strong><br><br>EchoScribe contrasta las alineaciones y plantillas actuales con Google Search para transcribir nombres propios complejos sin fallos fonéticos.",
+                        "response": "<strong>Precisión absoluta en periodismo deportivo:</strong><br><br>EchoScribe combina la ingesta acústica de Faster-Whisper con la resolución contextual de Google Gemini para despegar términos fonéticos solapados y transcribir nombres propios complejos sin deformaciones.",
                         "actionLink": "/guias/transcribir-partidos-futbol",
                         "actionText": "Ver caso real de crónica deportiva"
             },
