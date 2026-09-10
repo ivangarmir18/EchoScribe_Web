@@ -63,6 +63,57 @@
         return trimmed || defaultLoggedInName || generateCoolAnonymousName();
     }
 
+    // Centinela de Moderación con IA (Gemini) y Protección Anti-Spam
+    async function moderarContenidoConIA(payload) {
+        try {
+            const res = await fetch('/api/moderar-contenido', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (!res.ok) {
+                return { aprobado: true, fallback: true };
+            }
+            return await res.json();
+        } catch (e) {
+            console.warn('[Ciberseguridad] Escudo de moderación operando en modo local:', e);
+            return { aprobado: true, fallback: true };
+        }
+    }
+
+    function mostrarModalSeguridad(titulo, mensaje, esError = true) {
+        let modal = document.getElementById('modal-seguridad-comunidad');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'modal-seguridad-comunidad';
+            modal.className = 'fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 transition-opacity';
+            document.body.appendChild(modal);
+        }
+        const iconSvg = esError 
+            ? '<div class="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-400 flex items-center justify-center mx-auto mb-3 shadow-inner"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div>'
+            : '<div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto mb-3 shadow-inner"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>';
+            
+        modal.innerHTML = `
+            <div class="glass-card bg-slate-900 border border-slate-700 p-6 rounded-3xl max-w-md w-full text-center shadow-2xl animate-fade-in relative">
+                ${iconSvg}
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${esError ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'} mb-2">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    <span>Escudo de Ciberseguridad & IA</span>
+                </div>
+                <h3 class="text-base font-bold text-white mb-2">${escapeHtml(titulo)}</h3>
+                <p class="text-xs text-slate-300 leading-relaxed mb-6">${escapeHtml(mensaje)}</p>
+                <div class="flex items-center justify-center gap-2">
+                    <button id="btn-cerrar-modal-seguridad" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition border border-slate-700">
+                        Entendido
+                    </button>
+                </div>
+            </div>
+        `;
+        modal.classList.remove('hidden');
+        document.getElementById('btn-cerrar-modal-seguridad').onclick = () => {
+            modal.classList.add('hidden');
+        };
+    }
 
     // 5 Subforos Temáticos
     const SUBFOROS = [
@@ -761,7 +812,10 @@
                     </button>
                 </div>
 
-                <form id="form-nuevo-debate" class="space-y-4">
+                <form id="form-nuevo-debate" data-loaded-at="${Date.now()}" class="space-y-4">
+                    <!-- Honeypot invisible contra bots automáticos -->
+                    <input type="text" name="website_url_hp" id="input-debate-hp" class="hidden" style="display:none !important; opacity:0; position:absolute; left:-9999px;" tabindex="-1" autocomplete="off" value="" />
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-[11px] font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">Subforo de Destino</label>
@@ -781,8 +835,8 @@
                                 id="input-debate-autor" 
                                 value="${user.isLoggedIn ? escapeHtml(user.name) : ''}" 
                                 placeholder="${user.isLoggedIn ? escapeHtml(user.name) : 'Tu nombre o alias (ej: ' + getSessionAnonymousHandle() + ')'}" 
-                                class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-indigo-500"
-                                required
+                                class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-indigo-500" 
+                                required 
                             />
                         </div>
                     </div>
@@ -793,8 +847,8 @@
                             type="text" 
                             id="input-debate-titulo" 
                             placeholder="Sé directo y claro (ej: Cómo optimizar apuntes de audio de 3 horas en Notion)" 
-                            class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-indigo-500"
-                            required
+                            class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-indigo-500" 
+                            required 
                         />
                     </div>
 
@@ -804,24 +858,30 @@
                             id="input-debate-contenido" 
                             rows="4" 
                             placeholder="Explica tu caso, el formato de archivo (.m4a, .opus, .wav), tu experiencia o la consulta..." 
-                            class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-indigo-500 leading-relaxed"
-                            required
+                            class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-indigo-500 leading-relaxed" 
+                            required 
                         ></textarea>
                     </div>
 
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-                        <div class="flex items-center gap-2">
-                            <input type="checkbox" id="input-debate-anonimo" class="rounded bg-slate-800 border-slate-700 text-indigo-600 focus:ring-0">
-                            <label for="input-debate-anonimo" class="text-xs text-slate-400 cursor-pointer">
-                                Publicar en modo anónimo (sin asociar perfil registrado)
-                            </label>
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-center gap-2">
+                                <input type="checkbox" id="input-debate-anonimo" class="rounded bg-slate-800 border-slate-700 text-indigo-600 focus:ring-0">
+                                <label for="input-debate-anonimo" class="text-xs text-slate-400 cursor-pointer">
+                                    Publicar en modo anónimo (sin asociar perfil registrado)
+                                </label>
+                            </div>
+                            <span class="text-[10px] text-slate-500 flex items-center gap-1 mt-0.5">
+                                <svg class="w-3 h-3 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                <span>Verificación en tiempo real con IA contra spam y contenido no afín</span>
+                            </span>
                         </div>
 
                         <div class="flex items-center gap-3 justify-end">
                             <button type="button" id="btn-cancel-nuevo-debate" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 transition">
                                 Cancelar
                             </button>
-                            <button type="submit" class="btn-gradient text-white text-xs font-bold py-2.5 px-6 rounded-xl shadow-md transition flex items-center gap-2">
+                            <button type="submit" id="btn-submit-nuevo-debate" class="btn-gradient text-white text-xs font-bold py-2.5 px-6 rounded-xl shadow-md transition flex items-center gap-2">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                                 <span>Publicar Debate</span>
                             </button>
@@ -877,19 +937,56 @@
 
         const formNuevo = document.getElementById('form-nuevo-debate');
         if (formNuevo) {
-            formNuevo.onsubmit = (e) => {
+            formNuevo.onsubmit = async (e) => {
                 e.preventDefault();
+                const btnSubmit = document.getElementById('btn-submit-nuevo-debate');
+                const origHtml = btnSubmit ? btnSubmit.innerHTML : '';
+
                 const categoria = document.getElementById('input-debate-categoria').value;
                 const autor = document.getElementById('input-debate-autor').value.trim();
                 const titulo = document.getElementById('input-debate-titulo').value.trim();
                 const contenido = document.getElementById('input-debate-contenido').value.trim();
                 const isAnon = document.getElementById('input-debate-anonimo').checked;
+                const hpField = document.getElementById('input-debate-hp')?.value || '';
+                const formLoadedAt = formNuevo.getAttribute('data-loaded-at') || Date.now();
 
                 if (!titulo || !contenido || !autor) return;
 
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    btnSubmit.innerHTML = `
+                        <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                        <span>Escaneando con IA...</span>
+                    `;
+                }
+
+                const modResult = await moderarContenidoConIA({
+                    tipo: 'debate',
+                    categoria: categoria,
+                    titulo: titulo,
+                    contenido: contenido,
+                    autor: autor,
+                    hp_field: hpField,
+                    timestamp_form: formLoadedAt
+                });
+
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerHTML = origHtml;
+                }
+
+                if (!modResult.aprobado) {
+                    mostrarModalSeguridad(
+                        'Publicación No Autorizada',
+                        modResult.motivo || 'El debate ha sido clasificado como fuera de temática o no apto por el escudo de IA centinela. Asegúrate de hablar sobre transcripción, audio, vídeo, estudio o tecnología.',
+                        true
+                    );
+                    return;
+                }
+
                 const newThread = {
                     id: 'th-' + Date.now(),
-                    category: categoria,
+                    category: modResult.categoria && SUBFOROS.some(s => s.id === modResult.categoria) ? modResult.categoria : categoria,
                     title: titulo,
                     content: contenido,
                     author: resolveAnonymousAuthor(autor, isAnon, user.name),
@@ -898,7 +995,7 @@
                     date: 'Ahora mismo',
                     timestamp: Date.now(),
                     upvotes: 1,
-                    tags: [categoria.toUpperCase()],
+                    tags: [(modResult.categoria || categoria).toUpperCase()],
                     replies: []
                 };
 
@@ -1035,7 +1132,8 @@
                     </div>
 
                     <!-- FORMULARIO DE RESPUESTA RÁPIDA -->
-                    <form class="form-reply-thread flex flex-col sm:flex-row gap-2 mt-3" data-thread-id="${thread.id}">
+                    <form class="form-reply-thread flex flex-col sm:flex-row gap-2 mt-3" data-thread-id="${thread.id}" data-loaded-at="${Date.now()}">
+                        <input type="text" name="website_url_hp" class="input-reply-hp hidden" style="display:none !important; opacity:0; position:absolute; left:-9999px;" tabindex="-1" autocomplete="off" value="" />
                         <input 
                             type="text" 
                             name="reply_content" 
@@ -1078,12 +1176,39 @@
         });
 
         document.querySelectorAll('.form-reply-thread').forEach(form => {
-            form.onsubmit = (e) => {
+            form.onsubmit = async (e) => {
                 e.preventDefault();
                 const threadId = form.getAttribute('data-thread-id');
                 const input = form.querySelector('input[name="reply_content"]');
                 const content = input ? input.value.trim() : '';
+                const hpVal = form.querySelector('.input-reply-hp')?.value || '';
+                const formLoadedAt = form.getAttribute('data-loaded-at') || Date.now();
+                const btn = form.querySelector('button[type="submit"]');
+
                 if (!content) return;
+
+                if (btn) {
+                    btn.disabled = true;
+                    btn.innerHTML = `<span class="text-[11px]">Verificando...</span>`;
+                }
+
+                const modResult = await moderarContenidoConIA({
+                    tipo: 'respuesta',
+                    contenido: content,
+                    autor: user.isLoggedIn ? user.name : 'Miembro de la Comunidad',
+                    hp_field: hpVal,
+                    timestamp_form: formLoadedAt
+                });
+
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg><span>Enviar</span>`;
+                }
+
+                if (!modResult.aprobado) {
+                    mostrarModalSeguridad('Respuesta Bloqueada', modResult.motivo || 'Tu respuesta contiene elementos identificados como spam o inapropiados por el centinela de IA.', true);
+                    return;
+                }
 
                 const threads = getStoredThreads();
                 const target = threads.find(t => t.id === threadId);
@@ -1197,7 +1322,9 @@
                     </button>
                 </div>
 
-                <form id="form-nueva-resena" class="space-y-4">
+                <form id="form-nueva-resena" data-loaded-at="${Date.now()}" class="space-y-4">
+                    <!-- Honeypot invisible contra bots -->
+                    <input type="text" name="website_url_hp" id="input-review-hp" class="hidden" style="display:none !important; opacity:0; position:absolute; left:-9999px;" tabindex="-1" autocomplete="off" value="" />
                     <div>
                         <label class="block text-[11px] font-semibold text-slate-300 mb-2 uppercase tracking-wider">Tu Puntuación</label>
                         <div class="flex items-center gap-2" id="star-picker-container">
@@ -1259,18 +1386,24 @@
                     </div>
 
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-                        <div class="flex items-center gap-2">
-                            <input type="checkbox" id="input-review-anonimo" class="rounded bg-slate-800 border-slate-700 text-amber-500 focus:ring-0">
-                            <label for="input-review-anonimo" class="text-xs text-slate-400 cursor-pointer">
-                                Publicar reseña en modo anónimo
-                            </label>
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-center gap-2">
+                                <input type="checkbox" id="input-review-anonimo" class="rounded bg-slate-800 border-slate-700 text-amber-500 focus:ring-0">
+                                <label for="input-review-anonimo" class="text-xs text-slate-400 cursor-pointer">
+                                    Publicar reseña en modo anónimo
+                                </label>
+                            </div>
+                            <span class="text-[10px] text-slate-500 flex items-center gap-1 mt-0.5">
+                                <svg class="w-3 h-3 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                <span>Verificación activa con IA centinela</span>
+                            </span>
                         </div>
 
                         <div class="flex items-center gap-3 justify-end">
                             <button type="button" id="btn-cancel-review-form" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 transition">
                                 Cancelar
                             </button>
-                            <button type="submit" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 text-xs font-bold py-2.5 px-6 rounded-xl shadow-md transition flex items-center gap-2">
+                            <button type="submit" id="btn-submit-review" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 text-xs font-bold py-2.5 px-6 rounded-xl shadow-md transition flex items-center gap-2">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                                 <span>Enviar Valoración</span>
                             </button>
@@ -1398,15 +1531,52 @@
 
         const formRev = document.getElementById('form-nueva-resena');
         if (formRev) {
-            formRev.onsubmit = (e) => {
+            formRev.onsubmit = async (e) => {
                 e.preventDefault();
+                const btnSubmit = document.getElementById('btn-submit-review');
+                const origHtml = btnSubmit ? btnSubmit.innerHTML : '';
+
                 const role = document.getElementById('input-review-role').value;
                 const autor = document.getElementById('input-review-autor').value.trim();
                 const titulo = document.getElementById('input-review-titulo').value.trim();
                 const contenido = document.getElementById('input-review-contenido').value.trim();
                 const isAnon = document.getElementById('input-review-anonimo').checked;
+                const hpField = document.getElementById('input-review-hp')?.value || '';
+                const formLoadedAt = formRev.getAttribute('data-loaded-at') || Date.now();
 
                 if (!titulo || !contenido || !autor) return;
+
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    btnSubmit.innerHTML = `
+                        <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                        <span>Escaneando reseña con IA...</span>
+                    `;
+                }
+
+                const modResult = await moderarContenidoConIA({
+                    tipo: 'resena',
+                    categoria: role,
+                    titulo: titulo,
+                    contenido: contenido,
+                    autor: autor,
+                    hp_field: hpField,
+                    timestamp_form: formLoadedAt
+                });
+
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerHTML = origHtml;
+                }
+
+                if (!modResult.aprobado) {
+                    mostrarModalSeguridad(
+                        'Reseña No Aprobada',
+                        modResult.motivo || 'Tu reseña no cumple las normas temáticas o de ciberseguridad del sistema. Por favor, asegúrate de hablar sobre tu experiencia con EchoScribe o la transcripción.',
+                        true
+                    );
+                    return;
+                }
 
                 const newRev = {
                     id: 'rev-' + Date.now(),
@@ -1480,7 +1650,8 @@
                 </div>
 
                 <!-- FORMULARIO COMENTARIO EN GUÍA -->
-                <form id="form-guia-comment" class="space-y-3 mb-6 bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80">
+                <form id="form-guia-comment" data-loaded-at="${Date.now()}" class="space-y-3 mb-6 bg-slate-900/60 p-4 rounded-2xl border border-slate-800/80">
+                    <input type="text" name="website_url_hp" id="input-gc-hp" class="hidden" style="display:none !important; opacity:0; position:absolute; left:-9999px;" tabindex="-1" autocomplete="off" value="" />
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <input 
                             type="text" 
@@ -1502,10 +1673,14 @@
                         rows="2" 
                         placeholder="Escribe tu consulta o aportación sobre esta guía..." 
                         class="w-full bg-slate-900 border border-slate-700 text-white rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-indigo-500 leading-relaxed" 
-                        required
+                        required 
                     ></textarea>
-                    <div class="flex justify-end">
-                        <button type="submit" class="btn-gradient text-white text-xs font-bold py-2 px-5 rounded-xl transition flex items-center gap-1.5 shadow-md">
+                    <div class="flex items-center justify-between pt-1">
+                        <span class="text-[10px] text-slate-500 flex items-center gap-1">
+                            <svg class="w-3 h-3 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            <span>Centinela de seguridad activo</span>
+                        </span>
+                        <button type="submit" id="btn-submit-gc" class="btn-gradient text-white text-xs font-bold py-2 px-5 rounded-xl transition flex items-center gap-1.5 shadow-md">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                             <span>Comentar</span>
                         </button>
@@ -1542,15 +1717,52 @@
 
         const form = document.getElementById('form-guia-comment');
         if (form) {
-            form.onsubmit = (e) => {
+            form.onsubmit = async (e) => {
                 e.preventDefault();
+                const btnSubmit = document.getElementById('btn-submit-gc');
+                const origHtml = btnSubmit ? btnSubmit.innerHTML : '';
+
                 const autorInput = document.getElementById('input-gc-autor');
                 const contenidoInput = document.getElementById('input-gc-contenido');
                 const isAnon = document.getElementById('input-gc-anonimo')?.checked;
+                const hpField = document.getElementById('input-gc-hp')?.value || '';
+                const formLoadedAt = form.getAttribute('data-loaded-at') || Date.now();
 
                 const autor = autorInput.value.trim();
                 const contenido = contenidoInput.value.trim();
                 if (!autor || !contenido) return;
+
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    btnSubmit.innerHTML = `
+                        <svg class="w-3.5 h-3.5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                        <span>Verificando...</span>
+                    `;
+                }
+
+                const modResult = await moderarContenidoConIA({
+                    tipo: 'comentario_guia',
+                    categoria: slug,
+                    titulo: 'Comentario en Guía ' + slug,
+                    contenido: contenido,
+                    autor: autor,
+                    hp_field: hpField,
+                    timestamp_form: formLoadedAt
+                });
+
+                if (btnSubmit) {
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerHTML = origHtml;
+                }
+
+                if (!modResult.aprobado) {
+                    mostrarModalSeguridad(
+                        'Comentario No Autorizado',
+                        modResult.motivo || 'Tu comentario no cumple los requisitos temáticos o de seguridad del centinela de IA.',
+                        true
+                    );
+                    return;
+                }
 
                 const newC = {
                     id: 'gc-' + Date.now(),
