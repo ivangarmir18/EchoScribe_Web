@@ -839,7 +839,7 @@
     </div>
 
     <!-- BANNER RGPD DE COOKIES -->
-    <div id="cookie-banner" class="fixed bottom-5 right-4 left-4 sm:left-auto sm:right-6 sm:max-w-md z-50 glass-card p-5 rounded-2xl border border-purple-500/30 shadow-2xl transition-all duration-500 transform translate-y-36 opacity-0 pointer-events-none">
+    <div id="cookie-banner" class="fixed bottom-5 right-4 left-4 sm:left-auto sm:right-6 sm:max-w-md z-50 bg-slate-900/95 backdrop-blur-xl p-5 rounded-2xl border border-purple-500/30 shadow-2xl transition-all duration-500 transform translate-y-36 opacity-0 pointer-events-none">
         <div class="flex items-start gap-3">
             <div class="w-8 h-8 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0 mt-0.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
             <div class="space-y-2 text-xs text-slate-300 leading-relaxed">
@@ -956,7 +956,10 @@
 
         function verificarCookieConsent() {
             try {
-                const consent = localStorage.getItem('echoscribe_cookie_consent') || (document.cookie.match(/echoscribe_cookie_consent=([^;]+)/) || [])[1];
+                const consent = localStorage.getItem('echoscribe_cookie_consent') || 
+                                (localStorage.getItem('echoscribe_cookies_accepted') === 'true' ? 'essential' : null) || 
+                                (document.cookie.match(/echoscribe_cookie_consent=([^;]+)/) || [])[1] ||
+                                (document.cookie.includes('echoscribe_cookies_accepted=true') ? 'essential' : null);
                 if (!consent) {
                     setTimeout(() => {
                         const banner = document.getElementById('cookie-banner');
@@ -970,8 +973,11 @@
 
         function aceptarCookies(tipo) {
             try {
-                localStorage.setItem('echoscribe_cookie_consent', tipo);
-                document.cookie = `echoscribe_cookie_consent=${tipo}; path=/; max-age=31536000; SameSite=Lax`;
+                const modo = tipo || 'essential';
+                localStorage.setItem('echoscribe_cookies_accepted', 'true');
+                localStorage.setItem('echoscribe_cookie_consent', modo);
+                document.cookie = "echoscribe_cookies_accepted=true; path=/; max-age=31536000; SameSite=Lax";
+                document.cookie = `echoscribe_cookie_consent=${modo}; path=/; max-age=31536000; SameSite=Lax`;
                 const banner = document.getElementById('cookie-banner');
                 if (banner) {
                     banner.classList.add('translate-y-36', 'opacity-0', 'pointer-events-none');

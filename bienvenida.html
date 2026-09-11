@@ -3024,7 +3024,43 @@ La revisión confirma un EBITDA positivo, aunque aumenta la cancelación de clie
                 <p id="login-error" class="hidden text-xs text-rose-400 font-semibold text-center"></p>
                 <button type="submit" id="login-submit-btn" class="w-full bg-gradient-to-r from-cyan-500 to-indigo-500 hover:brightness-110 text-white font-extrabold py-3.5 rounded-xl shadow-xl transition">Entrar</button>
             </form>
-            <p class="mt-6 text-center text-xs text-slate-400 border-t border-slate-800 pt-4">¿Aún no tienes cuenta? <button type="button" onclick="cerrarLoginBienvenida(); document.getElementById('capitulo-8').scrollIntoView({ behavior: 'smooth' });" class="text-cyan-300 font-bold hover:underline ml-1">Regístrate gratis</button></p>
+            <p class="mt-6 text-center text-xs text-slate-400 border-t border-slate-800 pt-4">¿Aún no tienes cuenta? <button type="button" onclick="cerrarLoginBienvenida(); document.getElementById('capitulo-9').scrollIntoView({ behavior: 'smooth' });" class="text-cyan-300 font-bold hover:underline ml-1">Regístrate gratis</button></p>
+        </div>
+    </div>
+
+    <!-- BANNER RGPD DE COOKIES FLOTANTE -->
+    <div id="cookie-banner" role="region" aria-label="Consentimiento de cookies"
+        class="fixed bottom-5 left-4 sm:left-6 right-4 sm:right-auto sm:max-w-md z-[60] glass-panel p-5 rounded-2xl border border-purple-500/30 shadow-2xl shadow-purple-950/40 transition-all duration-500 transform translate-y-36 opacity-0 pointer-events-none"
+        style="background: rgba(13, 19, 36, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+        <div class="flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center shrink-0 text-purple-400 shadow-inner">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 8.5v.01M16 15.5v.01M12 12v.01M11 17v.01M7 14v.01"></path>
+                </svg>
+            </div>
+            <div class="flex-1 space-y-2 text-xs">
+                <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-white text-sm tracking-tight flex items-center gap-1.5">
+                        <span>Privacidad y Cookies</span>
+                    </h4>
+                    <button type="button" onclick="aceptarCookies('essential')" class="text-slate-400 hover:text-white text-sm p-1 leading-none transition cursor-pointer" title="Cerrar y usar solo esenciales">✕</button>
+                </div>
+                <p class="text-slate-300 leading-relaxed">
+                    Utilizamos cookies esenciales para sincronizar tu sesión, guardar configuraciones de IA y asegurar un rendimiento óptimo. Consulta nuestra <a href="/politica-cookies" target="_blank" class="text-purple-400 hover:underline font-semibold">Política de Cookies</a>.
+                </p>
+                <div class="flex flex-wrap items-center gap-2 pt-1">
+                    <button type="button" onclick="aceptarCookies('all')" class="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:opacity-95 text-white font-bold text-xs transition shadow-md shadow-purple-500/20 cursor-pointer">
+                        Aceptar todas
+                    </button>
+                    <button type="button" onclick="aceptarCookies('essential')" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs border border-slate-700 hover:text-white transition cursor-pointer">
+                        Solo esenciales
+                    </button>
+                    <a href="/politica-cookies" target="_blank" class="text-slate-400 hover:text-slate-200 text-xs px-2 py-1 transition ml-auto">
+                        Ver política
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -3120,14 +3156,46 @@ La revisión confirma un EBITDA positivo, aunque aumenta la cancelación de clie
             try {
                 localStorage.setItem('echoscribe_visited', '1');
                 localStorage.setItem('echoscribe_bienvenida_vista', 'true');
-                localStorage.setItem('echoscribe_cookies_accepted', 'true');
                 document.cookie = "echoscribe_visited=1; path=/; max-age=31536000; SameSite=Lax";
                 document.cookie = "echoscribe_bienvenida_vista=true; path=/; max-age=31536000; SameSite=Lax";
-                document.cookie = "echoscribe_cookies_accepted=true; path=/; max-age=31536000; SameSite=Lax";
-                const banner = document.getElementById('cookie-banner');
-                if (banner) banner.remove();
             } catch (e) { }
         }
+
+        function verificarCookieConsent() {
+            try {
+                const accepted = localStorage.getItem('echoscribe_cookies_accepted') === 'true' ||
+                                 localStorage.getItem('echoscribe_cookie_consent') ||
+                                 document.cookie.includes('echoscribe_cookies_accepted=true') ||
+                                 document.cookie.includes('echoscribe_cookie_consent=');
+                if (!accepted) {
+                    setTimeout(() => {
+                        const banner = document.getElementById('cookie-banner');
+                        if (banner) {
+                            banner.classList.remove('translate-y-36', 'opacity-0', 'pointer-events-none');
+                            banner.classList.add('translate-y-0', 'opacity-100');
+                        }
+                    }, 800);
+                }
+            } catch (e) { }
+        }
+
+        function aceptarCookies(tipo) {
+            try {
+                const modo = tipo || 'essential';
+                localStorage.setItem('echoscribe_cookies_accepted', 'true');
+                localStorage.setItem('echoscribe_cookie_consent', modo);
+                document.cookie = "echoscribe_cookies_accepted=true; path=/; max-age=31536000; SameSite=Lax";
+                document.cookie = `echoscribe_cookie_consent=${modo}; path=/; max-age=31536000; SameSite=Lax`;
+                const banner = document.getElementById('cookie-banner');
+                if (banner) {
+                    banner.classList.add('translate-y-36', 'opacity-0', 'pointer-events-none');
+                    banner.classList.remove('translate-y-0', 'opacity-100');
+                    setTimeout(() => banner.remove(), 500);
+                }
+            } catch (e) { }
+        }
+        window.aceptarCookies = aceptarCookies;
+        window.aceptarCookiesEchoScribe = aceptarCookies;
 
         let DOWNLOAD_EXE_URL = "https://github.com/ivangarmir18/EchoScribe/releases/latest/download/EchoScribe_Setup.exe";
 
@@ -3148,6 +3216,7 @@ La revisión confirma un EBITDA positivo, aunque aumenta la cancelación de clie
             }
         }
         cargarVersionApp();
+        verificarCookieConsent();
 
         function enfocarRegistro() {
             marcarVisitado();
@@ -3326,6 +3395,7 @@ La revisión confirma un EBITDA positivo, aunque aumenta la cancelación de clie
                 btn.innerHTML = '<span>Crear mi cuenta gratis</span>';
             } else {
                 marcarVisitado();
+                aceptarCookies('all');
                 btn.disabled = false;
                 btn.innerHTML = '<span>¡Cuenta creada con éxito!</span>';
                 
