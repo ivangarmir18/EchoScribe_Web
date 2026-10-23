@@ -283,7 +283,7 @@
                     author: 'Iván García Miranda',
                     isVerified: true,
                     userRole: 'Desarrollador',
-                    content: 'Apuntadísimo Artai. Ya estamos testeando la cola de procesamiento múltiple para la versión 1.2 de la app de escritorio.',
+                    content: 'Apuntadísimo Artai. Ya estamos testeando la cola de procesamiento múltiple para la versión 1.5 de la app de escritorio.',
                     date: 'Hace 2 días'
                 },
                 {
@@ -593,16 +593,184 @@
 ]
     };
 
-    // Helpers de almacenamiento local
+    // Motor de Tiempo Relativo Realista y Dinámico
+    const SESSION_ANCHOR_KEY = 'echoscribe_comunidad_anchor_ts_v1';
+    function getSessionAnchorTs() {
+        try {
+            let saved = sessionStorage.getItem(SESSION_ANCHOR_KEY);
+            if (saved) {
+                const parsed = parseInt(saved, 10);
+                if (!isNaN(parsed) && parsed > 0) return parsed;
+            }
+            const now = Date.now();
+            sessionStorage.setItem(SESSION_ANCHOR_KEY, String(now));
+            return now;
+        } catch (e) {
+            return Date.now();
+        }
+    }
+
+    function hashString(str) {
+        let h = 0;
+        const s = String(str || '');
+        for (let i = 0; i < s.length; i++) {
+            h = ((h << 5) - h) + s.charCodeAt(i);
+            h |= 0;
+        }
+        return Math.abs(h);
+    }
+
+    function isUserCreatedItem(item) {
+        if (!item) return false;
+        if (item.isUserCreated === true) return true;
+        const idStr = String(item.id || '');
+        const parts = idStr.split('-');
+        const num = parseInt(parts[parts.length - 1], 10);
+        return !isNaN(num) && num > 1700000000000;
+    }
+
+    function parseRelativeStringToOffsetMs(dateStr, itemId) {
+        const s = String(dateStr || '').toLowerCase().trim();
+        const jitterMin = (hashString(itemId || s) % 23) + 3; // 3..25 min de variación realista
+        const jitterMs = jitterMin * 60 * 1000;
+
+        if (!s || s === 'ahora mismo' || s === 'hace unos segundos') {
+            return 0;
+        }
+        if (s === 'hoy') {
+            return (2 * 3600 * 1000) + jitterMs;
+        }
+        const minMatch = s.match(/hace\s+(\d+)\s*min/);
+        if (minMatch) {
+            return parseInt(minMatch[1], 10) * 60 * 1000;
+        }
+        const hourMatch = s.match(/hace\s+(\d+)\s*hora/);
+        if (hourMatch) {
+            return (parseInt(hourMatch[1], 10) * 3600 * 1000) + jitterMs;
+        }
+        if (s === 'ayer' || s === 'hace 1 día' || s === 'hace 1 dia') {
+            return (26 * 3600 * 1000) + jitterMs;
+        }
+        const dayMatch = s.match(/hace\s+(\d+)\s*d[ií]a/);
+        if (dayMatch) {
+            return (parseInt(dayMatch[1], 10) * 24 * 3600 * 1000) + (jitterMin * 7 * 60 * 1000);
+        }
+        const weekMatch = s.match(/hace\s+(\d+)\s*semana/);
+        if (weekMatch) {
+            return (parseInt(weekMatch[1], 10) * 7 * 24 * 3600 * 1000) + (jitterMin * 15 * 60 * 1000);
+        }
+        return (12 * 3600 * 1000) + jitterMs;
+    }
+
+    function resolveItemTimestamp(item) {
+        if (!item) return Date.now();
+        if (isUserCreatedItem(item)) {
+            if (item.timestamp && Number(item.timestamp) > 1000000000000) {
+                return Number(item.timestamp);
+            }
+            const parts = String(item.id || '').split('-');
+            const extracted = parseInt(parts[parts.length - 1], 10);
+            if (!isNaN(extracted) && extracted > 1700000000000) {
+                return extracted;
+            }
+        }
+        const offsetMs = parseRelativeStringToOffsetMs(item.date, item.id);
+        return getSessionAnchorTs() - offsetMs;
+    }
+
+    function formatRelativeTime(ts) {
+        const now = Date.now();
+        const diffMs = Math.max(0, now - Number(ts || now));
+        const diffSec = Math.floor(diffMs / 1000);
+
+        if (diffSec < 45) return 'Hace unos segundos';
+        const diffMin = Math.floor(diffSec / 60);
+        if (diffMin < 60) {
+            return diffMin === 1 ? 'Hace 1 min' : `Hace ${diffMin} min`;
+        }
+        const diffHours = Math.floor(diffSec / 3600);
+        const remMin = Math.floor((diffSec % 3600) / 60);
+        if (diffHours < 24) {
+            if (diffHours < 6 && remMin >= 5) {
+                return `Hace ${diffHours} h ${remMin} min`;
+            }
+            return diffHours === 1 ? 'Hace 1 hora' : `Hace ${diffHours} horas`;
+        }
+        const diffDays = Math.floor(diffSec / 86400);
+        if (diffDays === 1) {
+            const d = new Date(Number(ts));
+            const hh = String(d.getHours()).padStart(2, '0');
+            const mm = String(d.getMinutes()).padStart(2, '0');
+            return `Ayer a las ${hh}:${mm}`;
+        }
+        if (diffDays < 7) {
+            return `Hace ${diffDays} días`;
+        }
+        const diffWeeks = Math.floor(diffDays / 7);
+        if (diffDays < 30) {
+            return diffWeeks === 1 ? 'Hace 1 semana' : `Hace ${diffWeeks} semanas`;
+        }
+        const d = new Date(Number(ts));
+        const meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+        return `${d.getDate()} ${meses[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function formatFullDateTooltip(ts) {
+        try {
+            const d = new Date(Number(ts || Date.now()));
+            const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+            const hh = String(d.getHours()).padStart(2, '0');
+            const mm = String(d.getMinutes()).padStart(2, '0');
+            return `${d.getDate()} de ${meses[d.getMonth()]} de ${d.getFullYear()} a las ${hh}:${mm}`;
+        } catch (e) {
+            return '';
+        }
+    }
+
+    function renderLiveTimestampBadge(item, extraClass = 'text-[10px] text-slate-400') {
+        const ts = resolveItemTimestamp(item);
+        const label = formatRelativeTime(ts);
+        const tooltip = formatFullDateTooltip(ts);
+        const iso = new Date(ts).toISOString();
+        return `<time datetime="${iso}" data-live-ts="${ts}" title="${escapeHtml(tooltip)}" class="${extraClass} tabular-nums">${escapeHtml(label)}</time>`;
+    }
+
+    function refreshAllLiveTimestamps() {
+        document.querySelectorAll('[data-live-ts]').forEach(el => {
+            const ts = parseInt(el.getAttribute('data-live-ts'), 10);
+            if (!isNaN(ts) && ts > 0) {
+                const updated = formatRelativeTime(ts);
+                if (el.textContent !== updated) {
+                    el.textContent = updated;
+                }
+            }
+        });
+    }
+
+    // Helpers de almacenamiento local con sincronización inteligente de timestamps
     function getStoredThreads() {
+        let stored = null;
         try {
             const data = localStorage.getItem(STORAGE_KEY_FORUM);
-            if (data) return JSON.parse(data);
+            if (data) stored = JSON.parse(data);
         } catch (e) {
             console.warn('Error leyendo hilos:', e);
         }
-        localStorage.setItem(STORAGE_KEY_FORUM, JSON.stringify(SEED_THREADS));
-        return SEED_THREADS;
+        const seedClone = JSON.parse(JSON.stringify(SEED_THREADS));
+        if (!Array.isArray(stored) || stored.length === 0) {
+            return seedClone;
+        }
+        const userThreads = stored.filter(t => isUserCreatedItem(t));
+        const mergedSeeds = seedClone.map(seedThread => {
+            const savedMatch = stored.find(st => st.id === seedThread.id);
+            if (!savedMatch) return seedThread;
+            seedThread.upvotes = typeof savedMatch.upvotes === 'number' ? savedMatch.upvotes : seedThread.upvotes;
+            const savedReplies = Array.isArray(savedMatch.replies) ? savedMatch.replies : [];
+            const userReplies = savedReplies.filter(r => isUserCreatedItem(r));
+            seedThread.replies = [...(seedThread.replies || []), ...userReplies];
+            return seedThread;
+        });
+        return [...userThreads, ...mergedSeeds];
     }
 
     function saveStoredThreads(threads) {
@@ -614,14 +782,25 @@
     }
 
     function getStoredReviews() {
+        let stored = null;
         try {
             const data = localStorage.getItem(STORAGE_KEY_REVIEWS);
-            if (data) return JSON.parse(data);
+            if (data) stored = JSON.parse(data);
         } catch (e) {
             console.warn('Error leyendo reseñas:', e);
         }
-        localStorage.setItem(STORAGE_KEY_REVIEWS, JSON.stringify(SEED_REVIEWS));
-        return SEED_REVIEWS;
+        const seedClone = JSON.parse(JSON.stringify(SEED_REVIEWS));
+        if (!Array.isArray(stored) || stored.length === 0) {
+            return seedClone;
+        }
+        const userReviews = stored.filter(r => isUserCreatedItem(r));
+        const mergedSeeds = seedClone.map(seedRev => {
+            const savedMatch = stored.find(sr => sr.id === seedRev.id);
+            if (!savedMatch) return seedRev;
+            seedRev.helpfulCount = typeof savedMatch.helpfulCount === 'number' ? savedMatch.helpfulCount : seedRev.helpfulCount;
+            return seedRev;
+        });
+        return [...userReviews, ...mergedSeeds];
     }
 
     function saveStoredReviews(reviews) {
@@ -651,12 +830,22 @@
     }
 
     function getGuideComments() {
+        let stored = null;
         try {
             const data = localStorage.getItem(STORAGE_KEY_GUIDE_COMMENTS);
-            if (data) return JSON.parse(data);
+            if (data) stored = JSON.parse(data);
         } catch (e) {}
-        localStorage.setItem(STORAGE_KEY_GUIDE_COMMENTS, JSON.stringify(SEED_GUIDE_COMMENTS));
-        return SEED_GUIDE_COMMENTS;
+        const seedClone = JSON.parse(JSON.stringify(SEED_GUIDE_COMMENTS));
+        if (!stored || typeof stored !== 'object') {
+            return seedClone;
+        }
+        Object.keys(stored).forEach(slug => {
+            const arr = Array.isArray(stored[slug]) ? stored[slug] : [];
+            const userComm = arr.filter(c => isUserCreatedItem(c));
+            const baseSeed = Array.isArray(seedClone[slug]) ? seedClone[slug] : [];
+            seedClone[slug] = [...userComm, ...baseSeed];
+        });
+        return seedClone;
     }
 
     function saveGuideComments(all) {
@@ -722,6 +911,7 @@
     let searchQuery = '';
     let currentRatingFilter = 'todas';
     let selectedRatingInForm = 5;
+    const openReplyThreadIds = new Set();
 
     // Renderizar Selector de Subforos
     function renderSubforosBar() {
@@ -829,14 +1019,13 @@
                         </div>
 
                         <div>
-                            <label class="block text-[11px] font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">Tu Nombre o Alias</label>
+                            <label class="block text-[11px] font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">Tu Nombre o Alias <span class="text-slate-500 font-normal normal-case">(opcional)</span></label>
                             <input 
                                 type="text" 
                                 id="input-debate-autor" 
                                 value="${user.isLoggedIn ? escapeHtml(user.name) : ''}" 
-                                placeholder="${user.isLoggedIn ? escapeHtml(user.name) : 'Tu nombre o alias (ej: ' + getSessionAnonymousHandle() + ')'}" 
+                                placeholder="${user.isLoggedIn ? escapeHtml(user.name) : 'Alias opcional (por defecto: ' + getSessionAnonymousHandle() + ')'}" 
                                 class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-indigo-500" 
-                                required 
                             />
                         </div>
                     </div>
@@ -913,7 +1102,14 @@
         if (searchInput) {
             searchInput.addEventListener('input', (e) => {
                 searchQuery = e.target.value;
-                renderForumSection();
+                const pos = e.target.selectionStart || searchQuery.length;
+                renderForumSection().then(() => {
+                    const newInput = document.getElementById('comunidad-search-input');
+                    if (newInput) {
+                        newInput.focus();
+                        try { newInput.setSelectionRange(pos, pos); } catch (_) {}
+                    }
+                });
             });
         }
 
@@ -921,10 +1117,25 @@
         const boxNuevo = document.getElementById('nuevo-debate-box');
         const btnClose = document.getElementById('btn-close-nuevo-debate');
         const btnCancel = document.getElementById('btn-cancel-nuevo-debate');
+        const chkDebateAnon = document.getElementById('input-debate-anonimo');
+        const inpDebateAutor = document.getElementById('input-debate-autor');
+
+        if (chkDebateAnon && inpDebateAutor) {
+            chkDebateAnon.onchange = () => {
+                if (chkDebateAnon.checked) {
+                    inpDebateAutor.dataset.prevVal = inpDebateAutor.value;
+                    inpDebateAutor.value = getSessionAnonymousHandle();
+                } else if (inpDebateAutor.dataset.prevVal !== undefined) {
+                    inpDebateAutor.value = inpDebateAutor.dataset.prevVal;
+                }
+            };
+        }
 
         if (btnOpen && boxNuevo) {
             btnOpen.onclick = () => {
                 boxNuevo.classList.remove('hidden');
+                const formEl = document.getElementById('form-nuevo-debate');
+                if (formEl) formEl.setAttribute('data-loaded-at', String(Date.now() - 1000));
                 document.getElementById('input-debate-titulo')?.focus();
             };
         }
@@ -943,14 +1154,15 @@
                 const origHtml = btnSubmit ? btnSubmit.innerHTML : '';
 
                 const categoria = document.getElementById('input-debate-categoria').value;
-                const autor = document.getElementById('input-debate-autor').value.trim();
+                const rawAutor = document.getElementById('input-debate-autor').value.trim();
                 const titulo = document.getElementById('input-debate-titulo').value.trim();
                 const contenido = document.getElementById('input-debate-contenido').value.trim();
                 const isAnon = document.getElementById('input-debate-anonimo').checked;
+                const autor = rawAutor || (user.isLoggedIn && !isAnon ? user.name : getSessionAnonymousHandle());
                 const hpField = document.getElementById('input-debate-hp')?.value || '';
-                const formLoadedAt = formNuevo.getAttribute('data-loaded-at') || Date.now();
+                const formLoadedAt = formNuevo.getAttribute('data-loaded-at') || (Date.now() - 1000);
 
-                if (!titulo || !contenido || !autor) return;
+                if (!titulo || !contenido) return;
 
                 if (btnSubmit) {
                     btnSubmit.disabled = true;
@@ -984,18 +1196,21 @@
                     return;
                 }
 
+                const nowTs = Date.now();
+                const resolvedCat = modResult.categoria && SUBFOROS.some(s => s.id === modResult.categoria) ? modResult.categoria : categoria;
                 const newThread = {
-                    id: 'th-' + Date.now(),
-                    category: modResult.categoria && SUBFOROS.some(s => s.id === modResult.categoria) ? modResult.categoria : categoria,
+                    id: 'th-' + nowTs,
+                    category: resolvedCat,
                     title: titulo,
                     content: contenido,
                     author: resolveAnonymousAuthor(autor, isAnon, user.name),
                     isVerified: !isAnon && user.isLoggedIn,
                     userRole: isAnon ? 'Miembro Anónimo' : (user.isLoggedIn ? 'Usuario Registrado' : 'Miembro de la Comunidad'),
-                    date: 'Ahora mismo',
-                    timestamp: Date.now(),
+                    date: 'Hace unos segundos',
+                    timestamp: nowTs,
+                    isUserCreated: true,
                     upvotes: 1,
-                    tags: [(modResult.categoria || categoria).toUpperCase()],
+                    tags: [resolvedCat.toUpperCase()],
                     replies: []
                 };
 
@@ -1007,7 +1222,20 @@
                 curVotes.threads[newThread.id] = true;
                 saveUserVotes(curVotes);
 
-                renderForumSection();
+                if (currentSubforo !== 'todos' && currentSubforo !== resolvedCat) {
+                    currentSubforo = 'todos';
+                }
+                searchQuery = '';
+                await renderForumSection();
+                showToast('Debate publicado en la comunidad');
+                setTimeout(() => {
+                    const el = document.getElementById(`card-${newThread.id}`);
+                    if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        el.classList.add('ring-2', 'ring-indigo-500/80');
+                        setTimeout(() => el.classList.remove('ring-2', 'ring-indigo-500/80'), 2500);
+                    }
+                }, 80);
             };
         }
 
@@ -1035,15 +1263,23 @@
                                     </span>
                                 ` : ''}
                                 <span class="text-[10px] text-slate-500">·</span>
-                                <span class="text-[10px] text-slate-400">${escapeHtml(thread.date)}</span>
+                                ${renderLiveTimestampBadge(thread, 'text-[10px] text-slate-400')}
                             </div>
                             <span class="text-[10px] text-slate-500 font-medium">${escapeHtml(thread.userRole || 'Miembro')}</span>
                         </div>
                     </div>
 
-                    <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-800/80 text-indigo-300 border border-slate-700 shrink-0">
-                        ${escapeHtml(subforo.nombre.split('&')[0].trim())}
-                    </span>
+                    <div class="flex items-center gap-2 shrink-0">
+                        ${isUserCreatedItem(thread) ? `
+                            <button type="button" class="btn-delete-own-thread text-[10px] text-slate-500 hover:text-rose-400 px-2 py-1 rounded-lg hover:bg-rose-500/10 transition flex items-center gap-1" data-thread-id="${thread.id}" title="Eliminar mi debate">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                <span class="hidden sm:inline">Eliminar</span>
+                            </button>
+                        ` : ''}
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-slate-800/80 text-indigo-300 border border-slate-700 shrink-0">
+                            ${escapeHtml(subforo.nombre.split('&')[0].trim())}
+                        </span>
+                    </div>
                 </div>
 
                 <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug hover:text-indigo-400 transition cursor-pointer" onclick="window.EchoScribeComunidad.toggleReplies('${thread.id}')" itemprop="headline">
@@ -1109,22 +1345,29 @@
                 </div>
 
                 <!-- CONTENEDOR DESPLEGABLE DE RESPUESTAS -->
-                <div id="replies-box-${thread.id}" class="hidden mt-4 pt-4 border-t border-slate-800 space-y-3">
+                <div id="replies-box-${thread.id}" class="${openReplyThreadIds.has(thread.id) ? '' : 'hidden '}mt-4 pt-4 border-t border-slate-800 space-y-3">
                     <div class="space-y-3" id="replies-list-${thread.id}">
                         ${(thread.replies && thread.replies.length) ? thread.replies.map(rep => `
                             <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-3.5 sm:p-4">
-                                <div class="flex items-center gap-2 mb-1.5">
-                                    <div class="w-6 h-6 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-[10px] font-bold">
-                                        ${escapeHtml(getInitials(rep.author))}
+                                <div class="flex items-center justify-between gap-2 mb-1.5">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-[10px] font-bold">
+                                            ${escapeHtml(getInitials(rep.author))}
+                                        </div>
+                                        <span class="text-xs font-bold text-white">${escapeHtml(rep.author)}</span>
+                                        ${rep.isVerified ? `
+                                            <span title="Verificado" class="text-indigo-400">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                            </span>
+                                        ` : ''}
+                                        <span class="text-[10px] text-slate-500">·</span>
+                                        ${renderLiveTimestampBadge(rep, 'text-[10px] text-slate-400')}
                                     </div>
-                                    <span class="text-xs font-bold text-white">${escapeHtml(rep.author)}</span>
-                                    ${rep.isVerified ? `
-                                        <span title="Verificado" class="text-indigo-400">
-                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                        </span>
+                                    ${isUserCreatedItem(rep) ? `
+                                        <button type="button" class="btn-delete-own-reply text-[10px] text-slate-500 hover:text-rose-400 px-1.5 py-0.5 rounded transition" data-thread-id="${thread.id}" data-reply-id="${rep.id}" title="Eliminar mi respuesta">
+                                            Eliminar
+                                        </button>
                                     ` : ''}
-                                    <span class="text-[10px] text-slate-500">·</span>
-                                    <span class="text-[10px] text-slate-400">${escapeHtml(rep.date)}</span>
                                 </div>
                                 <p class="text-xs text-slate-300 leading-relaxed">${escapeHtml(rep.content)}</p>
                             </div>
@@ -1132,7 +1375,7 @@
                     </div>
 
                     <!-- FORMULARIO DE RESPUESTA RÁPIDA -->
-                    <form class="form-reply-thread flex flex-col sm:flex-row gap-2 mt-3" data-thread-id="${thread.id}" data-loaded-at="${Date.now()}">
+                    <form class="form-reply-thread flex flex-col sm:flex-row gap-2 mt-3" data-thread-id="${thread.id}" data-loaded-at="${Date.now() - 1000}">
                         <input type="text" name="website_url_hp" class="input-reply-hp hidden" style="display:none !important; opacity:0; position:absolute; left:-9999px;" tabindex="-1" autocomplete="off" value="" />
                         <input 
                             type="text" 
@@ -1216,21 +1459,47 @@
 
                 if (!target.replies) target.replies = [];
 
+                const replyTs = Date.now();
                 target.replies.push({
-                    id: 'rep-' + Date.now(),
-                    author: user.isLoggedIn ? user.name : generateCoolAnonymousName(),
+                    id: 'rep-' + replyTs,
+                    author: user.isLoggedIn ? user.name : getSessionAnonymousHandle(),
                     isVerified: user.isLoggedIn,
                     content: content,
-                    date: 'Ahora mismo'
+                    date: 'Hace unos segundos',
+                    timestamp: replyTs,
+                    isUserCreated: true
                 });
 
+                openReplyThreadIds.add(threadId);
+                saveStoredThreads(threads);
+                await renderForumSection();
+                showToast('Respuesta añadida al debate');
+            };
+        });
+
+        document.querySelectorAll('.btn-delete-own-thread').forEach(btn => {
+            btn.onclick = () => {
+                const threadId = btn.getAttribute('data-thread-id');
+                const threads = getStoredThreads().filter(t => t.id !== threadId);
+                saveStoredThreads(threads);
+                openReplyThreadIds.delete(threadId);
+                renderForumSection();
+                showToast('Debate eliminado');
+            };
+        });
+
+        document.querySelectorAll('.btn-delete-own-reply').forEach(btn => {
+            btn.onclick = () => {
+                const threadId = btn.getAttribute('data-thread-id');
+                const replyId = btn.getAttribute('data-reply-id');
+                const threads = getStoredThreads();
+                const target = threads.find(t => t.id === threadId);
+                if (!target || !Array.isArray(target.replies)) return;
+                target.replies = target.replies.filter(r => r.id !== replyId);
+                openReplyThreadIds.add(threadId);
                 saveStoredThreads(threads);
                 renderForumSection();
-
-                setTimeout(() => {
-                    const box = document.getElementById(`replies-box-${threadId}`);
-                    if (box) box.classList.remove('hidden');
-                }, 50);
+                showToast('Respuesta eliminada');
             };
         });
     }
@@ -1351,14 +1620,13 @@
                         </div>
 
                         <div>
-                            <label class="block text-[11px] font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">Tu Nombre o Alias</label>
+                            <label class="block text-[11px] font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">Tu Nombre o Alias <span class="text-slate-500 font-normal normal-case">(opcional)</span></label>
                             <input 
                                 type="text" 
                                 id="input-review-autor" 
                                 value="${user.isLoggedIn ? escapeHtml(user.name) : ''}" 
-                                placeholder="${user.isLoggedIn ? escapeHtml(user.name) : 'Tu nombre o alias (ej: ' + getSessionAnonymousHandle() + ')'}" 
+                                placeholder="${user.isLoggedIn ? escapeHtml(user.name) : 'Alias opcional (por defecto: ' + getSessionAnonymousHandle() + ')'}" 
                                 class="w-full bg-slate-900/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-amber-500"
-                                required
                             />
                         </div>
                     </div>
@@ -1455,7 +1723,7 @@
 
                                     <div class="text-right">
                                         <div class="flex items-center justify-end">${renderStarsSvg(rev.rating, 5, 'w-3.5 h-3.5')}</div>
-                                        <span class="text-[10px] text-slate-500">${escapeHtml(rev.date)}</span>
+                                        ${renderLiveTimestampBadge(rev, 'text-[10px] text-slate-500')}
                                     </div>
                                 </div>
 
@@ -1464,7 +1732,14 @@
                             </div>
 
                             <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
-                                <span class="text-[11px] text-slate-500">¿Te ha parecido útil?</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[11px] text-slate-500">¿Te ha parecido útil?</span>
+                                    ${isUserCreatedItem(rev) ? `
+                                        <button type="button" class="btn-delete-own-review text-[10px] text-slate-500 hover:text-rose-400 px-2 py-0.5 rounded-lg hover:bg-rose-500/10 transition" data-review-id="${rev.id}">
+                                            Eliminar mi reseña
+                                        </button>
+                                    ` : ''}
+                                </div>
                                 <button 
                                     class="btn-helpful-review px-3 py-1 rounded-xl border flex items-center gap-1.5 transition text-[11px] font-medium ${
                                         hasVotedHelpful
@@ -1488,9 +1763,24 @@
         const btnCloseRev = document.getElementById('btn-close-review-form');
         const btnCancelRev = document.getElementById('btn-cancel-review-form');
 
+        const chkRevAnon = document.getElementById('input-review-anonimo');
+        const inpRevAutor = document.getElementById('input-review-autor');
+        if (chkRevAnon && inpRevAutor) {
+            chkRevAnon.onchange = () => {
+                if (chkRevAnon.checked) {
+                    inpRevAutor.dataset.prevVal = inpRevAutor.value;
+                    inpRevAutor.value = getSessionAnonymousHandle();
+                } else if (inpRevAutor.dataset.prevVal !== undefined) {
+                    inpRevAutor.value = inpRevAutor.dataset.prevVal;
+                }
+            };
+        }
+
         if (btnOpenRev && boxRev) {
             btnOpenRev.onclick = () => {
                 boxRev.classList.remove('hidden');
+                const formEl = document.getElementById('form-nueva-resena');
+                if (formEl) formEl.setAttribute('data-loaded-at', String(Date.now() - 1000));
                 document.getElementById('input-review-titulo')?.focus();
             };
         }
@@ -1537,14 +1827,15 @@
                 const origHtml = btnSubmit ? btnSubmit.innerHTML : '';
 
                 const role = document.getElementById('input-review-role').value;
-                const autor = document.getElementById('input-review-autor').value.trim();
+                const rawAutor = document.getElementById('input-review-autor').value.trim();
                 const titulo = document.getElementById('input-review-titulo').value.trim();
                 const contenido = document.getElementById('input-review-contenido').value.trim();
                 const isAnon = document.getElementById('input-review-anonimo').checked;
+                const autor = rawAutor || (user.isLoggedIn && !isAnon ? user.name : getSessionAnonymousHandle());
                 const hpField = document.getElementById('input-review-hp')?.value || '';
-                const formLoadedAt = formRev.getAttribute('data-loaded-at') || Date.now();
+                const formLoadedAt = formRev.getAttribute('data-loaded-at') || (Date.now() - 1000);
 
-                if (!titulo || !contenido || !autor) return;
+                if (!titulo || !contenido) return;
 
                 if (btnSubmit) {
                     btnSubmit.disabled = true;
@@ -1578,15 +1869,18 @@
                     return;
                 }
 
+                const revTs = Date.now();
                 const newRev = {
-                    id: 'rev-' + Date.now(),
-                    author: isAnon ? (autor.includes('_') ? autor : 'anónimo_' + Math.floor(100 + Math.random() * 900)) : autor,
+                    id: 'rev-' + revTs,
+                    author: resolveAnonymousAuthor(autor, isAnon, user.name),
                     role: role,
                     isVerified: !isAnon && user.isLoggedIn,
                     rating: selectedRatingInForm,
                     title: titulo,
                     content: contenido,
-                    date: 'Hoy',
+                    date: 'Hace unos segundos',
+                    timestamp: revTs,
+                    isUserCreated: true,
                     helpfulCount: 1
                 };
 
@@ -1594,9 +1888,25 @@
                 allRevs.unshift(newRev);
                 saveStoredReviews(allRevs);
 
-                renderReviewsSection();
+                const curVotes = getUserVotes();
+                curVotes.reviews[newRev.id] = true;
+                saveUserVotes(curVotes);
+
+                currentRatingFilter = 'todas';
+                await renderReviewsSection();
+                showToast('Valoración publicada correctamente');
             };
         }
+
+        document.querySelectorAll('.btn-delete-own-review').forEach(btn => {
+            btn.onclick = () => {
+                const revId = btn.getAttribute('data-review-id');
+                const revs = getStoredReviews().filter(r => r.id !== revId);
+                saveStoredReviews(revs);
+                renderReviewsSection();
+                showToast('Reseña eliminada');
+            };
+        });
 
         document.querySelectorAll('.btn-helpful-review').forEach(btn => {
             btn.onclick = () => {
@@ -1657,9 +1967,8 @@
                             type="text" 
                             id="input-gc-autor" 
                             value="${user.isLoggedIn ? escapeHtml(user.name) : ''}" 
-                            placeholder="${user.isLoggedIn ? escapeHtml(user.name) : 'Tu nombre o alias (ej: ' + getSessionAnonymousHandle() + ')'}" 
+                            placeholder="${user.isLoggedIn ? escapeHtml(user.name) : 'Tu nombre o alias opcional (ej: ' + getSessionAnonymousHandle() + ')'}" 
                             class="bg-slate-900 border border-slate-700 text-white rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-indigo-500" 
-                            required 
                         />
                         <div class="flex items-center gap-2 px-1">
                             <input type="checkbox" id="input-gc-anonimo" class="rounded bg-slate-800 border-slate-700 text-indigo-600 focus:ring-0">
@@ -1705,8 +2014,13 @@
                                         </span>
                                     ` : ''}
                                     <span class="text-[10px] text-slate-500">·</span>
-                                    <span class="text-[10px] text-slate-400">${escapeHtml(c.date)}</span>
+                                    ${renderLiveTimestampBadge(c, 'text-[10px] text-slate-400')}
                                 </div>
+                                ${isUserCreatedItem(c) ? `
+                                    <button type="button" class="btn-delete-own-gc text-[10px] text-slate-500 hover:text-rose-400 px-1.5 py-0.5 rounded transition" data-gc-id="${c.id}">
+                                        Eliminar
+                                    </button>
+                                ` : ''}
                             </div>
                             <p class="text-xs text-slate-300 leading-relaxed">${escapeHtml(c.content)}</p>
                         </div>
@@ -1728,9 +2042,10 @@
                 const hpField = document.getElementById('input-gc-hp')?.value || '';
                 const formLoadedAt = form.getAttribute('data-loaded-at') || Date.now();
 
-                const autor = autorInput.value.trim();
+                const rawAutor = autorInput.value.trim();
                 const contenido = contenidoInput.value.trim();
-                if (!autor || !contenido) return;
+                const autor = rawAutor || (user.isLoggedIn && !isAnon ? user.name : getSessionAnonymousHandle());
+                if (!contenido) return;
 
                 if (btnSubmit) {
                     btnSubmit.disabled = true;
@@ -1764,12 +2079,15 @@
                     return;
                 }
 
+                const gcTs = Date.now();
                 const newC = {
-                    id: 'gc-' + Date.now(),
-                    author: isAnon ? (autor.includes('_') ? autor : 'anónimo_' + Math.floor(100 + Math.random() * 900)) : autor,
+                    id: 'gc-' + gcTs,
+                    author: resolveAnonymousAuthor(autor, isAnon, user.name),
                     isVerified: !isAnon && user.isLoggedIn,
                     content: contenido,
-                    date: 'Ahora mismo',
+                    date: 'Hace unos segundos',
+                    timestamp: gcTs,
+                    isUserCreated: true,
                     upvotes: 1
                 };
 
@@ -1778,9 +2096,23 @@
                 currentAll[slug].unshift(newC);
                 saveGuideComments(currentAll);
 
-                initGuideComments();
+                await initGuideComments();
+                showToast('Comentario publicado en la guía');
             };
         }
+
+        document.querySelectorAll('.btn-delete-own-gc').forEach(btn => {
+            btn.onclick = () => {
+                const gcId = btn.getAttribute('data-gc-id');
+                const currentAll = getGuideComments();
+                if (Array.isArray(currentAll[slug])) {
+                    currentAll[slug] = currentAll[slug].filter(c => c.id !== gcId);
+                    saveGuideComments(currentAll);
+                    initGuideComments();
+                    showToast('Comentario eliminado');
+                }
+            };
+        });
     }
 
     function escapeHtml(str) {
@@ -1798,8 +2130,14 @@
         if (box) {
             if (forceOpen === true) {
                 box.classList.remove('hidden');
+                openReplyThreadIds.add(threadId);
             } else {
                 box.classList.toggle('hidden');
+                if (box.classList.contains('hidden')) {
+                    openReplyThreadIds.delete(threadId);
+                } else {
+                    openReplyThreadIds.add(threadId);
+                }
             }
         }
     }
@@ -1922,6 +2260,8 @@
         if (tabForo) tabForo.onclick = () => { switchTab('foro'); window.history.replaceState(null, '', '#comunidad'); };
         if (tabResenas) tabResenas.onclick = () => { switchTab('resenas'); window.history.replaceState(null, '', '#resenas'); };
 
+        renderForumSection();
+        renderReviewsSection();
         handleHashRouting();
 
         window.addEventListener('hashchange', () => {
@@ -1929,6 +2269,7 @@
         });
 
         initGuideComments();
+        setInterval(refreshAllLiveTimestamps, 15000);
     }
 
     if (document.readyState === 'loading') {

@@ -102,8 +102,8 @@ export default async function handler(req, res) {
             });
         }
 
-        // 2. CONTROL DE VELOCIDAD: Formulario enviado en milisegundos
-        if (timestamp_form && (Date.now() - Number(timestamp_form)) < 800) {
+        // 2. CONTROL DE VELOCIDAD: Formulario enviado en milisegundos por script automático
+        if (timestamp_form && (Date.now() - Number(timestamp_form)) < 300) {
             return res.status(200).json({
                 aprobado: false,
                 motivo: "Envío demasiado rápido. Por favor, tómate un momento para escribir tu mensaje.",
@@ -186,7 +186,7 @@ Evalúa el mensaje anterior y devuelve únicamente el objeto JSON.`;
 
         try {
             const geminiRes = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${geminiKey}`,
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
